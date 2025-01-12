@@ -22,7 +22,7 @@ def main():
 
 origins = [
     "http://localhost:5173",  # React/Vue/Angular на локальном хосте
-    "http://127.0.0.1:5173",  # Альтернативный локальный хост
+    "http://79.141.72.164",  # Альтернативный локальный хост
 ]
 
 app.add_middleware(
