@@ -1,0 +1,8 @@
+.storage-info {
+	display: flex;
+	flex-direction: column;
+	width: 20rem;
+	gap: 1rem;
+	align-items: start;
+	padding: 0.3rem;
+}

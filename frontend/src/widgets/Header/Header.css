@@ -1,0 +1,27 @@
+header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	background-color: transparent;
+	padding: 0.3rem;
+	caret-color: transparent;
+	height: 4rem;
+	position: relative;
+}
+
+header nav {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.header__elements {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+	position: absolute;
+	right: 1.25rem;
+}
+
+.logo {
+	position: absolute;
+}

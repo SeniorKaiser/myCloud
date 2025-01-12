@@ -1,0 +1,31 @@
+.disk-main {
+	display: flex;
+	justify-content: center;
+	margin-top: 3rem;
+	gap: 2rem;
+}
+
+@media (width < 81.25rem) {
+	.disk-main {
+		flex-direction: column;
+		justify-content: start;
+		align-items: center;
+		gap: 2rem;
+	}
+	.storage-info {
+		width: 60%;
+	}
+}
+
+@media (width < 60rem) {
+	.storage-info {
+		width: 100%;
+	}
+}
+
+@media (width < 60rem) {
+	.storage {
+		width: 100%;
+		padding: 0.3rem;
+	}
+}

@@ -1,0 +1,62 @@
+.slider-wrapper {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.slider {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	width: 100%;
+	max-width: 80%;
+	height: 100%;
+	gap: 0.6rem;
+	padding: 0.6rem 0;
+}
+
+.slider::-webkit-scrollbar {
+	display: none;
+}
+
+.slider__card {
+	height: 100%;
+	scroll-snap-align: start;
+	display: flex;
+	flex-direction: column;
+	border-radius: 0.6rem;
+	padding: 0.6rem;
+}
+
+.slider-btn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	border: none;
+	border-radius: 50%;
+	background-color: var(--main-color);
+	cursor: pointer;
+	color: white;
+	width: 2rem;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: 0.2s ease;
+}
+
+.slider-btn:active {
+	scale: 0.95;
+}
+
+.slider-btn.left {
+	left: 5%;
+}
+
+.slider-btn.right {
+	right: 5%;
+}

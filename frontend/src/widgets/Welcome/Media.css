@@ -1,0 +1,20 @@
+@media (hover: hover) {
+	.welcome__title--buttons button:hover {
+		scale: 1.05;
+	}
+	.welcome__title--buttons button:active {
+		scale: 1;
+	}
+}
+
+@media (width < 32rem) {
+	.welcome h1 {
+		font-size: 2rem;
+	}
+}
+
+@media (width < 25rem) {
+	.welcome__title--buttons span {
+		display: none;
+	}
+}

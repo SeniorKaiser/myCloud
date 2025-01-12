@@ -1,0 +1,19 @@
+nav {
+	display: flex;
+	align-items: center;
+	height: 1rem;
+	gap: 1rem;
+}
+
+nav a {
+	text-decoration: none;
+	color: inherit;
+	height: 100%;
+	transition: color 0.3s ease, fill 0.3s ease;
+}
+
+@media (hover: hover) {
+	nav a:hover {
+		color: var(--main-color);
+	}
+}

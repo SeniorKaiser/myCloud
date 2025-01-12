@@ -1,0 +1,55 @@
+.storage-table {
+	width: 100%;
+	border-collapse: collapse;
+	overflow: hidden;
+	caret-color: transparent;
+}
+
+th {
+	font-weight: bold;
+}
+
+td,
+th {
+	padding: 0.5em 0.3em;
+	text-align: left;
+	border-bottom: 0.0625em solid var(--window);
+}
+
+td:first-child {
+	vertical-align: middle;
+	width: 50%;
+	span {
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+}
+
+.storage-table img {
+	width: 2.6rem;
+	height: 2.6rem;
+}
+
+@media (width < 30rem) {
+	.storage-table {
+		th:nth-child(2),
+		td:nth-child(2),
+		th:nth-child(3),
+		td:nth-child(3) {
+			display: none;
+		}
+	}
+}
+
+@media (width < 25rem) {
+	.storage-table {
+		th:nth-child(4),
+		td:nth-child(4) {
+			display: none;
+		}
+		th:nth-child(5),
+		td:nth-child(5) {
+			text-align: end;
+		}
+	}
+}

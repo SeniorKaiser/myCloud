@@ -1,0 +1,55 @@
+.welcome {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	caret-color: transparent;
+}
+
+.welcome img {
+	min-width: 50%;
+	height: 100%;
+	margin-left: auto;
+	object-fit: cover;
+	transform: scaleX(-1);
+}
+
+.welcome__title h1 {
+	font-size: 4rem;
+	margin: 0;
+}
+
+.welcome__title p {
+	font-size: 1.3rem;
+	margin: 0;
+	margin-bottom: 1rem;
+	color: var(--grey);
+}
+
+.welcome__title--buttons {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.welcome__title--buttons a {
+	text-decoration: none;
+	color: var(--main-color);
+}
+
+.welcome__title--buttons button {
+	border: none;
+	border-radius: 1rem;
+	background-color: var(--main-color);
+	color: white;
+	width: 12rem;
+	height: 2.5rem;
+	font-size: 1.3rem;
+	transition: 0.5s;
+}
+
+.welcome__title {
+	max-width: 60rem;
+	border-radius: 0 3rem 3rem 0;
+	padding: 1rem;
+}

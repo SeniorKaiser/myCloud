@@ -1,0 +1,39 @@
+.theme-switch {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	width: 3rem;
+	height: 1.5rem;
+	background-color: var(--switch-bg, #ddd); /* Фон переключателя */
+	border-radius: 1rem;
+	padding: 0.125rem;
+	position: relative;
+	transition: background-color 0.3s;
+}
+
+.theme-switch .switch {
+	width: 1.25rem;
+	height: 1.25rem;
+	background-color: var(--switch-circle, #fff); /* Цвет круга */
+	border-radius: 50%;
+	position: absolute;
+	top: 0.125rem;
+	left: 0.125rem;
+	transition: transform 0.3s, background-color 0.3s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.theme-switch .switch.light {
+	transform: translateX(0);
+}
+
+.theme-switch .switch.dark {
+	transform: translateX(1.5rem);
+	background-color: var(--switch-circle-dark, #333);
+}
+
+.theme-switch:hover {
+	background-color: var(--switch-bg-hover, #ccc);
+}

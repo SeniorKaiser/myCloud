@@ -1,0 +1,73 @@
+.input_container {
+	width: 100%;
+}
+
+.input {
+	width: 100%;
+	height: 3rem;
+	padding: 1.25rem 1rem 0.5rem;
+	background-color: transparent;
+	border-radius: 0.3rem;
+	border: none;
+	font-size: 1.2rem;
+	cursor: text;
+
+	&:not([value='']):not(:focus) ~ .input_placeholder,
+	&:-webkit-autofill ~ .input_placeholder {
+		top: 0;
+		left: 1rem;
+		font-size: 0.8rem;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:invalid:not([required]) + .input_error {
+		display: block;
+	}
+
+	&[data-error='true'],
+	&:invalid:not([required]) {
+		border: 1px solid red;
+	}
+}
+
+/* Убираем стили автозаполнения */
+.input:-webkit-autofill {
+	background-color: transparent !important;
+	color: inherit !important;
+	transition: background-color 9999s ease-in-out 0s; /* Убираем желтый фон */
+}
+
+.input_container {
+	position: relative;
+	display: flex;
+	flex-direction: column-reverse;
+
+	&:focus-within .input_placeholder,
+	.input:-webkit-autofill ~ .input_placeholder {
+		top: 0;
+		left: 1rem;
+		font-size: 0.8rem;
+	}
+}
+
+.input_placeholder {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	transition: all ease-in-out 0.3s;
+	cursor: text;
+}
+
+.input_error {
+	display: none;
+	margin-left: 0.6rem;
+	color: red;
+	margin-bottom: 0.3rem;
+
+	&[data-error='true'] {
+		display: block;
+	}
+}

@@ -1,0 +1,20 @@
+.profile {
+	cursor: pointer;
+}
+
+.avatar {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 100%;
+	transition: 0.3s;
+}
+
+.profile ul {
+	right: 1rem;
+}
+
+@media (hover: hover) {
+	.avatar:hover {
+		scale: 1.1;
+	}
+}
