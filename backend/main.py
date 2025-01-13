@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(
     title="myCloud",
     description="Сервис для хранения файлов",
-    version="0.0.2",
+    version="0.0.3",
 )
 
 app.include_router(User_Router)
