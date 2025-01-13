@@ -13,23 +13,7 @@ jobs:
     steps:
       - name: Клонируем репозиторий
         uses: actions/checkout@v4
-
-      - name: Создаём .env файл из GitHub Secrets
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> /root/myCloud/.env
-            echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> /root/myCloud/.env
-            echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> /root/myCloud/.env
-            echo "REFRESH_TOKEN_EXPIRE_DAYS=${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}" >> /root/myCloud/.env
-            echo "KEY_ACCESS=${{ secrets.KEY_ACCESS }}" >> /root/myCloud/.env
-            echo "KEY_REFRESH=${{ secrets.KEY_REFRESH }}" >> /root/myCloud/.env
-            echo "ACCESS_KEY_S3=${{ secrets.ACCESS_KEY_S3 }}" >> /root/myCloud/.env
-            echo "SECRET_KEY_S3=${{ secrets.SECRET_KEY_S3 }}" >> /root/myCloud/.env
-
+            
       - name: Подключаемся к серверу и развертываем проект
         uses: appleboy/ssh-action@master
         with:
@@ -37,6 +21,14 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> /root/myCloud/.env
+            echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> /root/myCloud/.env
+            echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> /root/myCloud/.env
+            echo "REFRESH_TOKEN_EXPIRE_DAYS=${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}" >> /root/myCloud/.env
+            echo "KEY_ACCESS=${{ secrets.KEY_ACCESS }}" >> /root/myCloud/.env
+            echo "KEY_REFRESH=${{ secrets.KEY_REFRESH }}" >> /root/myCloud/.env
+            echo "ACCESS_KEY_S3=${{ secrets.ACCESS_KEY_S3 }}" >> /root/myCloud/.env
+            echo "SECRET_KEY_S3=${{ secrets.SECRET_KEY_S3 }}" >> /root/myCloud/.env
             echo "Start of SSH deployment"
             cd ~/myCloud || { echo "Directory not found!"; exit 1; }
             echo "Cloning repository"
