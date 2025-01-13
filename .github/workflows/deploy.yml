@@ -14,15 +14,10 @@ jobs:
       - name: Клонируем репозиторий
         uses: actions/checkout@v4
 
-      - name: Debug secrets
-        run: |
-          echo "SSH_USER=${{ secrets.SSH_USER }}"
-          echo "SSH_KEY is set: " $(if [ -z "${{ secrets.SSH_KEY }}" ]; then echo "NO"; else echo "YES"; fi)
-
       - name: Подключаемся к серверу и развертываем проект
         uses: appleboy/ssh-action@master
         with:
-          host: '79.141.77.164'
+          host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
