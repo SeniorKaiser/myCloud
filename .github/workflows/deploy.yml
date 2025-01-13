@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Клонируем репозиторий
         uses: actions/checkout@v4
-            
+
       - name: Подключаемся к серверу и развертываем проект
         uses: appleboy/ssh-action@master
         with:
@@ -21,7 +21,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> /root/myCloud/.env
+            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> /root/myCloud/.env
             echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> /root/myCloud/.env
             echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> /root/myCloud/.env
             echo "REFRESH_TOKEN_EXPIRE_DAYS=${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}" >> /root/myCloud/.env
