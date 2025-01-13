@@ -18,7 +18,7 @@ jobs:
         with:
           host: '79.141.72.164'
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
             echo "Start of SSH deployment"
             cd ~/myCloud || { echo "Directory not found!"; exit 1; }
