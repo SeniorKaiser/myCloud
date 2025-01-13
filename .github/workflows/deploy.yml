@@ -16,14 +16,14 @@ jobs:
 
       - name: Создаём .env файл из GitHub Secrets
         run: |
-          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> ~/myCloud/.env
-          echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> ~/myCloud/.env
-          echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> ~/myCloud/.env
-          echo "REFRESH_TOKEN_EXPIRE_DAYS=${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}" >> ~/myCloud/.env
-          echo "KEY_ACCESS=${{ secrets.KEY_ACCESS }}" >> ~/myCloud/.env
-          echo "KEY_REFRESH=${{ secrets.KEY_REFRESH }}" >> ~/myCloud/.env
-          echo "ACCESS_KEY_S3=${{ secrets.ACCESS_KEY_S3 }}" >> ~/myCloud/.env
-          echo "SECRET_KEY_S3=${{ secrets.SECRET_KEY_S3 }}" >> ~/myCloud/.env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> /root/myCloud/.env
+          echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> /root/myCloud/.env
+          echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> /root/myCloud/.env
+          echo "REFRESH_TOKEN_EXPIRE_DAYS=${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}" >> /root/myCloud/.env
+          echo "KEY_ACCESS=${{ secrets.KEY_ACCESS }}" >> /root/myCloud/.env
+          echo "KEY_REFRESH=${{ secrets.KEY_REFRESH }}" >> /root/myCloud/.env
+          echo "ACCESS_KEY_S3=${{ secrets.ACCESS_KEY_S3 }}" >> /root/myCloud/.env
+          echo "SECRET_KEY_S3=${{ secrets.SECRET_KEY_S3 }}" >> /root/myCloud/.env
 
       - name: Подключаемся к серверу и развертываем проект
         uses: appleboy/ssh-action@master
