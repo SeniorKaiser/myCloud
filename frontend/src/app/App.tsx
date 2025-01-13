@@ -1,5 +1,5 @@
 import './root.css'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 import Home from '@pages/Home/Home.tsx'
 import Disk from '@pages/Disk/Disk.tsx'
