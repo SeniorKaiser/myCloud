@@ -16,9 +16,9 @@ jobs:
       - name: Подключаемся к серверу и развертываем проект
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ Secrets.SSH_HOST }}
-          username: ${{ Secrets.SSH_USER }}
-          key: ${{ Secrets.SSH_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
             echo "Start of SSH deployment"
             cd ~/myCloud || { echo "Directory not found!"; exit 1; }
