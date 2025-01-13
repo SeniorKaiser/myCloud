@@ -1,8 +1,7 @@
 from src.utils.repository import SQLAlchemyRepository
 from src.models.User import User
 from src.utils.database import async_session_maker
-from src.utils.redis import redis_client
-from sqlalchemy import delete, insert, select
+from sqlalchemy import select
 
 
 
