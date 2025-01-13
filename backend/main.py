@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from src.routers.User import router as User_Router
 from src.routers.File import router as File_Router
 from src.routers.Folder import router as Folder_Router
-from src.utils.redis import redis_client
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
