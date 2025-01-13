@@ -27,9 +27,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             echo "Start of SSH deployment"
-            cd ~/myCloud || { echo "Directory not found!"; exit 1; }
             echo "Cloning repository"
             git pull origin main || { echo "Git pull failed!"; exit 1; }
+            cd ~/myCloud || { echo "Directory not found!"; exit 1; }
             echo "Building Docker containers"
             docker compose up -d --build || { echo "Docker compose failed!"; exit 1; }
             echo "Deployment successful"
