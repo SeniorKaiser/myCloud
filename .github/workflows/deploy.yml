@@ -1,0 +1,46 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main # Запускать при пуше в main (можно изменить)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Клонируем репозиторий
+        uses: actions/checkout@v4
+
+      - name: Подключаемся к серверу и развертываем проект
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            # Переключаемся в папку проекта
+            cd ~/myCloud
+
+            # Останавливаем старые контейнеры
+            docker compose down
+
+            # Обновляем код
+            git pull origin main
+
+            # Обновляем .env файл с секретами из GitHub Secrets
+            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > .env
+            echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> .env
+            echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> .env
+            echo "REFRESH_TOKEN_EXPIRE_DAYS=${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}" >> .env
+            echo "KEY_ACCESS=${{ secrets.KEY_ACCESS }}" >> .env
+            echo "KEY_REFRESH=${{ secrets.KEY_REFRESH }}" >> .env
+            echo "ACCESS_KEY_S3=${{ secrets.ACCESS_KEY_S3 }}" >> .env
+            echo "SECRET_KEY_S3=${{ secrets.SECRET_KEY_S3 }}" >> .env
+
+            # Собираем и запускаем контейнеры
+            docker compose up -d --build
+
+            # Проверяем статус контейнеров
+            docker ps -a
