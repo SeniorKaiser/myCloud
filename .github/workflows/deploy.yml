@@ -29,10 +29,10 @@ jobs:
             echo "KEY_REFRESH=${{ secrets.KEY_REFRESH }}" >> /root/myCloud/.env
             echo "ACCESS_KEY_S3=${{ secrets.ACCESS_KEY_S3 }}" >> /root/myCloud/.env
             echo "SECRET_KEY_S3=${{ secrets.SECRET_KEY_S3 }}" >> /root/myCloud/.env
-            echo "Start of SSH deployment"
+
             cd ~/myCloud || { echo "Directory not found!"; exit 1; }
             echo "Cloning repository"
-            git pull origin main || { echo "Git pull failed!"; exit 1; }
+            git pull || { echo "Git pull failed!"; exit 1; }
             echo "Building Docker containers"
-            docker compose up -d --build || { echo "Docker compose failed!"; exit 1; }
+            docker compose up --build || { echo "Docker compose failed!"; exit 1; }
             echo "Deployment successful"
