@@ -20,7 +20,7 @@ services:
     networks:
       - dev
     env_file:
-      - ~/myCloud/.env
+      - .env
 
   frontend:
     build:
