@@ -16,7 +16,7 @@ const loginRequest = async ({
 		formData.append('password', password)
 
 		const response: AxiosResponse<{ access_token: string }> = await axios.post(
-			`${domenApi}/user/login`,
+			`${domenApi}/api/user/login`,
 			formData,
 			{
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
