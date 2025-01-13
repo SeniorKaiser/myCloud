@@ -16,7 +16,7 @@ jobs:
       - name: Подключаемся к серверу и развертываем проект
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
+          host: '79.141.72.164'
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
