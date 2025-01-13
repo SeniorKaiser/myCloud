@@ -9,5 +9,5 @@ createRoot(document.getElementById('root')!).render(
 )
 
 // git add .
-// git commit -m "Название"
+// git commit -m "Название
 // git push -u origin main
