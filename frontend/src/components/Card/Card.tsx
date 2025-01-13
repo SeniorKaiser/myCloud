@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface Card {
 	id: number
 	title: string

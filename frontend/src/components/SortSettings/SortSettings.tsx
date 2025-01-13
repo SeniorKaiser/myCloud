@@ -1,6 +1,6 @@
 import React from 'react'
 import { SortFunctions } from './SortSettingsData'
-import { ArrowUp, ArrowDown } from '@components/Icons/Icons'
+import { ArrowUp } from '@components/Icons/Icons'
 import './SortSettings.css'
 
 const SortSettings: React.FC = () => {
