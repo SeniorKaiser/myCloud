@@ -19,8 +19,6 @@ services:
       context: ./backend
     networks:
       - dev
-    env_file:
-      - .env
 
   frontend:
     build:
