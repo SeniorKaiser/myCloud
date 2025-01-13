@@ -20,27 +20,10 @@ jobs:
           username: ${{ Secrets.SSH_USER }}
           key: ${{ Secrets.SSH_KEY }}
           script: |
-            # Переключаемся в папку проекта
-            cd ~/myCloud
-
-            # Останавливаем старые контейнеры
-            docker compose down
-
-            # Обновляем код
-            git pull origin main
-
-            # Обновляем .env файл с секретами из GitHub Secrets
-            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > .env
-            echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> .env
-            echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> .env
-            echo "REFRESH_TOKEN_EXPIRE_DAYS=${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}" >> .env
-            echo "KEY_ACCESS=${{ secrets.KEY_ACCESS }}" >> .env
-            echo "KEY_REFRESH=${{ secrets.KEY_REFRESH }}" >> .env
-            echo "ACCESS_KEY_S3=${{ secrets.ACCESS_KEY_S3 }}" >> .env
-            echo "SECRET_KEY_S3=${{ secrets.SECRET_KEY_S3 }}" >> .env
-
-            # Собираем и запускаем контейнеры
-            docker compose up -d --build
-
-            # Проверяем статус контейнеров
-            docker ps -a
+            echo "Start of SSH deployment"
+            cd ~/myCloud || { echo "Directory not found!"; exit 1; }
+            echo "Cloning repository"
+            git pull origin main || { echo "Git pull failed!"; exit 1; }
+            echo "Building Docker containers"
+            docker compose up -d --build || { echo "Docker compose failed!"; exit 1; }
+            echo "Deployment successful"
