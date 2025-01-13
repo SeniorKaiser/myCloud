@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
 
 class Settings(BaseSettings):
     SECRET_KEY: str
@@ -10,6 +11,8 @@ class Settings(BaseSettings):
     ACCESS_KEY_S3: str
     SECRET_KEY_S3: str
 
-    model_config = SettingsConfigDict(env_file='.env')
+    model_config = SettingsConfigDict(
+        env_file=Path(__file__).resolve().parent.parent / '.env'
+    )
 
 settings = Settings()
