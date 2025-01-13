@@ -21,7 +21,7 @@ def main():
 
 origins = [
     "http://localhost:5173",  # React/Vue/Angular на локальном хосте
-    "http://79.141.72.164",  # Альтернативный локальный хост
+    "http://79.141.77.164",  # Альтернативный локальный хост
 ]
 
 app.add_middleware(
@@ -32,9 +32,8 @@ app.add_middleware(
     allow_headers=["*"],  # 🔹 Разрешенные заголовки
 )
 
-
-if __name__ == '__main__':
-    uvicorn.run("main:app", host='0.0.0.0', port=8000, reload=True, workers=3)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 #git add .
 #git status проверка сохраненых папок
 #git rm -r --cached venv убрать папку venv
