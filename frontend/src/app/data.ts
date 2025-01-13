@@ -2,7 +2,7 @@ import * as Icons from '@components/Icons/Icons.tsx'
 
 export const title: string = 'myCloud'
 
-export const domenApi: string = 'https://127.0.0.1:8000'
+export const domenApi: string = 'http://79.141.77.164'
 
 export interface Option {
 	title: string
