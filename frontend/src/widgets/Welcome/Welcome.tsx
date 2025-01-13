@@ -16,7 +16,7 @@ const Welcome: React.FC = () => {
 					</p>
 					<div className='welcome__title--buttons'>
 						<span>
-							Don't have account? <a href='./reg'>Registration</a>
+							Don't have account? <a href='./reg'>Registratio</a>
 						</span>
 						<button onClick={() => (window.location.href = './login')}>
 							Login
