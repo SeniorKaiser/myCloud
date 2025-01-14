@@ -15,7 +15,7 @@
 }
 
 .welcome__title h1 {
-	font-size: 4rem;
+	font-size: clamp(2rem, 5vw, 4rem);
 	margin: 0;
 }
 
