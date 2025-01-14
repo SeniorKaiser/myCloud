@@ -9,7 +9,7 @@
 		height: 100%;
 		width: 100%;
 		flex-direction: column;
-		background-color: var(--glass);
+		background-color: var(--background);
 		transform: translateX(100%);
 		transition: transform 0.3s ease-in-out;
 		z-index: 999;
