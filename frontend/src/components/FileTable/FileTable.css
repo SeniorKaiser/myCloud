@@ -51,5 +51,8 @@ td:first-child {
 		td:nth-child(5) {
 			text-align: end;
 		}
+		td:first-child {
+			width: 100%;
+		}
 	}
 }
