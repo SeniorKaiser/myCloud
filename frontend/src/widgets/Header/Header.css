@@ -18,10 +18,4 @@ header nav {
 	display: flex;
 	align-items: center;
 	gap: 1.25rem;
-	position: absolute;
-	right: 1.25rem;
-}
-
-.logo {
-	position: absolute;
 }
