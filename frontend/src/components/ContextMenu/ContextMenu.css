@@ -1,5 +1,5 @@
 .context-menu {
-	position: absolute;
+	position: fixed;
 	z-index: 1000;
 	list-style-type: none;
 	background: var(--glass);
