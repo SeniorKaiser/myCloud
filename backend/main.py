@@ -20,8 +20,8 @@ def main():
     return "Hello world"
 
 origins = [
-    "http://localhost:5173",  # React/Vue/Angular на локальном хосте
-    "http://79.141.77.164",  # Альтернативный локальный хост
+    "http://localhost:5173",
+    "http://79.141.77.164",
 ]
 
 app.add_middleware(
