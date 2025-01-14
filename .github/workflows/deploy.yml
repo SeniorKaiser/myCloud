@@ -30,8 +30,8 @@ jobs:
             ALGORITHM=${{ secrets.ALGORITHM }}
             ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
             REFRESH_TOKEN_EXPIRE_DAYS=${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}
-            KEY_ACCESS=${{ secrets.KEY_ACCESS }}
-            KEY_REFRESH=${{ secrets.KEY_REFRESH }}
+            COOKEY_KEY_ACCESS=${{ secrets.KEY_ACCESS }}
+            COOKEY_KEY_REFRESH=${{ secrets.KEY_REFRESH }}
             ACCESS_KEY_S3=${{ secrets.ACCESS_KEY_S3 }}
             SECRET_KEY_S3=${{ secrets.SECRET_KEY_S3 }}
             EOF
