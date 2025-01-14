@@ -14,8 +14,13 @@ header nav {
 	margin-right: auto;
 }
 
+header .logo {
+	z-index: 1000;
+}
+
 .header__elements {
 	display: flex;
 	align-items: center;
 	gap: 1.25rem;
+	z-index: 1000;
 }
