@@ -13,7 +13,7 @@
 }
 
 @media (width < 70rem) {
-	.slider-wrapper {
+	.login-main__container > .slider-wrapper {
 		display: none;
 	}
 }

@@ -3,4 +3,20 @@
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	gap: clamp(1rem, 20vw, 10rem);
+}
+
+.home-main .features {
+	width: 100%;
+	height: 20rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+@media (width < 32.5rem) {
+	.home-main .features .slider__card {
+		flex: 0 0 100% !important;
+	}
 }
