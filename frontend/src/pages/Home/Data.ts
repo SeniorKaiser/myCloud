@@ -1,6 +1,4 @@
-import { Dataset } from '@components/Chart/Chart'
-
-export const ChartsData: Dataset = [
+export const ChartsData = [
 	{
 		label: 'Users',
 		data: [5000, 7000, 8000, 9000, 12000, 15000],
