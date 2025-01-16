@@ -22,7 +22,7 @@ class UserService:
         if not user: raise HTTPException(status_code=404)
         token = await generate_tokens(user)
         response.set_cookie(
-            key=settings.COOKIE_KEY_REFRESH,
+            key=settings.COOKIES_KEY_REFRESH,
             value=token.refresh_token,
             httponly=True,
             secure=False,
@@ -30,7 +30,7 @@ class UserService:
             expires=(datetime.utcnow() + timedelta(days=7)).strftime("%a, %d-%b-%Y %H:%M:%S GMT"),
         )
         response.set_cookie(
-            key=settings.COOKIE_KEY_ACCESS,
+            key=settings.COOKIES_KEY_ACCESS,
             value=token.access_token,
             httponly=True,
             secure=False,
