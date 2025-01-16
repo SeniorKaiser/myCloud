@@ -2,12 +2,13 @@
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import logging
+# import logging
 
-logging.getLogger("sqlalchemy.engine").setLevel(logging.ERROR)
+# logging.getLogger("sqlalchemy.engine").setLevel(logging.ERROR)
 
 # Настройка SQLAlchemy
 SQLALCHEMY_DATABASE_URL = "sqlite+aiosqlite:///./app.db"
+# SQLALCHEMY_DATABASE_URL = f'postgresql+asyncpg://{settings.DB_USER}:{settings.DB_PASS}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}'
 
 # Создание подключения
 engine = create_async_engine(SQLALCHEMY_DATABASE_URL, echo=False)

@@ -1,0 +1,7 @@
+.statistic-card {
+	max-width: 60rem;
+}
+
+.statistic-card h3 {
+	color: var(--grey);
+}

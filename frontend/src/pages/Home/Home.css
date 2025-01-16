@@ -15,8 +15,11 @@
 	flex-direction: column;
 }
 
-@media (width < 32.5rem) {
-	.home-main .features .slider__card {
-		flex: 0 0 100% !important;
-	}
+.home-main .statistic {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 20rem;
 }

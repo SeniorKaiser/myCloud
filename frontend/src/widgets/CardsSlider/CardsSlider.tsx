@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { sliderCards, Card } from './data.ts'
-import { ChevronLeft, ChevronRight } from '@components/Icons/Icons.tsx'
 import './CardsSlider.css'
 
 interface CardsSliderProps {
@@ -14,59 +13,35 @@ const CardsSlider: React.FC<CardsSliderProps> = ({
 	width,
 	height,
 	cards = sliderCards,
-	cards_in_row = 1,
 }) => {
 	const sliderRef = useRef<HTMLDivElement | null>(null)
-	const [showLeftBtn, setShowLeftBtn] = useState(false)
-	const [showRightBtn, setShowRightBtn] = useState(true)
-
-	const handleScroll = (direction: 'prev' | 'next') => {
-		if (sliderRef.current) {
-			const slider = sliderRef.current as HTMLDivElement
-			const cardWidth = slider.clientWidth
-
-			if (direction === 'next') {
-				slider.scrollLeft += cardWidth
-			} else {
-				slider.scrollLeft -= cardWidth
+	const [activeIndex, setActiveIndex] = useState(0)
+	useEffect(() => {
+		const updateActiveDot = () => {
+			if (sliderRef.current) {
+				const index = Math.round(
+					sliderRef.current.scrollLeft / sliderRef.current.clientWidth
+				)
+				setActiveIndex(index)
 			}
 		}
-	}
 
-	const checkScrollPosition = () => {
-		if (!sliderRef.current) return
-		const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current
-
-		setShowLeftBtn(scrollLeft > 0)
-		setShowRightBtn(scrollLeft < scrollWidth - clientWidth - 1)
-	}
-
-	useEffect(() => {
 		const slider = sliderRef.current
 		if (!slider) return
-		slider.addEventListener('scroll', checkScrollPosition)
-		checkScrollPosition()
-		return () => slider.removeEventListener('scroll', checkScrollPosition)
+
+		slider.addEventListener('scroll', updateActiveDot)
+		return () => slider.removeEventListener('scroll', updateActiveDot)
 	}, [])
 
 	return (
 		<div className='slider-wrapper' style={{ width: width, height: height }}>
-			{showLeftBtn && (
-				<button
-					className='slider-btn left'
-					onClick={() => handleScroll('prev')}
-				>
-					<ChevronLeft />
-				</button>
-			)}
-
 			<div className='slider' ref={sliderRef}>
 				{cards.map(card => (
 					<div
 						className='slider__card'
 						key={card.id}
 						style={{
-							flex: `0 0 calc(calc((100% - (${cards_in_row} - 1) * 0.6rem) / ${cards_in_row}))`,
+							flex: `0 0 100%`,
 						}}
 					>
 						{card.img_path ? (
@@ -77,14 +52,20 @@ const CardsSlider: React.FC<CardsSliderProps> = ({
 					</div>
 				))}
 			</div>
-			{showRightBtn && (
-				<button
-					className='slider-btn right'
-					onClick={() => handleScroll('next')}
-				>
-					<ChevronRight />
-				</button>
-			)}
+			<div className='slider-dots'>
+				{cards.map((_, index) => (
+					<button
+						key={index}
+						className={`slider-dot ${index === activeIndex ? 'active' : ''}`}
+						onClick={() => {
+							if (sliderRef.current) {
+								sliderRef.current.scrollLeft =
+									index * sliderRef.current.clientWidth
+							}
+						}}
+					></button>
+				))}
+			</div>
 		</div>
 	)
 }

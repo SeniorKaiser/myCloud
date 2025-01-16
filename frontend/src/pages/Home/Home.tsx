@@ -3,6 +3,8 @@ import Header from '@widgets/Header/Header.tsx'
 import Footer from '@widgets/Footer/Footer.tsx'
 import Welcome from '@widgets/Welcome/Welcome'
 import CardsSlider from '@widgets/CardsSlider/CardsSlider'
+import ChartCards from '@widgets/ChartCards/ChartCards'
+import { ChartsData } from './Data.ts'
 import './Home.css'
 
 const Home: React.FC = () => {
@@ -18,6 +20,10 @@ const Home: React.FC = () => {
 						height='100%'
 						cards_in_row={2}
 					/>
+				</section>
+				<section className='statistic'>
+					<h1>Statistic</h1>
+					<ChartCards title='Users' data={ChartsData} />
 				</section>
 			</main>
 			<Footer />

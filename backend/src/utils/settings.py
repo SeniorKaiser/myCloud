@@ -6,13 +6,18 @@ class Settings(BaseSettings):
     ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     REFRESH_TOKEN_EXPIRE_DAYS: int
-    COOKEY_KEY_ACCESS: str
-    COOKEY_KEY_REFRESH: str
+    COOKIE_KEY_ACCESS: str
+    COOKIE_KEY_REFRESH: str
     ACCESS_KEY_S3: str
     SECRET_KEY_S3: str
+    # DB_USER: str
+    # DB_PASS: str
+    # DB_HOST: str
+    # DB_PORT: str
+    # DB_NAME: str
 
     model_config = SettingsConfigDict(
-        env_file=Path("/root/myCloud/.env")
+        env_file=".env"
     )
 
 settings = Settings()

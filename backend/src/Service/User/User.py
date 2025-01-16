@@ -13,7 +13,7 @@ class UserService:
     async def registration(self, user: UserDTO) -> UserDTO:
         user.password = await get_password_hash(user.password)
         id = await self.user_repository.add(user.model_dump())
-        await user_storage_client.create_user_disk(id)
+        # await user_storage_client.create_user_disk(id)
         user = await self.user_repository.get(id)
         return user
     
@@ -22,7 +22,7 @@ class UserService:
         if not user: raise HTTPException(status_code=404)
         token = await generate_tokens(user)
         response.set_cookie(
-            key=settings.COOKEY_KEY_REFRESH,
+            key=settings.COOKIE_KEY_REFRESH,
             value=token.refresh_token,
             httponly=True,
             secure=False,
@@ -30,7 +30,7 @@ class UserService:
             expires=(datetime.utcnow() + timedelta(days=7)).strftime("%a, %d-%b-%Y %H:%M:%S GMT"),
         )
         response.set_cookie(
-            key=settings.COOKEY_KEY_ACCESS,
+            key=settings.COOKIE_KEY_ACCESS,
             value=token.access_token,
             httponly=True,
             secure=False,

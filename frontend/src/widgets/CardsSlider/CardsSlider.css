@@ -5,6 +5,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding-bottom: 1rem;
 }
 
 .slider {
@@ -13,7 +14,6 @@
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 	width: 100%;
-	max-width: 80%;
 	height: 100%;
 	gap: 0.6rem;
 	padding: 0.6rem 0;
@@ -30,33 +30,35 @@
 	flex-direction: column;
 	border-radius: 0.6rem;
 	padding: 0.6rem;
+	justify-content: end;
+	align-items: start;
 }
 
-.slider-btn {
+.slider__card h2,
+.slider__card p {
+	width: 50%;
+}
+
+.slider-dots {
 	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
+	bottom: 0.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 0.5rem;
+}
+
+.slider-dot {
+	width: 0.8rem;
+	height: 0.8rem;
+	background-color: lightgray;
 	border: none;
 	border-radius: 50%;
-	background-color: var(--main-color);
 	cursor: pointer;
-	color: white;
-	width: 2rem;
-	height: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: 0.2s ease;
+	transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.slider-btn:active {
-	scale: 0.95;
-}
-
-.slider-btn.left {
-	left: 5%;
-}
-
-.slider-btn.right {
-	right: 5%;
+.slider-dot.active {
+	background-color: var(--main-color);
+	transform: scale(1.2);
 }
