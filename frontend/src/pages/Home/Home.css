@@ -12,6 +12,10 @@
 	width: 100%;
 }
 
+.home-main section h1 {
+	text-align: center;
+}
+
 @media (width < 46rem) {
 	.privilege {
 		flex-direction: column;

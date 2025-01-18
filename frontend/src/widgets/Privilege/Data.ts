@@ -24,7 +24,7 @@ export const listPrivilegeCard: PrivilegeCard[] = [
 	{
 		title: 'Platinum',
 		storage: 1024,
-		price: 7.99,
+		price: 6.99,
 		color: '#009bd5',
 		action: () => alert('Platinum'),
 	},

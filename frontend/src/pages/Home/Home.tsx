@@ -4,8 +4,6 @@ import Footer from '@widgets/Footer/Footer.tsx'
 import Welcome from '@widgets/Welcome/Welcome'
 import CardsSlider from '@widgets/CardsSlider/CardsSlider'
 import PrivilegeInfo from '@widgets/Privilege/Privilege'
-// import ChartCards from '@widgets/ChartCards/ChartCards'
-// import { ChartsData } from './Data.ts'
 import './Home.css'
 
 const Home: React.FC = () => {
@@ -24,10 +22,9 @@ const Home: React.FC = () => {
 					</div>
 				</section>
 				<section className='privilege-container'>
-					<h1 style={{ textAlign: 'center' }}>Privilege</h1>
+					<h1>Privilege</h1>
 					<PrivilegeInfo />
 				</section>
-				<section className='statistic'></section>
 			</main>
 			<Footer />
 		</>

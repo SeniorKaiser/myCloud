@@ -26,9 +26,13 @@
 		height: 0;
 		transform: scaleY(0.1);
 	}
-	50% {
-		height: calc(auto/2);
-		transform: scaleY(1.05);
+	40% {
+		height: calc(auto - 50%);
+		transform: scaleY(1.1);
+	}
+	70% {
+		height: calc(auto - 10%);
+		transform: scaleY(0.95);
 	}
 	100% {
 		height: auto;
