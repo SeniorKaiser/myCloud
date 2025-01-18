@@ -1,6 +1,7 @@
 import React from 'react'
 import Upload from '@components/UploadInput/UploadInput.tsx'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
+import SortSettings from '@components/SortSettings/SortSettings'
 import './StorageInfo.css'
 
 const StorageInfo: React.FC = () => {
@@ -8,6 +9,7 @@ const StorageInfo: React.FC = () => {
 		<section className='storage-info'>
 			<Upload />
 			<ProgressBar size={128849018880} filled={70000000000} />
+			<SortSettings />
 		</section>
 	)
 }

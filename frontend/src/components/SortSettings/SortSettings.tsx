@@ -1,6 +1,5 @@
 import React from 'react'
 import { SortFunctions } from './SortSettingsData'
-import { ArrowUp } from '@components/Icons/Icons'
 import './SortSettings.css'
 
 const SortSettings: React.FC = () => {
@@ -8,7 +7,7 @@ const SortSettings: React.FC = () => {
 		<section className='sort-section'>
 			{SortFunctions.map(func => (
 				<button className='sort-button' key={func.title}>
-					{func.title} <ArrowUp />
+					<func.icon /> {func.title}
 				</button>
 			))}
 		</section>

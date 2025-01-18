@@ -16,6 +16,7 @@ import {
 	faChevronRight,
 	faRotateRight,
 	faCrown,
+	faSignature,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
@@ -27,6 +28,8 @@ import {
 	faBell,
 	faTrashCan,
 	faKeyboard,
+	faFile,
+	faClock,
 } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
@@ -133,4 +136,16 @@ export const ChevronRight: React.FC = () => {
 
 export const Crown: React.FC = () => {
 	return <FontAwesomeIcon icon={faCrown} />
+}
+
+export const Signature: React.FC = () => {
+	return <FontAwesomeIcon icon={faSignature} />
+}
+
+export const Clock: React.FC = () => {
+	return <FontAwesomeIcon icon={faClock} />
+}
+
+export const File: React.FC = () => {
+	return <FontAwesomeIcon icon={faFile} />
 }

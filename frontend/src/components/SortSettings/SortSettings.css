@@ -1,15 +1,21 @@
 .sort-section {
-	display: inline-flex;
-	gap: 1rem;
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 	width: 100%;
+	margin-top: 2rem;
 }
 
 .sort-button {
 	padding: 0.3rem 0.5rem;
-	background-color: var(--window);
+	background-color: transparent;
+	text-align: start;
 	border: none;
 	font-size: 1.3rem;
 	border-radius: 0.3rem;
+	cursor: pointer;
+}
+
+.sort-button svg {
+	width: 2rem;
 }

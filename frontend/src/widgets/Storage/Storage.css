@@ -2,6 +2,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 60%;
+	min-width: 60rem;
 	font-size: 1.3rem;
 }

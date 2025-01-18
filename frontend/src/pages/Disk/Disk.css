@@ -1,4 +1,5 @@
 .disk-main {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	margin-top: 3rem;
@@ -11,9 +12,15 @@
 		justify-content: start;
 		align-items: center;
 		gap: 2rem;
+		max-width: 60rem;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	.storage-info {
-		width: 60%;
+		width: 100%;
+	}
+	.sort-section {
+		flex-direction: row;
 	}
 }
 
@@ -21,11 +28,8 @@
 	.storage-info {
 		width: 100%;
 	}
-}
-
-@media (width < 60rem) {
 	.storage {
 		width: 100%;
-		padding: 0.3rem;
+		min-width: unset;
 	}
 }
