@@ -27,12 +27,6 @@ const Home: React.FC = () => {
 					<PrivilegeInfo />
 				</section>
 				<section className='statistic'></section>
-				<div className='cloud-background'>
-					<div className='price-tag'>от 938 Р/мес.</div>
-					<div className='circle circle1'></div>
-					<div className='circle circle2'></div>
-					<div className='circle circle3'></div>
-				</div>
 			</main>
 			<Footer />
 		</>
