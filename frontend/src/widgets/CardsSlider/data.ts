@@ -12,7 +12,7 @@ export const sliderCards: Card[] = [
 		description:
 			'Your files are safe and secure! Our cloud storage uses advanced encryption and security technologies to keep your data as safe as possible.',
 		img_path:
-			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/dedicated.svg',
+			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/cloud.svg',
 	},
 	{
 		id: 2,
@@ -20,7 +20,7 @@ export const sliderCards: Card[] = [
 		description:
 			'Our cloud storage is not only fast and secure, but also intuitive, stylishly designed for your convenience.',
 		img_path:
-			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/cloud.svg',
+			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/dedicated.svg',
 	},
 	{
 		id: 3,
