@@ -15,6 +15,7 @@ import {
 	faChevronLeft,
 	faChevronRight,
 	faRotateRight,
+	faCrown,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
@@ -128,4 +129,8 @@ export const ChevronLeft: React.FC = () => {
 
 export const ChevronRight: React.FC = () => {
 	return <FontAwesomeIcon icon={faChevronRight} />
+}
+
+export const Crown: React.FC = () => {
+	return <FontAwesomeIcon icon={faCrown} />
 }

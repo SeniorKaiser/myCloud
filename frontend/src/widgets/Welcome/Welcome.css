@@ -46,10 +46,11 @@
 	height: 2.5rem;
 	font-size: 1.3rem;
 	transition: 0.5s;
+	cursor: pointer;
 }
 
 .welcome__title {
-	max-width: 60rem;
+	width: 100%;
 	border-radius: 0 3rem 3rem 0;
 	padding: 1rem;
 }

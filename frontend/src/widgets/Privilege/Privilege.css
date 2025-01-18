@@ -1,0 +1,52 @@
+.privilege {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 2rem;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	overflow-x: auto;
+}
+
+.privilege-card {
+	height: 100%;
+	aspect-ratio: 3/4;
+	padding: 1rem;
+	background-color: var(--glass);
+	font-size: 1.3rem;
+	flex: 1;
+	border-radius: 0.6rem;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	box-shadow: 0px 0.3rem 0.6rem 0.125rem rgba(34, 60, 80, 0.2);
+	scroll-snap-align: start;
+}
+
+.privilege-card button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	transition: 0.3s;
+	font-size: 1.3rem;
+}
+
+.privilege-card p:nth-child(2) {
+	color: var(--grey);
+	margin-bottom: auto;
+}
+
+@media (hover: hover) {
+	.privilege-card button:hover {
+		color: var(--main-color);
+	}
+}
+
+@media (hover: none) {
+	.privilege-card button:active {
+		color: var(--main-color);
+	}
+}
