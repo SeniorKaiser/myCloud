@@ -13,14 +13,15 @@ const Home: React.FC = () => {
 		<>
 			<Header />
 			<main className='home-main'>
-				<Welcome />
-				<section className='features-container' style={{ height: '15rem' }}>
-					<h1 style={{ textAlign: 'center' }}>Features</h1>
-					<CardsSlider
-						width='min(100%, 60rem)'
-						height='100%'
-						cards_in_row={2}
-					/>
+				<section className='welcome-container'>
+					<Welcome />
+					<div className='features-container' style={{ height: '15rem' }}>
+						<CardsSlider
+							width='min(100%, 60rem)'
+							height='100%'
+							cards_in_row={2}
+						/>
+					</div>
 				</section>
 				<section className='privilege-container'>
 					<h1 style={{ textAlign: 'center' }}>Privilege</h1>

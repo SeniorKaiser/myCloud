@@ -35,7 +35,7 @@
 	justify-content: center;
 	align-items: center;
 	box-shadow: 0px 0.3rem 0.6rem 0.125rem rgba(34, 60, 80, 0.2);
-	background: linear-gradient(135deg, #59cff1, #97a7fd);
+	background: linear-gradient(135deg, var(--second-color), var(--main-color));
 	text-align: center;
 	color: white;
 	overflow: hidden;

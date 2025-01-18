@@ -40,7 +40,7 @@
 .welcome__title--buttons button {
 	border: none;
 	border-radius: 1rem;
-	background-color: var(--main-color);
+	background: linear-gradient(135deg, var(--second-color), var(--main-color));
 	color: white;
 	width: 12rem;
 	height: 2.5rem;
