@@ -25,14 +25,31 @@
 }
 
 .privilege-card button {
-	background-color: transparent;
 	border: none;
 	cursor: pointer;
 	transition: 0.3s;
 	font-size: 1.3rem;
+	width: 100%;
+	margin-top: 2rem;
+	border-radius: 0.5rem;
+	height: 2.5rem;
+	transition: 0.3s;
+	color: white;
 }
 
 .privilege-card p:nth-child(2) {
 	color: var(--grey);
-	margin-bottom: auto;
+	margin-bottom: 2rem;
+}
+
+@media (hover: hover) {
+	.privilege-card button:hover {
+		scale: 1.03;
+	}
+}
+
+@media (hover: none) {
+	.privilege-card button:active {
+		scale: 1.03;
+	}
 }

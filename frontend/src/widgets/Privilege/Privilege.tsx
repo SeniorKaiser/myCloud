@@ -16,10 +16,11 @@ const PrivilegeInfo: React.FC = () => {
 					</h2>
 					<p>Storage: {data.storage}gb</p>
 					<p>
-						Price: <span style={{ fontSize: '2rem' }}>{data.price}</span>$ /mo
+						Price: <span style={{ fontSize: '2rem' }}>{data.price}</span>$ /
+						month
 					</p>
-					<button onClick={data.action}>
-						Buy <span style={{ color: data.color }}>{data.title}</span>
+					<button onClick={data.action} style={{ backgroundColor: data.color }}>
+						Buy {data.title}
 					</button>
 				</div>
 			))}
