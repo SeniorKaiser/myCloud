@@ -34,6 +34,7 @@
 	font-size: 1.3rem;
 	transition: 0.5s;
 	margin-top: 2rem;
+	color: white;
 }
 
 @media (hover: hover) {
