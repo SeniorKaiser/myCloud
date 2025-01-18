@@ -14,6 +14,7 @@
 	font-size: 1.3rem;
 	border-radius: 0.3rem;
 	cursor: pointer;
+	color: var(--text);
 }
 
 .sort-button svg {
