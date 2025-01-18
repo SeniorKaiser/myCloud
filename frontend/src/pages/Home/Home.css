@@ -16,27 +16,16 @@
 	width: 100%;
 }
 
-@media (width < 50rem) {
-	.privilege-card {
-		aspect-ratio: 3/1;
-		width: 100%;
-	}
+.home-main .privilege-container {
+	width: 100%;
+}
+
+@media (width < 46rem) {
 	.privilege {
 		flex-direction: column;
 	}
-}
-
-@media (width < 32.5rem) {
 	.privilege-card {
-		aspect-ratio: unset;
 		width: 100%;
-		flex: 0 0 100%;
-	}
-	.privilege {
-		flex-direction: row;
-		scroll-snap-type: x mandatory;
-		overflow-x: auto;
-		scroll-behavior: smooth;
-		scroll-snap-align: start;
+		aspect-ratio: unset;
 	}
 }

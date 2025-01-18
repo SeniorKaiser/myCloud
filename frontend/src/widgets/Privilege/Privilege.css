@@ -2,7 +2,7 @@
 	width: 100%;
 	display: flex;
 	flex-wrap: nowrap;
-	gap: 2rem;
+	gap: clamp(0.3rem, 50vw, 2rem);
 	justify-content: center;
 	align-items: center;
 	padding: 1rem;
@@ -12,10 +12,9 @@
 }
 
 .privilege-card {
-	height: 100%;
 	aspect-ratio: 3/4;
 	padding: 1rem;
-	background-color: var(--glass);
+	background-color: transparent;
 	font-size: 1.3rem;
 	flex: 1;
 	border-radius: 0.6rem;
