@@ -36,15 +36,3 @@
 	color: var(--grey);
 	margin-bottom: auto;
 }
-
-@media (hover: hover) {
-	.privilege-card button:hover {
-		color: var(--main-color);
-	}
-}
-
-@media (hover: none) {
-	.privilege-card button:active {
-		color: var(--main-color);
-	}
-}

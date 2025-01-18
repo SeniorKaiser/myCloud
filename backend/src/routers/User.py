@@ -9,7 +9,7 @@ from src.dto.Token import Token
 router = APIRouter(tags=["User"], prefix='/user')
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-@router.post('/registration', response_model=User)
+@router.post('/reg', response_model=User)
 async def registration(
     user: UserReg,
     user_service: Annotated[UserService, Depends(user_service)]

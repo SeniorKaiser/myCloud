@@ -2,6 +2,7 @@ import React from 'react'
 import Input from '@components/Input/Input'
 import { config, FormDataI, initialState } from './Config'
 import { ChangeEvent, FormEvent, useState } from 'react'
+import RegRequest from '@services/requests/Reg'
 import './RegForm.css'
 
 const RegForm: React.FC = () => {
@@ -14,6 +15,11 @@ const RegForm: React.FC = () => {
 	}
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		await RegRequest({
+			username: formValue.username,
+			password: formValue.password,
+			email: formValue.email,
+		})
 	}
 	return (
 		<form className='form_container' onSubmit={onSubmit}>
