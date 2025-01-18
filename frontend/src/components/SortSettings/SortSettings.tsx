@@ -7,7 +7,7 @@ const SortSettings: React.FC = () => {
 		<section className='sort-section'>
 			{SortFunctions.map(func => (
 				<button className='sort-button' key={func.title}>
-					<func.icon /> {func.title}
+					{func.icon && <func.icon />} {func.title} {func.title}
 				</button>
 			))}
 		</section>
