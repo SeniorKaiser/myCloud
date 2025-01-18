@@ -2,6 +2,7 @@
 	position: relative;
 	overflow: hidden;
 	width: 100%;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -30,9 +31,13 @@
 	flex-direction: column;
 	border-radius: 0.6rem;
 	padding: 0.6rem;
-	justify-content: end;
-	align-items: start;
+	justify-content: center;
+	align-items: center;
 	box-shadow: 0px 0.3rem 0.6rem 0.125rem rgba(34, 60, 80, 0.2);
+	backdrop-filter: blur(10px);
+	background: linear-gradient(135deg, #59cff1, #97a7fd);
+	text-align: center;
+	color: white;
 }
 
 .slider__card h2,

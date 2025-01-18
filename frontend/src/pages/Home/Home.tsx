@@ -14,7 +14,7 @@ const Home: React.FC = () => {
 			<Header />
 			<main className='home-main'>
 				<Welcome />
-				<section className='features'>
+				<section className='features-container' style={{ height: '15rem' }}>
 					<h1 style={{ textAlign: 'center' }}>Features</h1>
 					<CardsSlider
 						width='min(100%, 60rem)'
@@ -27,6 +27,12 @@ const Home: React.FC = () => {
 					<PrivilegeInfo />
 				</section>
 				<section className='statistic'></section>
+				<div className='cloud-background'>
+					<div className='price-tag'>от 938 Р/мес.</div>
+					<div className='circle circle1'></div>
+					<div className='circle circle2'></div>
+					<div className='circle circle3'></div>
+				</div>
 			</main>
 			<Footer />
 		</>
