@@ -16,19 +16,22 @@ const FileTable: React.FC<StorageProps> = ({ files }) => {
 
 	const handleContextMenu = (event: React.MouseEvent): void => {
 		event.preventDefault()
-		setMenuPosition({ top: `${event.pageY}px`, left: `${event.pageX}px` })
+		setMenuPosition({
+			top: `${event.clientY}px`,
+			left: `${event.clientX}px`,
+		})
 		setContextMenuVisible(true)
 	}
-
 	const handleContextMenuOptions = (event: React.MouseEvent): void => {
 		event.preventDefault()
 		const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
-		const absoluteY = rect.top + window.scrollY
-		const absoluteRight = window.innerWidth - rect.left + window.scrollX
+		const fixedX = Math.min(event.clientX, window.innerWidth - rect.left)
+		const fixedY = Math.min(event.clientY, window.innerHeight)
 		setMenuPosition({
-			top: `${absoluteY}px`,
-			right: `${absoluteRight}px`,
+			top: `${fixedY}px`,
+			right: `${fixedX}px`,
 		})
+
 		setContextMenuVisible(true)
 	}
 
