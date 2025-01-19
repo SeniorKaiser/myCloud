@@ -27,7 +27,7 @@
 
 .form_button {
 	width: 100%;
-	background-color: var(--main-color);
+	background: linear-gradient(135deg, var(--second-color), var(--main-color));
 	border-radius: 0.3rem;
 	border: none;
 	height: 2rem;
