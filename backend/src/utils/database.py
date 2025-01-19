@@ -1,10 +1,17 @@
 
 import asyncio
+import os
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "sqlite+aiosqlite:///./app.db"
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.."))
+DB_PATH = os.path.join(BASE_DIR, "app.db")
+
+if not os.path.exists(DB_PATH):
+    raise FileNotFoundError(f"Database file not found at {DB_PATH}")
+
+SQLALCHEMY_DATABASE_URL = f"sqlite+aiosqlite:///{DB_PATH}"
 # SQLALCHEMY_DATABASE_URL = f'postgresql+asyncpg://{settings.DB_USER}:{settings.DB_PASS}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}'
 
 # Создание подключения
