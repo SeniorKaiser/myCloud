@@ -40,6 +40,7 @@ body {
 	color: var(--text);
 	transition: background-color 0.3s;
 	background-color: var(--background);
+	padding: 0.3rem;
 }
 
 main {
