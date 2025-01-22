@@ -22,6 +22,7 @@ td:first-child {
 	span {
 		margin-top: auto;
 		margin-bottom: auto;
+		margin-left: 1rem;
 	}
 }
 

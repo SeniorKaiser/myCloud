@@ -9,14 +9,14 @@ export interface PrivilegeCard {
 export const listPrivilegeCard: PrivilegeCard[] = [
 	{
 		title: 'Silver',
-		storage: 50,
+		storage: 256,
 		price: 1.99,
 		color: '#afafaf',
 		action: () => alert('Silver'),
 	},
 	{
 		title: 'Gold',
-		storage: 200,
+		storage: 512,
 		price: 3.99,
 		color: '#e1cd00',
 		action: () => alert('Gold'),

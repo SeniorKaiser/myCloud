@@ -57,6 +57,13 @@ export interface File {
 export const TempFilesList: File[] = [
 	{
 		id: '8273yufh1',
+		name: 'Folder',
+		extension: 'Folder',
+		size: 0,
+		date: '27.12.2024',
+	},
+	{
+		id: '8273yufh1',
 		name: 'Logo',
 		extension: 'png',
 		size: 53623,
