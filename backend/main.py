@@ -5,15 +5,12 @@ from src.routers.File import router as File_Router
 from src.routers.Folder import router as Folder_Router
 from src.utils.database import init_models
 from fastapi.middleware.cors import CORSMiddleware
-import asyncio
 
 app = FastAPI(
     title="myCloud",
     description="Сервис для хранения файлов",
     version="0.0.3",
 )
-
-asyncio.run(init_models())
 
 app.include_router(User_Router)
 app.include_router(File_Router)
@@ -22,6 +19,10 @@ app.include_router(Folder_Router)
 @app.get("/")
 def main():
     return "Hello world"
+
+@app.on_event("startup")
+async def on_startup():
+    await init_models()
 
 origins = [
     "http://localhost:5173",
@@ -38,8 +39,3 @@ app.add_middleware(
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
-#git add .
-#git status проверка сохраненых папок
-#git rm -r --cached venv убрать папку venv
-#git commit -m ""
-#git push origin main
