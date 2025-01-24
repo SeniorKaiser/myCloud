@@ -15,13 +15,6 @@ async_session_maker = sessionmaker(
 )
 Base = declarative_base()
 
-async def create_tables_if_not_exist():
-    async with engine.begin() as conn:
-        # Создаёт только те таблицы, которые отсутствуют
-        await conn.run_sync(Base.metadata.create_all)
-
-asyncio.run(create_tables_if_not_exist())
-# Асинхронная зависимость для получения сессии базы данных
 async def get_db():
     async with async_session_maker() as db:
         try:
