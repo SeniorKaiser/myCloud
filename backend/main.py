@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from src.routers.User import router as User_Router
 from src.routers.File import router as File_Router
 from src.routers.Folder import router as Folder_Router
-from src.utils.database import Base, engine
+from src.utils.database import init_models
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
@@ -12,7 +12,7 @@ app = FastAPI(
     version="0.0.3",
 )
 
-Base.metadata.create_all(bind=engine)
+init_models()
 
 app.include_router(User_Router)
 app.include_router(File_Router)
