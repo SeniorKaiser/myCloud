@@ -5,6 +5,7 @@ from src.routers.File import router as File_Router
 from src.routers.Folder import router as Folder_Router
 from src.utils.database import init_models
 from fastapi.middleware.cors import CORSMiddleware
+import asyncio
 
 app = FastAPI(
     title="myCloud",
@@ -12,7 +13,7 @@ app = FastAPI(
     version="0.0.3",
 )
 
-init_models()
+asyncio.run(init_models())
 
 app.include_router(User_Router)
 app.include_router(File_Router)
