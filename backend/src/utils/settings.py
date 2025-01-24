@@ -10,11 +10,11 @@ class Settings(BaseSettings):
     COOKIES_KEY_REFRESH: str
     ACCESS_KEY_S3: str
     SECRET_KEY_S3: str
-    # DB_USER: str
-    # DB_PASS: str
-    # DB_HOST: str
-    # DB_PORT: str
-    # DB_NAME: str
+    DB_USER: str
+    DB_PASS: str
+    DB_HOST: str
+    DB_PORT: str
+    DB_NAME: str
 
     model_config = SettingsConfigDict(
         env_file=".env"
