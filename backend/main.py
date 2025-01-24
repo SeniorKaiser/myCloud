@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from src.routers.User import router as User_Router
 from src.routers.File import router as File_Router
 from src.routers.Folder import router as Folder_Router
+from src.utils.database import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
@@ -10,6 +11,8 @@ app = FastAPI(
     description="Сервис для хранения файлов",
     version="0.0.3",
 )
+
+Base.metadata.create_all(bind=engine)
 
 app.include_router(User_Router)
 app.include_router(File_Router)
