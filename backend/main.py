@@ -31,10 +31,10 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # 🔹 Разрешенные источники
-    allow_credentials=True,  # 🔹 Разрешить передачу cookies и авторизацию
-    allow_methods=["*"],  # 🔹 Разрешенные методы (GET, POST, PUT, DELETE и т. д.)
-    allow_headers=["*"],  # 🔹 Разрешенные заголовки
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 if __name__ == "__main__":
