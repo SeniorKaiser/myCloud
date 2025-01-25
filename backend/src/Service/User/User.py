@@ -23,26 +23,9 @@ class UserService:
         set_tokens_in_cookie(response=response, token=token)
         return token
 
-    async def auth(self, token: Token = Depends(jwt)) -> UserDTO:
+    async def auth(self, token: Token = Depends(getJWT)) -> UserDTO:
         payload = await decode_token(token.access_token)
-        return await self.get_user(payload["id"])
-
-    async def jwt(self, request: Request, response: Response) -> Token:
-        token = await get_tokens_from_cookie(request)
-        print(token, '1')
-        new_token = await checkJWT(
-            accesToken=token.accessToken,
-            refreshToken=token.refreshToken
-        )
-        print(new_token, '2')
-        if new_token.accessToken != token.accessToken:
-            await set_tokens_in_cookie(
-                access_token=new_token.accessToken,
-                refresh_token=new_token.refreshToken,
-                response=response
-            )
-        
-        return new_token
+        return await self.get_user(payload.get("id"))
 
     async def get_user(self, id: str) -> UserDTO:
         try:
