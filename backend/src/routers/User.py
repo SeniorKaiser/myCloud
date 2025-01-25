@@ -1,5 +1,5 @@
 from typing import Annotated
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Request, Response
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from src.dependencies.User import user_service
 from src.Service.User.User import UserService
@@ -27,8 +27,9 @@ async def login(
 @router.get("/auth")
 async def auth(
     user_service: Annotated[UserService, Depends(user_service)],
+    request: Request
 ) -> Token:
-    return await user_service.auth()
+    return await user_service.auth(request)
 
 @router.get("/get/{user_id}", response_model=User)
 async def get(
