@@ -26,6 +26,7 @@ class UserService:
 
     async def auth(self, request: Request):
         token = get_tokens_from_cookie(request)
+        print(token)
         return await decode_token(token.access_token)
 
     async def get_user(self, id: str) -> UserDTO:
