@@ -56,13 +56,13 @@ async def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse
                         )
     
 async def checkJWT(accesToken: str | None, refreshToken: str | None) -> Token:
-    if accesToken:
+    if accesToken is not None:
         try:
             return Token(accessToken=accesToken, refreshToken=refreshToken)
         except JWTError:
             pass
 
-    elif refreshToken:
+    elif refreshToken is not None:
         try:
             return await refresh(refresh_token=refreshToken)
         except JWTError:
