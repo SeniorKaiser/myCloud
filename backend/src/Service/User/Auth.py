@@ -88,14 +88,14 @@ async def getJWT(request: Request, response: Response) -> Token:
     token = await get_tokens_from_cookie(request)
     print(token, '1')
     new_token = await checkJWT(
-        accesToken=token.accessToken,
-        refreshToken=token.refreshToken
+        accesToken=token.access_token,
+        refreshToken=token.refresh_token
     )
     print(new_token, '2')
-    if new_token.accessToken != token.accessToken:
+    if new_token.access_token != token.access_token:
         await set_tokens_in_cookie(
-            access_token=new_token.accessToken,
-            refresh_token=new_token.refreshToken,
+            access_token=new_token.access_token,
+            refresh_token=new_token.refresh_token,
             response=response
         )
     
