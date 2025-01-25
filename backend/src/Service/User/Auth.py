@@ -35,12 +35,14 @@ async def generate_tokens(user_id: str) -> Token:
 
     return Token(access_token=access_token, refresh_token=refresh_token)
 
+@staticmethod
 async def get_tokens_from_cookie(request: Request) -> Token:
     accessToken = request.cookies.get(settings.COOKIES_KEY_ACCESS)
     refreshToken = request.cookies.get(settings.COOKIES_KEY_REFRESH)
     print(accessToken, refreshToken)
     return Token(access_token=accessToken, refresh_token=refreshToken)
 
+@staticmethod
 async def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse:
     access_token_expires = settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60
     refresh_token_expires = settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60
