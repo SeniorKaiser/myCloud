@@ -35,11 +35,9 @@ async def generate_tokens(user: User) -> Token:
 
     return Token(access_token=access_token, refresh_token=refresh_token)
 
-
 def get_tokens_from_cookie(request: Request) -> Token:
     accessToken = request.cookies.get(settings.COOKIES_KEY_ACCESS)
     refreshToken = request.cookies.get(settings.COOKIES_KEY_REFRESH)
-    print(accessToken, refreshToken)
     return Token(access_token=accessToken, refresh_token=refreshToken)
 
 def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse:
