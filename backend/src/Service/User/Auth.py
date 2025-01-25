@@ -97,4 +97,7 @@ async def getJWT(request: Request, response: Response) -> Token:
             response=response
         )
     
-    return new_token
+    return Token(
+        access_token=new_token.access_token,
+        refresh_token=new_token.refresh_token
+    )
