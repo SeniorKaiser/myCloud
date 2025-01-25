@@ -26,9 +26,9 @@ async def login(
 
 @router.get("/auth")
 async def auth(
-    user_service: Annotated[UserService, Depends(user_service)],
     request: Request,
-    response: Response
+    response: Response,
+    user_service: Annotated[UserService, Depends(user_service)]
 ) -> User:
     return await user_service.auth(request=request, response=response)
 
