@@ -23,8 +23,7 @@ class UserService:
         set_tokens_in_cookie(response=response, token=token)
         return token
 
-    async def auth(self, request: Request, token: Token = Depends(jwt)) -> UserDTO:
-        token = await get_tokens_from_cookie(request)
+    async def auth(self, token: Token = Depends(jwt)) -> UserDTO:
         payload = await decode_token(token.access_token)
         return await self.get_user(payload["id"])
 
