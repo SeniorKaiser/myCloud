@@ -1,4 +1,4 @@
-from fastapi import Response
+from fastapi import Depends, Response
 from fastapi.security import OAuth2PasswordRequestForm
 from src.utils.repository import AbstractRepository
 from src.dto.User import User as UserDTO
@@ -20,14 +20,28 @@ class UserService:
     async def login(self, response: Response, form_data: OAuth2PasswordRequestForm) -> Token :
         user = await self.user_repository.get_by_name_password(form_data.username, await get_password_hash(form_data.password))
         if not user: raise HTTPException(status_code=404)
-        token = await generate_tokens(user)
+        token = await generate_tokens(user.id)
         set_tokens_in_cookie(response=response, token=token)
         return token
 
-    async def auth(self, request: Request) -> UserDTO:
-        token = get_tokens_from_cookie(request)
+    async def auth(self, request: Request, token: Token = Depends(jwt)) -> UserDTO:
+        token = await get_tokens_from_cookie(request)
         payload = await decode_token(token.access_token)
         return await self.get_user(payload["id"])
+
+    async def jwt(self, request: Request, response: Response) -> Token:
+        token = await get_tokens_from_cookie(request)
+        new_token = await checkJWT(
+            accesToken=token.accessToken,
+            refreshToken=token.refreshToken
+        )
+        if new_token.accessToken != token.accessToken:
+            await set_tokens_in_cookie(
+                access_token=new_token.accessToken,
+                refresh_token=new_token.refreshToken,
+                response=response
+            )
+        return new_token
 
     async def get_user(self, id: str) -> UserDTO:
         try:

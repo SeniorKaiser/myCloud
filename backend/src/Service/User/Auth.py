@@ -26,21 +26,21 @@ async def decode_token(token: str) -> dict:
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
 
-async def generate_tokens(user: User) -> Token:
+async def generate_tokens(user_id: str) -> Token:
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     refresh_token_expires = timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
 
-    access_token = await create_token({"id": user.id}, expires_delta=access_token_expires)
-    refresh_token = await create_token({"id": user.id}, expires_delta=refresh_token_expires)
+    access_token = await create_token({"id": user_id}, expires_delta=access_token_expires)
+    refresh_token = await create_token({"id": user_id}, expires_delta=refresh_token_expires)
 
     return Token(access_token=access_token, refresh_token=refresh_token)
 
-def get_tokens_from_cookie(request: Request) -> Token:
+async def get_tokens_from_cookie(request: Request) -> Token:
     accessToken = request.cookies.get(settings.COOKIES_KEY_ACCESS)
     refreshToken = request.cookies.get(settings.COOKIES_KEY_REFRESH)
     return Token(access_token=accessToken, refresh_token=refreshToken)
 
-def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse:
+async def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse:
     access_token_expires = settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60
     refresh_token_expires = settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60
 
@@ -54,3 +54,29 @@ def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse:
                         max_age=refresh_token_expires,
                         httponly=True
                         )
+    
+async def checkJWT(accesToken: str | None, refreshToken: str | None) -> Token:
+    if accesToken is not None:
+        try:
+            return Token(accessToken=accesToken, refreshToken=refreshToken)
+        except JWTError:
+            pass
+
+    if refreshToken:
+        try:
+            return await refresh(refresh_token=refreshToken)
+        except JWTError:
+            raise HTTPException(status_code=401, detail="Invalid refresh token")
+    raise HTTPException(status_code=401, detail="Authentication required")
+
+
+async def refresh(refresh_token: str):
+    if not refresh_token:
+        raise HTTPException(status_code=401, detail="Tokin is missing")
+    try:
+        payload = await decode_token(refresh_token)
+        id = payload.get("id")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid refresh token")
+    token = await generate_tokens(id)
+    return token
