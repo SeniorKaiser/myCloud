@@ -24,12 +24,13 @@ async def login(
 ) -> Token:
     return await user_service.login(response, form_data)
 
-# @router.get("/auth")
-# async def auth(
-#     user_service: Annotated[UserService, Depends(user_service)],
-#     token: str = Depends(oauth2_scheme)
-# ) -> Token:
-#     return await user_service.auth(Token)
+@router.get("/auth")
+async def auth(
+    user_service: Annotated[UserService, Depends(user_service)],
+    token: str = Depends(oauth2_scheme)
+) -> Token:
+    print(token)
+    return await user_service.auth(token)
 
 @router.get("/get/{user_id}", response_model=User)
 async def get(

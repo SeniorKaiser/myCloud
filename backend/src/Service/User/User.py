@@ -39,8 +39,8 @@ class UserService:
         )
         return token
 
-    # async def auth(self, Token):
-    #     return await decode_token(Token.access_token)
+    async def auth(self, Token):
+        return await decode_token(Token.access_token)
 
     async def get_user(self, id: str) -> UserDTO:
         try:
