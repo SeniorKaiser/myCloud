@@ -1,5 +1,6 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, Request, Response
 from datetime import datetime, timedelta
+from fastapi.responses import JSONResponse
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 from src.dto.User import User
@@ -33,3 +34,24 @@ async def generate_tokens(user: User) -> Token:
     refresh_token = await create_token({"id": user.id}, expires_delta=refresh_token_expires)
 
     return Token(access_token=access_token, refresh_token=refresh_token)
+
+
+def get_tokens_from_cookie(request: Request) -> Token:
+    access_token = request.cookies.get(settings.COOKIES_KEY_ACCESS)
+    refresh_token = request.cookies.get(settings.COOKIES_KEY_REFRESH)
+    return Token(accessToken=access_token, refreshToken=refresh_token)
+
+def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse:
+    access_token_expires = settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60
+    refresh_token_expires = settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60
+
+    response.set_cookie(settings.COOKIES_KEY_ACCESS,
+                        token.access_token,
+                        max_age=access_token_expires,
+                        httponly=True
+                        )
+    response.set_cookie(settings.COOKIES_KEY_REFRESH,
+                        token.refresh_token,
+                        max_age=refresh_token_expires,
+                        httponly=True
+                        )

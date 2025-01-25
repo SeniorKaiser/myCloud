@@ -21,22 +21,7 @@ class UserService:
         user = await self.user_repository.get_by_name_password(form_data.username, await get_password_hash(form_data.password))
         if not user: raise HTTPException(status_code=404)
         token = await generate_tokens(user)
-        response.set_cookie(
-            key=settings.COOKIES_KEY_REFRESH,
-            value=token.refresh_token,
-            httponly=True,
-            secure=False,
-            samesite="Lax",
-            expires=(datetime.utcnow() + timedelta(days=7)).strftime("%a, %d-%b-%Y %H:%M:%S GMT"),
-        )
-        response.set_cookie(
-            key=settings.COOKIES_KEY_ACCESS,
-            value=token.access_token,
-            httponly=True,
-            secure=False,
-            samesite="Lax",
-            expires=(datetime.utcnow() + timedelta(days=7)).strftime("%a, %d-%b-%Y %H:%M:%S GMT"),
-        )
+        set_tokens_in_cookie(response=response, token=token)
         return token
 
     async def auth(self, Token):
