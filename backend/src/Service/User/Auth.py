@@ -59,7 +59,7 @@ async def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse
                         )
     
 async def checkJWT(accesToken: str | None, refreshToken: str | None) -> Token:
-    if accesToken is not None:
+    if accesToken:
         try:
             return Token(accessToken=accesToken, refreshToken=refreshToken)
         except JWTError:
@@ -86,12 +86,10 @@ async def refresh(refresh_token: str):
 
 async def getJWT(request: Request, response: Response) -> Token:
     token = await get_tokens_from_cookie(request)
-    print(token, '1')
     new_token = await checkJWT(
         accesToken=token.access_token,
         refreshToken=token.refresh_token
     )
-    print(new_token, '22')
     if new_token.access_token != token.access_token:
         await set_tokens_in_cookie(
             response=response,
