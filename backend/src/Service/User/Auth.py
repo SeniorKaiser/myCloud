@@ -86,7 +86,7 @@ async def getJWT(request: Request, response: Response) -> Token:
     token = await get_tokens_from_cookie(request)
     print(token, '------------')
     verify_token = await checkJWT(
-        accesToken=token.access_token,
+        accessToken=token.access_token,
         refreshToken=token.refresh_token
     )
     print(verify_token)
