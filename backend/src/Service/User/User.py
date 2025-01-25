@@ -20,7 +20,7 @@ class UserService:
         user = await self.user_repository.get_by_name_password(form_data.username, await get_password_hash(form_data.password))
         if not user: raise HTTPException(status_code=404)
         token = await generate_tokens(user.id)
-        set_tokens_in_cookie(response=response, token=token)
+        await set_tokens_in_cookie(response=response, token=token)
         return token
 
     async def auth(self, request: Request, response: Response) -> UserDTO:
