@@ -4,7 +4,6 @@ from src.utils.repository import AbstractRepository
 from src.dto.User import User as UserDTO
 from src.Storage.UserClient import user_storage_client
 from src.Service.User.Auth import *
-from src.utils.settings import settings
 
 class UserService:
     def __init__(self, user_repository: AbstractRepository):
