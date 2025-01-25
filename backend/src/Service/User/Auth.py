@@ -38,7 +38,6 @@ async def generate_tokens(user_id: str) -> Token:
 async def get_tokens_from_cookie(request: Request) -> Token:
     accessToken = request.cookies.get(settings.COOKIES_KEY_ACCESS)
     refreshToken = request.cookies.get(settings.COOKIES_KEY_REFRESH)
-    print(accessToken, refreshToken)
     return Token(access_token=accessToken, refresh_token=refreshToken)
 
 async def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse:
@@ -63,13 +62,12 @@ async def checkJWT(accesToken: str | None, refreshToken: str | None) -> Token:
         except JWTError:
             pass
 
-    if refreshToken:
+    elif refreshToken:
         try:
             return await refresh(refresh_token=refreshToken)
         except JWTError:
             raise HTTPException(status_code=401, detail="Invalid refresh token")
     raise HTTPException(status_code=401, detail="Authentication required")
-
 
 async def refresh(refresh_token: str):
     if not refresh_token:
