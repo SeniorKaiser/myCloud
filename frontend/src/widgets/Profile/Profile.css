@@ -18,20 +18,38 @@
 	gap: 0.5rem;
 }
 
-.profile-unauthoraized button {
-	border: 1px solid var(--grey);
-	height: 1rem;
-	width: 3rem;
+.profile-unauthoraized a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid var(--grey);
+	height: 2.5rem;
+	width: 6rem;
 	background-color: transparent;
-	text-align: center;
+	border-radius: 1rem;
+	font-size: 1.3rem;
+	cursor: pointer;
+	color: var(--grey);
+	transition: 0.3s;
+	text-decoration: none;
 }
 
-.profile-unauthoraized button:last-child {
-	border: 1px solid var(--main-color);
+.profile-unauthoraized a:last-child {
+	border: 2px solid var(--second-color);
+	color: var(--second-color);
 }
 
 @media (hover: hover) {
 	.avatar:hover {
 		scale: 1.1;
+	}
+
+	.profile-unauthoraized a:hover {
+		background-color: var(--grey);
+		color: white;
+	}
+	.profile-unauthoraized a:last-child:hover {
+		background-color: var(--second-color);
+		color: white;
 	}
 }

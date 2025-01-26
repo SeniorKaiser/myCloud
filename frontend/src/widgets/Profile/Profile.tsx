@@ -40,11 +40,11 @@ const Profile: React.FC = () => {
 				/>
 			) : (
 				<div className='profile-unauthoraized'>
-					<button>Reg</button>
-					<button>Login</button>
+					<a href='./reg'>Reg</a>
+					<a href='./login'>Login</a>
 				</div>
 			)}
-			{contextMenuVisible && (
+			{user && contextMenuVisible && (
 				<ContextMenu
 					options={ProfileOptionsContextMenu}
 					position={menuPosition}
