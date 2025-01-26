@@ -3,7 +3,7 @@ import { domenApi } from '@app/data.ts'
 
 const AuthUser = async (): Promise<string | undefined> => {
 	try {
-		const response: AxiosResponse = await axios.post(
+		const response: AxiosResponse = await axios.get(
 			`${domenApi}/api/user/auth`,
 			{ withCredentials: true }
 		)
