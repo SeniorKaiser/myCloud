@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu.tsx'
 import { ProfileOptionsContextMenu } from '@app/data.ts'
 import AuthUser from '@services/requests/AuthUser'
+import { User } from '@components/Icons/Icons'
 import './Profile.css'
 
 const Profile: React.FC = () => {
@@ -31,7 +32,7 @@ const Profile: React.FC = () => {
 		fetchUser()
 	}, [])
 	return (
-		<section className='profile' onClick={handleContextMenu}>
+		<section className='profile' onClick={user ? handleContextMenu : undefined}>
 			{user ? (
 				<img
 					className='avatar'
@@ -39,10 +40,17 @@ const Profile: React.FC = () => {
 					alt='avatar'
 				/>
 			) : (
-				<div className='profile-unauthoraized'>
-					<a href='./reg'>Reg</a>
-					<a href='./login'>Login</a>
-				</div>
+				<>
+					<div className='profile-unauthoraized'>
+						<a href='./reg'>Reg</a>
+						<a href='./login'>Login</a>
+					</div>
+					<div className='profile-unauthoraized-slim'>
+						<a href='./login'>
+							<User />
+						</a>
+					</div>
+				</>
 			)}
 			{user && contextMenuVisible && (
 				<ContextMenu

@@ -1,6 +1,9 @@
 @media (width < 44rem) {
-	.profile-unauthoraized a:first-child {
+	.profile-unauthoraized {
 		display: none;
+	}
+	.profile-unauthoraized-slim {
+		display: flex;
 	}
 }
 
