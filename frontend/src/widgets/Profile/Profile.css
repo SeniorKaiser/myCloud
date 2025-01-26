@@ -35,8 +35,9 @@
 }
 
 .profile-unauthoraized a:last-child {
-	border: 2px solid var(--second-color);
-	color: var(--second-color);
+	border: none;
+	background: linear-gradient(135deg, var(--second-color), var(--main-color));
+	color: white;
 }
 
 @media (hover: hover) {
@@ -49,6 +50,17 @@
 		color: white;
 	}
 	.profile-unauthoraized a:last-child:hover {
+		background-color: var(--second-color);
+		color: white;
+	}
+}
+
+@media (hover: none) {
+	.profile-unauthoraized a:active {
+		background-color: var(--grey);
+		color: white;
+	}
+	.profile-unauthoraized a:last-child:active {
 		background-color: var(--second-color);
 		color: white;
 	}

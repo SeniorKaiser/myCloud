@@ -1,3 +1,9 @@
+@media (width < 44rem) {
+	.profile-unauthoraized a:first-child {
+		display: none;
+	}
+}
+
 @media (width < 32.5rem) {
 	header .logo {
 		margin-right: auto;
