@@ -39,7 +39,10 @@ const Profile: React.FC = () => {
 					alt='avatar'
 				/>
 			) : (
-				<div>NO</div>
+				<div className='profile-unauthoraized'>
+					<button>Reg</button>
+					<button>Login</button>
+				</div>
 			)}
 			{contextMenuVisible && (
 				<ContextMenu

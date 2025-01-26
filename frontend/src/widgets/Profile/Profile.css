@@ -13,6 +13,23 @@
 	right: 1rem;
 }
 
+.profile-unauthoraized {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.profile-unauthoraized button {
+	border: 1px solid var(--grey);
+	height: 1rem;
+	width: 3rem;
+	background-color: transparent;
+	text-align: center;
+}
+
+.profile-unauthoraized button:last-child {
+	border: 1px solid var(--main-color);
+}
+
 @media (hover: hover) {
 	.avatar:hover {
 		scale: 1.1;
