@@ -7,8 +7,8 @@ const AuthUser = async (): Promise<string | undefined> => {
 			`${domenApi}/api/user/auth`,
 			{ withCredentials: true }
 		)
-
 		console.log('User:', response.data)
+		return response.data
 	} catch (error) {
 		const axiosError = error as AxiosError
 		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
