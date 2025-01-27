@@ -1,0 +1,209 @@
+.loader-contrainer {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -100px; /* Replace $w-margin */
+	width: 200px; /* Replace $w-size */
+	height: 200px; /* Replace $w-size */
+	background-color: transparent;
+	border: none;
+	-webkit-user-select: none;
+}
+
+.loader-contrainer .loader {
+	width: 140px; /* Replace $box-wrapper-width */
+	height: 140px; /* Replace $box-wrapper-height */
+	margin: calc((100% - 140px) / 2) calc((100% - 140px) / 2); /* Replace $box-wrapper-margin */
+	position: relative;
+	transform: rotate(-45deg);
+}
+
+.loader-contrainer .loader .box {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: linear-gradient(
+		to right,
+		#141562,
+		#486fbc,
+		#eab5a1,
+		#8dd6ff,
+		#4973c9,
+		#d07ca7,
+		#f4915e,
+		#f5919e,
+		#b46f89,
+		#141562,
+		#486fbc
+	);
+	background-position: 0% 50%;
+	background-size: 1000% 1000%;
+	visibility: hidden;
+}
+
+.loader-contrainer .loader .box.one {
+	animation: moveGradient 15s infinite, oneMove 3.5s infinite;
+}
+
+.loader-contrainer .loader .box.two {
+	animation: moveGradient 15s infinite, twoMove 3.5s 0.15s infinite;
+}
+
+.loader-contrainer .loader .box.three {
+	animation: moveGradient 15s infinite, threeMove 3.5s 0.3s infinite;
+}
+
+.loader-contrainer .loader .box.four {
+	animation: moveGradient 15s infinite, fourMove 3.5s 0.575s infinite;
+}
+
+.loader-contrainer .loader .box.five {
+	animation: moveGradient 15s infinite, fiveMove 3.5s 0.725s infinite;
+}
+
+.loader-contrainer .loader .box.six {
+	animation: moveGradient 15s infinite, sixMove 3.5s 0.875s infinite;
+}
+
+@keyframes moveGradient {
+	to {
+		background-position: 100% 50%;
+	}
+}
+
+@keyframes oneMove {
+	0%,
+	14.2857% {
+		visibility: visible;
+		clip-path: inset(0% 35% 70% round 5%);
+		animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+	}
+	28.5714% {
+		clip-path: inset(35% round 5%);
+	}
+	42.8571%,
+	57.1428% {
+		clip-path: inset(35% 70% 35% 0 round 5%);
+	}
+	71.4285%,
+	85.7142% {
+		clip-path: inset(0% 70% 70% 0 round 5%);
+	}
+	100% {
+		clip-path: inset(0% 35% 70% round 5%);
+	}
+}
+
+@keyframes twoMove {
+	0%,
+	14.2857% {
+		visibility: visible;
+		clip-path: inset(0% 70% 70% 0 round 5%);
+		animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+	}
+	28.5714%,
+	42.8571% {
+		clip-path: inset(0% 35% 70% round 5%);
+	}
+	57.1428%,
+	85.7142% {
+		clip-path: inset(35% 70% 35% 0 round 5%);
+	}
+	100% {
+		clip-path: inset(0% 70% 70% 0 round 5%);
+	}
+}
+
+@keyframes threeMove {
+	0%,
+	14.2857% {
+		visibility: visible;
+		clip-path: inset(35% 70% 35% 0 round 5%);
+		animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+	}
+	28.5714%,
+	42.8571% {
+		clip-path: inset(0% 70% 70% 0 round 5%);
+	}
+	57.1428%,
+	71.4285% {
+		clip-path: inset(0% 35% 70% round 5%);
+	}
+	85.7142% {
+		clip-path: inset(35% round 5%);
+	}
+	100% {
+		clip-path: inset(35% 70% 35% 0 round 5%);
+	}
+}
+
+@keyframes fourMove {
+	0%,
+	14.2857% {
+		visibility: visible;
+		clip-path: inset(35% 0% 35% 70% round 5%);
+		animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+	}
+	28.5714% {
+		clip-path: inset(35% round 5%);
+	}
+	42.8571%,
+	57.1428% {
+		clip-path: inset(70% 35% 0% 35% round 5%);
+	}
+	71.4285%,
+	85.7142% {
+		clip-path: inset(70% 0 0 70% round 5%);
+	}
+	100% {
+		clip-path: inset(35% 0% 35% 70% round 5%);
+	}
+}
+
+@keyframes fiveMove {
+	0%,
+	14.2857% {
+		visibility: visible;
+		clip-path: inset(70% 0 0 70% round 5%);
+		animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+	}
+	28.5714%,
+	42.8571% {
+		clip-path: inset(35% 0% 35% 70% round 5%);
+	}
+	57.1428% {
+		clip-path: inset(35% round 5%);
+	}
+	71.4285%,
+	85.7142% {
+		clip-path: inset(70% 35% 0% 35% round 5%);
+	}
+	100% {
+		clip-path: inset(70% 0 0 70% round 5%);
+	}
+}
+
+@keyframes sixMove {
+	0%,
+	14.2857% {
+		visibility: visible;
+		clip-path: inset(70% 35% 0% 35% round 5%);
+		animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+	}
+	28.5714%,
+	42.8571% {
+		clip-path: inset(70% 0 0 70% round 5%);
+	}
+	57.1428%,
+	71.4285% {
+		clip-path: inset(35% 0% 35% 70% round 5%);
+	}
+	85.7142% {
+		clip-path: inset(35% round 5%);
+	}
+	100% {
+		clip-path: inset(70% 35% 0% 35% round 5%);
+	}
+}

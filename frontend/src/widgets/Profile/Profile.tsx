@@ -36,7 +36,7 @@ const Profile: React.FC = () => {
 			{user ? (
 				<img
 					className='avatar'
-					src='https://storage.yandexcloud.net/mycloud-backet/files/6.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEDldjsx-XYZdVQNP6MnFi%2F20250118%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20250118T145950Z&X-Amz-Expires=259200&X-Amz-Signature=FF1DA3D2D23CE48EB0229EA4A02E2336D8A5B21E755C6F6E26275DF47A240E14&X-Amz-SignedHeaders=host'
+					src='https://storage.yandexcloud.net/mycloud-backet/uploads/465da2f3-2394-4d4a-9204-dc82efc26b7d/data/avatar.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEDldjsx-XYZdVQNP6MnFi%2F20250126%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20250126T070226Z&X-Amz-Expires=604800&X-Amz-Signature=6E352BBC9FAE3B5DB92CA8F654C0E702B6EB099D7E8EE173DC2F697FA436F0AE&X-Amz-SignedHeaders=host'
 					alt='avatar'
 				/>
 			) : (
