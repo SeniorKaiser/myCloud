@@ -35,12 +35,12 @@ class UserService:
 
     async def get_user(self, id: str) -> UserDTO:
         try:
-            user = await redis_client.get(f"user:{id}")
-            if user: return user
-            else:
-                user = await self.user_repository.get(id)
-                await redis_client.set(key=f"user:{id}", value=user.to_dict())
-                return user
+            return await redis_client.get(f"user:{id}")
+            # if user: return user
+            # else:
+            #     user = await self.user_repository.get(id)
+            #     await redis_client.set(key=f"user:{id}", value=user.to_dict())
+            #     return user
         except:
             raise HTTPException(status_code=404)
         
