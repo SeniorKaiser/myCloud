@@ -18,7 +18,7 @@ class User(BaseModel):
             "name": self.name,
             "email": self.email,
             "date": self.date,
-            "files": self.file,
+            "files": self.files,
             "folder": self.folder
         }
 
