@@ -12,6 +12,16 @@ class User(BaseModel):
     files: List[File] = Field(default_factory=list)
     folder: List[Folder] = Field(default_factory=list)
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "email": self.email,
+            "date": self.date,
+            "files": self.file,
+            "folder": self.folder
+        }
+
 class UserReg(BaseModel):
     name: str
     email: EmailStr

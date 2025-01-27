@@ -29,7 +29,7 @@ class UserService:
         user = await redis_client.get(payload.get("id"))
         if user: return user
         user = await self.get_user(payload.get("id"))
-        await redis_client.set(key=user.id, value=user)
+        await redis_client.set(key=user.id, value=user.to_dict())
         return user
 
     async def get_user(self, id: str) -> UserDTO:
