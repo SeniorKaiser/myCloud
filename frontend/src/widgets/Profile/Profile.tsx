@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu.tsx'
-import { ProfileOptionsContextMenu } from '@app/data.ts'
-import AuthUser from '@services/requests/AuthUser'
-import { User } from '@components/Icons/Icons'
+import { ProfileOptionsContextMenu } from './Data'
+import { User as UserIcon } from '@components/Icons/Icons'
+import { User } from '@app/data'
 import './Profile.css'
 
-const Profile: React.FC = () => {
+interface ProfileProps {
+	User: User | undefined
+}
+
+const Profile: React.FC<ProfileProps> = ({ User }) => {
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
 	const [menuPosition, setMenuPosition] = useState<Position>({})
-	const [user, setUser] = useState<string | undefined>(undefined)
+	const [user] = useState<User | undefined>(User)
 
 	const handleContextMenu = (event: React.MouseEvent): void => {
 		event.preventDefault()
@@ -19,18 +23,6 @@ const Profile: React.FC = () => {
 	const handleCloseMenu = (): void => {
 		setContextMenuVisible(false)
 	}
-
-	useEffect(() => {
-		const fetchUser = async () => {
-			const user_ = await AuthUser()
-			if (user_) {
-				setUser(user_)
-			} else {
-				setUser(undefined)
-			}
-		}
-		fetchUser()
-	}, [])
 	return (
 		<section className='profile' onClick={user ? handleContextMenu : undefined}>
 			{user ? (
@@ -47,7 +39,7 @@ const Profile: React.FC = () => {
 					</div>
 					<div className='profile-unauthoraized-slim'>
 						<a href='./login'>
-							<User />
+							<UserIcon />
 						</a>
 					</div>
 				</>

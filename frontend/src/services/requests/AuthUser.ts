@@ -1,7 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import { domenApi } from '@app/data.ts'
+import { User } from '@app/data'
 
-const AuthUser = async (): Promise<string | undefined> => {
+const AuthUser = async (): Promise<User | undefined> => {
 	try {
 		const response: AxiosResponse = await axios.get(
 			`${domenApi}/api/user/auth`,

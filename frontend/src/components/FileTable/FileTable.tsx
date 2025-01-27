@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu'
-import { FileOptionsContextMenu } from '@app/data'
-import { File, Columns } from '@app/data.ts'
+import { FileOptionsContextMenu, Columns } from './Data'
+import { File } from '@app/data'
 import { EllipsisVertical } from '@components/Icons/Icons'
 import './FileTable.css'
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Option } from '@app/data.tsx'
+import { Option } from './Data'
 import './ContextMenu.css'
 
 export interface Position {
