@@ -2,7 +2,7 @@ import React from 'react'
 import FileTable from '@components/FileTable/FileTable.tsx'
 import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
-import { TempFilesList } from '@app/data'
+import { TempFilesList } from '@components/FileTable/Data'
 
 const Storage: React.FC = () => {
 	return (
