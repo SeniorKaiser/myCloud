@@ -1,3 +1,4 @@
+import asyncio
 from fastapi import Response
 from fastapi.security import OAuth2PasswordRequestForm
 from src.utils.repository import AbstractRepository
@@ -24,8 +25,7 @@ class UserService:
         return token
 
     async def auth(self, request: Request, response: Response) -> UserDTO:
-        token = await getJWT(request=request, response=response)
-        payload = await decode_token(token.access_token)
+        payload = await decode_token(await getJWT(request=request, response=response))
         user = await redis_client.get(f"user:{payload.get('id')}")
         if user: return user
         else:
