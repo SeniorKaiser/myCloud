@@ -1,4 +1,3 @@
-import asyncio
 from fastapi import Response
 from fastapi.security import OAuth2PasswordRequestForm
 from src.utils.repository import AbstractRepository
@@ -25,7 +24,8 @@ class UserService:
         return token
 
     async def auth(self, request: Request, response: Response) -> UserDTO:
-        payload = await decode_token(await getJWT(request=request, response=response).access_token)
+        token = await getJWT(request=request, response=response)
+        payload = await decode_token(token.access_token)
         user = await redis_client.get(f"user:{payload.get('id')}")
         if user: return user
         else:
@@ -35,7 +35,12 @@ class UserService:
 
     async def get_user(self, id: str) -> UserDTO:
         try:
-            return await self.user_repository.get(id)
+            user = await redis_client.get(f"user:{id}")
+            if user: return user
+            else:
+                user = await self.user_repository.get(id)
+                await redis_client.set(key=f"user:{id}", value=user.to_dict())
+                return user
         except:
             raise HTTPException(status_code=404)
         
