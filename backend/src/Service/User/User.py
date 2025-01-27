@@ -13,6 +13,7 @@ class UserService:
     async def registration(self, user: UserDTO) -> UserDTO:
         user.password = await get_password_hash(user.password)
         id = await self.user_repository.add(user.model_dump())
+        await user_storage_client.create_user_disk(id)
         user = await self.user_repository.get(id)
         return user
     

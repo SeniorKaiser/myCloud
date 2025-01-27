@@ -32,13 +32,6 @@ async def auth(
 ) -> User:
     return await user_service.auth(request=request, response=response)
 
-@router.get("/get/{user_id}", response_model=User)
-async def get(
-    user_id: str,
-    user_service: Annotated[UserService, Depends(user_service)]
-):
-    return await user_service.get_user(user_id)
-
 @router.delete("/delete/{user_id}")
 async def delete(
     user_id: str,
