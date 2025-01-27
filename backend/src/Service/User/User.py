@@ -1,8 +1,9 @@
-from fastapi import Depends, Response
+from fastapi import Response
 from fastapi.security import OAuth2PasswordRequestForm
 from src.utils.repository import AbstractRepository
 from src.dto.User import User as UserDTO
 from src.Storage.UserClient import user_storage_client
+from src.utils.redis import redis_client
 from src.Service.User.Auth import *
 
 class UserService:
@@ -12,7 +13,6 @@ class UserService:
     async def registration(self, user: UserDTO) -> UserDTO:
         user.password = await get_password_hash(user.password)
         id = await self.user_repository.add(user.model_dump())
-        # await user_storage_client.create_user_disk(id)
         user = await self.user_repository.get(id)
         return user
     
@@ -25,9 +25,12 @@ class UserService:
 
     async def auth(self, request: Request, response: Response) -> UserDTO:
         token = await getJWT(request=request, response=response)
-        print(token)
         payload = await decode_token(token.access_token)
-        return await self.get_user(payload.get("id"))
+        user = await redis_client.get(payload.get("id"))
+        if user: return user
+        user = await self.get_user(payload.get("id"))
+        await redis_client.set(key=user.id, value=user)
+        return user
 
     async def get_user(self, id: str) -> UserDTO:
         try:
