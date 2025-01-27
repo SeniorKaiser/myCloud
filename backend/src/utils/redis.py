@@ -13,10 +13,10 @@ class RedisClient:
         return None if res is None else json.loads(res)
     
     async def delete(self, key: str) -> None:
-        self.client.delete(key)
+        await self.client.delete(key)
 
     async def close(self):
         await self.client.close()
 
 
-redis_client = RedisClient(host="127.0.0.1", port=6379)
+redis_client = RedisClient(host="79.141.77.164", port=6379)
