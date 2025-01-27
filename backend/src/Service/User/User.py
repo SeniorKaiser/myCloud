@@ -25,7 +25,7 @@ class UserService:
         return token
 
     async def auth(self, request: Request, response: Response) -> UserDTO:
-        payload = await decode_token(await getJWT(request=request, response=response))
+        payload = await decode_token(await getJWT(request=request, response=response).access_token)
         user = await redis_client.get(f"user:{payload.get('id')}")
         if user: return user
         else:
