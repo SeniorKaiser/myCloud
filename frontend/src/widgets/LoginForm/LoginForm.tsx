@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import Input from '@components/Input/Input'
 import { config, FormDataI, initialState } from './Config'
-import { ChangeEvent, FormEvent, useState } from 'react'
 import loginRequest from '@services/requests/Login'
 import './LoginForm.css'
 
@@ -19,6 +18,7 @@ const LoginForm: React.FC = () => {
 			username: formValue.username,
 			password: formValue.password,
 		})
+		window.location.href = '/'
 	}
 	return (
 		<form className='form_container' onSubmit={onSubmit}>
