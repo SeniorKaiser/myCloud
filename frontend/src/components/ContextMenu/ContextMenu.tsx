@@ -47,7 +47,9 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				bottom: position.bottom,
 			}}
 		>
-			<div className='context-menu-title'>{title}</div>
+			<div className='context-menu-title' style={{ padding: '0.3rem 0.6rem' }}>
+				{title}
+			</div>
 			{options.map((option, index) => (
 				<li key={index} onClick={option.action}>
 					<span>

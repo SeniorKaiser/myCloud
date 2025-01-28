@@ -13,9 +13,14 @@ const FileTable: React.FC<StorageProps> = ({ files }) => {
 	const contextButtonRef = useRef<HTMLTableCellElement>(null)
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
 	const [menuPosition, setMenuPosition] = useState<Position>({})
+	const [contextMenuTitle, setContextMenuTitle] = useState<string | undefined>(
+		undefined
+	)
 
 	const handleContextMenu = (event: React.MouseEvent): void => {
 		event.preventDefault()
+		const target = event.currentTarget as HTMLElement
+		setContextMenuTitle(target.getAttribute('data-name') || undefined)
 		setMenuPosition({
 			top: `${event.clientY}px`,
 			left: `${event.clientX}px`,
@@ -24,14 +29,15 @@ const FileTable: React.FC<StorageProps> = ({ files }) => {
 	}
 	const handleContextMenuOptions = (event: React.MouseEvent): void => {
 		event.preventDefault()
-		const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
+		const target = event.currentTarget as HTMLElement
+		const rect = target.getBoundingClientRect()
 		const fixedX = Math.min(event.clientX, window.innerWidth - rect.left)
 		const fixedY = Math.min(event.clientY, window.innerHeight)
 		setMenuPosition({
 			top: `${fixedY}px`,
 			right: `${fixedX}px`,
 		})
-
+		setContextMenuTitle(target.getAttribute('data-name') || undefined)
 		setContextMenuVisible(true)
 	}
 
@@ -54,7 +60,11 @@ const FileTable: React.FC<StorageProps> = ({ files }) => {
 				</thead>
 				<tbody>
 					{files.map(file => (
-						<tr key={file.id} onContextMenu={handleContextMenu}>
+						<tr
+							key={file.id}
+							onContextMenu={handleContextMenu}
+							data-name={file.name}
+						>
 							<td>
 								<div
 									style={{ display: 'inline-flex', justifyContent: 'center' }}
@@ -73,7 +83,11 @@ const FileTable: React.FC<StorageProps> = ({ files }) => {
 							<td>{file.extension ? file.extension : 'folder'}</td>
 							<td>{file.size ? file.size : '-'}</td>
 							<td>{file.date ? file.date : '-'}</td>
-							<td ref={contextButtonRef} onClick={handleContextMenuOptions}>
+							<td
+								ref={contextButtonRef}
+								onClick={handleContextMenuOptions}
+								data-name={file.name}
+							>
 								<EllipsisVertical />
 							</td>
 						</tr>
@@ -85,6 +99,7 @@ const FileTable: React.FC<StorageProps> = ({ files }) => {
 					options={FileOptionsContextMenu}
 					position={menuPosition}
 					onClose={handleCloseMenu}
+					title={contextMenuTitle}
 				/>
 			)}
 		</>
