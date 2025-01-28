@@ -6,7 +6,6 @@ import { User } from '@app/data'
 import AuthUser from '@services/requests/AuthUser'
 import './Profile.css'
 import Loader from '@components/Loading/Loading'
-import { width } from '@fortawesome/free-regular-svg-icons/faAddressBook'
 
 const Profile: React.FC = () => {
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
