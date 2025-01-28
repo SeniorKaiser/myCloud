@@ -3,6 +3,7 @@ import Input from '@components/Input/Input'
 import { config, FormDataI, initialState } from './Config'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import RegRequest from '@services/requests/Reg'
+import loginRequest from '@services/requests/Login'
 import './RegForm.css'
 
 const RegForm: React.FC = () => {
@@ -20,6 +21,11 @@ const RegForm: React.FC = () => {
 			password: formValue.password,
 			email: formValue.email,
 		})
+		await loginRequest({
+			username: formValue.username,
+			password: formValue.password,
+		})
+		window.location.href = '/'
 	}
 	return (
 		<form className='form_container' onSubmit={onSubmit}>
