@@ -15,59 +15,22 @@
 
 .profile-unauthoraized {
 	display: flex;
-	gap: 0.5rem;
-}
-
-.profile-unauthoraized a {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 2px solid var(--text);
+	width: 2.5rem;
 	height: 2.5rem;
-	width: 6rem;
-	background-color: transparent;
-	border-radius: 1rem;
-	font-size: 1.3rem;
-	cursor: pointer;
-	color: var(--text);
-	transition: 0.3s;
-	text-decoration: none;
-}
-
-.profile-unauthoraized a:last-child {
-	border: none;
-	background-color: var(--text);
-	color: var(--background);
-}
-
-.profile-unauthoraized-slim {
-	display: none;
-	width: 2rem;
-	height: 2rem;
 	align-items: center;
-	background-color: var(--text);
 	border-radius: 100%;
 	justify-content: center;
 	transition: 0.3s;
 }
 
-.profile-unauthoraized-slim a {
-	color: var(--background);
+.profile-unauthoraized a {
+	color: var(--text);
 	text-decoration: none;
+	font-size: 1.3rem;
 }
 
 @media (hover: hover) {
 	.avatar:hover {
 		scale: 1.1;
-	}
-
-	.profile-unauthoraized a:hover {
-		scale: 1.05;
-	}
-}
-
-@media (hover: none) {
-	.profile-unauthoraized a:active {
-		scale: 1.05;
 	}
 }

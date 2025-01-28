@@ -6,13 +6,8 @@ import ThemeSwitcher from '@components/ThemeSwitcher/ThemeSwitcher'
 import BurgerMenu from '@components/BurgerMenu/BurgerMenu'
 import './Header.css'
 import './Media.css'
-import { User } from '@app/data'
 
-interface HeaderProps {
-	User: User | undefined
-}
-
-const Header: React.FC<HeaderProps> = ({ User }) => {
+const Header: React.FC = () => {
 	const navRef = useRef<HTMLDivElement>(null)
 
 	return (
@@ -21,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ User }) => {
 			<Navigation ref={navRef} />
 			<div className='header__elements'>
 				<ThemeSwitcher />
-				<Profile User={User} />
+				<Profile />
 				<BurgerMenu width='2rem' height='2rem' navRef={navRef} />
 			</div>
 		</header>
