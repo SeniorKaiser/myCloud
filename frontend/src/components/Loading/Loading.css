@@ -2,18 +2,18 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	margin: -100px; /* Replace $w-margin */
-	width: 200px; /* Replace $w-size */
-	height: 200px; /* Replace $w-size */
+	margin: -50%;
+	width: 100%;
+	height: 100%;
 	background-color: transparent;
 	border: none;
 	-webkit-user-select: none;
 }
 
 .loader-contrainer .loader {
-	width: 140px; /* Replace $box-wrapper-width */
-	height: 140px; /* Replace $box-wrapper-height */
-	margin: calc((100% - 140px) / 2) calc((100% - 140px) / 2); /* Replace $box-wrapper-margin */
+	width: 70%;
+	height: 70%;
+	margin: calc(30% / 2) calc(30% / 2);
 	position: relative;
 	transform: rotate(-45deg);
 }

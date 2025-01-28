@@ -5,6 +5,8 @@ import { User as UserIcon } from '@components/Icons/Icons'
 import { User } from '@app/data'
 import AuthUser from '@services/requests/AuthUser'
 import './Profile.css'
+import Loader from '@components/Loading/Loading'
+import { width } from '@fortawesome/free-regular-svg-icons/faAddressBook'
 
 const Profile: React.FC = () => {
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
@@ -38,10 +40,10 @@ const Profile: React.FC = () => {
 	}
 	if (isloading) {
 		return (
-			<section className='profile'>
-				<div
-					style={{ width: '2.5rem', height: '2.5rem', color: 'var(--grey' }}
-				></div>
+			<section
+				style={{ width: '2.5rem', height: '2.5rem', position: 'relative' }}
+			>
+				<Loader />
 			</section>
 		)
 	}

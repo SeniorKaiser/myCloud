@@ -6,7 +6,11 @@ const Settings: React.FC = () => {
 	return (
 		<>
 			<main>
-				<Loader />
+				<section
+					style={{ width: '100px', height: '100px', position: 'relative' }}
+				>
+					<Loader />
+				</section>
 			</main>
 		</>
 	)
