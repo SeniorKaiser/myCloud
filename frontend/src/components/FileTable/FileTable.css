@@ -26,6 +26,10 @@ td:first-child {
 	}
 }
 
+td:nth-child(5) {
+	cursor: pointer;
+}
+
 .storage-table img {
 	width: 2.6rem;
 	height: 2.6rem;
