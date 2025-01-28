@@ -13,12 +13,14 @@ interface ContextMenuProps {
 	options: Option[]
 	position: Position
 	onClose: () => void
+	title?: string | undefined
 }
 
 const ContextMenu: React.FC<ContextMenuProps> = ({
 	options,
 	position,
 	onClose,
+	title,
 }) => {
 	const menuRef = useRef<HTMLUListElement>(null)
 
@@ -45,6 +47,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				bottom: position.bottom,
 			}}
 		>
+			<div className='context-menu-title'>{title}</div>
 			{options.map((option, index) => (
 				<li key={index} onClick={option.action}>
 					<span>

@@ -69,6 +69,7 @@ const Profile: React.FC = () => {
 					options={ProfileOptionsContextMenu}
 					position={menuPosition}
 					onClose={handleCloseMenu}
+					title={user.name}
 				/>
 			)}
 		</section>
