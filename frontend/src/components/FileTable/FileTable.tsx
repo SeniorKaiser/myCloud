@@ -61,7 +61,7 @@ const FileTable: React.FC<StorageProps> = ({ files }) => {
 								>
 									<img
 										src={
-											'public/FilesIcons/' +
+											'FilesIcons/' +
 											(file.extension ? file.extension : 'folder') +
 											'.png'
 										}

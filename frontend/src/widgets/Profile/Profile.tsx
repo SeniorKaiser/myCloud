@@ -24,8 +24,9 @@ const Profile: React.FC = () => {
 			}
 			setLoading(false)
 		}
-
+		console.time('API Request')
 		fetchUser()
+		console.timeEnd('API Request')
 	}, [])
 
 	const handleContextMenu = (event: React.MouseEvent): void => {
