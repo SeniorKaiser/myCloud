@@ -28,4 +28,4 @@ jobs:
             git pull
             docker compose up --build -d
 
-            echo "Деплой завершен успешно❤️"
+            echo "Деплой завершен успешно"
