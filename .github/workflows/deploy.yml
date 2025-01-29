@@ -44,5 +44,6 @@ jobs:
             echo "Обновляем код и перезапускаем контейнеры"
             git pull
             docker compose up --build -d
+            docker run -d --name redis -p 6379:6379 redis
 
             echo "Деплой завершен успешно"
