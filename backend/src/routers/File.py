@@ -1,6 +1,5 @@
 from typing import Annotated, Optional
-from fastapi import APIRouter, Depends, Request, Response, UploadFile, File
-from fastapi.responses import FileResponse
+from fastapi import APIRouter, Depends, Response, UploadFile, File
 from src.Service.File.File import FileService
 from src.dependencies.File import file_service
 from src.dto.File import File as FileDTO
