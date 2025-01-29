@@ -3,13 +3,13 @@ from src.utils.settings import settings
 from fastapi import UploadFile
 
 class FileStorageClient(StorageClient):
-    async def upload_file(self, file: UploadFile, user_id: str):
+    async def upload_file(self, file: UploadFile, id: str, user_id: str):
         object_name = file.filename
         async for client in self.get_client():
             file_content = await file.read()
             await client.put_object(
                 Bucket=self.bucket_name,
-                Key=f'{user_id}_{object_name}',
+                Key=f'{id}_{object_name}',
                 Body=file_content
             )
         return {"status": "ok"}
