@@ -14,8 +14,7 @@ class File(BaseModel):
     user_id: str
 
     @classmethod
-    async def from_upload_file(cls, file: UploadFile, user_id: str, folder_id: str = None):
-        file_content = await file.read()
+    async def from_upload_file(cls, file_content: bytes, file: UploadFile, user_id: str, folder_id: str = None):
         return cls(
             id=str(uuid.uuid4()),
             name=file.filename,

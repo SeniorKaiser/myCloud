@@ -20,10 +20,6 @@ app.include_router(Folder_Router)
 def main():
     return "Hello world"
 
-@app.on_event("startup")
-async def on_startup():
-    await init_models()
-
 origins = [
     "http://localhost:5173",
     "http://79.141.77.164",
@@ -38,4 +34,4 @@ app.add_middleware(
 )
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True, workers=3)

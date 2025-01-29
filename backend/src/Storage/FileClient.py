@@ -1,19 +1,30 @@
 from src.utils.storage import StorageClient
 from src.utils.settings import settings
-from fastapi import UploadFile
+from src.dto.File import File as FileDTO
 
 class FileStorageClient(StorageClient):
-    async def upload_file(self, file: UploadFile, id: str, user_id: str):
-        object_name = file.filename
+    async def upload_file(self, file: FileDTO, file_content: bytes):
+        if len(file_content) == 0:
+            return {"status": "error", "message": "File is empty"}
         async for client in self.get_client():
-            file_content = await file.read()
             await client.put_object(
                 Bucket=self.bucket_name,
-                Key=f'{id}_{object_name}',
+                Key=f'uploads/{file.user_id}/files/{file.id}_{file.name}',
                 Body=file_content
             )
+
         return {"status": "ok"}
     
+    async def download_file(self, file: FileDTO, user_id: str):
+        async for client in self.get_client():
+            response = await client.get_object(
+                Bucket=self.bucket_name,
+                Key=f'uploads/{user_id}/files/{file.id}_{file.name}'
+            )
+            file_content = await response['Body'].read()
+            return file_content
+        return {"status": "exeption"}
+
     async def delete_file(self, file_name: str):
         async for client in self.get_client():
             await client.delete_object(

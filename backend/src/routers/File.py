@@ -1,5 +1,6 @@
 from typing import Annotated, Optional
-from fastapi import APIRouter, Depends, UploadFile, File
+from fastapi import APIRouter, Depends, Request, Response, UploadFile, File
+from fastapi.responses import FileResponse
 from src.Service.File.File import FileService
 from src.dependencies.File import file_service
 from src.dto.File import File as FileDTO
@@ -22,7 +23,15 @@ async def upload_file(
     folder_id: Optional[str] = None,
     user: UserDTO = Depends(auth),
 ) -> FileDTO:
-    return await file_service.upload_file(file=file, user_id=user.id, folder_id=folder_id)
+    return await file_service.upload_file(file=file, user_id=user["id"], folder_id=folder_id)
+
+@router.get("/download")
+async def download_file(
+    file_id: str,
+    file_service: Annotated[FileService, Depends(file_service)],
+    user: UserDTO = Depends(auth),
+) -> Response:
+    return await file_service.download_file(file_id=file_id, user_id=user["id"])
 
 @router.delete("/delete/{file_id}")
 async def delete_file(

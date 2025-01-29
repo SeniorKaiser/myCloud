@@ -30,7 +30,9 @@ async def auth(
     response: Response,
     user_service: Annotated[UserService, Depends(user_service)]
 ) -> User:
-    return await user_service.auth(request=request, response=response)
+    user = await user_service.auth(request=request, response=response)
+    print(user)
+    return user
 
 @router.delete("/delete/{user_id}")
 async def delete(
