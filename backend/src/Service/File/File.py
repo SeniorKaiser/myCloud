@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import UploadFile
 from src.utils.repository import AbstractRepository
 from src.utils.storage import storage_client
@@ -11,8 +12,8 @@ class FileService:
     async def get_file(self, file_id: str) -> FileDTO:
         return await self.file_repository.get(file_id)
 
-    async def upload_file(self, file: UploadFile, user_id: str) -> FileDTO:
-        file_dto = await FileDTO.from_upload_file(file, user_id)
+    async def upload_file(self, file: UploadFile, user_id: str, folder_id: Optional[str]) -> FileDTO:
+        file_dto = await FileDTO.from_upload_file(file, user_id, folder_id)
         await self.file_repository.add(file_dto.model_dump())
         await storage_client.upload_file(file, user_id)
         return file_dto
