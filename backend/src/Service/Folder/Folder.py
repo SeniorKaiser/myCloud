@@ -1,28 +1,31 @@
+from fastapi import HTTPException
 from src.utils.repository import AbstractRepository
 from src.dto.Folder import Folder as FolderDTO, CreateFolderSchema
-from src.Service.Folder.Utils import get_folder_path
 
 class FolderService():
     def __init__(self, folder_repository: AbstractRepository):
         self.folder_repository = folder_repository()
 
-    async def get_folder(self, id: str) -> FolderDTO:
-        return await self.folder_repository.get(id)
+    async def get_folder(self, id: str, user_id: str) -> FolderDTO:
+        folder = await self.folder_repository.get(id)
+        if folder.user_id != user_id: raise HTTPException(status_code=403)
+        return folder
     
-    async def create_folder(self, folder: CreateFolderSchema) -> FolderDTO:
+    async def create_folder(self, folder: CreateFolderSchema, user_id: str) -> FolderDTO:
+        if folder.user_id != user_id: raise HTTPException(status_code=403)
         folder_id = await self.folder_repository.add(folder.dict())
-        folder = await self.folder_repository.get(folder_id)
-        path = await get_folder_path(folder_id)
-        return folder
+        folder_created = await self.folder_repository.get(folder_id)
+        return folder_created
     
-    async def delete_folder(self, id: str) -> FolderDTO:
+    async def delete_folder(self, id: str, user_id: str) -> FolderDTO:
         folder = await self.folder_repository.get(id)
+        if folder.user_id != user_id: raise HTTPException(status_code=403)
         await self.folder_repository.delete(id)
-        path = await get_folder_path(folder.id)
         return folder
     
-    async def rename_folder(self, id: str, name: str) -> FolderDTO:
+    async def rename_folder(self, id: str, name: str, user_id: str) -> FolderDTO:
         folder = await self.folder_repository.get(id)
+        if folder.user_id != user_id: raise HTTPException(status_code=403)
         folder.name = name
         res = await self.folder_repository.update(id, folder.dict())
         return res

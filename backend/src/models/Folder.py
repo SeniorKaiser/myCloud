@@ -13,7 +13,7 @@ class Folder(Base):
     date = Column(DateTime, default=datetime.utcnow, nullable=False)
     parent_folder = Column(String, ForeignKey('folders.id'))
     user_id = Column(String, ForeignKey('users.id'), nullable=False)
-    files = relationship("File", back_populates="folder")
+    files = relationship("File", back_populates="folder", lazy="selectin")
     user = relationship("User", back_populates="folders")
 
     def to_read_model(self) -> FolderDTO:
@@ -22,5 +22,6 @@ class Folder(Base):
             name=self.name,
             date=self.date,
             parent_folder=self.parent_folder,
-            user_id=self.user_id
+            user_id=self.user_id,
+            files=[file.to_read_model() for file in self.files] if self.files else [],
         )

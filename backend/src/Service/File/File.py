@@ -4,7 +4,6 @@ from src.utils.repository import AbstractRepository
 from src.Storage.FileClient import file_storage_client as storage_client
 from src.dto.File import File as FileDTO
 
-
 class FileService:
     def __init__(self, file_repository: AbstractRepository):
         self.file_repository = file_repository()
