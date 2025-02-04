@@ -1,6 +1,5 @@
 import {
 	HardDrive,
-	User,
 	Sliders,
 	ArrowRightFromBracket,
 } from '@components/Icons/Icons.tsx'
