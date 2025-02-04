@@ -31,7 +31,7 @@ const Profile: React.FC = () => {
 
 	const handleContextMenu = (event: React.MouseEvent): void => {
 		event.preventDefault()
-		setMenuPosition({ right: '0.3rem' })
+		setMenuPosition({ right: '0.3rem', top: '4rem' })
 		setContextMenuVisible(true)
 	}
 
