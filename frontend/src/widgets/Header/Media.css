@@ -2,7 +2,7 @@
 	header .logo {
 		margin-right: auto;
 	}
-	nav {
+	header nav {
 		position: fixed;
 		top: 0;
 		right: 0;
