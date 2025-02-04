@@ -1,6 +1,12 @@
 footer {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
+	padding-bottom: 3rem;
+}
+
+footer h1 {
+	text-align: center;
+	margin-bottom: 1rem;
 }
 
 .footer-author {
@@ -30,5 +36,6 @@ footer .logo {
 		grid-row: 2;
 		flex-direction: column;
 		height: 100%;
+		gap: 0.2rem;
 	}
 }

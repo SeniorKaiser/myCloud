@@ -8,6 +8,7 @@ const Footer: React.FC = () => {
 		<footer>
 			<Logo />
 			<section className='footer-nav'>
+				<h1>Links</h1>
 				<Navigation />
 			</section>
 			<section className='footer-author'>
