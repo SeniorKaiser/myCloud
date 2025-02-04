@@ -8,7 +8,7 @@ const StorageInfo: React.FC = () => {
 	return (
 		<section className='storage-info'>
 			<Upload />
-			<ProgressBar size={128849018880} filled={70000000000} />
+			<ProgressBar size={128849018880} filled={101349018880} />
 			<SortSettings />
 		</section>
 	)
