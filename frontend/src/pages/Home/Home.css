@@ -16,11 +16,11 @@
 	text-align: center;
 }
 
-@media (width < 46rem) {
-	.privilege {
+@media (width < 60rem) {
+	.home-main .privilege {
 		flex-direction: column;
 	}
-	.privilege-card {
+	.home-main .privilege-card {
 		width: 100%;
 		aspect-ratio: unset;
 	}

@@ -12,7 +12,6 @@ export const ProfileOptionsContextMenu: Option[] = [
 		action: () => (window.location.href = '/disk'),
 		icon: HardDrive,
 	},
-	{ title: 'Friends', action: () => alert('Friends'), icon: User },
 	{
 		title: 'Settings',
 		action: () => (window.location.href = '/settings'),

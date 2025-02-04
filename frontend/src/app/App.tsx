@@ -6,6 +6,7 @@ import Disk from '@pages/Disk/Disk.tsx'
 import Settings from '@pages/Settings/Settings.tsx'
 import Login from '@pages/Login/Login.tsx'
 import Reg from '@pages/Reg/Reg.tsx'
+import Pricing from '@pages/Pricing/Pricing'
 
 function App() {
 	useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
 				<Route path='/settings' element={<Settings />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/reg' element={<Reg />} />
+				<Route path='/pricing' element={<Pricing />} />
 			</Routes>
 		</Router>
 	)
