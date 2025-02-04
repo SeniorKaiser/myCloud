@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu.tsx'
 import { ProfileOptionsContextMenu } from './Data'
-import { User as UserIcon } from '@components/Icons/Icons'
+import { User as UserIcon, UserSecret } from '@components/Icons/Icons'
 import { User } from '@app/data'
 import AuthUser from '@services/requests/AuthUser'
 import './Profile.css'
@@ -51,16 +51,18 @@ const Profile: React.FC = () => {
 	return (
 		<section className='profile' onClick={user ? handleContextMenu : undefined}>
 			{user ? (
-				<img
-					className='avatar'
-					src='https://storage.yandexcloud.net/mycloud-backet/uploads/465da2f3-2394-4d4a-9204-dc82efc26b7d/data/avatar.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEDldjsx-XYZdVQNP6MnFi%2F20250126%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20250126T070226Z&X-Amz-Expires=604800&X-Amz-Signature=6E352BBC9FAE3B5DB92CA8F654C0E702B6EB099D7E8EE173DC2F697FA436F0AE&X-Amz-SignedHeaders=host'
-					alt='avatar'
-				/>
-			) : (
 				<>
-					<div className='profile-unauthoraized'>
+					<div className='profile-avatar'>
 						<a href='./login'>
 							<UserIcon />
+						</a>
+					</div>
+				</>
+			) : (
+				<>
+					<div className='profile-avatar'>
+						<a href='./login'>
+							<UserSecret />
 						</a>
 					</div>
 				</>

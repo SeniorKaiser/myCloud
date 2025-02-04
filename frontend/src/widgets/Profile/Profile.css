@@ -13,7 +13,7 @@
 	right: 1rem;
 }
 
-.profile-unauthoraized {
+.profile-avatar {
 	display: flex;
 	width: 2.5rem;
 	height: 2.5rem;
@@ -23,10 +23,10 @@
 	transition: 0.3s;
 }
 
-.profile-unauthoraized a {
+.profile-avatar a {
 	color: var(--text);
 	text-decoration: none;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 }
 
 @media (hover: hover) {

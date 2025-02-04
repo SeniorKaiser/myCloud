@@ -18,10 +18,11 @@ import {
 	faCrown,
 	faSignature,
 	faCircleCheck,
+	faUserSecret,
+	faUserTie,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
-	faUser,
 	faMoon,
 	faSun,
 	faFolder,
@@ -44,7 +45,7 @@ export const HardDrive: React.FC = () => {
 }
 
 export const User: React.FC = () => {
-	return <FontAwesomeIcon icon={faUser} />
+	return <FontAwesomeIcon icon={faUserTie} />
 }
 
 export const Moon: React.FC = () => {
@@ -153,4 +154,8 @@ export const File: React.FC = () => {
 
 export const CircleCheck: React.FC = () => {
 	return <FontAwesomeIcon icon={faCircleCheck} />
+}
+
+export const UserSecret: React.FC = () => {
+	return <FontAwesomeIcon icon={faUserSecret} />
 }
