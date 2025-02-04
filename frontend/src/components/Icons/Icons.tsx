@@ -17,6 +17,7 @@ import {
 	faRotateRight,
 	faCrown,
 	faSignature,
+	faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
@@ -148,4 +149,8 @@ export const Clock: React.FC = () => {
 
 export const File: React.FC = () => {
 	return <FontAwesomeIcon icon={faFile} />
+}
+
+export const CircleCheck: React.FC = () => {
+	return <FontAwesomeIcon icon={faCircleCheck} />
 }

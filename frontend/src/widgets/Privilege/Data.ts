@@ -1,29 +1,46 @@
 export interface PrivilegeCard {
 	title: string
-	storage: number
+	description: feature[]
 	price: number
 	color: string
 	action: () => void
 }
 
+export interface feature {
+	title: string
+	description: string
+}
+
 export const listPrivilegeCard: PrivilegeCard[] = [
 	{
-		title: 'Silver',
-		storage: 256,
-		price: 1.99,
+		title: 'Free',
+		description: [
+			{ title: 'Storage', description: '20gb' },
+			{ title: '24/7 support', description: '+' },
+			{ title: 'protection guarantee', description: '+' },
+		],
+		price: 0,
 		color: '#afafaf',
-		action: () => alert('Silver'),
+		action: () => alert('Free'),
 	},
 	{
 		title: 'Gold',
-		storage: 512,
+		description: [
+			{ title: 'Storage', description: '512gb' },
+			{ title: '24/7 support', description: '+' },
+			{ title: 'protection guarantee', description: '+' },
+		],
 		price: 3.99,
 		color: '#e1cd00',
 		action: () => alert('Gold'),
 	},
 	{
 		title: 'Platinum',
-		storage: 1024,
+		description: [
+			{ title: 'Storage', description: '1024gb' },
+			{ title: '24/7 support', description: '+' },
+			{ title: 'protection guarantee', description: '+' },
+		],
 		price: 6.99,
 		color: '#009bd5',
 		action: () => alert('Platinum'),

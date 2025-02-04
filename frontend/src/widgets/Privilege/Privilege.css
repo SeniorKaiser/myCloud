@@ -1,5 +1,6 @@
 .privilege {
 	width: 100%;
+	padding: 20px;
 	display: flex;
 	flex-wrap: nowrap;
 	gap: clamp(0.3rem, 50vw, 2rem);
@@ -12,16 +13,25 @@
 }
 
 .privilege-card {
-	aspect-ratio: 1/1;
+	aspect-ratio: 2/3;
 	padding: 1rem;
-	background-color: transparent;
+	background-color: var(--glass);
 	font-size: 1.3rem;
 	flex: 1;
-	border-radius: 0.6rem;
+	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
 	scroll-snap-align: start;
+}
+
+.privilege-card__description {
+	color: var(--grey);
+	list-style: none;
+}
+
+.privilege-card__description li {
+	padding: 0.5rem 0;
 }
 
 .privilege-card button {
@@ -37,9 +47,8 @@
 	color: white;
 }
 
-.privilege-card p:nth-child(2) {
-	color: var(--grey);
-	margin-bottom: 2rem;
+.privilege-card_price {
+	margin-top: auto;
 }
 
 @media (hover: hover) {
@@ -51,5 +60,21 @@
 @media (hover: none) {
 	.privilege-card button:active {
 		scale: 1.03;
+	}
+}
+
+@keyframes glowing_card {
+	0% {
+		box-shadow: inset 0 0 5px #fff, inset 0 0 20px #f0f, inset 0 0 10px #0ff,
+			0 0 5px #fff, 0 0 20px #f0f, 0 0 10px #0ff;
+	}
+	50% {
+		box-shadow: inset 0 0 5px #fff, inset 0 0 20px var(--main-color),
+			inset 0 0 10px #0ff, 0 0 5px #fff, 0 0 20px var(--main-color),
+			0 0 10px #0ff;
+	}
+	100% {
+		box-shadow: inset 0 0 5px #fff, inset 0 0 20px #f0f, inset 0 0 10px #0ff,
+			0 0 5px #fff, 0 0 20px #f0f, 0 0 10px #0ff;
 	}
 }
