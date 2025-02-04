@@ -1,12 +1,12 @@
-import { HardDrive, User } from '@components/Icons/Icons'
-
 export interface Link {
 	title: string
 	link: string
-	icon: React.FC
+	icon?: React.FC | undefined
 }
 
 export const navLinks: Link[] = [
-	{ title: 'Disk', link: './disk', icon: HardDrive },
-	{ title: 'Friends', link: './friends', icon: User },
+	{ title: 'Home', link: './' },
+	{ title: 'Features', link: './features' },
+	{ title: 'Pricing', link: './pricing' },
+	{ title: 'Contacts', link: './contacts' },
 ]

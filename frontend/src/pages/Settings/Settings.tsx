@@ -1,17 +1,19 @@
 import React from 'react'
 import Loader from '@components/Loading/Loading'
+import Header from '@widgets/Header/Header'
+import Footer from '@widgets/Footer/Footer'
 import './Settings.css'
 
 const Settings: React.FC = () => {
 	return (
 		<>
-			<main>
-				<section
-					style={{ width: '100px', height: '100px', position: 'relative' }}
-				>
+			<Header />
+			<main className='settings-main'>
+				<section className='settings'>
 					<Loader />
 				</section>
 			</main>
+			<Footer />
 		</>
 	)
 }

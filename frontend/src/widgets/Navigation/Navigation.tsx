@@ -7,7 +7,7 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
 		<nav ref={ref}>
 			{navLinks.map(link => (
 				<a href={link.link} key={link.title}>
-					<link.icon /> {link.title}
+					{link.icon ? <link.icon /> : undefined} {link.title}
 				</a>
 			))}
 		</nav>
