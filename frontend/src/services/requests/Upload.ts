@@ -8,7 +8,6 @@ const uploadFile = async (file: File, folderId?: string) => {
 	if (folderId) {
 		formData.append('folder_id', folderId)
 	}
-
 	try {
 		const response = await axios.post(
 			`${domenApi}/api/files/upload`,
