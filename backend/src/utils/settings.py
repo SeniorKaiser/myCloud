@@ -1,5 +1,8 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 class Settings(BaseSettings):
     SECRET_KEY: str
@@ -16,8 +19,8 @@ class Settings(BaseSettings):
     DB_PORT: str
     DB_NAME: str
 
-    model_config = SettingsConfigDict(
-        env_file=".env"
-    )
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
 
 settings = Settings()

@@ -3,8 +3,6 @@ from src.models.User import User
 from src.utils.database import async_session_maker
 from sqlalchemy import select
 
-
-
 class UserRepository(SQLAlchemyRepository):
     model = User
 

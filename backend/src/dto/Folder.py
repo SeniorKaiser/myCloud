@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from datetime import datetime
 from typing import List, Optional
 from .File import File
@@ -7,10 +7,10 @@ class Folder(BaseModel):
     id: str
     name: str
     date: datetime
-    parent_folder: Optional[str] = None
-    files: List[File]
-    subfolders: List["Folder"]
     user_id: str
+    files: List[File] = []
+    parent_folders: Optional[str] = None
+    folders: List["Folder"] = None
 
 class CreateFolderSchema(BaseModel):
     name: str
