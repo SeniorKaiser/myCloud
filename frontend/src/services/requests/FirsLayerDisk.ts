@@ -4,7 +4,7 @@ import { domenApi } from '@app/data.ts'
 const FirstLayerDisk = async () => {
 	try {
 		const response: AxiosResponse = await axios.post(
-			`${domenApi}/api/user/login`
+			`${domenApi}/api/user/first-layer-disk`
 		)
 
 		console.table('Disk', response.data)
