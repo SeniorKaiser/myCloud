@@ -3,8 +3,10 @@ import FileTable from '@components/FileTable/FileTable.tsx'
 import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
 import { TempFilesList } from '@components/FileTable/Data'
+import FirstLayerDisk from '@services/requests/FirsLayerDisk'
 
 const Storage: React.FC = () => {
+	FirstLayerDisk()
 	return (
 		<section className='storage'>
 			<SearchInput
