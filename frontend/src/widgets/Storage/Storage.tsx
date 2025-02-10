@@ -1,22 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import FileTable from '@components/FileTable/FileTable.tsx'
 import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
-import { TempFilesList } from '@components/FileTable/Data'
-import FirstLayerDisk from '@services/requests/FirsLayerDisk'
+import FirstLayerDisk, {
+	FirstLayerDiskReturn,
+} from '@services/requests/FirsLayerDisk'
 
 const Storage: React.FC = () => {
-	FirstLayerDisk()
+	const [data, setData] = useState<FirstLayerDiskReturn | null>(null)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await FirstLayerDisk()
+				setData(response)
+			} catch (error) {
+				console.error('Error fetching files:', error)
+			}
+		}
+		fetchData()
+	}, [])
+
 	return (
 		<section className='storage'>
 			<SearchInput
 				placeholder='Searching file...'
 				onSubmit={() => alert('submit')}
 			/>
-			{TempFilesList.length != 0 ? (
-				<FileTable files={TempFilesList} />
+			{data ? (
+				<FileTable files={data.files} folders={data.folders} />
 			) : (
-				<h1 style={{ marginTop: '5rem' }}>No such files</h1>
+				<p>Loading files...</p>
 			)}
 		</section>
 	)

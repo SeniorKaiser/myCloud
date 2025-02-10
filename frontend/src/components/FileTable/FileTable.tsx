@@ -1,15 +1,16 @@
 import React, { useState, useRef } from 'react'
 import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu'
 import { FileOptionsContextMenu, Columns } from './Data'
-import { File } from '@app/data'
+import { File, Folder } from '@app/data'
 import { EllipsisVertical } from '@components/Icons/Icons'
 import './FileTable.css'
 
-interface StorageProps {
+export interface StorageProps {
 	files: File[]
+	folders: Folder[]
 }
 
-const FileTable: React.FC<StorageProps> = ({ files }) => {
+const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 	const contextButtonRef = useRef<HTMLTableCellElement>(null)
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
 	const [menuPosition, setMenuPosition] = useState<Position>({})
@@ -87,6 +88,32 @@ const FileTable: React.FC<StorageProps> = ({ files }) => {
 								ref={contextButtonRef}
 								onClick={handleContextMenuOptions}
 								data-name={file.name}
+							>
+								<EllipsisVertical />
+							</td>
+						</tr>
+					))}
+					{folders.map(folder => (
+						<tr
+							key={folder.id}
+							onContextMenu={handleContextMenu}
+							data-name={folder.name}
+						>
+							<td>
+								<div
+									style={{ display: 'inline-flex', justifyContent: 'center' }}
+								>
+									<img src={'FilesIcons/' + 'folder' + '.png'} alt='folder' />
+									<span>{folder.name}</span>
+								</div>
+							</td>
+							<td>folder</td>
+							<td>-</td>
+							<td>-</td>
+							<td
+								ref={contextButtonRef}
+								onClick={handleContextMenuOptions}
+								data-name={folder.name}
 							>
 								<EllipsisVertical />
 							</td>
