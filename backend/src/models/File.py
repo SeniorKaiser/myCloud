@@ -15,8 +15,8 @@ class File(Base):
     date = Column(DateTime, default=datetime.utcnow, nullable=False)
     user_id = Column(String, ForeignKey('users.id'), nullable=False)
     folder_id = Column(String, ForeignKey('folders.id'), nullable=True)
-    folder = relationship("Folder", back_populates="files")
-    user = relationship("User", back_populates="files")
+    folder = relationship("Folder", back_populates="files", lazy="selectin")
+    user = relationship("User", back_populates="files", lazy="selectin")
 
     def to_read_model(self) -> FileDTO:
         return FileDTO(

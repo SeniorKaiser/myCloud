@@ -9,8 +9,8 @@ class User(BaseModel):
     name: str
     email: EmailStr
     date: datetime
-    # files: List[File] = []
-    # folders: List[Folder] = []
+    files: List[File] = []
+    folders: List[Folder] = []
 
     def to_dict(self):
         return {
@@ -18,8 +18,8 @@ class User(BaseModel):
             "name": self.name,
             "email": self.email,
             "date": self.date.isoformat(),
-            # "files": self.files,
-            # "folder": self.folder
+            "files": self.files,
+            "folder": self.folder
         }
 
 class UserReg(BaseModel):

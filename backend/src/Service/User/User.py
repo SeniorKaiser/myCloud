@@ -28,7 +28,6 @@ class UserService:
         token = await getJWT(request=request, response=response)
         payload = await decode_token(token.access_token)
         user = await self.get_user(payload.get("id"))
-        print(user, '---3')
         return user
 
     async def get_user(self, id: str) -> UserDTO:
@@ -37,12 +36,10 @@ class UserService:
             if user: return user
             else:
                 user = await self.user_repository.get(id)
-                print(user, '---2')
                 await redis_client.set(key=f"user:{id}", value=user.to_dict())
-                print(user, '---2')
                 return user
         except Exception as e:
-            print(f"Error in get_user: {e}")  # Логируем ошибку
+            print(f"Error in get_user: {e}")
             raise HTTPException(status_code=500, detail="Internal Server Error")
         
     async def delete_user(self, id: str) -> UserDTO:

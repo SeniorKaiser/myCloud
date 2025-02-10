@@ -13,8 +13,8 @@ class User(Base):
     email = Column(String, unique=True, nullable=False)
     date = Column(DateTime, default=datetime.utcnow, nullable=False)
     password = Column(String, unique=True, nullable=False)
-    files = relationship('File', back_populates='user')
-    folders = relationship('Folder', back_populates='user')
+    files = relationship('File', back_populates='user', lazy="selectin")
+    folders = relationship('Folder', back_populates='user', lazy="selectin")
 
     def to_read_model(self) -> UserDTO:
         return UserDTO(
@@ -22,6 +22,6 @@ class User(Base):
             name=self.name,
             email=self.email,
             date=str(self.date),
-            # files=[file.to_read_model() for file in self.files],
-            # folders=[folder.to_read_model() for folder in self.folders],
+            files=[file.to_read_model() for file in self.files],
+            folders=[folder.to_read_model() for folder in self.folders],
         )
