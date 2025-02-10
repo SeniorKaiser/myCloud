@@ -11,6 +11,16 @@ class Folder(BaseModel):
     files: List[File] = []
     parent_folder: Optional[str] = None
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "date": self.date.isoformat(),
+            "user_id": self.user_id,
+            "files": [file.to_dict() for file in self.files],
+            "parent_folder": self.parent_folder,
+        }
+
 class CreateFolderSchema(BaseModel):
     name: str
     parent_folder: Optional[str] = None

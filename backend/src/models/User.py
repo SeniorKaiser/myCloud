@@ -22,6 +22,6 @@ class User(Base):
             name=self.name,
             email=self.email,
             date=str(self.date),
-            files=[file.to_read_model() for file in self.files],
-            folders=[folder.to_read_model() for folder in self.folders],
+            files=[file.to_read_model().to_dict() for file in self.files],
+            folders=[folder.to_read_model().to_dict() for folder in self.folders]
         )

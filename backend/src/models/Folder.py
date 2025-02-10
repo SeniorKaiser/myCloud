@@ -20,7 +20,7 @@ class Folder(Base):
         return FolderDTO(
             id=self.id,
             name=self.name,
-            date=self.date,
+            date=str(self.date),
             user_id=self.user_id,
             files=[file.to_read_model() for file in self.files],
             parent_folder=self.parent_folder,

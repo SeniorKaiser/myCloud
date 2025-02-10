@@ -24,3 +24,14 @@ class File(BaseModel):
             folder_id=folder_id,
             user_id=user_id
         )
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "size": self.size,
+            "date": self.date.isoformat(),
+            "extension": self.extension,
+            "folder_id": self.folder_id,
+            "user_id": self.user_id,
+        }

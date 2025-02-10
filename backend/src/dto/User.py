@@ -18,8 +18,8 @@ class User(BaseModel):
             "name": self.name,
             "email": self.email,
             "date": self.date.isoformat(),
-            "files": self.files,
-            "folder": self.folder
+            "files": [file.to_dict() for file in self.files],
+            "folders": [folder.to_dict() for folder in self.folders],
         }
 
 class UserReg(BaseModel):
