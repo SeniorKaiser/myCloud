@@ -1,7 +1,7 @@
 from fastapi import Response
 from fastapi.security import OAuth2PasswordRequestForm
 from src.utils.repository import AbstractRepository
-from src.dto.User import User as UserDTO
+from src.dto.User import User as UserDTO, UserFilesFolders
 from src.Storage.UserClient import user_storage_client
 from src.utils.redis import redis_client
 from src.Service.User.Auth import *
@@ -48,3 +48,10 @@ class UserService:
         await self.user_repository.delete(id)
         await user_storage_client.delete_user_disk(id)
         return user
+    
+    async def get_first_layer_disk(self, user_id: str) -> UserFilesFolders:
+        user = await self.user_repository.get(user_id)
+        if not user: raise HTTPException(status_code=404)
+        folders = [folder for folder in user.folders if folder.parent_folder is None]
+        files = [file for file in user.files if file.folder_id is None]
+        return UserFilesFolders(id=user_id, files=files, folders=folders)

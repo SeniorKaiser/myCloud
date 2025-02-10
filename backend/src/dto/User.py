@@ -31,3 +31,16 @@ class UserUpdate(BaseModel):
     name: Optional[str] = Field(default_factory=None)
     email: Optional[EmailStr]  = Field(default_factory=None)
     password: Optional[str] = Field(default_factory=None)
+
+class UserFilesFolders(BaseModel):
+    id: str
+    files: List[File] = []
+    folders: List[Folder] = []
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "files": [file.to_dict() for file in self.files],
+            "folders": [folder.to_dict() for folder in self.folders],
+        }
+        
