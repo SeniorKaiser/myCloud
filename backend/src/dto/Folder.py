@@ -9,8 +9,7 @@ class Folder(BaseModel):
     date: datetime
     user_id: str
     files: List[File] = []
-    parent_folders: Optional[str] = None
-    folders: List["Folder"] = None
+    parent_folder: Optional[str] = None
 
 class CreateFolderSchema(BaseModel):
     name: str

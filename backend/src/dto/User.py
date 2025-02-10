@@ -9,8 +9,8 @@ class User(BaseModel):
     name: str
     email: EmailStr
     date: datetime
-    files: List[File] = Field(default_factory=list)
-    folder: List[Folder] = Field(default_factory=list)
+    files: List[File] = []
+    folders: List[Folder] = []
 
     def to_dict(self):
         return {

@@ -7,3 +7,4 @@ createRoot(document.getElementById('root')!).render(
 		<App />
 	</StrictMode>
 )
+// https://t.me/c/2365070179/190
