@@ -2,7 +2,7 @@ import axios, { AxiosResponse, AxiosError } from 'axios'
 import { domenApi } from '@app/data.ts'
 import { File, Folder } from '@app/data'
 
-export interface FirstLayerDiskReturn {
+export interface DiskDTO {
 	files: File[]
 	folders: Folder[]
 }
@@ -13,11 +13,9 @@ const api = axios.create({
 	headers: { 'Content-Type': 'application/json' },
 })
 
-const FirstLayerDisk = async (): Promise<FirstLayerDiskReturn> => {
+const Disk = async (): Promise<DiskDTO> => {
 	try {
-		const response: AxiosResponse<FirstLayerDiskReturn> = await api.get(
-			'/first-layer-disk'
-		)
+		const response: AxiosResponse<DiskDTO> = await api.get('/disk')
 
 		console.table(response.data)
 		return response.data
@@ -28,4 +26,4 @@ const FirstLayerDisk = async (): Promise<FirstLayerDiskReturn> => {
 	}
 }
 
-export default FirstLayerDisk
+export default Disk

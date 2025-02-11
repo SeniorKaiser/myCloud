@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Optional
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from src.dependencies.User import user_service
@@ -32,12 +32,13 @@ async def auth(
 ) -> User:
     return await user_service.auth(request=request, response=response)
 
-@router.get("/first-layer-disk")
-async def get_first_layer_disk(
+@router.get("/disk")
+async def disk(
     user_service: Annotated[UserService, Depends(user_service)],
     user: User = Depends(auth),
+    folder_id: Optional[str] = None
 ) -> UserFilesFolders:
-    return await user_service.get_first_layer_disk(user["id"])
+    return await user_service.disk(user["id"], folder_id)
 
 @router.delete("/delete/{user_id}")
 async def delete(

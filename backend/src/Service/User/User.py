@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import Response
 from fastapi.security import OAuth2PasswordRequestForm
 from src.utils.repository import AbstractRepository
@@ -49,9 +50,9 @@ class UserService:
         await user_storage_client.delete_user_disk(id)
         return user
     
-    async def get_first_layer_disk(self, user_id: str) -> UserFilesFolders:
+    async def disk(self, user_id: str, folder_id: Optional[str] = None) -> UserFilesFolders:
         user = await self.user_repository.get(user_id)
         if not user: raise HTTPException(status_code=404)
-        folders = [folder for folder in user.folders if folder.parent_folder is None]
-        files = [file for file in user.files if file.folder_id is None]
+        folders = [folder for folder in user.folders if folder.parent_folder == folder_id]
+        files = [file for file in user.files if file.folder_id == folder_id]
         return UserFilesFolders(id=user_id, files=files, folders=folders)
