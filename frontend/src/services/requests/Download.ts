@@ -25,7 +25,7 @@ import { domenApi } from '@app/data'
 const downloadFile = async (id: string) => {
 	try {
 		const response = await fetch(`${domenApi}/api/files/download`, {
-			method: 'POST',
+			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
