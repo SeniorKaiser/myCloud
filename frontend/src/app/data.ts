@@ -30,7 +30,7 @@ export interface User {
 
 export const tempfiles: File[] = [
 	{
-		id: '1121212',
+		id: 'bad3827c-d6c4-4c0a-b156-622d3ba03c50',
 		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
 		date: 'skjdsld',
 		size: 1223,

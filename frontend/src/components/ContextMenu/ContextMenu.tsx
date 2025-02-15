@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Option } from './Data'
 import './ContextMenu.css'
+import { copyToClipboard } from '@services/functions/copyToClipboard'
 
 export interface Position {
 	top?: string | undefined
@@ -49,13 +50,17 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				bottom: position.bottom,
 			}}
 		>
-			<li style={{ maxWidth: '10rem' }}>{title}</li>
 			<li
-				style={{
-					fontSize: '0.9rem',
-					marginBottom: '0.5rem',
-					maxWidth: '10rem',
-				}}
+				className='context-menu__title'
+				value={title}
+				onClick={() => copyToClipboard(title)}
+			>
+				{title}
+			</li>
+			<li
+				className='context-menu__id'
+				value={objectId}
+				onClick={() => copyToClipboard(objectId)}
 			>
 				{objectId}
 			</li>
