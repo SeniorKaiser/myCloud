@@ -30,6 +30,7 @@
 	font-size: 1.3rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-wrap: nowrap;
 }
 
 .context-menu li span {

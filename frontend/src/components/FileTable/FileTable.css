@@ -14,6 +14,7 @@ th {
 	padding: 0.5em 0.3em;
 	text-align: left;
 	border-bottom: 0.0625em solid var(--window);
+	text-wrap: nowrap;
 }
 
 td:first-child span {
