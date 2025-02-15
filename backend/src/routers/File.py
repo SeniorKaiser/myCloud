@@ -36,8 +36,9 @@ async def download_file(
 async def delete_file(
     file_service: Annotated[FileService, Depends(file_service)],
     file_id: str,
+    user: UserDTO = Depends(auth),
 ) -> FileDTO:
-    return await file_service.delete_file(file_id)
+    return await file_service.delete_file(file_id, user_id=user["id"])
 
 @router.put("/rename/{file_id}")
 async def delete_file(

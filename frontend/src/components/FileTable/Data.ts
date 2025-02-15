@@ -1,6 +1,7 @@
 import { Upload, KeyBoard, TrashCan } from '@components/Icons/Icons.tsx'
 import { Option } from '@components/ContextMenu/Data'
 import downloadFile from '@services/requests/Download'
+import deleteFile from '@services/requests/Delete'
 
 export const FileOptionsContextMenu: Option[] = [
 	{
@@ -11,7 +12,13 @@ export const FileOptionsContextMenu: Option[] = [
 		icon: Upload,
 	},
 	{ title: 'Rename', action: () => alert('Rename'), icon: KeyBoard },
-	{ title: 'Delete', action: () => alert('Delete'), icon: TrashCan },
+	{
+		title: 'Delete',
+		action: async (id?: string) => {
+			if (id) await deleteFile(id)
+		},
+		icon: TrashCan,
+	},
 ]
 
 export const Columns = [

@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import Response, UploadFile
+from fastapi import Response, UploadFile, HTTPException
 from src.utils.repository import AbstractRepository
 from src.Storage.FileClient import file_storage_client as storage_client
 from src.dto.File import File as FileDTO
@@ -27,8 +27,9 @@ class FileService:
             headers={"Content-Disposition": f'attachment; filename="{file.name}"'}
         )
         
-    async def delete_file(self, id: str) -> FileDTO:
+    async def delete_file(self, id: str, user_id: str) -> FileDTO:
         res = await self.file_repository.get(id)
+        if res.user_id != user_id: return HTTPException(status_code=403)
         await self.file_repository.delete(id)
         await storage_client.delete_file(res.name)
         return res
