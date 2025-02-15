@@ -1,5 +1,5 @@
 export interface Option {
 	title: string
-	action: () => void
+	action: (id?: string) => void
 	icon: React.FC
 }

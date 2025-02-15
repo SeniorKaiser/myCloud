@@ -74,7 +74,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							data-id={file.id}
 						>
 							<td>
-								<div style={{ display: 'inline-flex' }}>
+								<div style={{ display: 'inline-flex', width: '100%' }}>
 									<img
 										src={'FilesIcons/' + file.extension + '.png'}
 										alt={file.extension}
@@ -103,7 +103,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							data-id={folder.id}
 						>
 							<td>
-								<div style={{ display: 'inline-flex' }}>
+								<div style={{ display: 'inline-flex', width: '100%' }}>
 									<img src={'FilesIcons/' + 'folder' + '.png'} alt='folder' />
 									<span>{folder.name}</span>
 								</div>

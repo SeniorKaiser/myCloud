@@ -65,7 +65,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				{objectId}
 			</li>
 			{options.map((option, index) => (
-				<li key={index} onClick={option.action}>
+				<li key={index} onClick={() => option.action(objectId)}>
 					<span>
 						<option.icon />
 					</span>
