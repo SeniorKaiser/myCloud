@@ -3,6 +3,7 @@ import FileTable from '@components/FileTable/FileTable.tsx'
 import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
+import Loader from '@components/Loading/Loading'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
@@ -28,7 +29,9 @@ const Storage: React.FC = () => {
 			{data ? (
 				<FileTable files={data.files} folders={data.folders} />
 			) : (
-				<p>Loading files...</p>
+				<p style={{ width: '200px', height: '200px', position: 'relative' }}>
+					<Loader />
+				</p>
 			)}
 		</section>
 	)
