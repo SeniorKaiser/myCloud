@@ -49,8 +49,16 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				bottom: position.bottom,
 			}}
 		>
-			<li>{title}</li>
-			<li style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}>{objectId}</li>
+			<li style={{ maxWidth: '10rem' }}>{title}</li>
+			<li
+				style={{
+					fontSize: '0.9rem',
+					marginBottom: '0.5rem',
+					maxWidth: '10rem',
+				}}
+			>
+				{objectId}
+			</li>
 			{options.map((option, index) => (
 				<li key={index} onClick={option.action}>
 					<span>
