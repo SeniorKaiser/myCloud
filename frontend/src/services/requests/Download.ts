@@ -25,7 +25,7 @@ import { domenApi } from '@app/data'
 const downloadFile = async (id: string) => {
 	try {
 		const link = document.createElement('a')
-		link.href = `${domenApi}/file/download/${id}`
+		link.href = `${domenApi}/api/file/download/${id}`
 		document.body.appendChild(link)
 		link.click()
 		document.body.removeChild(link)
