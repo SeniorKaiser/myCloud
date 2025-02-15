@@ -8,7 +8,7 @@ const AuthUser = async (): Promise<User | undefined> => {
 			`${domenApi}/api/user/auth`,
 			{ withCredentials: true }
 		)
-		console.table('User:', response.data)
+		console.table(response.data)
 		return response.data
 	} catch (error) {
 		const axiosError = error as AxiosError

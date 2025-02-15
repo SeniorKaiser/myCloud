@@ -13,9 +13,11 @@ const api = axios.create({
 	headers: { 'Content-Type': 'application/json' },
 })
 
-const Disk = async (): Promise<DiskDTO> => {
+const Disk = async (folder_id?: string): Promise<DiskDTO> => {
 	try {
-		const response: AxiosResponse<DiskDTO> = await api.get('/disk')
+		const response: AxiosResponse<DiskDTO> = await api.get('/disk', {
+			params: folder_id ? { folder_id } : undefined,
+		})
 
 		console.table(response.data)
 		return response.data
