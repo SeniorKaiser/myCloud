@@ -3,7 +3,7 @@ import { domenApi } from '@app/data'
 
 const deleteFile = async (id: string) => {
 	try {
-		const response = await axios.delete(`${domenApi}/api/delete/${id}`)
+		const response = await axios.delete(`${domenApi}/api/files/delete/${id}`)
 		console.log(response.data)
 		return response.data
 	} catch (error) {
