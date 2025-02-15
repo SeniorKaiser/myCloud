@@ -24,7 +24,7 @@ async def upload_file(
 ) -> FileDTO:
     return await file_service.upload_file(file=file, user_id=user["id"], folder_id=folder_id)
 
-@router.get("/download")
+@router.get("/download/{file_id}")
 async def download_file(
     file_id: str,
     file_service: Annotated[FileService, Depends(file_service)],

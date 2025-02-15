@@ -24,12 +24,11 @@ import { domenApi } from '@app/data'
 
 const downloadFile = async (id: string) => {
 	try {
-		const response = await fetch(`${domenApi}/api/files/download`, {
+		const response = await fetch(`${domenApi}/api/files/download/${id}`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ id }), // Передача id в теле запроса
 		})
 
 		if (!response.ok) {
