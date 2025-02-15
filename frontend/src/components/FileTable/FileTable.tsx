@@ -106,7 +106,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							data-id={folder.id}
 						>
 							<td>
-								<div>
+								<div style={{ display: 'inline-flex' }}>
 									<img src={'FilesIcons/' + 'folder' + '.png'} alt='folder' />
 									<span>{folder.name}</span>
 								</div>
