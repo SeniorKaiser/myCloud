@@ -1,8 +1,8 @@
 export const formatDate = (isoString: string): string => {
 	const date = new Date(isoString)
-	return date.toLocaleString('ru-RU', {
+	return date.toLocaleString('eu-EU', {
 		year: 'numeric',
-		month: 'long',
+		month: 'numeric',
 		day: 'numeric',
 		hour: '2-digit',
 		minute: '2-digit',
