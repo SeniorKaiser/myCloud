@@ -3,7 +3,6 @@ import FileTable from '@components/FileTable/FileTable.tsx'
 import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
-import { tempfiles } from '@app/data'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
