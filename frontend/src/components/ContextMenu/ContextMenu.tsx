@@ -14,6 +14,7 @@ interface ContextMenuProps {
 	position: Position
 	onClose: () => void
 	title?: string | undefined
+	objectId?: string | undefined
 }
 
 const ContextMenu: React.FC<ContextMenuProps> = ({
@@ -21,6 +22,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 	position,
 	onClose,
 	title,
+	objectId,
 }) => {
 	const menuRef = useRef<HTMLUListElement>(null)
 
@@ -47,9 +49,8 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				bottom: position.bottom,
 			}}
 		>
-			<div className='context-menu-title' style={{ padding: '0.3rem 0.6rem' }}>
-				{title}
-			</div>
+			<li>{title}</li>
+			<li style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}>{objectId}</li>
 			{options.map((option, index) => (
 				<li key={index} onClick={option.action}>
 					<span>

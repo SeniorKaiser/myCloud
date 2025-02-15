@@ -17,11 +17,15 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 	const [contextMenuTitle, setContextMenuTitle] = useState<string | undefined>(
 		undefined
 	)
+	const [contextMenuObjectId, setContextMenuObjectId] = useState<
+		string | undefined
+	>(undefined)
 
 	const handleContextMenu = (event: React.MouseEvent): void => {
 		event.preventDefault()
 		const target = event.currentTarget as HTMLElement
 		setContextMenuTitle(target.getAttribute('data-name') || undefined)
+		setContextMenuObjectId(target.getAttribute('data-id') || undefined)
 		setMenuPosition({
 			top: `${event.clientY}px`,
 			left: `${event.clientX}px`,
@@ -39,6 +43,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 			right: `${fixedX}px`,
 		})
 		setContextMenuTitle(target.getAttribute('data-name') || undefined)
+		setContextMenuObjectId(target.getAttribute('data-id') || undefined)
 		setContextMenuVisible(true)
 	}
 
@@ -65,11 +70,10 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							key={file.id}
 							onContextMenu={handleContextMenu}
 							data-name={file.name}
+							data-id={file.id}
 						>
 							<td>
-								<div
-									style={{ display: 'inline-flex', justifyContent: 'center' }}
-								>
+								<div style={{ display: 'inline-flex' }}>
 									<img
 										src={
 											'FilesIcons/' +
@@ -88,6 +92,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 								ref={contextButtonRef}
 								onClick={handleContextMenuOptions}
 								data-name={file.name}
+								data-id={file.id}
 							>
 								<EllipsisVertical />
 							</td>
@@ -98,11 +103,10 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							key={folder.id}
 							onContextMenu={handleContextMenu}
 							data-name={folder.name}
+							data-id={folder.id}
 						>
 							<td>
-								<div
-									style={{ display: 'inline-flex', justifyContent: 'center' }}
-								>
+								<div>
 									<img src={'FilesIcons/' + 'folder' + '.png'} alt='folder' />
 									<span>{folder.name}</span>
 								</div>
@@ -114,6 +118,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 								ref={contextButtonRef}
 								onClick={handleContextMenuOptions}
 								data-name={folder.name}
+								data-id={folder.id}
 							>
 								<EllipsisVertical />
 							</td>
@@ -127,6 +132,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 					position={menuPosition}
 					onClose={handleCloseMenu}
 					title={contextMenuTitle}
+					objectId={contextMenuObjectId}
 				/>
 			)}
 		</>

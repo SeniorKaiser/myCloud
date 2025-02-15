@@ -16,23 +16,14 @@ th {
 	border-bottom: 0.0625em solid var(--window);
 }
 
-td:first-child {
-	vertical-align: middle;
-	width: 50%;
-	white-space: nowrap;
+td:first-child span {
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 1rem;
+	display: block;
+	width: clamp(5rem, 30vw, 10rem);
 	overflow: hidden;
 	text-overflow: ellipsis;
-
-	span {
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-left: 1rem;
-		display: block;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		width: 1fr;
-	}
 }
 
 td:nth-child(5) {
