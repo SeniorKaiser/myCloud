@@ -113,7 +113,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							</td>
 							<td>folder</td>
 							<td>-</td>
-							<td>-</td>
+							<td>{folder.date}</td>
 							<td
 								ref={contextButtonRef}
 								onClick={handleContextMenuOptions}
