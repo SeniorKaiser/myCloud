@@ -3,6 +3,7 @@ import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu'
 import { FileOptionsContextMenu, Columns } from './Data'
 import { File, Folder } from '@app/data'
 import { EllipsisVertical } from '@components/Icons/Icons'
+import formatDate from '@services/functions/formatDate'
 import './FileTable.css'
 
 export interface StorageProps {
@@ -75,19 +76,15 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							<td>
 								<div style={{ display: 'inline-flex' }}>
 									<img
-										src={
-											'FilesIcons/' +
-											(file.extension ? file.extension : 'folder') +
-											'.png'
-										}
-										alt={file.extension ? file.extension : 'folder'}
+										src={'FilesIcons/' + file.extension + '.png'}
+										alt={file.extension}
 									/>
 									<span>{file.name}</span>
 								</div>
 							</td>
-							<td>{file.extension ? file.extension : 'folder'}</td>
-							<td>{file.size ? file.size : '-'}</td>
-							<td>{file.date ? file.date : '-'}</td>
+							<td>{file.extension}</td>
+							<td>{file.size}</td>
+							<td>{formatDate(file.date)}</td>
 							<td
 								ref={contextButtonRef}
 								onClick={handleContextMenuOptions}
@@ -113,7 +110,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							</td>
 							<td>folder</td>
 							<td>-</td>
-							<td>{folder.date}</td>
+							<td>{formatDate(folder.date)}</td>
 							<td
 								ref={contextButtonRef}
 								onClick={handleContextMenuOptions}
