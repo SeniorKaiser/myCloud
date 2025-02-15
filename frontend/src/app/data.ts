@@ -27,3 +27,13 @@ export interface User {
 	files: File[]
 	folder: Folder[]
 }
+
+export const tempfiles: File[] = [
+	{
+		id: '1121212',
+		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
+		date: 'skjdsld',
+		size: 1223,
+		extension: 'png',
+	},
+]
