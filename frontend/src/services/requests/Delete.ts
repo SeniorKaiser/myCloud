@@ -5,6 +5,7 @@ const deleteFile = async (id: string) => {
 	try {
 		const response = await axios.delete(`${domenApi}/api/files/delete/${id}`)
 		console.log(response.data)
+		window.location.reload()
 		return response.data
 	} catch (error) {
 		console.error(error)

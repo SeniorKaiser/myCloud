@@ -18,6 +18,7 @@ const uploadFile = async (file: File, folderId?: string) => {
 				},
 			}
 		)
+		window.location.reload()
 		return response.data
 	} catch (error) {
 		console.error('Ошибка загрузки файла:', error)
