@@ -17,16 +17,26 @@ const Upload: React.FC = () => {
 	) => {
 		const files = event.target.files
 		if (!files || files.length === 0) return
-
 		setLoading(true)
+
+		let isMounted = true
 		try {
 			const response = await uploadFile(files[0])
-			console.log('Файл загружен:', response)
-			alert('Файл успешно загружен!')
+			if (isMounted) {
+				console.log('Файл загружен:', response)
+				alert('Файл успешно загружен!')
+			}
 		} catch (err) {
 			console.error(err)
 		} finally {
-			setLoading(false)
+			if (isMounted) {
+				setLoading(false)
+				event.target.value = ''
+			}
+		}
+
+		return () => {
+			isMounted = false
 		}
 	}
 
