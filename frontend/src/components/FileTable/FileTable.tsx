@@ -4,6 +4,7 @@ import { FileOptionsContextMenu, Columns } from './Data'
 import { File, Folder } from '@app/data'
 import { EllipsisVertical } from '@components/Icons/Icons'
 import formatDate from '@services/functions/formatDate'
+import formatFileSize from '@services/functions/formatSize'
 import './FileTable.css'
 
 export interface StorageProps {
@@ -83,7 +84,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 								</div>
 							</td>
 							<td>{file.extension}</td>
-							<td>{file.size}</td>
+							<td>{formatFileSize(file.size)}</td>
 							<td>{formatDate(file.date)}</td>
 							<td
 								ref={contextButtonRef}
