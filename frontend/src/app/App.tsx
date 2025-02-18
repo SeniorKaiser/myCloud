@@ -18,6 +18,7 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path='/' element={<Home />} />
+				<Route path='/disk/:id' element={<Disk />} />
 				<Route path='/disk' element={<Disk />} />
 				<Route path='/settings' element={<Settings />} />
 				<Route path='/login' element={<Login />} />

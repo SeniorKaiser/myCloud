@@ -6,13 +6,16 @@ import Disk, { DiskDTO } from '@services/requests/Disk'
 import Loader from '@components/Loading/Loading'
 // import { tempfiles } from '@app/data'
 
-const Storage: React.FC = () => {
-	const [data, setData] = useState<DiskDTO | null>(null)
+interface StorageProps {
+	folder_id?: string | undefined
+}
 
+const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
+	const [data, setData] = useState<DiskDTO | null>(null)
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await Disk()
+				const response = await Disk(folder_id)
 				setData(response)
 			} catch (error) {
 				console.error('Error fetching files:', error)
@@ -27,6 +30,7 @@ const Storage: React.FC = () => {
 				placeholder='Searching file...'
 				onSubmit={() => alert('submit')}
 			/>
+			{folder_id}
 			{data ? (
 				<FileTable files={data.files} folders={data.folders} />
 			) : (
