@@ -22,6 +22,7 @@ async def upload_file(
     folder_id: Optional[str] = None,
     user: UserDTO = Depends(auth),
 ) -> FileDTO:
+    print(folder_id)
     return await file_service.upload_file(file=file, user_id=user["id"], folder_id=folder_id)
 
 @router.get("/download/{file_id}")
