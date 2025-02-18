@@ -12,7 +12,7 @@ const Disk: React.FC = () => {
 		<>
 			<Header />
 			<main className='disk-main'>
-				<StorageInfo />
+				<StorageInfo folder_id={id} />
 				<Storage folder_id={id} />
 			</main>
 			<Footer />

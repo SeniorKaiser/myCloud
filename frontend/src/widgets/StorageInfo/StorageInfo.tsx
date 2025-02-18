@@ -4,10 +4,14 @@ import ProgressBar from '@components/ProgressBar/ProgressBar'
 import SortSettings from '@components/SortSettings/SortSettings'
 import './StorageInfo.css'
 
-const StorageInfo: React.FC = () => {
+interface StorageInfoProps {
+	folder_id?: string | undefined
+}
+
+const StorageInfo: React.FC<StorageInfoProps> = ({ folder_id = undefined }) => {
 	return (
 		<section className='storage-info'>
-			<Upload />
+			<Upload folder_id={folder_id} />
 			<ProgressBar size={128849018880} filled={101349018880} />
 			<SortSettings />
 		</section>

@@ -4,7 +4,11 @@ import uploadFile from '@services/requests/Upload'
 import Loader from '@components/Loading/Loading'
 import './UploadInput.css'
 
-const Upload: React.FC = () => {
+interface UploadProps {
+	folder_id?: string | undefined
+}
+
+const Upload: React.FC<UploadProps> = ({ folder_id = undefined }) => {
 	const fileInputRef = useRef<HTMLInputElement>(null)
 	const [loading, setLoading] = useState(false)
 
@@ -21,7 +25,7 @@ const Upload: React.FC = () => {
 
 		let isMounted = true
 		try {
-			const response = await uploadFile(files[0])
+			const response = await uploadFile(files[0], folder_id)
 			if (isMounted) {
 				console.log('Файл загружен:', response)
 				alert('Файл успешно загружен!')

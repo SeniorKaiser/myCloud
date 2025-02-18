@@ -30,7 +30,6 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 				placeholder='Searching file...'
 				onSubmit={() => alert('submit')}
 			/>
-			{folder_id}
 			{data ? (
 				<FileTable files={data.files} folders={data.folders} />
 			) : (
