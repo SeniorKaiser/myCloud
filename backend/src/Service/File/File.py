@@ -14,6 +14,7 @@ class FileService:
     async def upload_file(self, file: UploadFile, user_id: str, folder_id: Optional[str]) -> FileDTO:
         file_content = await file.read()
         file_dto = await FileDTO.from_upload_file(file_content, file, user_id, folder_id)
+        print(file_dto)
         await self.file_repository.add(file_dto.model_dump())
         await storage_client.upload_file(file_dto, file_content)
         return file_dto
