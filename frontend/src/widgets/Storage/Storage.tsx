@@ -33,9 +33,9 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 			{data ? (
 				<FileTable files={data.files} folders={data.folders} />
 			) : (
-				<p style={{ width: '200px', height: '200px', position: 'relative' }}>
+				<div className='storage-loader'>
 					<Loader />
-				</p>
+				</div>
 			)}
 		</section>
 	)

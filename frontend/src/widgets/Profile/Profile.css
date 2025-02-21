@@ -2,6 +2,14 @@
 	cursor: pointer;
 }
 
+.profile-loader {
+	width: 3rem;
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .avatar {
 	width: 2.5rem;
 	height: 2.5rem;

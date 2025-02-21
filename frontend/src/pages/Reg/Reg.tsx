@@ -3,6 +3,7 @@ import Header from '@widgets/Header/Header'
 import Footer from '@widgets/Footer/Footer'
 import CardsSlider from '@widgets/CardsSlider/CardsSlider'
 import RegForm from '@widgets/RegForm/RegForm.tsx'
+import { Toaster } from 'react-hot-toast'
 import './Reg.css'
 
 const Reg: React.FC = () => {
@@ -16,6 +17,7 @@ const Reg: React.FC = () => {
 				</div>
 			</main>
 			<Footer />
+			<Toaster position='bottom-right' />
 		</>
 	)
 }

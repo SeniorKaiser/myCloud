@@ -4,6 +4,7 @@ import Footer from '@widgets/Footer/Footer.tsx'
 import { useParams } from 'react-router-dom'
 import StorageInfo from '@widgets/StorageInfo/StorageInfo'
 import Storage from '@widgets/Storage/Storage'
+import { Toaster } from 'react-hot-toast'
 import './Disk.css'
 
 const Disk: React.FC = () => {
@@ -16,6 +17,7 @@ const Disk: React.FC = () => {
 				<Storage folder_id={id} />
 			</main>
 			<Footer />
+			<Toaster position='bottom-right' />
 		</>
 	)
 }

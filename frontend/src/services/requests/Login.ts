@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import { domenApi } from '@app/data.ts'
+import { toast } from 'react-hot-toast'
 
 interface LoginProps {
 	username: string
@@ -10,6 +11,7 @@ const loginRequest = async ({
 	username,
 	password,
 }: LoginProps): Promise<string | undefined> => {
+	const loadingToast = toast.loading('Authentication...')
 	try {
 		const formData = new URLSearchParams()
 		formData.append('username', username)
@@ -23,12 +25,13 @@ const loginRequest = async ({
 				withCredentials: true,
 			}
 		)
-
+		toast.success(`User authenticated`, { id: loadingToast })
 		console.log('Токен:', response.data)
 		return response.data.access_token
 	} catch (error) {
 		const axiosError = error as AxiosError
 		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
+		toast.error('User was not found', { id: loadingToast })
 		return undefined
 	}
 }

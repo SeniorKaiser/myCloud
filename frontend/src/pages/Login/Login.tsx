@@ -3,6 +3,7 @@ import Header from '@widgets/Header/Header'
 import Footer from '@widgets/Footer/Footer'
 import LoginForm from '@widgets/LoginForm/LoginForm'
 import CardsSlider from '@widgets/CardsSlider/CardsSlider'
+import { Toaster } from 'react-hot-toast'
 import './Login.css'
 
 const Login: React.FC = () => {
@@ -16,6 +17,7 @@ const Login: React.FC = () => {
 				</div>
 			</main>
 			<Footer />
+			<Toaster position='bottom-right' />
 		</>
 	)
 }

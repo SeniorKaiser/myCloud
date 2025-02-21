@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { domenApi } from '@app/data'
+import { toast } from 'react-hot-toast'
 
 const uploadFile = async (file: File, folderId?: string) => {
+	const loadingToast = toast.loading('Uploading file...')
 	const formData = new FormData()
 	formData.append('file', file)
 	if (folderId) {
@@ -15,9 +17,11 @@ const uploadFile = async (file: File, folderId?: string) => {
 		const response = await axios.post(`${domenApi}/api/files/upload`, formData)
 
 		console.log('Файл успешно загружен:', response.data)
+		toast.success(`File uploaded`, { id: loadingToast })
 		return response.data
 	} catch (error) {
 		console.error(error)
+		toast.error('File upload error', { id: loadingToast })
 		throw error
 	}
 }

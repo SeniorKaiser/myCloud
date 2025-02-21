@@ -5,3 +5,9 @@
 	min-width: 60rem;
 	font-size: 1.3rem;
 }
+
+.storage-loader {
+	width: 5rem;
+	height: 5rem;
+	margin-top: 5rem;
+}

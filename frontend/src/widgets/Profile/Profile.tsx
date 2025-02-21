@@ -40,9 +40,7 @@ const Profile: React.FC = () => {
 	}
 	if (isloading) {
 		return (
-			<section
-				style={{ width: '2.5rem', height: '2.5rem', position: 'relative' }}
-			>
+			<section className='profile-loader'>
 				<Loader />
 			</section>
 		)

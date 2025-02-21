@@ -1,19 +1,21 @@
-import axios, { AxiosResponse, AxiosError } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { domenApi } from '@app/data.ts'
 import { User } from '@app/data'
+import { toast } from 'react-hot-toast'
 
 const AuthUser = async (): Promise<User | undefined> => {
+	const loadingToast = toast.loading('Authentication...')
 	try {
 		const response: AxiosResponse = await axios.get(
 			`${domenApi}/api/user/auth`,
 			{ withCredentials: true }
 		)
 		console.table(response.data)
+		toast.success(`User authenticated`, { id: loadingToast })
 		return response.data
 	} catch (error) {
-		const axiosError = error as AxiosError
-		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
-		return undefined
+		toast.error('User was not found', { id: loadingToast })
+		console.error(error)
 	}
 }
 

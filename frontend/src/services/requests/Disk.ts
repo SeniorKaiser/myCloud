@@ -1,6 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import { domenApi } from '@app/data.ts'
 import { File, Folder } from '@app/data'
+import { toast } from 'react-hot-toast'
 
 export interface DiskDTO {
 	files: File[]
@@ -14,16 +15,21 @@ const api = axios.create({
 })
 
 const Disk = async (folder_id?: string): Promise<DiskDTO> => {
+	const loadingToast = toast.loading('Getting disk data...')
 	try {
 		const response: AxiosResponse<DiskDTO> = await api.get('/disk', {
 			params: folder_id ? { folder_id } : undefined,
 		})
 
 		console.table(response.data)
+		toast.success(`Disk data has been successfully received`, {
+			id: loadingToast,
+		})
 		return response.data
 	} catch (error) {
 		const axiosError = error as AxiosError
 		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
+		toast.error('Error receiving disk data', { id: loadingToast })
 		return { files: [], folders: [] }
 	}
 }

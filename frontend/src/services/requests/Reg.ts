@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { domenApi } from '@app/data.ts'
+import { toast } from 'react-hot-toast'
 
 interface RegProps {
 	username: string
@@ -12,6 +13,7 @@ const RegRequest = async ({
 	email,
 	password,
 }: RegProps): Promise<string | undefined> => {
+	const loadingToast = toast.loading('Registration...')
 	try {
 		const formData = {
 			name: username,
@@ -25,10 +27,12 @@ const RegRequest = async ({
 		})
 
 		console.log('Response:', response.data)
+		toast.success(`Successful registration`, { id: loadingToast })
 		return response.data.access_token
 	} catch (error) {
 		const axiosError = error as AxiosError
 		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
+		toast.error('Registration error', { id: loadingToast })
 		return undefined
 	}
 }

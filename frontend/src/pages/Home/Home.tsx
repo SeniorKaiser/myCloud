@@ -4,6 +4,7 @@ import Footer from '@widgets/Footer/Footer.tsx'
 import Welcome from '@widgets/Welcome/Welcome'
 import CardsSlider from '@widgets/CardsSlider/CardsSlider'
 import PrivilegeInfo from '@widgets/Privilege/Privilege'
+import { Toaster } from 'react-hot-toast'
 import './Home.css'
 
 const Home: React.FC = () => {
@@ -27,6 +28,7 @@ const Home: React.FC = () => {
 				</section>
 			</main>
 			<Footer />
+			<Toaster position='bottom-right' />
 		</>
 	)
 }
