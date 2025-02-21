@@ -4,22 +4,26 @@ import { toast } from 'react-hot-toast'
 
 const uploadFile = async (file: File, folderId?: string) => {
 	const loadingToast = toast.loading('Uploading file...')
+
 	const formData = new FormData()
 	formData.append('file', file)
-	if (folderId) {
-		formData.append('folder_id', folderId)
-	}
-	for (let pair of formData.entries()) {
-		console.log(pair[0], pair[1])
-	}
+
 	try {
-		const response = await axios.post(`${domenApi}/api/files/upload`, formData)
+		const response = await axios.post(
+			`${domenApi}/api/files/upload`, // URL без folder_id в теле
+			formData,
+			{
+				headers: { 'Content-Type': 'multipart/form-data' },
+				params: folderId ? { folder_id: folderId } : {}, // Передаем folder_id через параметры URL
+			}
+		)
 
 		console.log('Файл успешно загружен:', response.data)
-		toast.success(`File uploaded`, { id: loadingToast })
+		toast.success('File uploaded', { id: loadingToast })
+
 		return response.data
 	} catch (error) {
-		console.error(error)
+		console.error('Ошибка загрузки файла:', error)
 		toast.error('File upload error', { id: loadingToast })
 		throw error
 	}
