@@ -7,8 +7,8 @@ const deleteFile = async (id: string) => {
 	try {
 		const response = await axios.delete(`${domenApi}/api/files/delete/${id}`)
 		console.log(response.data)
-		window.location.reload()
 		toast.success(`File has been deleted`, { id: loadingToast })
+		window.location.reload()
 		return response.data
 	} catch (error) {
 		console.error(error)

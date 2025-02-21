@@ -15,21 +15,21 @@ const api = axios.create({
 })
 
 const Disk = async (folder_id?: string): Promise<DiskDTO> => {
-	const loadingToast = toast.loading('Getting disk data...')
+	const loadingToast = toast.loading('Disk...')
 	try {
 		const response: AxiosResponse<DiskDTO> = await api.get('/disk', {
 			params: folder_id ? { folder_id } : undefined,
 		})
 
 		console.table(response.data)
-		toast.success(`Disk data has been successfully received`, {
+		toast.success(`Disk`, {
 			id: loadingToast,
 		})
 		return response.data
 	} catch (error) {
 		const axiosError = error as AxiosError
 		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
-		toast.error('Error receiving disk data', { id: loadingToast })
+		toast.error('Disk error', { id: loadingToast })
 		return { files: [], folders: [] }
 	}
 }
