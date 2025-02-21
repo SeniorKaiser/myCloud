@@ -9,7 +9,6 @@ const uploadFile = async (file: File, folderId?: string) => {
 	if (folderId) {
 		formData.append('folder_id', folderId)
 	}
-	console.log('Отправляемые данные:')
 	for (let pair of formData.entries()) {
 		console.log(pair[0], pair[1])
 	}
