@@ -10,15 +10,15 @@ const uploadFile = async (file: File, folderId?: string) => {
 
 	try {
 		const response = await axios.post(
-			`${domenApi}/api/files/upload`, // URL без folder_id в теле
+			`${domenApi}/api/files/upload`,
 			formData,
 			{
 				headers: { 'Content-Type': 'multipart/form-data' },
-				params: folderId ? { folder_id: folderId } : {}, // Передаем folder_id через параметры URL
+				params: folderId ? { folder_id: folderId } : {},
 			}
 		)
 
-		console.log('Файл успешно загружен:', response.data)
+		console.log('File uploaded', response.data)
 		toast.success('File uploaded', { id: loadingToast })
 
 		return response.data

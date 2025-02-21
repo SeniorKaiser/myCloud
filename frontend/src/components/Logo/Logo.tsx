@@ -4,7 +4,7 @@ import './Logo.css'
 
 const Logo: React.FC = () => {
 	return (
-		<a className='logo' href='./'>
+		<a className='logo' href='/'>
 			<img src='/logo.svg' alt='logo' className='logo-image' />
 			<span className='logo-text'>{title}</span>
 		</a>
