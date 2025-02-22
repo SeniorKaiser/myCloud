@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from src.utils.repository import AbstractRepository
-from src.dto.Folder import Folder as FolderDTO, CreateFolderSchema
+from src.dto.Folder import Folder as FolderDTO, CreateFolderSchema, InsertFolderSchema
 
 class FolderService():
     def __init__(self, folder_repository: AbstractRepository):
@@ -12,7 +12,8 @@ class FolderService():
         return folder
     
     async def create_folder(self, folder: CreateFolderSchema, user_id: str) -> FolderDTO:
-        folder = await FolderDTO.from_create_schema(user_id, folder.parent_folder, folder.name)
+        folder = await InsertFolderSchema.from_create_schema(user_id, folder.parent_folder, folder.name)
+        print(folder)
         folder_id = await self.folder_repository.add(folder.dict())
         folder_created = await self.folder_repository.get(folder_id)
         return folder_created
