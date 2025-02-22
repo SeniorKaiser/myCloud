@@ -63,7 +63,7 @@ td:nth-child(5) {
 }
 
 @media (hover: hover) {
-	td:hover {
+	tr:hover {
 		opacity: 0.9;
 	}
 }
