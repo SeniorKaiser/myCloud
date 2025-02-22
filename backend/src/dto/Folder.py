@@ -24,4 +24,3 @@ class Folder(BaseModel):
 class CreateFolderSchema(BaseModel):
     name: str
     parent_folder: Optional[str] = None
-    user_id: str
