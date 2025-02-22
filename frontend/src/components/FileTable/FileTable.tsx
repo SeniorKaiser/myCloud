@@ -33,6 +33,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
 		e.preventDefault()
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
+		console.log(folder_id)
 		await Promise.all(files.map(file => uploadFile(file, folder_id)))
 		window.location.reload()
 	}
