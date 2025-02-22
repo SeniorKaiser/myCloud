@@ -5,6 +5,7 @@ import { File, Folder } from '@app/data'
 import { EllipsisVertical } from '@components/Icons/Icons'
 import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
+import uploadFile from '@services/requests/Upload'
 import './FileTable.css'
 
 export interface StorageProps {
@@ -22,6 +23,19 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 	const [contextMenuObjectId, setContextMenuObjectId] = useState<
 		string | undefined
 	>(undefined)
+
+	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault()
+	}
+
+	const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault()
+		const files = Array.from(e.dataTransfer.files)
+		if (files.length === 0) return
+		for (const file of files) {
+			await uploadFile(file)
+		}
+	}
 
 	const handleContextMenu = (event: React.MouseEvent): void => {
 		event.preventDefault()
@@ -55,7 +69,11 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 
 	return (
 		<>
-			<table className='storage-table'>
+			<table
+				className='storage-table'
+				onDragOver={handleDragOver}
+				onDrop={handleDrop}
+			>
 				<thead>
 					<tr>
 						{Columns.map(column => (
