@@ -15,11 +15,11 @@ const CreateFolderButton: React.FC<CreateFolderButtonProps> = ({
 	return (
 		<button
 			className='create-folder-button'
-			onClick={() => {
+			onClick={async () => {
 				setLoading(true)
 				const folderName = prompt('Folder name:', 'New Folder')
 				if (folderName) {
-					createFolder(folderName, folder_id)
+					await createFolder(folderName, folder_id)
 					setLoading(false)
 					window.location.reload()
 				}
