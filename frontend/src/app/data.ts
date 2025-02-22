@@ -30,23 +30,24 @@ export interface User {
 	folder: Folder[]
 }
 
-export const tempfiles: File[] = [
-	{
-		id: 'bad3827c-d6c4-4c0a-b156-622d3ba03c50',
-		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
-		date: '2025-02-10T15:08:23.957075',
-		size: 1223,
-		extension: 'png',
-	},
-]
+// export const tempfiles: File[] = [
+// 	{
+// 		id: 'bad3827c-d6c4-4c0a-b156-622d3ba03c50',
+// 		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
+// 		date: '2025-02-10T15:08:23.957075',
+// 		size: 1223,
+// 		extension: 'png',
 
-export const tempfolders: Folder[] = [
-	{
-		id: 'bad3827c-d6c4-4c0a-b156-622d3ba03c5',
-		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
-		date: '2025-02-10T15:08:23.957075',
-		parent_folder: null,
-		user_id: '46372809434',
-		files: [],
-	},
-]
+// 	},
+// ]
+
+// export const tempfolders: Folder[] = [
+// 	{
+// 		id: 'bad3827c-d6c4-4c0a-b156-622d3ba03c5',
+// 		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
+// 		date: '2025-02-10T15:08:23.957075',
+// 		parent_folder: null,
+// 		user_id: '46372809434',
+// 		files: [],
+// 	},
+// ]
