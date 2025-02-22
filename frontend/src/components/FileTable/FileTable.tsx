@@ -102,7 +102,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
 							key={item.id}
 							onContextMenu={event => handleContextMenu(event, item)}
 							onDoubleClick={() =>
-								item.type === 'Folder' &&
+								item.type === 'folder' &&
 								(window.location.href = `/disk/${item.id}`)
 							}
 							data-name={item.name}
