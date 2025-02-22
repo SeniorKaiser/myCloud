@@ -12,7 +12,7 @@ class FolderService():
         return folder
     
     async def create_folder(self, folder: CreateFolderSchema, user_id: str) -> FolderDTO:
-        folder = FolderDTO(name=folder.name, parent_folder=folder.parent_folder, user_id=user_id)
+        folder = FolderDTO.from_create_schema(user_id, folder.parent_folder, folder.name)
         folder_id = await self.folder_repository.add(folder.dict())
         folder_created = await self.folder_repository.get(folder_id)
         return folder_created
