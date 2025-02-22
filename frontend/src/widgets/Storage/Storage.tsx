@@ -8,7 +8,7 @@ import Upload from '@components/UploadInput/UploadInput.tsx'
 // import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
 import SortSettings from '@components/SortSettings/SortSettings'
-import ProgressBar from '@components/ProgressBar/ProgressBar'
+import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 
 interface StorageProps {
 	folder_id?: string | undefined
@@ -48,8 +48,9 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 			/>
 			<div className='storage-functions'>
 				<Upload folder_id={folder_id} />
+				<CreateFolderButton folder_id={folder_id} />
 				<SortSettings />
-				<ProgressBar size={128849018880} filled={101349018880} />
+				{/* <ProgressBar size={128849018880} filled={101349018880} /> */}
 			</div>
 			{data ? (
 				<FileTable

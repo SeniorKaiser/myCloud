@@ -20,6 +20,7 @@ import {
 	faCircleCheck,
 	faUserSecret,
 	faUserTie,
+	faFolderPlus,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
@@ -158,4 +159,8 @@ export const CircleCheck: React.FC = () => {
 
 export const UserSecret: React.FC = () => {
 	return <FontAwesomeIcon icon={faUserSecret} />
+}
+
+export const FolderPlus: React.FC = () => {
+	return <FontAwesomeIcon icon={faFolderPlus} />
 }
