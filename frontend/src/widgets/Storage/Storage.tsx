@@ -14,12 +14,8 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	useEffect(() => {
 		const fetchData = async () => {
-			try {
-				const response = await Disk(folder_id)
-				setData(response)
-			} catch (error) {
-				console.error('Error fetching files:', error)
-			}
+			const response = await Disk(folder_id)
+			setData(response)
 		}
 		fetchData()
 	}, [])

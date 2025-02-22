@@ -11,14 +11,10 @@ import './FileTable.css'
 export interface StorageProps {
 	files: File[]
 	folders: Folder[]
-	folder_id: string | undefined
+	folder_id?: string | undefined
 }
 
-const FileTable: React.FC<StorageProps> = ({
-	files,
-	folders,
-	folder_id = undefined,
-}) => {
+const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
 	const contextButtonRef = useRef<HTMLTableCellElement>(null)
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
 	const [menuPosition, setMenuPosition] = useState<Position>({})
