@@ -63,7 +63,7 @@ td:nth-child(5) {
 }
 
 @media (hover: hover) {
-	tr:hover {
-		opacity: 0.9;
+	tr:has(td):hover {
+		background-color: var(--glass);
 	}
 }

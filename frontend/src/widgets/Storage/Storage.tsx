@@ -5,6 +5,7 @@ import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
 import Loader from '@components/Loading/Loading'
 // import { tempfiles, tempfolders } from '@app/data'
+import uploadFile from '@services/requests/Upload'
 
 interface StorageProps {
 	folder_id?: string | undefined
@@ -20,8 +21,24 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 		fetchData()
 	}, [])
 
+	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault()
+	}
+
+	const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault()
+		const files = Array.from(e.dataTransfer.files)
+		if (files.length === 0) return
+		await Promise.all(files.map(file => uploadFile(file, folder_id)))
+		window.location.reload()
+	}
+
 	return (
-		<section className='storage'>
+		<section
+			className='storage'
+			onDragOver={handleDragOver}
+			onDrop={handleDrop}
+		>
 			<SearchInput
 				placeholder='Searching file...'
 				onSubmit={() => alert('submit')}
@@ -33,6 +50,11 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 					folder_id={folder_id}
 				/>
 			) : (
+				// <FileTable
+				// 	files={tempfiles}
+				// 	folders={tempfolders}
+				// 	folder_id={folder_id}
+				// />
 				<div className='storage-loader'>
 					<Loader />
 				</div>
