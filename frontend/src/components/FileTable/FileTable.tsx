@@ -32,10 +32,8 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 		e.preventDefault()
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
-		for (const file of files) {
-			await uploadFile(file)
-			window.location.reload()
-		}
+		await Promise.all(files.map(file => uploadFile(file)))
+		window.location.reload()
 	}
 
 	const handleContextMenu = (event: React.MouseEvent): void => {

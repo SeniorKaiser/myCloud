@@ -17,10 +17,8 @@ const uploadFile = async (file: File, folderId?: string) => {
 				params: folderId ? { folder_id: folderId } : {},
 			}
 		)
-
 		console.log('File uploaded', response.data)
 		toast.success('File uploaded', { id: loadingToast })
-
 		return response.data
 	} catch (error) {
 		console.error('Ошибка загрузки файла:', error)
