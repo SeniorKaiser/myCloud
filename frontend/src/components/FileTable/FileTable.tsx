@@ -90,6 +90,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 							}
 							data-name={item.name}
 							data-id={item.id}
+							style={{ cursor: 'extension' in item ? 'pointer' : 'default' }}
 						>
 							<td>
 								<div style={{ display: 'inline-flex', width: '100%' }}>
