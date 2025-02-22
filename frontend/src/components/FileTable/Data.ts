@@ -21,6 +21,28 @@ export const FileOptionsContextMenu: Option[] = [
 	},
 ]
 
+export const FolderOptionsContextMenu: Option[] = [
+	{ title: 'Rename', action: () => alert('Rename'), icon: KeyBoard },
+	{
+		title: 'Delete',
+		action: async (id?: string) => {
+			if (id) await deleteFile(id)
+		},
+		icon: TrashCan,
+	},
+]
+
+export const TableContextMenu: Option[] = [
+	{
+		title: 'Create Folder',
+		action: async (id?: string) => {
+			if (id) await downloadFile(id)
+		},
+		icon: Upload,
+	},
+	{ title: 'Rename', action: () => alert('Rename'), icon: KeyBoard },
+]
+
 export const Columns = [
 	{ title: 'Name' },
 	{ title: 'Extension' },

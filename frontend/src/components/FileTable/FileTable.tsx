@@ -1,6 +1,10 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu'
-import { FileOptionsContextMenu, Columns } from './Data'
+import {
+	FileOptionsContextMenu,
+	FolderOptionsContextMenu,
+	Columns,
+} from './Data'
 import { File, Folder } from '@app/data'
 import { EllipsisVertical } from '@components/Icons/Icons'
 import formatDate from '@services/functions/formatDate'
@@ -15,15 +19,50 @@ export interface StorageProps {
 }
 
 const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
-	const contextButtonRef = useRef<HTMLTableCellElement>(null)
-	const [contextMenuVisible, setContextMenuVisible] = useState(false)
-	const [menuPosition, setMenuPosition] = useState<Position>({})
-	const [contextMenuTitle, setContextMenuTitle] = useState<string | undefined>(
-		undefined
-	)
-	const [contextMenuObjectId, setContextMenuObjectId] = useState<
-		string | undefined
-	>(undefined)
+	const [contextMenu, setContextMenu] = useState<{
+		visible: boolean
+		position: Position
+		title?: string
+		objectId?: string
+		options?: any
+	}>({
+		visible: false,
+		position: {},
+	})
+
+	const handleContextMenu = (
+		event: React.MouseEvent,
+		item: File | Folder
+	): void => {
+		event.preventDefault()
+		setContextMenu({
+			visible: true,
+			position: { top: `${event.clientY}px`, left: `${event.clientX}px` },
+			title: item.name,
+			objectId: item.id,
+			options:
+				'size' in item ? FileOptionsContextMenu : FolderOptionsContextMenu,
+		})
+	}
+
+	const handleContextMenuOptions = (
+		event: React.MouseEvent,
+		item: File | Folder
+	): void => {
+		event.preventDefault()
+		const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
+		setContextMenu({
+			visible: true,
+			position: {
+				top: `${Math.min(event.clientY, window.innerHeight)}px`,
+				right: `${Math.min(event.clientX, window.innerWidth - rect.left)}px`,
+			},
+			title: item.name,
+			objectId: item.id,
+			options:
+				'size' in item ? FileOptionsContextMenu : FolderOptionsContextMenu,
+		})
+	}
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
@@ -33,40 +72,12 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
 		e.preventDefault()
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
-		console.log(folder_id)
 		await Promise.all(files.map(file => uploadFile(file, folder_id)))
 		window.location.reload()
 	}
 
-	const handleContextMenu = (event: React.MouseEvent): void => {
-		event.preventDefault()
-		const target = event.currentTarget as HTMLElement
-		setContextMenuTitle(target.getAttribute('data-name') || undefined)
-		setContextMenuObjectId(target.getAttribute('data-id') || undefined)
-		setMenuPosition({
-			top: `${event.clientY}px`,
-			left: `${event.clientX}px`,
-		})
-		setContextMenuVisible(true)
-	}
-	const handleContextMenuOptions = (event: React.MouseEvent): void => {
-		event.preventDefault()
-		const target = event.currentTarget as HTMLElement
-		const rect = target.getBoundingClientRect()
-		const fixedX = Math.min(event.clientX, window.innerWidth - rect.left)
-		const fixedY = Math.min(event.clientY, window.innerHeight)
-		setMenuPosition({
-			top: `${fixedY}px`,
-			right: `${fixedX}px`,
-		})
-		setContextMenuTitle(target.getAttribute('data-name') || undefined)
-		setContextMenuObjectId(target.getAttribute('data-id') || undefined)
-		setContextMenuVisible(true)
-	}
-
-	const handleCloseMenu = (): void => {
-		setContextMenuVisible(false)
-	}
+	const handleCloseMenu = (): void =>
+		setContextMenu({ visible: false, position: {} })
 
 	return (
 		<>
@@ -77,82 +88,53 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
 			>
 				<thead>
 					<tr>
-						{Columns.map(column => (
-							<th key={column.title} className={column.title}>
-								{column.title}
+						{Columns.map(({ title }) => (
+							<th key={title} className={title}>
+								{title}
 							</th>
 						))}
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					{files.map(file => (
+					{[...folders, ...files].map(item => (
 						<tr
-							key={file.id}
-							onContextMenu={handleContextMenu}
-							data-name={file.name}
-							data-id={file.id}
+							key={item.id}
+							onContextMenu={event => handleContextMenu(event, item)}
+							onDoubleClick={() =>
+								'size' in item && (window.location.href = `/disk/${item.id}`)
+							}
+							data-name={item.name}
+							data-id={item.id}
 						>
 							<td>
 								<div style={{ display: 'inline-flex', width: '100%' }}>
 									<img
-										src={'/FilesIcons/' + file.extension + '.png'}
-										alt={file.extension}
+										src={`/FilesIcons/${
+											'size' in item ? item.extension : 'folder'
+										}.png`}
+										alt={item.name}
 									/>
-									<span>{file.name}</span>
+									<span>{item.name}</span>
 								</div>
 							</td>
-							<td>{file.extension}</td>
-							<td>{formatFileSize(file.size)}</td>
-							<td>{formatDate(file.date)}</td>
-							<td
-								ref={contextButtonRef}
-								onClick={handleContextMenuOptions}
-								data-name={file.name}
-								data-id={file.id}
-							>
-								<EllipsisVertical />
-							</td>
-						</tr>
-					))}
-					{folders.map(folder => (
-						<tr
-							key={folder.id}
-							onContextMenu={handleContextMenu}
-							onDoubleClick={() =>
-								(window.location.href = `/disk/${folder.id}`)
-							}
-							data-name={folder.name}
-							data-id={folder.id}
-						>
-							<td>
-								<div style={{ display: 'inline-flex', width: '100%' }}>
-									<img src={'/FilesIcons/folder.png'} alt='folder' />
-									<span>{folder.name}</span>
-								</div>
-							</td>
-							<td>folder</td>
-							<td>-</td>
-							<td>{formatDate(folder.date)}</td>
-							<td
-								ref={contextButtonRef}
-								onClick={handleContextMenuOptions}
-								data-name={folder.name}
-								data-id={folder.id}
-							>
+							<td>{'size' in item ? item.extension : 'folder'}</td>
+							<td>{'size' in item ? formatFileSize(item.size) : '-'}</td>
+							<td>{formatDate(item.date)}</td>
+							<td onClick={event => handleContextMenuOptions(event, item)}>
 								<EllipsisVertical />
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
-			{contextMenuVisible && (
+			{contextMenu.visible && (
 				<ContextMenu
-					options={FileOptionsContextMenu}
-					position={menuPosition}
+					options={contextMenu.options}
+					position={contextMenu.position}
 					onClose={handleCloseMenu}
-					title={contextMenuTitle}
-					objectId={contextMenuObjectId}
+					title={contextMenu.title}
+					objectId={contextMenu.objectId}
 				/>
 			)}
 		</>

@@ -4,7 +4,7 @@ import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
 import Loader from '@components/Loading/Loading'
-// import { tempfiles } from '@app/data'
+// import { tempfiles, tempfolders } from '@app/data'
 
 interface StorageProps {
 	folder_id?: string | undefined
