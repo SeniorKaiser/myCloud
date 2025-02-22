@@ -8,6 +8,7 @@ export interface File {
 	extension: string
 	size: number
 	date: string
+	type: 'File'
 }
 
 export interface Folder {
@@ -17,6 +18,7 @@ export interface Folder {
 	parent_folder: string | null
 	files: File[]
 	user_id: string
+	type: 'Folder'
 }
 
 export interface User {
