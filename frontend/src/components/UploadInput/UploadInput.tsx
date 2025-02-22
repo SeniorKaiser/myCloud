@@ -22,7 +22,6 @@ const Upload: React.FC<UploadProps> = ({ folder_id = undefined }) => {
 		const files = event.target.files
 		if (!files || files.length === 0) return
 		setLoading(true)
-		console.log(folder_id)
 
 		let isMounted = true
 		try {

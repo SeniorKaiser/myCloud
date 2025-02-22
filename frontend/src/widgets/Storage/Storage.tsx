@@ -31,7 +31,11 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 				onSubmit={() => alert('submit')}
 			/>
 			{data ? (
-				<FileTable files={data.files} folders={data.folders} />
+				<FileTable
+					files={data.files}
+					folders={data.folders}
+					folder_id={folder_id}
+				/>
 			) : (
 				<div className='storage-loader'>
 					<Loader />

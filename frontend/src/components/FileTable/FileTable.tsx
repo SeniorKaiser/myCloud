@@ -11,9 +11,14 @@ import './FileTable.css'
 export interface StorageProps {
 	files: File[]
 	folders: Folder[]
+	folder_id: string | undefined
 }
 
-const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
+const FileTable: React.FC<StorageProps> = ({
+	files,
+	folders,
+	folder_id = undefined,
+}) => {
 	const contextButtonRef = useRef<HTMLTableCellElement>(null)
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
 	const [menuPosition, setMenuPosition] = useState<Position>({})
@@ -32,7 +37,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 		e.preventDefault()
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
-		await Promise.all(files.map(file => uploadFile(file)))
+		await Promise.all(files.map(file => uploadFile(file, folder_id)))
 		window.location.reload()
 	}
 
