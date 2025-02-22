@@ -102,7 +102,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
 							key={item.id}
 							onContextMenu={event => handleContextMenu(event, item)}
 							onDoubleClick={() =>
-								item.type === 'folder' &&
+								!('extension' in item) &&
 								(window.location.href = `/disk/${item.id}`)
 							}
 							data-name={item.name}
@@ -112,15 +112,15 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
 								<div style={{ display: 'inline-flex', width: '100%' }}>
 									<img
 										src={`/FilesIcons/${
-											item.type === 'file' ? item.extension : 'folder'
+											'extension' in item ? item.extension : 'folder'
 										}.png`}
 										alt={item.name}
 									/>
 									<span>{item.name}</span>
 								</div>
 							</td>
-							<td>{item.type === 'file' ? item.extension : 'folder'}</td>
-							<td>{item.type === 'file' ? formatFileSize(item.size) : '-'}</td>
+							<td>{'extension' in item ? item.extension : 'folder'}</td>
+							<td>{'extension' in item ? formatFileSize(item.size) : '-'}</td>
 							<td>{formatDate(item.date)}</td>
 							<td onClick={event => handleContextMenuOptions(event, item)}>
 								<EllipsisVertical />
