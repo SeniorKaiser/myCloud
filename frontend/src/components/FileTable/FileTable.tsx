@@ -112,15 +112,15 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, folder_id }) => {
 								<div style={{ display: 'inline-flex', width: '100%' }}>
 									<img
 										src={`/FilesIcons/${
-											item.type === 'File' ? item.extension : 'folder'
+											item.type === 'file' ? item.extension : 'folder'
 										}.png`}
 										alt={item.name}
 									/>
 									<span>{item.name}</span>
 								</div>
 							</td>
-							<td>{item.type === 'File' ? item.extension : 'folder'}</td>
-							<td>{item.type === 'File' ? formatFileSize(item.size) : '-'}</td>
+							<td>{item.type === 'file' ? item.extension : 'folder'}</td>
+							<td>{item.type === 'file' ? formatFileSize(item.size) : '-'}</td>
 							<td>{formatDate(item.date)}</td>
 							<td onClick={event => handleContextMenuOptions(event, item)}>
 								<EllipsisVertical />
