@@ -6,10 +6,12 @@ import createFolder from '@services/requests/CreateFolder'
 
 interface CreateFolderButtonProps {
 	folder_id?: string | undefined
+	onSuccess: () => Promise<void> | void
 }
 
 const CreateFolderButton: React.FC<CreateFolderButtonProps> = ({
 	folder_id,
+	onSuccess,
 }) => {
 	const [loading, setLoading] = useState(false)
 	return (
@@ -21,6 +23,7 @@ const CreateFolderButton: React.FC<CreateFolderButtonProps> = ({
 				if (folderName) {
 					try {
 						await createFolder(folderName, folder_id)
+						await Promise.resolve(onSuccess())
 					} finally {
 						setLoading(false)
 					}

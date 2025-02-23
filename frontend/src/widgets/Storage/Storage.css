@@ -15,8 +15,9 @@
 .storage-functions {
 	display: inline-flex;
 	width: 100%;
-	justify-content: space-between;
 	align-items: center;
 	font-size: 1rem;
 	gap: 1rem;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
 }
