@@ -6,9 +6,13 @@ import './UploadInput.css'
 
 interface UploadProps {
 	folder_id?: string | undefined
+	onSuccess: () => void
 }
 
-const Upload: React.FC<UploadProps> = ({ folder_id = undefined }) => {
+const Upload: React.FC<UploadProps> = ({
+	folder_id = undefined,
+	onSuccess,
+}) => {
 	const fileInputRef = useRef<HTMLInputElement>(null)
 	const [loading, setLoading] = useState(false)
 
@@ -33,6 +37,7 @@ const Upload: React.FC<UploadProps> = ({ folder_id = undefined }) => {
 			console.error(err)
 		} finally {
 			if (isMounted) {
+				await onSuccess()
 				setLoading(false)
 				event.target.value = ''
 			}
