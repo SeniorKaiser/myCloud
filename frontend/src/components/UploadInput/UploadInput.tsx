@@ -52,7 +52,9 @@ const Upload: React.FC<UploadProps> = ({ folder_id = undefined }) => {
 			>
 				<section>
 					{loading ? (
-						<Loader />
+						<div style={{ width: '2rem', height: '2rem' }}>
+							<Loader />
+						</div>
 					) : (
 						<>
 							<Plus /> Upload
