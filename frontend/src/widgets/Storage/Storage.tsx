@@ -16,13 +16,15 @@ interface StorageProps {
 
 const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 	const [data, setData] = useState<DiskDTO | null>(null)
+
+	const fetchData = async () => {
+		const response = await Disk(folder_id)
+		setData(response)
+	}
+
 	useEffect(() => {
-		const fetchData = async () => {
-			const response = await Disk(folder_id)
-			setData(response)
-		}
 		fetchData()
-	}, [])
+	}, [folder_id])
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
@@ -33,7 +35,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
 		await Promise.all(files.map(file => uploadFile(file, folder_id)))
-		window.location.reload()
+		await fetchData()
 	}
 
 	return (
