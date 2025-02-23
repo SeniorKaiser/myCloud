@@ -57,15 +57,14 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 					folder_id={folder_id}
 					onSuccess={async () => await fetchData()}
 				/>
-				{/* <SortSettings /> */}
 				<button onClick={fetchData}>Reload</button>
-				{/* <ProgressBar size={128849018880} filled={101349018880} /> */}
 			</div>
 			{data ? (
 				<FileTable
 					files={data.files}
 					folders={data.folders}
 					folder_id={folder_id}
+					onSuccess={fetchData}
 				/>
 			) : (
 				// <FileTable

@@ -15,9 +15,10 @@ export interface StorageProps {
 	files: File[]
 	folders: Folder[]
 	folder_id?: string | undefined
+	onSuccess?: () => Promise<void> | void
 }
 
-const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
+const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 	const [contextMenu, setContextMenu] = useState<{
 		visible: boolean
 		position: Position
@@ -120,6 +121,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders }) => {
 					onClose={handleCloseMenu}
 					title={contextMenu.title}
 					objectId={contextMenu.objectId}
+					onSuccess={onSuccess}
 				/>
 			)}
 		</>

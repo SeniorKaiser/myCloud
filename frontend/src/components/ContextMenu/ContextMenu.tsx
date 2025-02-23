@@ -16,6 +16,7 @@ interface ContextMenuProps {
 	onClose: () => void
 	title?: string | undefined
 	objectId?: string | undefined
+	onSuccess?: () => Promise<void> | void
 }
 
 const ContextMenu: React.FC<ContextMenuProps> = ({
@@ -24,6 +25,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 	onClose,
 	title,
 	objectId,
+	onSuccess,
 }) => {
 	const menuRef = useRef<HTMLUListElement>(null)
 
@@ -65,7 +67,15 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				{objectId}
 			</li>
 			{options.map((option, index) => (
-				<li key={index} onClick={() => option.action(objectId)}>
+				<li
+					key={index}
+					onClick={async () => {
+						await option.action(objectId)
+						if (onSuccess) {
+							await onSuccess()
+						}
+					}}
+				>
 					<span>
 						<option.icon />
 					</span>

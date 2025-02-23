@@ -12,7 +12,7 @@ export const FileOptionsContextMenu: Option[] = [
 		},
 		icon: Upload,
 	},
-	{ title: 'Rename', action: () => alert('Rename'), icon: KeyBoard },
+	{ title: 'Rename', action: async () => alert('Rename'), icon: KeyBoard },
 	{
 		title: 'Delete',
 		action: async (id?: string) => {
