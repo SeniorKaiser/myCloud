@@ -52,6 +52,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 				<Upload folder_id={folder_id} />
 				<CreateFolderButton folder_id={folder_id} />
 				<SortSettings />
+				<button onClick={fetchData}>Reload</button>
 				{/* <ProgressBar size={128849018880} filled={101349018880} /> */}
 			</div>
 			{data ? (
