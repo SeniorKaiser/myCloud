@@ -1,12 +1,17 @@
+import { domenApi } from '@app/data'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
 
 const renameFolder = async (folderId: string, newName: string) => {
 	const loadingToast = toast.loading('Renaming folder...')
 	try {
-		const response = await axios.put(`/rename/${folderId}`, null, {
-			params: { name: newName },
-		})
+		const response = await axios.put(
+			`${domenApi}/api/folder/rename/${folderId}`,
+			null,
+			{
+				params: { name: newName },
+			}
+		)
 		toast.success(`Folder renamed`, { id: loadingToast })
 		return response.data
 	} catch (error) {
