@@ -2,6 +2,7 @@ import { Upload, KeyBoard, TrashCan } from '@components/Icons/Icons.tsx'
 import { Option } from '@components/ContextMenu/Data'
 import downloadFile from '@services/requests/Download'
 import deleteFile from '@services/requests/Delete'
+import renameFolder from '@services/requests/RenameFolder'
 
 export const FileOptionsContextMenu: Option[] = [
 	{
@@ -22,7 +23,14 @@ export const FileOptionsContextMenu: Option[] = [
 ]
 
 export const FolderOptionsContextMenu: Option[] = [
-	{ title: 'Rename', action: () => alert('Rename'), icon: KeyBoard },
+	{
+		title: 'Rename',
+		action: async (id?: string) => {
+			const folderName = prompt('Folder name', 'New name')
+			if (folderName && id) await renameFolder(id, folderName)
+		},
+		icon: KeyBoard,
+	},
 	{
 		title: 'Delete',
 		action: async (id?: string) => {
@@ -30,17 +38,6 @@ export const FolderOptionsContextMenu: Option[] = [
 		},
 		icon: TrashCan,
 	},
-]
-
-export const TableContextMenu: Option[] = [
-	{
-		title: 'Create Folder',
-		action: async (id?: string) => {
-			if (id) await downloadFile(id)
-		},
-		icon: Upload,
-	},
-	{ title: 'Rename', action: () => alert('Rename'), icon: KeyBoard },
 ]
 
 export const Columns = [
