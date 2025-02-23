@@ -7,7 +7,7 @@ import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
 // import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
-import SortSettings from '@components/SortSettings/SortSettings'
+// import SortSettings from '@components/SortSettings/SortSettings'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 
 interface StorageProps {
