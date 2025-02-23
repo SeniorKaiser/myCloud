@@ -19,13 +19,24 @@ const CreateFolderButton: React.FC<CreateFolderButtonProps> = ({
 				setLoading(true)
 				const folderName = prompt('Folder name:', 'New Folder')
 				if (folderName) {
-					await createFolder(folderName, folder_id)
-					setLoading(false)
-					window.location.reload()
+					try {
+						await createFolder(folderName, folder_id)
+					} finally {
+						setLoading(false)
+					}
 				}
+				setLoading(false)
 			}}
 		>
-			<section>{loading ? <Loader /> : <FolderPlus />}</section>
+			<section>
+				{loading ? (
+					<div style={{ width: '1.7rem', height: '1.7rem' }}>
+						<Loader />
+					</div>
+				) : (
+					<FolderPlus />
+				)}
+			</section>
 		</button>
 	)
 }

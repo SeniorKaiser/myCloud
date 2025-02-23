@@ -4,6 +4,7 @@
 	transition: 0.3s ease;
 	background-color: transparent;
 	border: none;
+	color: var(--text);
 }
 
 @media (hover: hover) {

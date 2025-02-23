@@ -14,7 +14,7 @@ const AuthUser = async (): Promise<User | undefined> => {
 		toast.success(`User authenticated`, { id: loadingToast })
 		return response.data
 	} catch (error) {
-		toast.error('User was not found', { id: loadingToast })
+		toast.error('Error! User was not found', { id: loadingToast })
 		console.error(error)
 	}
 }
