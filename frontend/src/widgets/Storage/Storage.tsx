@@ -49,7 +49,10 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 				onSubmit={() => alert('submit')}
 			/>
 			<div className='storage-functions'>
-				<Upload folder_id={folder_id} onSuccess={() => fetchData} />
+				<Upload
+					folder_id={folder_id}
+					onSuccess={async () => await fetchData()}
+				/>
 				<CreateFolderButton folder_id={folder_id} />
 				<SortSettings />
 				<button onClick={fetchData}>Reload</button>

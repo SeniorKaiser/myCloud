@@ -6,7 +6,7 @@ import './UploadInput.css'
 
 interface UploadProps {
 	folder_id?: string | undefined
-	onSuccess: () => void
+	onSuccess: () => Promise<void> | void
 }
 
 const Upload: React.FC<UploadProps> = ({
@@ -32,12 +32,12 @@ const Upload: React.FC<UploadProps> = ({
 			const response = await uploadFile(files[0], folder_id)
 			if (isMounted) {
 				console.log('Файл загружен:', response)
+				await Promise.resolve(onSuccess())
 			}
 		} catch (err) {
 			console.error(err)
 		} finally {
 			if (isMounted) {
-				await onSuccess()
 				setLoading(false)
 				event.target.value = ''
 			}
