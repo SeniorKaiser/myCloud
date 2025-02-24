@@ -3,6 +3,7 @@ import { Option } from '@components/ContextMenu/Data'
 import downloadFile from '@services/requests/Download'
 import deleteFile from '@services/requests/Delete'
 import renameFolder from '@services/requests/RenameFolder'
+import renameFile from '@services/requests/Rename'
 
 export const FileOptionsContextMenu: Option[] = [
 	{
@@ -12,7 +13,14 @@ export const FileOptionsContextMenu: Option[] = [
 		},
 		icon: Upload,
 	},
-	{ title: 'Rename', action: async () => alert('Rename'), icon: KeyBoard },
+	{
+		title: 'Rename',
+		action: async (id?: string) => {
+			const folderName = prompt('Folder name', 'New name')
+			if (folderName && id) await renameFile(id, folderName)
+		},
+		icon: KeyBoard,
+	},
 	{
 		title: 'Delete',
 		action: async (id?: string) => {

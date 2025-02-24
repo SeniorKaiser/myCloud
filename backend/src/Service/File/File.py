@@ -35,10 +35,9 @@ class FileService:
         await storage_client.delete_file(res.name)
         return res
     
-    async def rename_file(self, id: str, name: str) -> FileDTO:
+    async def rename_file(self, id: str, name: str, user_id: str) -> FileDTO:
         file = await self.file_repository.get(id)
-        await storage_client.rename_file(f'{file.user_id}_{file.name}', f'{file.user_id}_{name}.{file.extension}')
+        await storage_client.rename_file(f'{file.id}_{file.name}', f'{file.id}_{name}.{file.extension}', user_id)
         file.name = f'{name}.{file.extension}'
-        print(file)
         res = await self.file_repository.update(id, file.dict())
         return res

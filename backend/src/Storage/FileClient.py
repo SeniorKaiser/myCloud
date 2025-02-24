@@ -33,16 +33,19 @@ class FileStorageClient(StorageClient):
             )
         return {"status": "ok"}
     
-    async def rename_file(self, old_name: str, new_name: str):
+    async def rename_file(self, old_name: str, new_name: str, user_id: str):
         async for client in self.get_client():
+            source_key = f"uploads/{user_id}/files/{old_name}"
+            destination_key = f"uploads/{user_id}/files/{new_name}"
+
             await client.copy_object(
                 Bucket=self.bucket_name,
-                CopySource=f"{self.bucket_name}/{old_name}",
-                Key=new_name
+                CopySource=f"{self.bucket_name}/{source_key}",
+                Key=destination_key
             )
             await client.delete_object(
                 Bucket=self.bucket_name,
-                Key=old_name
+                Key=source_key
             )
         return {"status": "ok"}
 

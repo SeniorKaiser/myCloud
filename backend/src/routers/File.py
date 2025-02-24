@@ -42,9 +42,10 @@ async def delete_file(
     return await file_service.delete_file(file_id, user_id=user["id"])
 
 @router.put("/rename/{file_id}")
-async def delete_file(
+async def rename_file(
     file_service: Annotated[FileService, Depends(file_service)],
     file_id: str,
     new_name: str,
+    user: dict = Depends(auth),
 ) -> FileDTO:
-    return await file_service.rename_file(file_id, new_name)
+    return await file_service.rename_file(file_id, new_name, user_id=user["id"])
