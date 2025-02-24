@@ -4,6 +4,7 @@ import downloadFile from '@services/requests/Download'
 import deleteFile from '@services/requests/Delete'
 import renameFolder from '@services/requests/RenameFolder'
 import renameFile from '@services/requests/Rename'
+import deleteFolder from '@services/requests/DeleteFolder'
 
 export const FileOptionsContextMenu: Option[] = [
 	{
@@ -42,7 +43,7 @@ export const FolderOptionsContextMenu: Option[] = [
 	{
 		title: 'Delete',
 		action: async (id?: string) => {
-			if (id) await deleteFile(id)
+			if (id) await deleteFolder(id)
 		},
 		icon: TrashCan,
 	},
