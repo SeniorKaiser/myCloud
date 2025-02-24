@@ -1,4 +1,5 @@
 import React from 'react'
+import './ProgressBar.css'
 
 interface ProgressBarProps {
 	totalSize: number // Общий объем (в байтах)
@@ -10,11 +11,12 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ totalSize, usedSize }) => {
 		totalSize > 0 ? ((usedSize / totalSize) * 100).toFixed(2) : '0'
 
 	const totalSizeGB = (totalSize / 1024 ** 3).toFixed(2)
-
 	return (
 		<div className='progress-bar'>
 			<div className='line' style={{ width: `${percentage}%` }}></div>
-			{percentage}% from {totalSizeGB} GB
+			<span>
+				{percentage}% from {totalSizeGB} GB
+			</span>
 		</div>
 	)
 }

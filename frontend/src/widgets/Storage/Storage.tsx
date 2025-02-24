@@ -26,8 +26,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 	}
 
 	const getTotalFileSize = (files: File[] | undefined) => {
-		if (!files || !Array.isArray(files)) return 0 // Проверка на наличие данных
-
+		if (!files || !Array.isArray(files)) return 0
 		return files.reduce((total, file) => total + (file.size || 0), 0)
 	}
 
@@ -74,7 +73,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 				>
 					<ProgressBar
 						usedSize={getTotalFileSize(data?.files)}
-						totalSize={16106127007}
+						totalSize={21474836009}
 					/>
 				</div>
 				<button

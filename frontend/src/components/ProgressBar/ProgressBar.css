@@ -31,9 +31,3 @@
 		background-position: 200% 50%;
 	}
 }
-
-@media (width < 25rem) {
-	.progress-bar {
-		width: 100%;
-	}
-}

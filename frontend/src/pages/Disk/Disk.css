@@ -16,20 +16,23 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.storage-info {
-		width: 100%;
-	}
-	.sort-section {
-		flex-direction: row;
-	}
 }
 
 @media (width < 60rem) {
-	.storage-info {
-		width: 100%;
-	}
 	.storage {
 		width: 100%;
 		min-width: unset;
+	}
+}
+
+@media (width < 35rem) {
+	.progress-bar span {
+		display: none;
+	}
+}
+
+@media (width < 22rem) {
+	.progress-bar {
+		display: none;
 	}
 }
