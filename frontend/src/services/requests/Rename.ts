@@ -5,12 +5,11 @@ import { toast } from 'react-hot-toast'
 const renameFile = async (id: string, newName: string) => {
 	const loadingToast = toast.loading('Rename file...')
 	try {
-		const response = await axios.put(`${domenApi}/api/files/rename/${id}`, {
-			params: { new_name: newName },
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
+		const response = await axios.put(
+			`${domenApi}/api/files/rename/${id}`,
+			null,
+			{ params: { new_name: newName } }
+		)
 		toast.success(`File renamed`, { id: loadingToast })
 		return response.data
 	} catch (error: any) {
