@@ -35,7 +35,7 @@ async def auth(
 @router.get("/disk")
 async def disk(
     user_service: Annotated[UserService, Depends(user_service)],
-    user: User = Depends(auth),
+    user: dict = Depends(auth),
     folder_id: Optional[str] = None
 ) -> UserFilesFolders:
     return await user_service.disk(user["id"], folder_id)

@@ -12,7 +12,7 @@ router = APIRouter(tags=["Folder"], prefix="/folder")
 async def get_folder(
     folder_service: Annotated[FolderService, Depends(folder_service)],
     folder_id: str,
-    user: UserDTO = Depends(auth)
+    user: dict = Depends(auth)
 ) -> FolderDTO:
     return await folder_service.get_folder(folder_id, user["id"])
 
@@ -20,7 +20,7 @@ async def get_folder(
 async def create_folder(
     folder_service: Annotated[FolderService, Depends(folder_service)],
     folder: CreateFolderSchema,
-    user: UserDTO = Depends(auth)
+    user: dict = Depends(auth)
 ) -> FolderDTO:
     return await folder_service.create_folder(folder, user["id"])
 
@@ -28,7 +28,7 @@ async def create_folder(
 async def delete_folder(
     folder_service: Annotated[FolderService, Depends(folder_service)],
     folder_id: str,
-    user: UserDTO = Depends(auth)
+    user: dict = Depends(auth)
 ) -> FolderDTO:
     return await folder_service.delete_folder(folder_id, user["id"])
 
@@ -37,6 +37,6 @@ async def rename_folder(
     folder_service: Annotated[FolderService, Depends(folder_service)],
     folder_id: str,
     name: str,
-    user: UserDTO = Depends(auth)
+    user: dict = Depends(auth)
 ) -> FolderDTO:
     return await folder_service.rename_folder(folder_id, name, user["id"])
