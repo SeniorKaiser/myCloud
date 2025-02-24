@@ -10,6 +10,7 @@ import uploadFile from '@services/requests/Upload'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 import { Rotate } from '@components/Icons/Icons'
+import { File } from '@app/data'
 
 interface StorageProps {
 	folder_id?: string | undefined
@@ -24,7 +25,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 		setData(response)
 	}
 
-	const getTotalFileSize = files => {
+	const getTotalFileSize = (files: File[] | undefined) => {
 		if (!files || !Array.isArray(files)) return 0 // Проверка на наличие данных
 
 		return files.reduce((total, file) => total + (file.size || 0), 0)
