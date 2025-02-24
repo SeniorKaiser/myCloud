@@ -9,6 +9,7 @@ import Upload from '@components/UploadInput/UploadInput.tsx'
 import uploadFile from '@services/requests/Upload'
 // import SortSettings from '@components/SortSettings/SortSettings'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
+import { Rotate } from '@components/Icons/Icons'
 
 interface StorageProps {
 	folder_id?: string | undefined
@@ -16,6 +17,7 @@ interface StorageProps {
 
 const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 	const [data, setData] = useState<DiskDTO | null>(null)
+	const [reloadActive, setReloadActive] = useState<boolean>(false)
 
 	const fetchData = async () => {
 		const response = await Disk(folder_id)
@@ -57,7 +59,24 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 					folder_id={folder_id}
 					onSuccess={async () => await fetchData()}
 				/>
-				<button onClick={fetchData}>Reload</button>
+				<button
+					onClick={async () => {
+						try {
+							setReloadActive(true)
+							await new Promise(resolve => setTimeout(resolve, 500))
+							await fetchData()
+						} finally {
+							setReloadActive(false)
+						}
+					}}
+					className={
+						reloadActive
+							? 'storage-reload-button active'
+							: 'storage-reload-button'
+					}
+				>
+					<Rotate />
+				</button>
 			</div>
 			{data ? (
 				<FileTable

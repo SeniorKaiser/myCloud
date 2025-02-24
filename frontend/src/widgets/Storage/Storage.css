@@ -21,3 +21,26 @@
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 }
+
+.storage-reload-button {
+	height: 2rem;
+	aspect-ratio: 1/1;
+	background-color: transparent;
+	border: none;
+	font-size: 1.7rem;
+	cursor: pointer;
+	margin-left: auto;
+}
+
+.storage-reload-button.active {
+	animation: rotateAnimation 1s ease infinite;
+}
+
+@keyframes rotateAnimation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

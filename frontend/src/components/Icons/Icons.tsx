@@ -21,6 +21,7 @@ import {
 	faUserSecret,
 	faUserTie,
 	faFolderPlus,
+	faRotate,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
@@ -163,4 +164,8 @@ export const UserSecret: React.FC = () => {
 
 export const FolderPlus: React.FC = () => {
 	return <FontAwesomeIcon icon={faFolderPlus} />
+}
+
+export const Rotate: React.FC = () => {
+	return <FontAwesomeIcon icon={faRotate} />
 }

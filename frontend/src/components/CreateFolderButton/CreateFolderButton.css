@@ -2,9 +2,9 @@
 	cursor: pointer;
 	font-size: 1.7rem;
 	transition: 0.3s ease;
-	background-color: transparent;
 	border: none;
-	color: var(--grey);
+	color: var(--main-color);
+	background-color: transparent;
 }
 
 @media (hover: hover) {
