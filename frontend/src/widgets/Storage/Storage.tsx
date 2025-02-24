@@ -10,7 +10,6 @@ import uploadFile from '@services/requests/Upload'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 import { Rotate } from '@components/Icons/Icons'
-import { File } from '@app/data'
 import getDiskSize from '@services/requests/getDiskSize'
 
 interface StorageProps {
@@ -24,11 +23,6 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 	const fetchData = async () => {
 		const response = await Disk(folder_id)
 		setData(response)
-	}
-
-	const getTotalFileSize = (files: File[] | undefined) => {
-		if (!files || !Array.isArray(files)) return 0
-		return files.reduce((total, file) => total + (file.size || 0), 0)
 	}
 
 	useEffect(() => {
@@ -73,10 +67,10 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 					}}
 				>
 					<ProgressBar
-						usedSize={getTotalFileSize(data?.files)}
-						totalSize={Number(async () => {
+						usedSize={Number(async () => {
 							return await getDiskSize()
 						})}
+						totalSize={21474836009}
 					/>
 				</div>
 				<button

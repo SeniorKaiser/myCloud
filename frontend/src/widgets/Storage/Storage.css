@@ -29,6 +29,14 @@
 	border: none;
 	font-size: 1.7rem;
 	cursor: pointer;
+	color: var(--grey);
+	transition: 0.3s ease;
+}
+
+@media (hover: hover) {
+	.storage-reload-button:hover {
+		color: var(--text);
+	}
 }
 
 .storage-reload-button.active {
