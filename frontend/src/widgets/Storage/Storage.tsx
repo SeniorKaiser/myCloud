@@ -7,7 +7,7 @@ import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
 // import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
-// import SortSettings from '@components/SortSettings/SortSettings'
+import ProgressBar from '@components/ProgressBar/ProgressBar'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 import { Rotate } from '@components/Icons/Icons'
 
@@ -22,6 +22,12 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 	const fetchData = async () => {
 		const response = await Disk(folder_id)
 		setData(response)
+	}
+
+	const getTotalFileSize = files => {
+		if (!files || !Array.isArray(files)) return 0 // Проверка на наличие данных
+
+		return files.reduce((total, file) => total + (file.size || 0), 0)
 	}
 
 	useEffect(() => {
@@ -59,6 +65,17 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 					folder_id={folder_id}
 					onSuccess={async () => await fetchData()}
 				/>
+				<div
+					style={{
+						width: '50%',
+						margin: '0 auto',
+					}}
+				>
+					<ProgressBar
+						usedSize={getTotalFileSize(data?.files)}
+						totalSize={16106127007}
+					/>
+				</div>
 				<button
 					onClick={async () => {
 						try {

@@ -29,7 +29,6 @@
 	border: none;
 	font-size: 1.7rem;
 	cursor: pointer;
-	margin-left: auto;
 }
 
 .storage-reload-button.active {

@@ -16,6 +16,7 @@
 	padding: 0.3rem 0.6rem;
 	cursor: pointer;
 	transition: color 0.3s ease, fill 0.3s ease;
+	color: var(--grey);
 }
 
 .context-menu__id {
@@ -54,6 +55,6 @@
 
 @media (hover: hover) {
 	.context-menu li:hover {
-		color: var(--main-color);
+		color: var(--text);
 	}
 }

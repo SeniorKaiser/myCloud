@@ -6,19 +6,3 @@
 	color: var(--main-color);
 	background-color: transparent;
 }
-
-@media (hover: hover) {
-	.create-folder-button:hover {
-		scale: 1.1;
-	}
-
-	.create-folder-button:active {
-		scale: 1;
-	}
-}
-
-@media (hover: none) {
-	.create-folder-button:active {
-		scale: 1.1;
-	}
-}
