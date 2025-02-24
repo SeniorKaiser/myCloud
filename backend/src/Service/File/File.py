@@ -29,11 +29,11 @@ class FileService:
         )
         
     async def delete_file(self, id: str, user_id: str) -> FileDTO:
-        res = await self.file_repository.get(id)
-        if res.user_id != user_id: return HTTPException(status_code=403)
+        file = await self.file_repository.get(id)
+        if file.user_id != user_id: return HTTPException(status_code=403)
         await self.file_repository.delete(id)
-        await storage_client.delete_file(res.name)
-        return res
+        await storage_client.delete_file(f'{file.id}_{file.name}', user_id)
+        return file
     
     async def rename_file(self, id: str, name: str, user_id: str) -> FileDTO:
         file = await self.file_repository.get(id)

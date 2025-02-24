@@ -16,7 +16,7 @@ export const FileOptionsContextMenu: Option[] = [
 	{
 		title: 'Rename',
 		action: async (id?: string) => {
-			const folderName = prompt('Folder name', 'New name')
+			const folderName = prompt('File name', 'New name')
 			if (folderName && id) await renameFile(id, folderName)
 		},
 		icon: KeyBoard,

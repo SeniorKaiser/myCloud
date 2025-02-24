@@ -25,11 +25,11 @@ class FileStorageClient(StorageClient):
             return file_content
         return {"status": "exeption"}
 
-    async def delete_file(self, file_name: str):
+    async def delete_file(self, file_name: str, user_id: str):
         async for client in self.get_client():
             await client.delete_object(
                 Bucket=self.bucket_name,
-                Key=file_name
+                Key=f"uploads/{user_id}/files/{file_name}"
             )
         return {"status": "ok"}
     
