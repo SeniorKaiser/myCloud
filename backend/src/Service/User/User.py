@@ -56,3 +56,9 @@ class UserService:
         folders = [folder for folder in user.folders if folder.parent_folder == folder_id]
         files = [file for file in user.files if file.folder_id == folder_id]
         return UserFilesFolders(id=user_id, files=files, folders=folders)
+    
+    async def disk_size(self, user_id: str) -> int:
+        user = await self.user_repository.get(user_id)
+        if not user: raise HTTPException(status_code=404)
+        size = sum([file.size for file in user.files])
+        return size

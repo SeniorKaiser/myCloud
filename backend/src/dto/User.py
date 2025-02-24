@@ -21,6 +21,9 @@ class User(BaseModel):
             "files": [file.to_dict() for file in self.files],
             "folders": [folder.to_dict() for folder in self.folders],
         }
+    
+    def from_dict(cls, data: dict):
+        return cls(**data)
 
 class UserReg(BaseModel):
     name: str

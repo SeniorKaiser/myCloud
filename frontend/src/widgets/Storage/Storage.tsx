@@ -11,6 +11,7 @@ import ProgressBar from '@components/ProgressBar/ProgressBar'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 import { Rotate } from '@components/Icons/Icons'
 import { File } from '@app/data'
+import getDiskSize from '@services/requests/getDiskSize'
 
 interface StorageProps {
 	folder_id?: string | undefined
@@ -73,7 +74,9 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 				>
 					<ProgressBar
 						usedSize={getTotalFileSize(data?.files)}
-						totalSize={21474836009}
+						totalSize={Number(async () => {
+							return await getDiskSize()
+						})}
 					/>
 				</div>
 				<button

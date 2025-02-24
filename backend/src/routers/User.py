@@ -40,6 +40,13 @@ async def disk(
 ) -> UserFilesFolders:
     return await user_service.disk(user["id"], folder_id)
 
+@router.get("/disk-size")
+async def disk_size(
+    user_service: Annotated[UserService, Depends(user_service)],
+    user: dict = Depends(auth)
+)->int:
+    return await user_service.disk_size(user_id=user["id"])
+
 @router.delete("/delete/{user_id}")
 async def delete(
     user_id: str,

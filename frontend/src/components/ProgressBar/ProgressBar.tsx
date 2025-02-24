@@ -2,8 +2,8 @@ import React from 'react'
 import './ProgressBar.css'
 
 interface ProgressBarProps {
-	totalSize: number // Общий объем (в байтах)
-	usedSize: number // Использованный объем (в байтах)
+	totalSize: number
+	usedSize: number
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ totalSize, usedSize }) => {
