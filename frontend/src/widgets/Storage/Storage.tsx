@@ -35,7 +35,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
 		await Promise.all(files.map(file => uploadFile(file, folder_id)))
-		await Promise.resolve(fetchData)
+		await fetchData()
 	}
 
 	return (
