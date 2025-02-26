@@ -80,6 +80,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 						data-name={item.name}
 						data-id={item.id}
 						style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}
+						className='search-data-el'
 					>
 						<div style={{ display: 'inline-flex', width: '100%' }}>
 							<img

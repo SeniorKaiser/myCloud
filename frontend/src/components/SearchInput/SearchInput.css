@@ -29,6 +29,18 @@
 	padding: 0.3rem;
 }
 
+.search-data {
+	display: none;
+}
+
+.search-data-el {
+	width: 100%;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .search input {
 	height: 100%;
 	width: 100%;
