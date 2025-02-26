@@ -1,19 +1,32 @@
 .search {
-	display: flex;
-	align-items: center;
 	width: 100%;
-	min-width: 25rem;
-	height: 2.5rem;
 	font-size: 1.3rem;
 	border: none;
 	border-radius: 0.5rem;
-	gap: 0.3rem;
 	background-color: var(--window);
+}
+
+.search.active {
+	height: auto;
+}
+
+.search-input {
 	padding: 0.3rem;
+	gap: 0.3rem;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 2.5rem;
 
 	path {
 		color: inherit;
 	}
+}
+
+.search-data.active {
+	display: flex;
+	flex-direction: column;
+	padding: 0.3rem;
 }
 
 .search input {
