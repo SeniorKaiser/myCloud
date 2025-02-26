@@ -7,6 +7,12 @@ import {
 import diskSearch from '@services/requests/SearchFiles'
 import './SearchInput.css'
 import { DiskDTO } from '@services/requests/Disk'
+import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu'
+import {
+	FileOptionsContextMenu,
+	FolderOptionsContextMenu,
+} from '@components/FileTable/Data'
+import { Folder, File } from '@app/data'
 // import { tempfolders, tempfiles } from '@app/data'
 
 interface SearchInputProps {
@@ -19,18 +25,44 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 	const [active, setActive] = useState<boolean>(false)
 	const searchRef = useRef<HTMLFormElement>(null)
 	const items = [...(data?.folders ?? []), ...(data?.files ?? [])]
+	const [contextMenu, setContextMenu] = useState<{
+		visible: boolean
+		position: Position
+		title?: string
+		objectId?: string
+		options?: any
+	}>({
+		visible: false,
+		position: {},
+	})
+
+	const handleContextMenuOptions = (
+		event: React.MouseEvent,
+		item: File | Folder
+	): void => {
+		event.preventDefault()
+		const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
+		setContextMenu({
+			visible: true,
+			position: {
+				top: `${Math.min(event.clientY, window.innerHeight)}px`,
+				right: `${Math.min(event.clientX, window.innerWidth - rect.left)}px`,
+			},
+			title: item.name,
+			objectId: item.id,
+			options:
+				'size' in item ? FileOptionsContextMenu : FolderOptionsContextMenu,
+		})
+	}
+	const handleCloseMenu = (): void =>
+		setContextMenu({ visible: false, position: {} })
 
 	const handleSearch = async (e: React.FormEvent) => {
 		e.preventDefault()
 		setActive(true)
-
-		try {
-			if (param.trim()) {
-				const result = await diskSearch(param)
-				setData(result)
-			}
-		} catch (error) {
-			console.error('Ошибка при поиске:', error)
+		if (param.trim()) {
+			const result = await diskSearch(param)
+			setData(result)
 		}
 	}
 
@@ -95,13 +127,22 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 								<span>{item.name}</span>
 							</div>
 
-							<div>
+							<div onClick={event => handleContextMenuOptions(event, item)}>
 								<EllipsisVertical />
 							</div>
 						</div>
 					))
 				) : (
 					<p className='no-results'>No results</p>
+				)}
+				{contextMenu.visible && (
+					<ContextMenu
+						options={contextMenu.options}
+						position={contextMenu.position}
+						onClose={handleCloseMenu}
+						title={contextMenu.title}
+						objectId={contextMenu.objectId}
+					/>
 				)}
 				{/* {[...(tempfiles ?? []), tempfolders ?? []].map(item => (
 					<div
