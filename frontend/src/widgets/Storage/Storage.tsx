@@ -47,10 +47,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 			onDragOver={handleDragOver}
 			onDrop={handleDrop}
 		>
-			<SearchInput
-				placeholder='Searching file...'
-				onSubmit={() => alert('submit')}
-			/>
+			<SearchInput placeholder='Searching file...' />
 			<div className='storage-functions'>
 				<Upload
 					folder_id={folder_id}
