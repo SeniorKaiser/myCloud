@@ -26,12 +26,6 @@
 }
 
 @media (width < 35rem) {
-	.progress-bar span {
-		display: none;
-	}
-}
-
-@media (width < 22rem) {
 	.progress-bar {
 		display: none;
 	}
