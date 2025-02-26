@@ -24,7 +24,8 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [active, setActive] = useState<boolean>(false)
 	const searchRef = useRef<HTMLFormElement>(null)
-	const items = [...(data?.folders ?? []), ...(data?.files ?? [])]
+	// const items = [...(data?.folders ?? []), ...(data?.files ?? [])]
+	const items = [...(data?.files ?? [])]
 	const [contextMenu, setContextMenu] = useState<{
 		visible: boolean
 		position: Position
