@@ -44,8 +44,17 @@ async def disk(
 async def disk_size(
     user_service: Annotated[UserService, Depends(user_service)],
     user: dict = Depends(auth)
-)->int:
+) -> int:
     return await user_service.disk_size(user_id=user["id"])
+
+@router.get('/disk-search/{param}')
+async def disk_search(
+    user_service: Annotated[UserService, Depends(user_service)],
+    param: str,
+    user: dict = Depends(auth),
+) -> UserFilesFolders:
+    return await user_service.disk_search(user_id=user["id"], param=param)
+
 
 @router.delete("/delete/{user_id}")
 async def delete(
