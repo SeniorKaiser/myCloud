@@ -7,6 +7,7 @@ import {
 import diskSearch from '@services/requests/SearchFiles'
 import './SearchInput.css'
 import { DiskDTO } from '@services/requests/Disk'
+// import { tempfolders, tempfiles } from '@app/data'
 
 interface SearchInputProps {
 	placeholder: string
@@ -17,6 +18,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [active, setActive] = useState<boolean>(false)
 	const searchRef = useRef<HTMLFormElement>(null)
+	const items = [...(data?.folders ?? []), ...(data?.files ?? [])]
 
 	const handleSearch = async (e: React.FormEvent) => {
 		e.preventDefault()
@@ -74,7 +76,34 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 				</button>
 			</div>
 			<div className={`search-data ${active ? 'active' : ''}`}>
-				{[...(data?.folders ?? []), ...(data?.files ?? [])].map(item => (
+				{items.length > 0 ? (
+					items.map(item => (
+						<div
+							key={item.id}
+							data-name={item.name}
+							data-id={item.id}
+							style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}
+							className='search-data-el'
+						>
+							<div style={{ display: 'inline-flex', width: '100%' }}>
+								<img
+									src={`/FilesIcons/${
+										'extension' in item ? item.extension : 'folder'
+									}.png`}
+									alt={item.name}
+								/>
+								<span>{item.name}</span>
+							</div>
+
+							<div>
+								<EllipsisVertical />
+							</div>
+						</div>
+					))
+				) : (
+					<p className='no-results'>No results</p>
+				)}
+				{/* {[...(tempfiles ?? []), tempfolders ?? []].map(item => (
 					<div
 						key={item.id}
 						data-name={item.name}
@@ -82,21 +111,18 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 						style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}
 						className='search-data-el'
 					>
-						<div style={{ display: 'inline-flex', width: '100%' }}>
-							<img
-								src={`/FilesIcons/${
-									'extension' in item ? item.extension : 'folder'
-								}.png`}
-								alt={item.name}
-							/>
-							<span>{item.name}</span>
-						</div>
-
+						<img
+							src={`/FilesIcons/${
+								'extension' in item ? item.extension : 'folder'
+							}.png`}
+							alt={item.name}
+						/>
+						<span>{item.name}</span>
 						<div>
 							<EllipsisVertical />
 						</div>
 					</div>
-				))}
+				))} */}
 			</div>
 		</form>
 	)
