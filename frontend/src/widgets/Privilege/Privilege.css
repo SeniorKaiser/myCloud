@@ -1,33 +1,39 @@
 .privilege {
 	width: 100%;
-	padding: 20px;
 	display: flex;
 	flex-wrap: nowrap;
-	gap: clamp(0.3rem, 50vw, 2rem);
+	gap: 1.6rem;
 	justify-content: center;
 	align-items: center;
-	padding: 1rem;
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 	overflow-x: auto;
 }
 
 .privilege-card {
-	aspect-ratio: 2/3;
 	padding: 1rem;
-	background-color: var(--glass);
 	font-size: 1.3rem;
-	flex: 1;
-	border-radius: 1rem;
+	border-radius: 0.8rem;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
 	scroll-snap-align: start;
 }
+.privilege-card h2 {
+	border-bottom: 1px solid var(--grey);
+	width: 100%;
+	height: 4.5rem;
+}
 
 .privilege-card__description {
 	color: var(--grey);
 	list-style: none;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	height: calc(100% - 4.5rem - 4.5rem);
+	gap: 0.5rem;
+	column-gap: 1.5rem;
 }
 
 .privilege-card__description li {
@@ -38,17 +44,46 @@
 	border: none;
 	cursor: pointer;
 	transition: 0.3s;
-	font-size: 1.3rem;
-	width: 100%;
-	margin-top: 2rem;
-	border-radius: 0.5rem;
-	height: 2.5rem;
+	font-size: 1rem;
+	border-radius: 5rem;
+	height: 2rem;
 	transition: 0.3s;
 	color: white;
+	width: 6rem;
 }
 
-.privilege-card_price {
-	margin-top: auto;
+.privilege-card:first-child {
+	background-color: var(--background);
+	color: var(--text);
+	height: 35rem;
+	aspect-ratio: 2/3;
+}
+
+.privilege-card:first-child button {
+	background-color: var(--text);
+	color: var(--background);
+}
+
+.privilege-card:last-child {
+	background-color: var(--text);
+	color: var(--background);
+	aspect-ratio: 1/1;
+	height: 35rem;
+}
+
+.privilege-card:last-child button {
+	background-color: var(--background);
+	color: var(--text);
+}
+
+.privilege-card-buy {
+	display: inline-flex;
+	width: 100%;
+	aspect-ratio: 1/2;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 1px solid var(--grey);
+	height: 4.5rem;
 }
 
 @media (hover: hover) {
@@ -60,21 +95,5 @@
 @media (hover: none) {
 	.privilege-card button:active {
 		scale: 1.03;
-	}
-}
-
-@keyframes glowing_card {
-	0% {
-		box-shadow: inset 0 0 5px #fff, inset 0 0 20px #f0f, inset 0 0 10px #0ff,
-			0 0 5px #fff, 0 0 20px #f0f, 0 0 10px #0ff;
-	}
-	50% {
-		box-shadow: inset 0 0 5px #fff, inset 0 0 20px var(--main-color),
-			inset 0 0 10px #0ff, 0 0 5px #fff, 0 0 20px var(--main-color),
-			0 0 10px #0ff;
-	}
-	100% {
-		box-shadow: inset 0 0 5px #fff, inset 0 0 20px #f0f, inset 0 0 10px #0ff,
-			0 0 5px #fff, 0 0 20px #f0f, 0 0 10px #0ff;
 	}
 }

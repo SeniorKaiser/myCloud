@@ -3,17 +3,20 @@
 	flex-direction: column;
 	align-items: center;
 	max-width: 60rem;
-	gap: clamp(1rem, 20vw, 10rem);
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .home-main section {
 	width: 100%;
+	height: 100vh;
 }
 
 .home-main section > h1 {
 	text-align: center;
+	font-size: 3rem;
+	font-weight: 600;
+	margin-bottom: 6rem;
 }
 
 @media (width < 60rem) {
