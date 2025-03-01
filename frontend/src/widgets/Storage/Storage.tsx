@@ -59,13 +59,7 @@ const Storage: React.FC = () => {
 					}}
 					className='storage__prev'
 				>
-					{folder_name ? (
-						<>
-							<ChevronLeft /> {folder_name}
-						</>
-					) : (
-						'Storage'
-					)}
+					<ChevronLeft />
 				</button>
 				<button
 					onClick={async () => {
