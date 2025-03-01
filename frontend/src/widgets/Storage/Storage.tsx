@@ -8,18 +8,22 @@ import Upload from '@components/UploadInput/UploadInput.tsx'
 // import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
-import { Rotate, ChevronLeft, ChevronRight } from '@components/Icons/Icons'
+import { Rotate, ChevronLeft } from '@components/Icons/Icons'
+import getFolder from '@services/requests/getFolder'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [reloadActive, setReloadActive] = useState<boolean>(false)
-	const [folder, setFolder] = useState<string | undefined>(undefined)
+	const [folder_id, setFolder_id] = useState<string | undefined>(undefined)
 	const [prevfolder, setprevFolder] = useState<string | undefined>(undefined)
 
 	const fetchData = async (folder_id?: string) => {
 		const response = await Disk(folder_id)
-		setprevFolder(folder)
-		setFolder(folder_id)
+		if (folder_id) {
+			const curfolder = await getFolder(folder_id)
+			setprevFolder(curfolder?.parent_folder)
+		}
+		setFolder_id(folder_id)
 		setData(response)
 	}
 
@@ -35,7 +39,7 @@ const Storage: React.FC = () => {
 		e.preventDefault()
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
-		await Promise.all(files.map(file => uploadFile(file, folder)))
+		await Promise.all(files.map(file => uploadFile(file, folder_id)))
 		await fetchData()
 	}
 
@@ -47,9 +51,12 @@ const Storage: React.FC = () => {
 		>
 			<SearchInput placeholder='Searching file...' />
 			<div className='storage-functions'>
-				<Upload folder_id={folder} onSuccess={async () => await fetchData()} />
+				<Upload
+					folder_id={folder_id}
+					onSuccess={async () => await fetchData()}
+				/>
 				<CreateFolderButton
-					folder_id={folder}
+					folder_id={folder_id}
 					onSuccess={async () => await fetchData()}
 				/>
 				<div className='storage-navigation'>
@@ -59,13 +66,6 @@ const Storage: React.FC = () => {
 						}}
 					>
 						<ChevronLeft />
-					</button>
-					<button
-						onClick={async () => {
-							await fetchData(folder)
-						}}
-					>
-						<ChevronRight />
 					</button>
 				</div>
 				<button

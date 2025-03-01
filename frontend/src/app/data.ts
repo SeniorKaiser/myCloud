@@ -14,7 +14,7 @@ export interface Folder {
 	id: string
 	name: string
 	date: string
-	parent_folder: string | null
+	parent_folder: string | undefined
 	files: File[]
 	user_id: string
 }
@@ -43,7 +43,7 @@ export const tempfolders: Folder[] = [
 		id: 'bad3827c-d6c4-4c0a-b156-622d3ba03c5',
 		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
 		date: '2025-02-10T15:08:23.957075',
-		parent_folder: null,
+		parent_folder: undefined,
 		user_id: '46372809434',
 		files: [],
 	},
