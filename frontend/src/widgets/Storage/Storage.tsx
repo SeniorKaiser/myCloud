@@ -22,7 +22,6 @@ const Storage: React.FC = () => {
 		if (folder_id) {
 			const curfolder = await getFolder(folder_id)
 			setprevFolder(curfolder?.parent_folder)
-			setFolder_name(curfolder?.name)
 		}
 		setFolder_id(folder_id)
 		setData(response)
