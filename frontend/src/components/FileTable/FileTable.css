@@ -25,9 +25,6 @@ td:first-child span {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.context-menu__id {
-	color: var(--grey);
-}
 
 td:nth-child(5) {
 	cursor: pointer;

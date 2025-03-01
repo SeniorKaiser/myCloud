@@ -15,7 +15,7 @@ export interface StorageProps {
 	files: File[]
 	folders: Folder[]
 	folder_id?: string | undefined
-	onSuccess?: () => Promise<void> | void
+	onSuccess?: (folder_id?: string) => Promise<void> | void
 }
 
 const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
@@ -85,10 +85,11 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 						<tr
 							key={item.id}
 							onContextMenu={event => handleContextMenu(event, item)}
-							onDoubleClick={() =>
-								!('extension' in item) &&
-								(window.location.href = `/disk/${item.id}`)
-							}
+							onDoubleClick={async () => {
+								if (onSuccess) {
+									await onSuccess(item.id)
+								}
+							}}
 							data-name={item.name}
 							data-id={item.id}
 							style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}

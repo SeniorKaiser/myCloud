@@ -52,10 +52,11 @@
 	}
 }
 
+.context-menu li:not(:nth-child(1)) {
+	color: var(--grey);
+}
+
 @media (hover: hover) {
-	.context-menu li:not(:nth-child(1)):not(:nth-child(2)) {
-		color: var(--grey);
-	}
 	.context-menu li:hover {
 		color: var(--text);
 	}

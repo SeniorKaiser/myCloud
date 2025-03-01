@@ -5,7 +5,7 @@ import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
 import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
-// import { tempfiles, tempfolders } from '@app/data'
+import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
@@ -20,7 +20,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [reloadActive, setReloadActive] = useState<boolean>(false)
 
-	const fetchData = async () => {
+	const fetchData = async (folder_id?: string) => {
 		const response = await Disk(folder_id)
 		setData(response)
 	}
@@ -90,18 +90,19 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 				</button>
 			</div>
 			{data ? (
+				// <FileTable
+				// 	files={data.files}
+				// 	folders={data.folders}
+				// 	folder_id={folder_id}
+				// 	onSuccess={fetchData}
+				// />
 				<FileTable
-					files={data.files}
-					folders={data.folders}
+					files={tempfiles}
+					folders={tempfolders}
 					folder_id={folder_id}
 					onSuccess={fetchData}
 				/>
 			) : (
-				// <FileTable
-				// 	files={tempfiles}
-				// 	folders={tempfolders}
-				// 	folder_id={folder_id}
-				// />
 				<div className='storage-loader'>
 					<Loader />
 				</div>

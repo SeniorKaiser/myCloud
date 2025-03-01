@@ -45,13 +45,4 @@ jobs:
             git pull
             docker compose up --build -d
 
-            echo "Очистка Docker от ненужных данных..."
-            docker system prune -af
-            docker volume prune -f
-            docker network prune -f
-
-            echo "Перезапускаем Redis"
-            docker rm -f redis
-            docker run -d --name redis -p 6379:6379 redis
-
             echo "Деплой завершен успешно ❤️"
