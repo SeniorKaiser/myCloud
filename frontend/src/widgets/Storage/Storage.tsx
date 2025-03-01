@@ -12,22 +12,20 @@ import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButto
 import { Rotate } from '@components/Icons/Icons'
 import getDiskSize from '@services/requests/getDiskSize'
 
-interface StorageProps {
-	folder_id?: string | undefined
-}
-
-const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
+const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [reloadActive, setReloadActive] = useState<boolean>(false)
+	const [folder, setFolder] = useState<string | undefined>(undefined)
 
 	const fetchData = async (folder_id?: string) => {
 		const response = await Disk(folder_id)
+		setFolder(folder_id)
 		setData(response)
 	}
 
 	useEffect(() => {
 		fetchData()
-	}, [folder_id])
+	}, [])
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
@@ -37,7 +35,7 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 		e.preventDefault()
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
-		await Promise.all(files.map(file => uploadFile(file, folder_id)))
+		await Promise.all(files.map(file => uploadFile(file, folder)))
 		await fetchData()
 	}
 
@@ -49,12 +47,9 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 		>
 			<SearchInput placeholder='Searching file...' />
 			<div className='storage-functions'>
-				<Upload
-					folder_id={folder_id}
-					onSuccess={async () => await fetchData()}
-				/>
+				<Upload folder_id={folder} onSuccess={async () => await fetchData()} />
 				<CreateFolderButton
-					folder_id={folder_id}
+					folder_id={folder}
 					onSuccess={async () => await fetchData()}
 				/>
 				<div
@@ -93,7 +88,6 @@ const Storage: React.FC<StorageProps> = ({ folder_id = undefined }) => {
 				<FileTable
 					files={data.files}
 					folders={data.folders}
-					folder_id={folder_id}
 					onSuccess={fetchData}
 				/>
 			) : (
