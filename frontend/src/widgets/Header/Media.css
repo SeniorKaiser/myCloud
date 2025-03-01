@@ -10,7 +10,7 @@
 		width: 100%;
 		flex-direction: column;
 		background-color: var(--background);
-		transform: translateX(100%);
+		transform: translateX(-100%);
 		transition: transform 0.3s ease-in-out;
 		z-index: 999;
 		justify-content: center;
@@ -29,6 +29,12 @@
 
 	.burger-menu {
 		display: block;
+		z-index: 1000;
+	}
+
+	.logo {
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 
@@ -57,6 +63,14 @@
 	.theme-switch .switch.dark {
 		transform: none;
 	}
+
+	header .logo {
+		display: none;
+	}
+
+	.header__elements {
+		margin-left: auto;
+	}
 }
 @media (width < 22rem) {
 	.logo-text {
@@ -65,7 +79,7 @@
 }
 
 @media (width < 16rem) {
-	.logo {
+	header .logo {
 		display: none;
 	}
 	header {

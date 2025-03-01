@@ -12,12 +12,12 @@ const Header: React.FC = () => {
 
 	return (
 		<header>
+			<BurgerMenu width='2rem' height='2rem' navRef={navRef} />
 			<Logo />
 			<Navigation ref={navRef} />
 			<div className='header__elements'>
 				<ThemeSwitcher />
 				<Profile />
-				<BurgerMenu width='2rem' height='2rem' navRef={navRef} />
 			</div>
 		</header>
 	)

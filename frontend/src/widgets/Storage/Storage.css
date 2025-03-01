@@ -43,10 +43,15 @@
 	align-items: center;
 	font-size: 1.5rem;
 	margin-right: auto;
+	color: var(--text);
+	width: 10rem;
 }
 
 .storage__prev span {
 	margin-left: 0.5rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 @media (hover: hover) {
@@ -65,5 +70,19 @@
 	}
 	to {
 		transform: rotate(360deg);
+	}
+}
+
+@media (width < 27rem) {
+	.storage-reload-button {
+		display: none;
+	}
+
+	.upload section span {
+		display: none;
+	}
+
+	.upload-button {
+		width: 3rem !important;
 	}
 }

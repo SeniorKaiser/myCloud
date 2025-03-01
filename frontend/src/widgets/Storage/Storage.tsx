@@ -64,7 +64,10 @@ const Storage: React.FC = () => {
 					className='storage__prev'
 				>
 					{folder_id && <ChevronLeft />}
-					<span>{folder_name}</span>
+					<span>
+						{folder_name}
+						sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsddddddddddsdddddddddd
+					</span>
 				</button>
 				<button
 					onClick={async () => {
