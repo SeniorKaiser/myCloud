@@ -29,6 +29,11 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 		visible: false,
 		position: {},
 	})
+	const [focusIndex, setFocusIndex] = useState<number | null>(null)
+
+	const toggleFocus = (index: number) => {
+		setFocusIndex(focusIndex === index ? null : index)
+	}
 
 	const handleContextMenu = (
 		event: React.MouseEvent,
@@ -81,11 +86,11 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{[...folders, ...files].map(item => (
+					{[...folders, ...files].map((item, index) => (
 						<tr
 							key={item.id}
 							onContextMenu={event => handleContextMenu(event, item)}
-							onClick={async () => {
+							onDoubleClick={async () => {
 								if (onSuccess) {
 									await onSuccess(item.id)
 								}
@@ -93,6 +98,8 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 							data-name={item.name}
 							data-id={item.id}
 							style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}
+							onClick={() => toggleFocus(index)}
+							className={focusIndex === index ? 'focus' : ''}
 						>
 							<td>
 								<div style={{ display: 'inline-flex', width: '100%' }}>

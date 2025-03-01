@@ -45,6 +45,10 @@
 	margin-right: auto;
 }
 
+.storage__prev span {
+	margin-left: 0.5rem;
+}
+
 @media (hover: hover) {
 	.storage-reload-button:hover {
 		color: var(--text);

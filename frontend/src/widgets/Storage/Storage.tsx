@@ -14,15 +14,21 @@ import getFolder from '@services/requests/getFolder'
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [reloadActive, setReloadActive] = useState<boolean>(false)
+	const [folder_name, setFolder_name] = useState<string | undefined>(undefined)
 	const [folder_id, setFolder_id] = useState<string | undefined>(undefined)
 	const [prevfolder, setprevFolder] = useState<string | undefined>(undefined)
 
 	const fetchData = async (folder_id?: string) => {
 		const response = await Disk(folder_id)
+
 		if (folder_id) {
 			const curfolder = await getFolder(folder_id)
+			setFolder_name(curfolder?.name || 'Unknown Folder')
 			setprevFolder(curfolder?.parent_folder)
+		} else {
+			setFolder_name('Storage')
 		}
+
 		setFolder_id(folder_id)
 		setData(response)
 	}
@@ -57,7 +63,8 @@ const Storage: React.FC = () => {
 					}}
 					className='storage__prev'
 				>
-					<ChevronLeft />
+					{folder_id && <ChevronLeft />}
+					<span>{folder_name}</span>
 				</button>
 				<button
 					onClick={async () => {
