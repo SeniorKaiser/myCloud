@@ -9,6 +9,7 @@
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
+	color: var(--text);
 }
 
 .reviews-control button:first-child {
@@ -56,4 +57,5 @@
 
 .slider-block p:last-child {
 	margin-top: 2rem;
+	cursor: pointer;
 }

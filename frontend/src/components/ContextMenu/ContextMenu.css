@@ -16,11 +16,6 @@
 	padding: 0.3rem 0.6rem;
 	cursor: pointer;
 	transition: color 0.3s ease, fill 0.3s ease;
-	color: var(--grey);
-}
-
-.context-menu li:not(:nth-child(1)):not(:nth-child(2)) {
-	color: var(--grey);
 }
 
 .context-menu__id {
@@ -58,7 +53,16 @@
 }
 
 @media (hover: hover) {
+	.context-menu li:not(:nth-child(1)):not(:nth-child(2)) {
+		color: var(--grey);
+	}
 	.context-menu li:hover {
+		color: var(--text);
+	}
+}
+
+@media (hover: none) {
+	.context-menu li {
 		color: var(--text);
 	}
 }
