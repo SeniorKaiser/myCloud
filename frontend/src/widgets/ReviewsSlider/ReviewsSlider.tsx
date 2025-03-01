@@ -31,7 +31,7 @@ const ReviewsSlider: React.FC = () => {
 						<li key={index} className='slider-block'>
 							<h1>{el.name}</h1>
 							<div className='slider-block-stars'>
-								{Array.from({ length: el.stars }).map((_, index) => (
+								{Array.from({ length: el.stars }).map(_ => (
 									<Star />
 								))}
 							</div>
