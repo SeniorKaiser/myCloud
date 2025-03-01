@@ -10,7 +10,6 @@ const AuthUser = async (): Promise<User | undefined> => {
 			`${domenApi}/api/user/auth`,
 			{ withCredentials: true }
 		)
-		console.table(response.data)
 		toast.success(`User authenticated`, { id: loadingToast })
 		return response.data
 	} catch (error) {

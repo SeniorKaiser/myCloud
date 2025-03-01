@@ -13,7 +13,6 @@ import {
 	FolderOptionsContextMenu,
 } from '@components/FileTable/Data'
 import { Folder, File } from '@app/data'
-// import { tempfolders, tempfiles } from '@app/data'
 
 interface SearchInputProps {
 	placeholder: string
@@ -128,7 +127,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 								<span>{item.name}</span>
 							</div>
 
-							<div onClick={event => handleContextMenuOptions(event, item)}>
+							<div
+								onClick={event => handleContextMenuOptions(event, item)}
+								style={{ cursor: 'pointer' }}
+							>
 								<EllipsisVertical />
 							</div>
 						</div>
@@ -145,26 +147,6 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder }) => {
 						objectId={contextMenu.objectId}
 					/>
 				)}
-				{/* {[...(tempfiles ?? []), tempfolders ?? []].map(item => (
-					<div
-						key={item.id}
-						data-name={item.name}
-						data-id={item.id}
-						style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}
-						className='search-data-el'
-					>
-						<img
-							src={`/FilesIcons/${
-								'extension' in item ? item.extension : 'folder'
-							}.png`}
-							alt={item.name}
-						/>
-						<span>{item.name}</span>
-						<div>
-							<EllipsisVertical />
-						</div>
-					</div>
-				))} */}
 			</div>
 		</form>
 	)

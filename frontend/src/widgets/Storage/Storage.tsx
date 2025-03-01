@@ -15,6 +15,7 @@ const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [reloadActive, setReloadActive] = useState<boolean>(false)
 	const [folder_id, setFolder_id] = useState<string | undefined>(undefined)
+	const [folder_name, setFolder_name] = useState<string | undefined>(undefined)
 	const [prevfolder, setprevFolder] = useState<string | undefined>(undefined)
 
 	const fetchData = async (folder_id?: string) => {
@@ -22,6 +23,7 @@ const Storage: React.FC = () => {
 		if (folder_id) {
 			const curfolder = await getFolder(folder_id)
 			setprevFolder(curfolder?.parent_folder)
+			setFolder_name(curfolder?.name)
 		}
 		setFolder_id(folder_id)
 		setData(response)
@@ -51,23 +53,20 @@ const Storage: React.FC = () => {
 		>
 			<SearchInput placeholder='Searching file...' />
 			<div className='storage-functions'>
-				<Upload
-					folder_id={folder_id}
-					onSuccess={async () => await fetchData()}
-				/>
-				<CreateFolderButton
-					folder_id={folder_id}
-					onSuccess={async () => await fetchData()}
-				/>
-				<div className='storage-navigation'>
-					<button
-						onClick={async () => {
-							await fetchData(prevfolder)
-						}}
-					>
-						<ChevronLeft />
-					</button>
-				</div>
+				<button
+					onClick={async () => {
+						await fetchData(prevfolder)
+					}}
+					className='storage__prev'
+				>
+					{folder_name ? (
+						<>
+							<ChevronLeft /> {folder_name}
+						</>
+					) : (
+						'Storage'
+					)}
+				</button>
 				<button
 					onClick={async () => {
 						try {
@@ -86,6 +85,14 @@ const Storage: React.FC = () => {
 				>
 					<Rotate />
 				</button>
+				<CreateFolderButton
+					folder_id={folder_id}
+					onSuccess={async () => await fetchData()}
+				/>
+				<Upload
+					folder_id={folder_id}
+					onSuccess={async () => await fetchData()}
+				/>
 			</div>
 			{data ? (
 				<FileTable

@@ -18,8 +18,6 @@ const Disk = async (folder_id?: string): Promise<DiskDTO> => {
 		const response: AxiosResponse<DiskDTO> = await api.get('/disk', {
 			params: folder_id ? { folder_id } : undefined,
 		})
-
-		console.table(response.data)
 		return response.data
 	} catch (error) {
 		const axiosError = error as AxiosError

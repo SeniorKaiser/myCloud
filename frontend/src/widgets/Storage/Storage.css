@@ -33,17 +33,16 @@
 	transition: 0.3s ease;
 }
 
-.storage-navigation {
-	width: 100%;
-}
-
-.storage-navigation button {
-	height: 2rem;
-	aspect-ratio: 1/1;
+.storage__prev {
+	height: 100%;
 	border-radius: 50%;
 	border: none;
 	cursor: pointer;
 	background-color: transparent;
+	display: inline-flex;
+	align-items: center;
+	font-size: 1.5rem;
+	margin-right: auto;
 }
 
 @media (hover: hover) {
