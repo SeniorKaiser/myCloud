@@ -1,30 +1,68 @@
-import React from 'react'
-import Header from '@widgets/Header/Header.tsx'
-import Footer from '@widgets/Footer/Footer.tsx'
-import Welcome from '@widgets/Welcome/Welcome'
-import CardsSlider from '@widgets/CardsSlider/CardsSlider'
+import Footer from '@widgets/Footer/Footer'
+import Header from '@widgets/Header/Header'
 import PrivilegeInfo from '@widgets/Privilege/Privilege'
+import ReviewsSlider from '@widgets/ReviewsSlider/ReviewsSlider'
+import Welcome from '@widgets/Welcome/Welcome'
+import { useEffect, useRef } from 'react'
 import { Toaster } from 'react-hot-toast'
 import './Home.css'
+import AnswersQuestions from '@widgets/AnswersQuestions/AnswersQuestions'
 
 const Home: React.FC = () => {
+	const sectionsRef = useRef<(HTMLElement | null)[]>([])
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				if (entry.target instanceof HTMLElement) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('active')
+					} else {
+						entry.target.classList.remove('active')
+					}
+				}
+			})
+		})
+
+		sectionsRef.current.forEach(section => {
+			if (section) observer.observe(section)
+		})
+
+		return () => {
+			sectionsRef.current.forEach(section => {
+				if (section) observer.unobserve(section)
+			})
+		}
+	}, [])
+
 	return (
 		<>
 			<Header />
 			<main className='home-main'>
-				<section className='welcome-container'>
+				<section
+					ref={el => (sectionsRef.current[0] = el)}
+					className='welcome-container'
+				>
 					<Welcome />
-					<div className='features-container' style={{ height: '15rem' }}>
-						<CardsSlider
-							width='min(100%, 60rem)'
-							height='100%'
-							cards_in_row={2}
-						/>
-					</div>
 				</section>
-				<section className='privilege-container'>
+				<section
+					ref={el => (sectionsRef.current[1] = el)}
+					className='privilege-container'
+				>
 					<h1>Privilege</h1>
 					<PrivilegeInfo />
+				</section>
+				<section
+					ref={el => (sectionsRef.current[2] = el)}
+					className='reviews-container'
+				>
+					<h1>What others say</h1>
+					<ReviewsSlider />
+				</section>
+
+				<section ref={el => (sectionsRef.current[3] = el)}>
+					<h1>Popular questions</h1>
+					<AnswersQuestions />
 				</section>
 			</main>
 			<Footer />

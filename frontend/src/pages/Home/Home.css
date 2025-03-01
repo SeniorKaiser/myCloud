@@ -9,7 +9,11 @@
 
 .home-main section {
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
+}
+
+.home-main section.active {
+	animation: section-animation ease 0.3s;
 }
 
 .home-main section > h1 {
@@ -20,11 +24,33 @@
 }
 
 @media (width < 60rem) {
+	.home-main {
+		gap: 30vh;
+	}
+
+	.home-main section:not(:first-child) {
+		height: auto;
+		min-height: auto;
+	}
+
 	.home-main .privilege {
 		flex-direction: column;
 	}
 	.home-main .privilege-card {
 		width: 100%;
 		aspect-ratio: unset;
+	}
+
+	.home-main .slider-block {
+		flex: 0 0 100%;
+	}
+}
+
+@keyframes section-animation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }

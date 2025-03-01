@@ -34,8 +34,6 @@ export const listPrivilegeCard: PrivilegeCard[] = [
 			{ title: 'Cancel Anytime', description: '' },
 			{ title: 'All Basic Services', description: '' },
 			{ title: '', description: '' },
-			{ title: '', description: '' },
-			{ title: '', description: '' },
 		],
 		price: 6.99,
 		color: '#4362ee',

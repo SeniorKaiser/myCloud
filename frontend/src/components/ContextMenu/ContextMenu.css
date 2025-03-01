@@ -19,6 +19,10 @@
 	color: var(--grey);
 }
 
+.context-menu li:not(:nth-child(1)):not(:nth-child(2)) {
+	color: var(--grey);
+}
+
 .context-menu__id {
 	overflow: hidden;
 	text-overflow: ellipsis;
