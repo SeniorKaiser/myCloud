@@ -15,7 +15,6 @@ const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [reloadActive, setReloadActive] = useState<boolean>(false)
 	const [folder_id, setFolder_id] = useState<string | undefined>(undefined)
-	const [folder_name, setFolder_name] = useState<string | undefined>(undefined)
 	const [prevfolder, setprevFolder] = useState<string | undefined>(undefined)
 
 	const fetchData = async (folder_id?: string) => {
