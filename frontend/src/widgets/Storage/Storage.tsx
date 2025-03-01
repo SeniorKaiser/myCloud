@@ -7,18 +7,18 @@ import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
 // import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
-import ProgressBar from '@components/ProgressBar/ProgressBar'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
-import { Rotate } from '@components/Icons/Icons'
-import getDiskSize from '@services/requests/getDiskSize'
+import { Rotate, ChevronLeft, ChevronRight } from '@components/Icons/Icons'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [reloadActive, setReloadActive] = useState<boolean>(false)
 	const [folder, setFolder] = useState<string | undefined>(undefined)
+	const [prevfolder, setprevFolder] = useState<string | undefined>(undefined)
 
 	const fetchData = async (folder_id?: string) => {
 		const response = await Disk(folder_id)
+		setprevFolder(folder)
 		setFolder(folder_id)
 		setData(response)
 	}
@@ -52,18 +52,21 @@ const Storage: React.FC = () => {
 					folder_id={folder}
 					onSuccess={async () => await fetchData()}
 				/>
-				<div
-					style={{
-						width: '50%',
-						margin: '0 auto',
-					}}
-				>
-					<ProgressBar
-						usedSize={Number(async () => {
-							return await getDiskSize()
-						})}
-						totalSize={21474836009}
-					/>
+				<div className='storage-navigation'>
+					<button
+						onClick={async () => {
+							await fetchData(prevfolder)
+						}}
+					>
+						<ChevronLeft />
+					</button>
+					<button
+						onClick={async () => {
+							await fetchData(folder)
+						}}
+					>
+						<ChevronRight />
+					</button>
 				</div>
 				<button
 					onClick={async () => {

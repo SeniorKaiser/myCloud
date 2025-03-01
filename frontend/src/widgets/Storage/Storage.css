@@ -33,6 +33,19 @@
 	transition: 0.3s ease;
 }
 
+.storage-navigation {
+	width: 100%;
+}
+
+.storage-navigation button {
+	height: 2rem;
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
+}
+
 @media (hover: hover) {
 	.storage-reload-button:hover {
 		color: var(--text);
