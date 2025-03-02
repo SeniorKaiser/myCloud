@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 import ContextMenu from '@components/ContextMenu/ContextMenu.tsx'
 import { Position } from '@components/ContextMenu/Data'
 import { ProfileOptionsContextMenu } from './Data'
@@ -8,7 +8,7 @@ import AuthUser from '@services/requests/AuthUser'
 import './Profile.css'
 import Loader from '@components/Loading/Loading'
 
-const Profile: React.FC = () => {
+const Profile: FC = () => {
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
 	const [menuPosition, setMenuPosition] = useState<Position>({
 		position: 'fixed',
@@ -48,21 +48,17 @@ const Profile: React.FC = () => {
 	return (
 		<section className='profile' onClick={user ? handleContextMenu : undefined}>
 			{user ? (
-				<>
-					<div className='profile-avatar'>
-						<UserIcon />
-					</div>
-				</>
+				<div className='profile-avatar'>
+					<UserIcon />
+				</div>
 			) : (
-				<>
-					<div className='profile-avatar'>
-						<a href='./login'>
-							<UserSecret />
-						</a>
-					</div>
-				</>
+				<div className='profile-avatar'>
+					<a href='./login'>
+						<UserSecret />
+					</a>
+				</div>
 			)}
-			{contextMenuVisible && (
+			{contextMenuVisible && user && (
 				<ContextMenu
 					options={ProfileOptionsContextMenu}
 					position={menuPosition}

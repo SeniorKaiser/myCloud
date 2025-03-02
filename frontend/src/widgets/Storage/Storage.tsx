@@ -103,11 +103,6 @@ const Storage: React.FC = () => {
 					onSuccess={fetchData}
 				/>
 			) : (
-				// <FileTable
-				// 	files={tempfiles}
-				// 	folders={tempfolders}
-				// 	onSuccess={fetchData}
-				// />
 				<div className='storage-loader'>
 					<Loader />
 				</div>

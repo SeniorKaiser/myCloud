@@ -9,7 +9,7 @@ interface ContextMenuProps {
 	options: Option[]
 	children?: ReactNode
 	onSuccess?: (folder_id?: string) => Promise<void> | void
-	object: File | Folder | User | undefined
+	object: File | Folder | User
 }
 
 const ContextMenu: FC<ContextMenuProps> = ({
@@ -59,7 +59,8 @@ const ContextMenu: FC<ContextMenuProps> = ({
 							key={index}
 							onClick={() => {
 								option.action(object?.id)
-								if (onSuccess) onSuccess
+								if ('parent_folder' in object && onSuccess)
+									onSuccess(object.parent_folder)
 							}}
 						>
 							<span>
