@@ -57,7 +57,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 			<li
 				className='context-menu__title'
 				value={title}
-				onClick={() => copyToClipboard(title)}
+				onClick={() => setModalActive(true)}
 			>
 				{title}
 			</li>
