@@ -44,49 +44,51 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 	}, [onClose])
 
 	return (
-		<ul
-			className='context-menu'
-			ref={menuRef}
-			style={{
-				top: position.top,
-				left: position.left,
-				right: position.right,
-				bottom: position.bottom,
-			}}
-		>
-			<li
-				className='context-menu__title'
-				value={title}
-				onClick={() => setModalActive(true)}
+		<>
+			<ul
+				className='context-menu'
+				ref={menuRef}
+				style={{
+					top: position.top,
+					left: position.left,
+					right: position.right,
+					bottom: position.bottom,
+				}}
 			>
-				{title}
-			</li>
-			<li
-				className='context-menu__id'
-				value={objectId}
-				onClick={() => copyToClipboard(objectId)}
-			>
-				{objectId}
-			</li>
-			{options.map((option, index) => (
 				<li
-					key={index}
-					onClick={async () => {
-						setModalActive(true)
-						await option.action(objectId)
-						if (onSuccess) {
-							await onSuccess()
-						}
-					}}
+					className='context-menu__title'
+					value={title}
+					onClick={() => setModalActive(true)}
 				>
-					<span>
-						<option.icon />
-					</span>
-					{option.title}
+					{title}
 				</li>
-			))}
+				<li
+					className='context-menu__id'
+					value={objectId}
+					onClick={() => copyToClipboard(objectId)}
+				>
+					{objectId}
+				</li>
+				{options.map((option, index) => (
+					<li
+						key={index}
+						onClick={async () => {
+							setModalActive(true)
+							await option.action(objectId)
+							if (onSuccess) {
+								await onSuccess()
+							}
+						}}
+					>
+						<span>
+							<option.icon />
+						</span>
+						{option.title}
+					</li>
+				))}
+			</ul>
 			<Modal active={modalActive} setActive={setModalActive}></Modal>
-		</ul>
+		</>
 	)
 }
 
