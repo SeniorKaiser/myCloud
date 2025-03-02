@@ -21,6 +21,7 @@ const Storage: React.FC = () => {
 	const [active, setActive] = useState<boolean>(false)
 
 	const fetchData = async (fid?: string) => {
+		console.log(fid, folder_id)
 		const response = await Disk(fid)
 		if (fid) {
 			const curfolder = await getFolder(fid)

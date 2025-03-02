@@ -59,8 +59,10 @@ const ContextMenu: FC<ContextMenuProps> = ({
 							key={index}
 							onClick={() => {
 								option.action(object?.id)
-								if ('parent_folder' in object && onSuccess)
+								if ('parent_folder' in object && onSuccess) {
+									console.log(object.parent_folder)
 									onSuccess(object.parent_folder)
+								}
 							}}
 						>
 							<span>
