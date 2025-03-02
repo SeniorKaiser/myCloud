@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu.tsx'
+import ContextMenu from '@components/ContextMenu/ContextMenu.tsx'
+import { Position } from '@components/ContextMenu/Data'
 import { ProfileOptionsContextMenu } from './Data'
 import { User as UserIcon, UserSecret } from '@components/Icons/Icons'
 import { User } from '@app/data'
@@ -9,7 +10,9 @@ import Loader from '@components/Loading/Loading'
 
 const Profile: React.FC = () => {
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
-	const [menuPosition, setMenuPosition] = useState<Position>({})
+	const [menuPosition, setMenuPosition] = useState<Position>({
+		position: 'fixed',
+	})
 	const [user, setUser] = useState<User | undefined>(undefined)
 	const [isloading, setLoading] = useState<boolean>(true)
 
