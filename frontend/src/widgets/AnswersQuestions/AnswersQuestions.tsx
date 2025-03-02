@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { questionList } from './data'
-import { Plus } from '@components/Icons/Icons'
+import { Plus, XMark } from '@components/Icons/Icons'
 import './AnswersStyles.css'
 
 const AnswersQuestions: React.FC = () => {
@@ -19,8 +19,8 @@ const AnswersQuestions: React.FC = () => {
 					onClick={() => toggleAnswer(index)}
 				>
 					<div className='answers-questions-block-head'>
-						<h2>
-							<Plus />
+						<h2 className={openIndex === index ? 'active' : ''}>
+							{openIndex === index ? <XMark /> : <Plus />}
 						</h2>
 						{''}
 						<h2>{el.question}</h2>

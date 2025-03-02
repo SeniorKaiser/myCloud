@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Option } from './Data'
 import './ContextMenu.css'
 import { copyToClipboard } from '@services/functions/copyToClipboard'
+import Modal from '@components/Modal/Modal'
 
 export interface Position {
 	top?: string | undefined
@@ -28,6 +29,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 	onSuccess,
 }) => {
 	const menuRef = useRef<HTMLUListElement>(null)
+	const [modalActive, setModalActive] = useState<boolean>(false)
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -70,6 +72,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				<li
 					key={index}
 					onClick={async () => {
+						setModalActive(true)
 						await option.action(objectId)
 						if (onSuccess) {
 							await onSuccess()
@@ -82,6 +85,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 					{option.title}
 				</li>
 			))}
+			<Modal active={modalActive} setActive={setModalActive}></Modal>
 		</ul>
 	)
 }

@@ -1,7 +1,4 @@
 @media (width < 42rem) {
-	header .logo {
-		margin-right: auto;
-	}
 	header nav {
 		position: fixed;
 		top: 0;
@@ -11,15 +8,14 @@
 		flex-direction: column;
 		background-color: var(--background);
 		transform: translateX(-100%);
-		transition: transform 0.3s ease-in-out;
+		transition: transform 0.2s ease-in-out;
 		z-index: 999;
-		justify-content: center;
-		align-items: center;
 		font-size: 2rem;
 		gap: 2rem;
 
 		a {
 			height: auto;
+			color: var(--text);
 		}
 	}
 
@@ -32,7 +28,7 @@
 		z-index: 1000;
 	}
 
-	.logo {
+	header .logo {
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -63,26 +59,13 @@
 	.theme-switch .switch.dark {
 		transform: none;
 	}
-
-	header .logo {
-		display: none;
-	}
-
-	.header__elements {
-		margin-left: auto;
-	}
-}
-@media (width < 22rem) {
-	.logo-text {
-		display: none;
-	}
 }
 
-@media (width < 16rem) {
+@media (width < 20rem) {
 	header .logo {
 		display: none;
 	}
 	header {
-		justify-content: end;
+		justify-content: space-between;
 	}
 }
