@@ -8,7 +8,7 @@ interface ContextMenuProps {
 	onClose: () => void
 	options: Option[]
 	children?: ReactNode
-	onSuccess?: () => void
+	onSuccess?: (folder_id?: string) => Promise<void> | void
 	object: File | Folder | User | undefined
 }
 
@@ -18,6 +18,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
 	children,
 	options,
 	object,
+	onSuccess,
 }) => {
 	const menuRef = useRef<HTMLDivElement>(null)
 
@@ -58,6 +59,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
 							key={index}
 							onClick={() => {
 								option.action(object?.id)
+								if (onSuccess) onSuccess(object?.id)
 							}}
 						>
 							<span>
