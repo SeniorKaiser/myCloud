@@ -11,29 +11,26 @@ import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButto
 import { Rotate, ChevronLeft, FileImport } from '@components/Icons/Icons'
 import getFolder from '@services/requests/getFolder'
 import Modal from '@components/Modal/Modal'
+import { Folder } from '@app/data'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
 	const [reloadActive, setReloadActive] = useState<boolean>(false)
-	const [folder_name, setFolder_name] = useState<string | undefined>(undefined)
-	const [folder_id, setFolder_id] = useState<string | undefined>(undefined)
-	const [prevfolder, setprevFolder] = useState<string | undefined>(undefined)
-	const [active, setActive] = useState<boolean>(false)
+	const [modalActive, setModalActive] = useState<boolean>(false)
+	const [currentFolder, setCurrentFolder] = useState<Folder | undefined>(
+		undefined
+	)
 
 	const fetchData = async (fid?: string) => {
-		console.log(fid, folder_id)
-		let response
 		if (fid) {
+			const response = await Disk(fid)
+			setData(response)
 			const curfolder = await getFolder(fid)
-			setFolder_name(curfolder?.name || 'Unknown Folder')
-			setprevFolder(curfolder?.parent_folder)
-			response = await Disk(fid)
+			setCurrentFolder(curfolder)
 		} else {
-			setFolder_name('Storage')
-			response = await Disk(folder_id)
+			const response = await Disk(currentFolder?.id)
+			setData(response)
 		}
-		setFolder_id(fid)
-		setData(response)
 	}
 
 	useEffect(() => {
@@ -42,15 +39,15 @@ const Storage: React.FC = () => {
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
-		setActive(true)
+		setModalActive(true)
 	}
 
 	const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
-		setActive(false)
+		setModalActive(false)
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
-		await Promise.all(files.map(file => uploadFile(file, folder_id)))
+		await Promise.all(files.map(file => uploadFile(file, currentFolder?.id)))
 		await fetchData()
 	}
 
@@ -64,12 +61,12 @@ const Storage: React.FC = () => {
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {
-						await fetchData(prevfolder)
+						await fetchData(currentFolder?.parent_folder)
 					}}
 					className='storage__prev'
 				>
-					{folder_id && <ChevronLeft />}
-					<span>{folder_name}</span>
+					{currentFolder && <ChevronLeft />}
+					<span>{currentFolder?.name}</span>
 				</button>
 				<button
 					onClick={async () => {
@@ -90,11 +87,11 @@ const Storage: React.FC = () => {
 					<Rotate />
 				</button>
 				<CreateFolderButton
-					folder_id={folder_id}
+					folder_id={currentFolder?.id}
 					onSuccess={async () => await fetchData()}
 				/>
 				<Upload
-					folder_id={folder_id}
+					folder_id={currentFolder?.id}
 					onSuccess={async () => await fetchData()}
 				/>
 			</div>
@@ -109,7 +106,7 @@ const Storage: React.FC = () => {
 					<Loader />
 				</div>
 			)}
-			<Modal active={active} setActive={setActive}>
+			<Modal active={modalActive} setActive={setModalActive}>
 				<div className='drag-and-drop-modal'>
 					<div className='drag-and-drop-modal__icon'>
 						<FileImport />
