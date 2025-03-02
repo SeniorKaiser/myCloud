@@ -29,7 +29,7 @@ const Storage: React.FC = () => {
 			const curfolder = await getFolder(fid)
 			setCurrentFolder(curfolder)
 		} else {
-			const response = await Disk(currentFolder?.id)
+			const response = await Disk()
 			setData(response)
 			setCurrentFolder(undefined)
 		}
@@ -63,7 +63,6 @@ const Storage: React.FC = () => {
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {
-						console.log(currentFolder?.parent_folder)
 						await fetchData(currentFolder?.parent_folder)
 					}}
 					className='storage__prev'
