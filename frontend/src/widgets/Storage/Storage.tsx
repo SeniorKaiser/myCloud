@@ -5,7 +5,6 @@ import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
 import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
-// import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 import { Rotate, ChevronLeft, FileImport } from '@components/Icons/Icons'
@@ -29,7 +28,7 @@ const Storage: React.FC = () => {
 			const curfolder = await getFolder(fid)
 			setCurrentFolder(curfolder)
 		} else {
-			const response = await Disk()
+			const response = await Disk(currentFolder?.parent_folder)
 			setData(response)
 			setCurrentFolder(undefined)
 		}
