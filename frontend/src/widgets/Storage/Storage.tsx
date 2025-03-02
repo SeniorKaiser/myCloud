@@ -22,15 +22,16 @@ const Storage: React.FC = () => {
 
 	const fetchData = async (fid?: string) => {
 		console.log(fid, folder_id)
-		const response = await Disk(fid)
+		let response
 		if (fid) {
 			const curfolder = await getFolder(fid)
 			setFolder_name(curfolder?.name || 'Unknown Folder')
 			setprevFolder(curfolder?.parent_folder)
+			response = await Disk(fid)
 		} else {
 			setFolder_name('Storage')
+			response = await Disk(folder_id)
 		}
-
 		setFolder_id(fid)
 		setData(response)
 	}

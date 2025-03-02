@@ -3,6 +3,7 @@ import './CreateFolderButton.css'
 import Loader from '@components/Loading/Loading'
 import { FolderPlus } from '@components/Icons/Icons'
 import createFolder from '@services/requests/CreateFolder'
+import customPrompt from '@components/CustomPrompt/PromptHelper'
 
 interface CreateFolderButtonProps {
 	folder_id?: string | undefined
@@ -19,7 +20,7 @@ const CreateFolderButton: React.FC<CreateFolderButtonProps> = ({
 			className='create-folder-button'
 			onClick={async () => {
 				setLoading(true)
-				const folderName = prompt('Folder name:', 'New Folder')
+				const folderName = await customPrompt('Folder Name')
 				if (folderName) {
 					try {
 						await createFolder(folderName, folder_id)
