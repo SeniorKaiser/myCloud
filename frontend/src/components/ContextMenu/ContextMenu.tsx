@@ -7,6 +7,7 @@ interface ContextMenuProps {
 	onClose: () => void
 	children?: ReactNode
 	options: Option[]
+	onSuccess?: () => void
 }
 
 const ContextMenu: FC<ContextMenuProps> = ({
@@ -14,6 +15,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
 	onClose,
 	children,
 	options,
+	onSuccess,
 }) => {
 	const menuRef = useRef<HTMLDivElement>(null)
 
@@ -50,7 +52,13 @@ const ContextMenu: FC<ContextMenuProps> = ({
 				{children}
 				<ul>
 					{options.map((option, index) => (
-						<li key={index} onClick={async () => await option.action()}>
+						<li
+							key={index}
+							onClick={async () => {
+								await option.action()
+								await onSuccess()
+							}}
+						>
 							<span>
 								<option.icon />
 							</span>

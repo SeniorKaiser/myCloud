@@ -92,7 +92,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 							key={item.id}
 							onContextMenu={event => handleContextMenu(event, item)}
 							onDoubleClick={async () => {
-								await onSuccess(item.id)
+								!('extension' in item) && (await onSuccess(item.id))
 							}}
 							style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}
 							onClick={() => !('extension' in item) && toggleFocus(index)}
@@ -124,6 +124,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 					position={contextMenu.position}
 					onClose={handleCloseMenu}
 					options={contextMenu.options}
+					onSuccess={onSuccess}
 				>
 					<h2>{object?.name}</h2>
 					<p>{object?.id}</p>
