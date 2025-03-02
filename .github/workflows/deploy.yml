@@ -41,12 +41,6 @@ jobs:
             DB_NAME=${{ secrets.DB_NAME }}
             EOF
 
-            echo "Очистка Docker от ненужных данных..."
-            docker system prune -af
-            docker volume prune -f
-            docker network prune -f
-
-
             echo "Обновляем код и перезапускаем контейнеры"
             git pull
             docker compose up --build -d
