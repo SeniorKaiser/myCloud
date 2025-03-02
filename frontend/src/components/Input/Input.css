@@ -33,11 +33,10 @@
 	}
 }
 
-/* Убираем стили автозаполнения */
 .input:-webkit-autofill {
 	background-color: transparent !important;
 	color: inherit !important;
-	transition: background-color 9999s ease-in-out 0s; /* Убираем желтый фон */
+	transition: background-color 9999s ease-in-out 0s;
 }
 
 .input_container {

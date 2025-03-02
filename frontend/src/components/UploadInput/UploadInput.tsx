@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Plus } from '@components/Icons/Icons.tsx'
 import uploadFile from '@services/requests/Upload'
 import Loader from '@components/Loading/Loading'
+// import customPrompt from '@components/CustomPrompt/PromptHelper'
 import './UploadInput.css'
 
 interface UploadProps {
@@ -53,6 +54,7 @@ const Upload: React.FC<UploadProps> = ({
 			<button
 				className='upload-button'
 				onClick={handleClick}
+				// onClick={async () => await customPrompt('Upload')}
 				disabled={loading}
 			>
 				<section>

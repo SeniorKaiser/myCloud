@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import './CustomPrompt.css'
+import Input from '@components/Input/Input'
 
 interface CustomPromptProps {
 	message: string
@@ -26,20 +27,19 @@ const CustomPrompt: React.FC<CustomPromptProps> = ({ message, onClose }) => {
 	return createPortal(
 		<div className='modal-overlay'>
 			<div className='modal-content'>
-				<p>{message}</p>
-				<input
-					type='text'
+				<Input
+					placeholder={message}
 					value={inputValue}
+					type='text'
 					onChange={e => setInputValue(e.target.value)}
-					className='input-field'
 					autoFocus
 				/>
 				<div className='modal-buttons'>
 					<button onClick={handleCancel} className='cancel-btn'>
-						Отмена
+						Cancel
 					</button>
 					<button onClick={handleConfirm} className='confirm-btn'>
-						ОК
+						Submit
 					</button>
 				</div>
 			</div>

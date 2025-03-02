@@ -18,7 +18,7 @@ export const FileOptionsContextMenu: Option[] = [
 	{
 		title: 'Rename',
 		action: async (id?: string) => {
-			const folderName = await customPrompt('File name')
+			const folderName = await customPrompt('File Name')
 			if (folderName && id) await renameFile(id, folderName)
 		},
 		icon: KeyBoard,
@@ -36,7 +36,7 @@ export const FolderOptionsContextMenu: Option[] = [
 	{
 		title: 'Rename',
 		action: async (id?: string) => {
-			const folderName = await customPrompt('Folder name')
+			const folderName = await customPrompt('Folder Name')
 			if (folderName && id) await renameFolder(id, folderName)
 		},
 		icon: KeyBoard,
