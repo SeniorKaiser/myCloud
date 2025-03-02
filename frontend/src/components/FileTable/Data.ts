@@ -5,7 +5,7 @@ import deleteFile from '@services/requests/Delete'
 import renameFolder from '@services/requests/RenameFolder'
 import renameFile from '@services/requests/Rename'
 import deleteFolder from '@services/requests/DeleteFolder'
-import { customPrompt } from '@components/custonprompt'
+import customPrompt from '@components/CustomPrompt/PromptHelper'
 
 export const FileOptionsContextMenu: Option[] = [
 	{
@@ -36,7 +36,7 @@ export const FolderOptionsContextMenu: Option[] = [
 	{
 		title: 'Rename',
 		action: async (id?: string) => {
-			const folderName = prompt('Folder name', 'New name')
+			const folderName = await customPrompt('Folder name')
 			if (folderName && id) await renameFolder(id, folderName)
 		},
 		icon: KeyBoard,

@@ -13,13 +13,13 @@ export const customPrompt = (message: string): Promise<string | null> => {
 		modal.style.zIndex = '1000'
 
 		const dialog = document.createElement('div')
-		dialog.style.background = 'white'
-		dialog.style.padding = '20px'
-		dialog.style.borderRadius = '8px'
+		dialog.style.padding = '1.25rem'
+		dialog.style.borderRadius = '0.8rem'
 		dialog.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)'
 		dialog.style.display = 'flex'
 		dialog.style.flexDirection = 'column'
 		dialog.style.gap = '10px'
+		dialog.style.backgroundColor = 'var(--glass)'
 
 		const text = document.createElement('p')
 		text.textContent = message
@@ -27,8 +27,11 @@ export const customPrompt = (message: string): Promise<string | null> => {
 		const input = document.createElement('input')
 		input.type = 'text'
 		input.style.padding = '8px'
-		input.style.border = '1px solid #ccc'
+		input.style.border = 'none'
 		input.style.borderRadius = '4px'
+		input.style.backgroundColor = 'var(--window)'
+		input.style.fontSize = '1.3rem'
+		input.onfocus = () => (input.style.border = 'none')
 
 		const buttons = document.createElement('div')
 		buttons.style.display = 'flex'
@@ -39,15 +42,16 @@ export const customPrompt = (message: string): Promise<string | null> => {
 		cancelButton.textContent = 'Отмена'
 		cancelButton.style.padding = '8px 12px'
 		cancelButton.style.border = 'none'
-		cancelButton.style.background = '#ccc'
+		cancelButton.style.background = 'transparent'
 		cancelButton.style.borderRadius = '4px'
 		cancelButton.style.cursor = 'pointer'
+		cancelButton.style.color = 'var(--text)'
 
 		const confirmButton = document.createElement('button')
 		confirmButton.textContent = 'ОК'
 		confirmButton.style.padding = '8px 12px'
 		confirmButton.style.border = 'none'
-		confirmButton.style.background = '#007bff'
+		confirmButton.style.background = 'var(--main-color)'
 		confirmButton.style.color = 'white'
 		confirmButton.style.borderRadius = '4px'
 		confirmButton.style.cursor = 'pointer'
