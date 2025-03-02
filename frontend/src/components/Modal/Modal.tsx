@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import './ModalStyles.css'
 
 interface ModalProps {
 	active: boolean
