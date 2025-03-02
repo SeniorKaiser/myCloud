@@ -24,6 +24,7 @@ import {
 	faRotate,
 	faCheck,
 	faStar,
+	faFileImport,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
@@ -178,4 +179,8 @@ export const Check: React.FC = () => {
 
 export const Star: React.FC = () => {
 	return <FontAwesomeIcon icon={faStar} />
+}
+
+export const FileImport: React.FC = () => {
+	return <FontAwesomeIcon icon={faFileImport} />
 }

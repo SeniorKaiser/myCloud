@@ -73,14 +73,27 @@
 	padding: 0.3rem;
 }
 
+.storage-reload-button.active {
+	animation: rotateAnimation 1s ease infinite;
+}
+
+.drag-and-drop-modal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.drag-and-drop-modal__icon {
+	font-size: 10rem;
+}
+
 @media (hover: hover) {
 	.storage-reload-button:hover {
 		color: var(--text);
 	}
-}
-
-.storage-reload-button.active {
-	animation: rotateAnimation 1s ease infinite;
 }
 
 @keyframes rotateAnimation {

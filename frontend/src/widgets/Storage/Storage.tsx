@@ -8,8 +8,9 @@ import Upload from '@components/UploadInput/UploadInput.tsx'
 // import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
-import { Rotate, ChevronLeft } from '@components/Icons/Icons'
+import { Rotate, ChevronLeft, FileImport } from '@components/Icons/Icons'
 import getFolder from '@services/requests/getFolder'
+import Modal from '@components/Modal/Modal'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
@@ -17,19 +18,19 @@ const Storage: React.FC = () => {
 	const [folder_name, setFolder_name] = useState<string | undefined>(undefined)
 	const [folder_id, setFolder_id] = useState<string | undefined>(undefined)
 	const [prevfolder, setprevFolder] = useState<string | undefined>(undefined)
+	const [active, setActive] = useState<boolean>(false)
 
-	const fetchData = async (folder_id?: string) => {
+	const fetchData = async (fid?: string) => {
 		const response = await Disk(folder_id)
-
-		if (folder_id) {
-			const curfolder = await getFolder(folder_id)
+		if (fid) {
+			const curfolder = await getFolder(fid)
 			setFolder_name(curfolder?.name || 'Unknown Folder')
 			setprevFolder(curfolder?.parent_folder)
 		} else {
 			setFolder_name('Storage')
 		}
 
-		setFolder_id(folder_id)
+		setFolder_id(fid)
 		setData(response)
 	}
 
@@ -39,10 +40,12 @@ const Storage: React.FC = () => {
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
+		setActive(true)
 	}
 
 	const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
+		setActive(false)
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
 		await Promise.all(files.map(file => uploadFile(file, folder_id)))
@@ -109,6 +112,13 @@ const Storage: React.FC = () => {
 					<Loader />
 				</div>
 			)}
+			<Modal active={active} setActive={setActive}>
+				<div className='drag-and-drop-modal'>
+					<div className='drag-and-drop-modal__icon'>
+						<FileImport />
+					</div>
+				</div>
+			</Modal>
 		</section>
 	)
 }

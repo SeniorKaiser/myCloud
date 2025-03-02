@@ -59,7 +59,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
 							key={index}
 							onClick={() => {
 								option.action(object?.id)
-								if (onSuccess) onSuccess(object?.id)
+								if (onSuccess) onSuccess
 							}}
 						>
 							<span>
