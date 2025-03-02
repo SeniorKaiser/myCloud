@@ -24,7 +24,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 		position: { position: 'static' },
 		options: [],
 	})
-	const [object, setObject] = useState<File | Folder | undefined>(undefined)
+	const [object, setObject] = useState<File | Folder>()
 
 	const handleContextMenu = (
 		event: React.MouseEvent,
@@ -110,7 +110,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 					))}
 				</tbody>
 			</table>
-			{contextMenu.visible && (
+			{contextMenu.visible && object && (
 				<ContextMenu
 					position={contextMenu.position}
 					onClose={handleCloseMenu}
