@@ -29,6 +29,7 @@ class FolderService():
         folder = await self.folder_repository.get(id)
         if folder.user_id != user_id: raise HTTPException(status_code=403)
         await self.folder_repository.delete(id)
+        await redis_client.delete(f"folder:{id}:{user_id}")
         return folder
     
     async def rename_folder(self, id: str, name: str, user_id: str) -> FolderDTO:
@@ -36,4 +37,5 @@ class FolderService():
         if folder.user_id != user_id: raise HTTPException(status_code=403)
         folder.name = name
         res = await self.folder_repository.update(id, folder.dict())
+        await redis_client.set(key=f"folder:{id}:{user_id}", value=folder.to_dict())
         return res
