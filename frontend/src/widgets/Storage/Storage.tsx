@@ -21,7 +21,7 @@ const Storage: React.FC = () => {
 		undefined
 	)
 
-	const fetchData = async (fid?: string | undefined) => {
+	const fetchData = async (fid?: string | null) => {
 		console.log(currentFolder)
 		if (fid) {
 			const response = await Disk(fid)
