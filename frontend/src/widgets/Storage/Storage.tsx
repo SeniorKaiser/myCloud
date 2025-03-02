@@ -21,7 +21,7 @@ const Storage: React.FC = () => {
 	const [active, setActive] = useState<boolean>(false)
 
 	const fetchData = async (fid?: string) => {
-		const response = await Disk(folder_id)
+		const response = await Disk(fid)
 		if (fid) {
 			const curfolder = await getFolder(fid)
 			setFolder_name(curfolder?.name || 'Unknown Folder')
