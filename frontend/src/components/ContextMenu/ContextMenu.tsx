@@ -1,21 +1,23 @@
 import { ReactNode, useEffect, useRef, FC } from 'react'
 import { Position, Option } from './Data'
+import { File, Folder, User } from '@app/data'
 import './ContextMenu.css'
 
 interface ContextMenuProps {
 	position: Position
 	onClose: () => void
-	children?: ReactNode
 	options: Option[]
+	children?: ReactNode
 	onSuccess?: () => void
+	object: File | Folder | User | undefined
 }
 
 const ContextMenu: FC<ContextMenuProps> = ({
-	position,
+	position = { position: 'fixed' },
 	onClose,
 	children,
 	options,
-	onSuccess,
+	object,
 }) => {
 	const menuRef = useRef<HTMLDivElement>(null)
 
@@ -54,9 +56,8 @@ const ContextMenu: FC<ContextMenuProps> = ({
 					{options.map((option, index) => (
 						<li
 							key={index}
-							onClick={async () => {
-								await option.action()
-								await onSuccess()
+							onClick={() => {
+								option.action(object?.id)
 							}}
 						>
 							<span>

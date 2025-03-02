@@ -19,6 +19,7 @@
 	padding: 0.3rem 0.6rem;
 	cursor: pointer;
 	transition: color 0.3s ease, fill 0.3s ease;
+	color: var(--grey);
 }
 
 .context-menu li span {
@@ -38,10 +39,6 @@
 		opacity: 1;
 		transform: scale(1) translateY(0);
 	}
-}
-
-.context-menu li {
-	color: var(--grey);
 }
 
 @media (hover: hover) {

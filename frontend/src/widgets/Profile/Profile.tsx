@@ -67,6 +67,7 @@ const Profile: React.FC = () => {
 					options={ProfileOptionsContextMenu}
 					position={menuPosition}
 					onClose={handleCloseMenu}
+					object={user}
 				>
 					<h2>{user?.name}</h2>
 					<p>{user?.id}</p>

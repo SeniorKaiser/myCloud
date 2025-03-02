@@ -15,7 +15,7 @@ import './FileTable.css'
 export interface StorageProps {
 	files: File[]
 	folders: Folder[]
-	onSuccess: (folder_id?: string) => Promise<void> | void
+	onSuccess?: (folder_id?: string) => Promise<void> | void
 }
 
 const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
@@ -24,12 +24,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 		position: { position: 'static' },
 		options: [],
 	})
-	const [focusIndex, setFocusIndex] = useState<number | null>(null)
-	const [object, setObject] = useState<File | Folder>()
-
-	const toggleFocus = (index: number) => {
-		setFocusIndex(focusIndex === index ? null : index)
-	}
+	const [object, setObject] = useState<File | Folder | undefined>(undefined)
 
 	const handleContextMenu = (
 		event: React.MouseEvent,
@@ -79,24 +74,19 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 				<thead>
 					<tr>
 						{Columns.map(({ title }) => (
-							<th key={title} className={title}>
-								{title}
-							</th>
+							<th key={title}>{title}</th>
 						))}
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					{[...folders, ...files].map((item, index) => (
+					{[...folders, ...files].map(item => (
 						<tr
 							key={item.id}
 							onContextMenu={event => handleContextMenu(event, item)}
-							onDoubleClick={async () => {
-								!('extension' in item) && (await onSuccess(item.id))
-							}}
-							style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}
-							onClick={() => !('extension' in item) && toggleFocus(index)}
-							className={focusIndex === index ? 'focus' : ''}
+							// onDoubleClick={async () => {
+							// 	!('extension' in item) && (await onSuccess(item.id))
+							// }}
 						>
 							<td>
 								<div style={{ display: 'inline-flex', width: '100%' }}>
@@ -104,7 +94,6 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 										src={`/FilesIcons/${
 											'extension' in item ? item.extension : 'folder'
 										}.png`}
-										alt={item.name}
 									/>
 									<span>{item.name}</span>
 								</div>
@@ -125,6 +114,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 					onClose={handleCloseMenu}
 					options={contextMenu.options}
 					onSuccess={onSuccess}
+					object={object}
 				>
 					<h2>{object?.name}</h2>
 					<p>{object?.id}</p>
