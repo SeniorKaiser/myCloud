@@ -1,5 +1,6 @@
 .profile {
 	cursor: pointer;
+	position: relative;
 }
 
 .profile-loader {
@@ -30,12 +31,31 @@
 	border-radius: 100%;
 	justify-content: center;
 	transition: 0.3s;
+	font-size: 1.5rem;
 }
 
 .profile-avatar a {
 	color: var(--text);
 	text-decoration: none;
-	font-size: 1.5rem;
+}
+
+.profile .context-menu h2 {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.profile .context-menu p {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 0.9rem;
+	margin: 0.5rem 0;
+	color: var(--grey);
+	border-bottom: 1px solid var(--grey);
+	padding: 0.3rem;
 }
 
 @media (hover: hover) {

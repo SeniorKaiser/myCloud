@@ -3,6 +3,7 @@
 	border-collapse: collapse;
 	overflow: hidden;
 	caret-color: transparent;
+	position: relative;
 }
 
 th {

@@ -54,6 +54,25 @@
 	white-space: nowrap;
 }
 
+.storage .context-menu h2 {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.storage .context-menu p {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 0.9rem;
+	margin: 0.5rem 0;
+	color: var(--grey);
+	border-bottom: 1px solid var(--grey);
+	padding: 0.3rem;
+}
+
 @media (hover: hover) {
 	.storage-reload-button:hover {
 		color: var(--text);

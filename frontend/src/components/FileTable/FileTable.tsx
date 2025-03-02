@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import ContextMenu, { Position } from '@components/ContextMenu/ContextMenu'
+import ContextMenu from '@components/ContextMenu/ContextMenu'
+import { ContextMenuState } from '@components/ContextMenu/Data'
 import {
-	FileOptionsContextMenu,
-	FolderOptionsContextMenu,
+	FileOptionsContextMenu as FileOption,
+	FolderOptionsContextMenu as FolderOption,
 	Columns,
 } from './Data'
 import { File, Folder } from '@app/data'
@@ -14,22 +15,17 @@ import './FileTable.css'
 export interface StorageProps {
 	files: File[]
 	folders: Folder[]
-	folder_id?: string | undefined
-	onSuccess?: (folder_id?: string) => Promise<void> | void
+	onSuccess: (folder_id?: string) => Promise<void> | void
 }
 
 const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
-	const [contextMenu, setContextMenu] = useState<{
-		visible: boolean
-		position: Position
-		title?: string
-		objectId?: string
-		options?: any
-	}>({
+	const [contextMenu, setContextMenu] = useState<ContextMenuState>({
 		visible: false,
-		position: {},
+		position: { position: 'static' },
+		options: [],
 	})
 	const [focusIndex, setFocusIndex] = useState<number | null>(null)
+	const [object, setObject] = useState<File | Folder>()
 
 	const toggleFocus = (index: number) => {
 		setFocusIndex(focusIndex === index ? null : index)
@@ -42,12 +38,14 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 		event.preventDefault()
 		setContextMenu({
 			visible: true,
-			position: { top: `${event.clientY}px`, left: `${event.clientX}px` },
-			title: item.name,
-			objectId: item.id,
-			options:
-				'size' in item ? FileOptionsContextMenu : FolderOptionsContextMenu,
+			position: {
+				position: 'fixed',
+				top: `${event.clientY}px`,
+				left: `${event.clientX}px`,
+			},
+			options: 'size' in item ? FileOption : FolderOption,
 		})
+		setObject(item)
 	}
 
 	const handleContextMenuOptions = (
@@ -59,18 +57,21 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 		setContextMenu({
 			visible: true,
 			position: {
+				position: 'fixed',
 				top: `${Math.min(event.clientY, window.innerHeight)}px`,
 				right: `${Math.min(event.clientX, window.innerWidth - rect.left)}px`,
 			},
-			title: item.name,
-			objectId: item.id,
-			options:
-				'size' in item ? FileOptionsContextMenu : FolderOptionsContextMenu,
+			options: 'size' in item ? FileOption : FolderOption,
 		})
+		setObject(item)
 	}
 
 	const handleCloseMenu = (): void =>
-		setContextMenu({ visible: false, position: {} })
+		setContextMenu({
+			visible: false,
+			position: { position: 'fixed' },
+			options: [],
+		})
 
 	return (
 		<>
@@ -91,14 +92,10 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 							key={item.id}
 							onContextMenu={event => handleContextMenu(event, item)}
 							onDoubleClick={async () => {
-								if (onSuccess) {
-									await onSuccess(item.id)
-								}
+								await onSuccess(item.id)
 							}}
-							data-name={item.name}
-							data-id={item.id}
 							style={{ cursor: 'extension' in item ? 'default' : 'pointer' }}
-							onClick={() => toggleFocus(index)}
+							onClick={() => !('extension' in item) && toggleFocus(index)}
 							className={focusIndex === index ? 'focus' : ''}
 						>
 							<td>
@@ -124,13 +121,13 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 			</table>
 			{contextMenu.visible && (
 				<ContextMenu
-					options={contextMenu.options}
 					position={contextMenu.position}
 					onClose={handleCloseMenu}
-					title={contextMenu.title}
-					objectId={contextMenu.objectId}
-					onSuccess={onSuccess}
-				/>
+					options={contextMenu.options}
+				>
+					<h2>{object?.name}</h2>
+					<p>{object?.id}</p>
+				</ContextMenu>
 			)}
 		</>
 	)

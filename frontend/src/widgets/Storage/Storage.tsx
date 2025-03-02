@@ -5,7 +5,7 @@ import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
 import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
-// import { tempfiles, tempfolders } from '@app/data'
+import { tempfiles, tempfolders } from '@app/data'
 import uploadFile from '@services/requests/Upload'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 import { Rotate, ChevronLeft } from '@components/Icons/Icons'
@@ -94,17 +94,13 @@ const Storage: React.FC = () => {
 				/>
 			</div>
 			{data ? (
-				<FileTable
-					files={data.files}
-					folders={data.folders}
-					onSuccess={fetchData}
-				/>
-			) : (
 				// <FileTable
-				// 	files={tempfiles}
-				// 	folders={tempfolders}
-				// 	folder_id={folder_id}
+				// 	files={data.files}
+				// 	folders={data.folders}
+				// 	onSuccess={fetchData}
 				// />
+				<FileTable files={tempfiles} folders={tempfolders} />
+			) : (
 				<div className='storage-loader'>
 					<Loader />
 				</div>

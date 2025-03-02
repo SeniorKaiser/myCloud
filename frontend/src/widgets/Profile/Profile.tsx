@@ -19,19 +19,15 @@ const Profile: React.FC = () => {
 			const fetched_user = await AuthUser()
 			if (fetched_user) {
 				setUser(fetched_user)
-			} else {
-				setUser(undefined)
 			}
 			setLoading(false)
 		}
-		console.time('API Request')
 		fetchUser()
-		console.timeEnd('API Request')
 	}, [])
 
 	const handleContextMenu = (event: React.MouseEvent): void => {
 		event.preventDefault()
-		setMenuPosition({ right: '0.3rem', top: '4rem' })
+		setMenuPosition({ position: 'fixed', right: '0.3rem', top: '4rem' })
 		setContextMenuVisible(true)
 	}
 
@@ -51,9 +47,7 @@ const Profile: React.FC = () => {
 			{user ? (
 				<>
 					<div className='profile-avatar'>
-						<a href='./login'>
-							<UserIcon />
-						</a>
+						<UserIcon />
 					</div>
 				</>
 			) : (
@@ -65,14 +59,15 @@ const Profile: React.FC = () => {
 					</div>
 				</>
 			)}
-			{user && contextMenuVisible && (
+			{contextMenuVisible && (
 				<ContextMenu
 					options={ProfileOptionsContextMenu}
 					position={menuPosition}
 					onClose={handleCloseMenu}
-					title={user.name}
-					objectId={user.id}
-				/>
+				>
+					<h2>{user?.name}</h2>
+					<p>{user?.id}</p>
+				</ContextMenu>
 			)}
 		</section>
 	)
