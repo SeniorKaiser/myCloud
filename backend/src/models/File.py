@@ -26,5 +26,5 @@ class File(Base):
             extension=self.extension,
             date=self.date,
             user_id=self.user_id,
-            parent_folder=self.folder_id
+            parent_folder=self.parent_folder
         )
