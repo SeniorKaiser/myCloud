@@ -27,6 +27,7 @@ const Storage: React.FC = () => {
 		}
 		const response = await Disk(currentFolder?.id)
 		setData(response)
+		console.log(currentFolder?.id)
 	}
 
 	useEffect(() => {
@@ -58,7 +59,6 @@ const Storage: React.FC = () => {
 				<button
 					onClick={async () => {
 						await fetchData(currentFolder?.parent_folder)
-						console.log(currentFolder)
 					}}
 					className='storage__prev'
 				>
@@ -71,7 +71,6 @@ const Storage: React.FC = () => {
 							setReloadActive(true)
 							await new Promise(resolve => setTimeout(resolve, 500))
 							await fetchData(currentFolder?.id)
-							console.log(currentFolder)
 						} finally {
 							setReloadActive(false)
 						}

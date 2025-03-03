@@ -57,11 +57,10 @@ const ContextMenu: FC<ContextMenuProps> = ({
 					{options.map((option, index) => (
 						<li
 							key={index}
-							onClick={() => {
-								option.action(object?.id)
-								console.log(object)
+							onClick={async () => {
+								await option.action(object?.id)
 								if (onSuccess) {
-									onSuccess(object?.parent_folder)
+									await onSuccess(object?.parent_folder)
 								}
 							}}
 						>
