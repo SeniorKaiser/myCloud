@@ -21,13 +21,15 @@ const Storage: React.FC = () => {
 	)
 
 	const fetchData = async (fid?: string) => {
+		let folderId = currentFolder?.id
 		if (fid) {
 			const curFolder = await getFolder(fid)
 			setCurrentFolder(curFolder)
+			folderId = curFolder.id
 		}
-		const response = await Disk(currentFolder?.id)
+		const response = await Disk(folderId)
 		setData(response)
-		console.log(currentFolder?.id)
+		console.log(folderId)
 	}
 
 	useEffect(() => {
