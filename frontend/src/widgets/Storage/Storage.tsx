@@ -32,6 +32,7 @@ const Storage: React.FC = () => {
 			setData(response)
 			setCurrentFolder(undefined)
 		}
+		console.log(currentFolder, fid)
 	}
 
 	useEffect(() => {
