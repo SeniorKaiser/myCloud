@@ -21,17 +21,12 @@ const Storage: React.FC = () => {
 	)
 
 	const fetchData = async (fid?: string) => {
-		console.log(currentFolder, fid)
-		if (fid != null) {
-			const response = await Disk(fid)
-			setData(response)
-			const curfolder = await getFolder(fid)
-			setCurrentFolder(curfolder)
-		} else {
-			const response = await Disk(currentFolder?.id)
-			setData(response)
-			setCurrentFolder(undefined)
+		if (fid) {
+			const curFolder = await getFolder(fid)
+			setCurrentFolder(curFolder)
 		}
+		const response = await Disk(currentFolder?.id)
+		setData(response)
 	}
 
 	useEffect(() => {
