@@ -20,7 +20,7 @@ const Storage: React.FC = () => {
 		undefined
 	)
 
-	const fetchData = async (fid?: string | null) => {
+	const fetchData = async (fid?: string | null | undefined) => {
 		console.log(currentFolder, fid)
 		if (typeof fid === 'string') {
 			const response = await Disk(fid)
@@ -30,7 +30,7 @@ const Storage: React.FC = () => {
 		} else if (fid === null) {
 			const response = await Disk()
 			setData(response)
-		} else {
+		} else if (fid === undefined) {
 			const response = await Disk(currentFolder?.id)
 			setData(response)
 		}
@@ -76,7 +76,7 @@ const Storage: React.FC = () => {
 						try {
 							setReloadActive(true)
 							await new Promise(resolve => setTimeout(resolve, 500))
-							await fetchData()
+							await fetchData(currentFolder?.id)
 						} finally {
 							setReloadActive(false)
 						}
