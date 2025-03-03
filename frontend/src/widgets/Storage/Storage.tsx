@@ -31,7 +31,7 @@ const Storage: React.FC = () => {
 			const response = await Disk()
 			setData(response)
 		} else {
-			const response = await Disk(currentFolder?.parent_folder)
+			const response = await Disk(currentFolder?.id)
 			setData(response)
 			setCurrentFolder(undefined)
 		}
