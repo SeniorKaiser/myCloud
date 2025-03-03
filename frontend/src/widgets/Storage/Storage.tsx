@@ -22,11 +22,14 @@ const Storage: React.FC = () => {
 
 	const fetchData = async (fid?: string | null) => {
 		console.log(currentFolder, fid)
-		if (fid) {
+		if (typeof fid === 'string') {
 			const response = await Disk(fid)
 			setData(response)
 			const curfolder = await getFolder(fid)
 			setCurrentFolder(curfolder)
+		} else if (fid === null) {
+			const response = await Disk()
+			setData(response)
 		} else {
 			const response = await Disk(currentFolder?.parent_folder)
 			setData(response)
