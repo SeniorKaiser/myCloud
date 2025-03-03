@@ -90,11 +90,11 @@ const Storage: React.FC = () => {
 				</button>
 				<CreateFolderButton
 					folder_id={currentFolder?.id}
-					onSuccess={async () => await fetchData()}
+					onSuccess={async () => await fetchData(currentFolder?.id)}
 				/>
 				<Upload
 					folder_id={currentFolder?.id}
-					onSuccess={async () => await fetchData()}
+					onSuccess={async () => await fetchData(currentFolder?.id)}
 				/>
 			</div>
 			{data ? (
