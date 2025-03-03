@@ -23,8 +23,10 @@
 	padding: 1rem;
 	border-radius: 0.8rem;
 	background-color: var(--window);
-	height: 30rem;
-	width: 30rem;
+	max-height: 30rem;
+	max-width: 30rem;
+	width: 80%;
+	aspect-ratio: 3/4;
 	transform: scale(0.5);
 	transition: 0.4s all;
 }
