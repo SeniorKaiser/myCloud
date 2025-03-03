@@ -14,7 +14,7 @@ class File(Base):
     extension = Column(String, nullable=False)
     date = Column(DateTime, default=datetime.utcnow, nullable=False)
     user_id = Column(String, ForeignKey('users.id'), nullable=False)
-    folder_id = Column(String, ForeignKey('folders.id'), nullable=True)
+    parent_folder = Column(String, ForeignKey('folders.id'), nullable=True)
     folder = relationship("Folder", back_populates="files", lazy="selectin")
     user = relationship("User", back_populates="files", lazy="selectin")
 
@@ -26,5 +26,5 @@ class File(Base):
             extension=self.extension,
             date=self.date,
             user_id=self.user_id,
-            folder_id=self.folder_id
+            parent_folder=self.folder_id
         )

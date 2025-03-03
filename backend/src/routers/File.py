@@ -19,11 +19,10 @@ async def get_file(
 async def upload_file(
     file_service: Annotated[FileService, Depends(file_service)],
     file: UploadFile = File(...),
-    folder_id: Optional[str] = None,
+    parent_folder: Optional[str] = None,
     user: dict = Depends(auth),
 ) -> FileDTO:
-    print(folder_id)
-    return await file_service.upload_file(file=file, user_id=user["id"], folder_id=folder_id)
+    return await file_service.upload_file(file=file, user_id=user["id"], parent_folder=parent_folder)
 
 @router.get("/download/{file_id}")
 async def download_file(

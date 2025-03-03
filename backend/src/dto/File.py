@@ -10,18 +10,18 @@ class File(BaseModel):
     size: int = Field(..., gt=0)
     extension: str
     date: datetime
-    folder_id: Optional[str] = None
+    parent_folder: Optional[str] = None
     user_id: str
 
     @classmethod
-    async def from_upload_file(cls, file_content: bytes, file: UploadFile, user_id: str, folder_id: str = None):
+    async def from_upload_file(cls, file_content: bytes, file: UploadFile, user_id: str, parent_folder: str = None):
         return cls(
             id=str(uuid.uuid4()),
             name=file.filename,
             size=len(file_content),
             extension=file.filename.split(".")[-1],
             date=datetime.utcnow(),
-            folder_id=folder_id,
+            parent_folder=parent_folder,
             user_id=user_id
         )
     

@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useRef, FC } from 'react'
 import { Position, Option } from './Data'
-import { File, Folder, User } from '@app/data'
+import { File, Folder } from '@app/data'
 import './ContextMenu.css'
 
 interface ContextMenuProps {
@@ -9,7 +9,7 @@ interface ContextMenuProps {
 	options: Option[]
 	children?: ReactNode
 	onSuccess?: (folder_id?: string) => Promise<void> | void
-	object: File | Folder | User
+	object?: File | Folder | undefined
 }
 
 const ContextMenu: FC<ContextMenuProps> = ({
@@ -60,7 +60,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
 							onClick={() => {
 								option.action(object?.id)
 								if (onSuccess) {
-									onSuccess()
+									onSuccess(object?.parent_folder)
 								}
 							}}
 						>
