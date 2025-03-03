@@ -15,7 +15,7 @@ const uploadFile = async (file: File, folderId?: string): Promise<FileDTO> => {
 			formData,
 			{
 				headers: { 'Content-Type': 'multipart/form-data' },
-				params: folderId ? { folder_id: folderId } : {},
+				params: folderId ? { parent_folder: folderId } : {},
 			}
 		)
 		console.log('File uploaded', response.data)
