@@ -22,7 +22,7 @@ const Storage: React.FC = () => {
 
 	const fetchData = async (fid?: string) => {
 		console.log(currentFolder, fid)
-		if (fid) {
+		if (fid != null) {
 			const response = await Disk(fid)
 			setData(response)
 			const curfolder = await getFolder(fid)
@@ -32,7 +32,6 @@ const Storage: React.FC = () => {
 			setData(response)
 			setCurrentFolder(undefined)
 		}
-		console.log(currentFolder, fid)
 	}
 
 	useEffect(() => {
@@ -64,6 +63,7 @@ const Storage: React.FC = () => {
 				<button
 					onClick={async () => {
 						await fetchData(currentFolder?.parent_folder)
+						console.log(currentFolder)
 					}}
 					className='storage__prev'
 				>
@@ -76,6 +76,7 @@ const Storage: React.FC = () => {
 							setReloadActive(true)
 							await new Promise(resolve => setTimeout(resolve, 500))
 							await fetchData(currentFolder?.id)
+							console.log(currentFolder)
 						} finally {
 							setReloadActive(false)
 						}
