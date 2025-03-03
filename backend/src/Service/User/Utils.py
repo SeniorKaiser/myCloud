@@ -1,7 +1,3 @@
-from datetime import datetime
-from difflib import SequenceMatcher
-
-from datetime import datetime
 from difflib import SequenceMatcher
 
 def calculate_similarity(item, param: str) -> float:

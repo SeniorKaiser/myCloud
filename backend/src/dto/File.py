@@ -32,6 +32,6 @@ class File(BaseModel):
             "size": self.size,
             "date": self.date.isoformat(),
             "extension": self.extension,
-            "folder_id": self.folder_id,
+            "parent_folder": self.parent_folder,
             "user_id": self.user_id,
         }
