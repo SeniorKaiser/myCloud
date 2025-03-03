@@ -12,7 +12,7 @@ interface SearchInputProps {
 
 const SearchInput: FC<SearchInputProps> = ({ placeholder }) => {
 	const [param, setParam] = useState<string>('')
-	const [data, setData] = useState<DiskDTO>({ files: [], folders: [] })
+	const [data, setData] = useState<DiskDTO>({ id: '', files: [], folders: [] })
 	const [active, setActive] = useState<boolean>(false)
 	const searchRef = useRef<HTMLFormElement>(null)
 
