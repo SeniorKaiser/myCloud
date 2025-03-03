@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { domenApi } from '@app/data'
 import { toast } from 'react-hot-toast'
+import { File as FileDTO } from '@app/data'
 
-const uploadFile = async (file: File, folderId?: string) => {
+const uploadFile = async (file: File, folderId?: string): Promise<FileDTO> => {
 	const loadingToast = toast.loading('Uploading file...')
 
 	const formData = new FormData()

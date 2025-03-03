@@ -1,8 +1,12 @@
 import axios from 'axios'
 import { domenApi } from '@app/data'
 import { toast } from 'react-hot-toast'
+import { Folder } from '@app/data'
 
-const createFolder = async (name: string, folder_id?: string | undefined) => {
+const createFolder = async (
+	name: string,
+	folder_id?: string | undefined
+): Promise<Folder> => {
 	const loadingToast = toast.loading('Creating folder...')
 	try {
 		const response = await axios.post(`${domenApi}/api/folder/create`, {

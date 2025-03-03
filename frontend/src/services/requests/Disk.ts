@@ -3,6 +3,7 @@ import { domenApi } from '@app/data.ts'
 import { File, Folder } from '@app/data'
 
 export interface DiskDTO {
+	id: string
 	files: File[]
 	folders: Folder[]
 }
@@ -18,11 +19,12 @@ const Disk = async (folder_id?: string): Promise<DiskDTO> => {
 		const response: AxiosResponse<DiskDTO> = await api.get('/disk', {
 			params: folder_id ? { folder_id } : undefined,
 		})
+		console.log(response.data.id, response.data.files, response.data.folders)
 		return response.data
 	} catch (error) {
 		const axiosError = error as AxiosError
 		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
-		return { files: [], folders: [] }
+		return { id: '', files: [], folders: [] }
 	}
 }
 
