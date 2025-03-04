@@ -32,40 +32,41 @@ class UserService:
         token = await getJWT(request=request, response=response)
         payload = await decode_token(token.access_token)
         user = await self.get_user(payload.get("id"))
-        return user
+        return user.from_dict(user)
 
     async def get_user(self, id: str) -> UserDTO:
         try:
             user = await redis_client.get(f"user:{id}")
+            print(type(user))
             if user: return user
             else:
                 user = await self.user_repository.get(id)
                 await redis_client.set(key=f"user:{id}", value=user.to_dict())
+                print(type(user))
                 return user
         except Exception as e:
             print(f"Error in get_user: {e}")
             raise HTTPException(status_code=500, detail="Internal Server Error")
-        
+
     async def delete_user(self, id: str) -> UserDTO:
         user = await self.user_repository.get(id)
         if not user: raise HTTPException(status_code=404) 
         await self.user_repository.delete(id)
         await user_storage_client.delete_user_disk(id)
         return user
-    
-    async def disk(self, user_id: str, folder_id: Optional[str] = None) -> UserFilesFolders:
-        user = await self.user_repository.get(user_id)
+
+    async def disk(self, user: UserDTO, folder_id: Optional[str] = None) -> UserFilesFolders:
         if not user: raise HTTPException(status_code=404)
         folders = [folder for folder in user.folders if folder.parent_folder == folder_id]
         files = [file for file in user.files if file.parent_folder == folder_id]
-        return UserFilesFolders(id=user_id, files=files, folders=folders)
-    
+        return UserFilesFolders(id=user.id, files=files, folders=folders)
+
     async def disk_size(self, user_id: str) -> int:
         user = await self.user_repository.get(user_id)
         if not user: raise HTTPException(status_code=404)
         size = sum([file.size for file in user.files])
         return size
-    
+
     async def disk_search(self, user_id: str, param: str) -> UserFilesFolders:
         user = await self.user_repository.get(user_id)
         if not user:

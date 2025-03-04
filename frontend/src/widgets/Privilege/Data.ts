@@ -1,5 +1,6 @@
 export interface PrivilegeCard {
 	title: string
+	subtitle: string
 	description: feature[]
 	price: number
 	color: string
@@ -14,6 +15,7 @@ export interface feature {
 export const listPrivilegeCard: PrivilegeCard[] = [
 	{
 		title: 'Base',
+		subtitle: 'For all',
 		description: [
 			{ title: 'Storage', description: '20gb' },
 			{ title: '24/7 support', description: '' },
@@ -26,6 +28,7 @@ export const listPrivilegeCard: PrivilegeCard[] = [
 	},
 	{
 		title: 'Professional',
+		subtitle: 'Coming soon',
 		description: [
 			{ title: 'Bigest Storage', description: '1024gb' },
 			{ title: '24/7 Support', description: '' },

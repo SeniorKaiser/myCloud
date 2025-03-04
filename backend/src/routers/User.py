@@ -35,10 +35,10 @@ async def auth(
 @router.get("/disk")
 async def disk(
     user_service: Annotated[UserService, Depends(user_service)],
-    user: dict = Depends(auth),
+    user: User = Depends(auth),
     folder_id: Optional[str] = None
 ) -> UserFilesFolders:
-    return await user_service.disk(user["id"], folder_id)
+    return await user_service.disk(user, folder_id)
 
 @router.get("/disk-size")
 async def disk_size(

@@ -59,6 +59,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	padding: 0.3rem 0.6rem;
 }
 
 .storage .context-menu p {

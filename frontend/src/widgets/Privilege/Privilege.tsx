@@ -9,6 +9,7 @@ const PrivilegeInfo: React.FC = () => {
 			{listPrivilegeCard.map((data, id) => (
 				<div className='privilege-card' key={id}>
 					<h2>{data.title}</h2>
+					<h5>{data.subtitle}</h5>
 					<ul className='privilege-card__description'>
 						{data.description.map((features, idx) => (
 							<li key={idx}>

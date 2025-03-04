@@ -7,14 +7,14 @@ import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
 import uploadFile from '@services/requests/Upload'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
-import { Rotate, ChevronLeft, FileImport } from '@components/Icons/Icons'
+import { ChevronLeft, FileImport } from '@components/Icons/Icons'
 import getFolder from '@services/requests/getFolder'
 import Modal from '@components/Modal/Modal'
 import { Folder } from '@app/data'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
-	const [reloadActive, setReloadActive] = useState<boolean>(false)
+	// const [reloadActive, setReloadActive] = useState<boolean>(false)
 	const [modalActive, setModalActive] = useState<boolean>(false)
 	const [currentFolder, setCurrentFolder] = useState<Folder | undefined>(
 		undefined
@@ -32,7 +32,6 @@ const Storage: React.FC = () => {
 		}
 		const response = await Disk(folderId)
 		setData(response)
-		console.log(folderId)
 	}
 
 	useEffect(() => {
@@ -70,7 +69,7 @@ const Storage: React.FC = () => {
 					{currentFolder && <ChevronLeft />}
 					<span>{currentFolder?.name}</span>
 				</button>
-				<button
+				{/* <button
 					onClick={async () => {
 						try {
 							setReloadActive(true)
@@ -87,7 +86,7 @@ const Storage: React.FC = () => {
 					}
 				>
 					<Rotate />
-				</button>
+				</button> */}
 				<CreateFolderButton
 					folder_id={currentFolder?.id}
 					onSuccess={async () => await fetchData(currentFolder?.id)}
