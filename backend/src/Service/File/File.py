@@ -1,3 +1,4 @@
+from urllib.parse import quote
 from typing import Optional
 from fastapi import Response, UploadFile, HTTPException
 from src.utils.repository import AbstractRepository
@@ -13,21 +14,26 @@ class FileService:
     async def get_file(self, file_id: str) -> FileDTO:
         return await self.file_repository.get(file_id)
 
-    async def upload_file(self, file: UploadFile, user_id: str, parent_folder: Optional[str]) -> FileDTO:
+    async def upload_file(self, file: UploadFile, user: UserDTO, parent_folder: Optional[str]) -> FileDTO:
         file_content = await file.read()
-        file_dto = await FileDTO.from_upload_file(file_content, file, user_id, parent_folder)
+        if len(file_content) + sum([file.size for file in user.files]) > (20 * 1024**3):
+            raise HTTPException(status_code=413)
+        file_dto = await FileDTO.from_upload_file(file_content, file, user.id, parent_folder)
         await self.file_repository.add(file_dto.model_dump())
         await storage_client.upload_file(file_dto, file_content)
-        await redis_client.delete(key=f'user:{user_id}')
+        await redis_client.delete(key=f'user:{ user.id}')
         return file_dto
     
     async def download_file(self, file_id: str, user_id: str) -> Response:
         file = await self.get_file(file_id)
         file_content = await storage_client.download_file(file, user_id)
+        encoded_filename = quote(file.name)
+        content_disposition = f"attachment; filename*=UTF-8''{encoded_filename}"
+
         return Response(
             content=file_content,
             media_type="application/octet-stream",
-            headers={"Content-Disposition": f'attachment; filename="{file.name}"'}
+            headers={"Content-Disposition": content_disposition}
         )
         
     async def delete_file(self, id: str, user_id: str) -> FileDTO:
