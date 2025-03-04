@@ -7,9 +7,12 @@
 	margin-right: auto;
 }
 
-.home-main section {
+.home-main section:not(:first-child) {
 	width: 100%;
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .home-main section.active {

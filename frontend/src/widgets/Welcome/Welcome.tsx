@@ -24,6 +24,8 @@ const Welcome: React.FC = () => {
 					</div>
 				</div>
 			</div>
+			<img src='/demo-home.png' className='demo-home-img' />
+			<img src='/demo-home-mobile.png' className='demo-home-mobile-img' />
 		</>
 	)
 }
