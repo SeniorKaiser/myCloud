@@ -7,7 +7,7 @@ import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
 import uploadFile from '@services/requests/Upload'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
-import { ChevronLeft, FileImport } from '@components/Icons/Icons'
+import { ChevronLeft, Download as UploadIcon } from '@components/Icons/Icons'
 import getFolder from '@services/requests/getFolder'
 import Modal from '@components/Modal/Modal'
 import { Folder } from '@app/data'
@@ -110,8 +110,9 @@ const Storage: React.FC = () => {
 			<Modal active={modalActive} setActive={setModalActive}>
 				<div className='drag-and-drop-modal'>
 					<div className='drag-and-drop-modal__icon'>
-						<FileImport />
+						<UploadIcon />
 					</div>
+					<div className='drag-and-drop-modal__text'>Upload</div>
 				</div>
 			</Modal>
 		</section>

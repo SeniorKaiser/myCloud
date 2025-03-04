@@ -56,7 +56,7 @@
 	margin: 0.5rem 0;
 	color: var(--grey);
 	border-bottom: 1px solid var(--grey);
-	padding: 0.3rem;
+	padding: 0.6rem;
 }
 
 @media (hover: hover) {

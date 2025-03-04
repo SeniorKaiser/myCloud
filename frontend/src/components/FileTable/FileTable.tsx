@@ -11,6 +11,7 @@ import { EllipsisVertical } from '@components/Icons/Icons'
 import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
 import './FileTable.css'
+import copyToClipboard from '@services/functions/copyToClipboard'
 
 export interface StorageProps {
 	files: File[]
@@ -118,8 +119,8 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 					onSuccess={onSuccess}
 					object={object}
 				>
-					<h2>{object?.name}</h2>
-					<p>{object?.id}</p>
+					<h2 onClick={() => copyToClipboard(object?.name)}>{object?.name}</h2>
+					<p onClick={() => copyToClipboard(object?.id)}>{object?.id}</p>
 				</ContextMenu>
 			)}
 		</>

@@ -24,9 +24,3 @@
 		min-width: unset;
 	}
 }
-
-@media (width < 35rem) {
-	.progress-bar {
-		display: none;
-	}
-}

@@ -7,6 +7,7 @@ import { User } from '@app/data'
 import AuthUser from '@services/requests/AuthUser'
 import './Profile.css'
 import Loader from '@components/Loading/Loading'
+import copyToClipboard from '@services/functions/copyToClipboard'
 
 const Profile: FC = () => {
 	const [contextMenuVisible, setContextMenuVisible] = useState(false)
@@ -64,8 +65,8 @@ const Profile: FC = () => {
 					position={menuPosition}
 					onClose={handleCloseMenu}
 				>
-					<h2>{user?.name}</h2>
-					<p>{user?.id}</p>
+					<h2 onClick={() => copyToClipboard(user?.id)}>{user?.name}</h2>
+					<p onClick={() => copyToClipboard(user?.id)}>{user?.id}</p>
 				</ContextMenu>
 			)}
 		</section>

@@ -84,9 +84,6 @@
 }
 
 @media (width < 30rem) {
-	.search button[type='reset'] {
-		display: none;
-	}
 	.search {
 		min-width: 100%;
 	}
