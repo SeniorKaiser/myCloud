@@ -12,31 +12,31 @@ router = APIRouter(tags=["Folder"], prefix="/folder")
 async def get_folder(
     folder_service: Annotated[FolderService, Depends(folder_service)],
     folder_id: str,
-    user: dict = Depends(auth)
+    user: UserDTO = Depends(auth)
 ) -> FolderDTO:
-    return await folder_service.get_folder(folder_id, user["id"])
+    return await folder_service.get_folder(folder_id, user.id)
 
 @router.post("/create", response_model=FolderDTO)
 async def create_folder(
     folder_service: Annotated[FolderService, Depends(folder_service)],
     folder: CreateFolderSchema,
-    user: dict = Depends(auth)
+    user: UserDTO = Depends(auth)
 ) -> FolderDTO:
-    return await folder_service.create_folder(folder, user["id"])
+    return await folder_service.create_folder(folder, user.id)
 
 @router.delete("/delete/{folder_id}")
 async def delete_folder(
     folder_service: Annotated[FolderService, Depends(folder_service)],
     folder_id: str,
-    user: dict = Depends(auth)
+    user: UserDTO = Depends(auth)
 ) -> FolderDTO:
-    return await folder_service.delete_folder(folder_id, user["id"])
+    return await folder_service.delete_folder(folder_id, user.id)
 
 @router.put("/rename/{folder_id}")
 async def rename_folder(
     folder_service: Annotated[FolderService, Depends(folder_service)],
     folder_id: str,
     name: str,
-    user: dict = Depends(auth)
+    user: UserDTO = Depends(auth)
 ) -> FolderDTO:
-    return await folder_service.rename_folder(folder_id, name, user["id"])
+    return await folder_service.rename_folder(folder_id, name, user.id)

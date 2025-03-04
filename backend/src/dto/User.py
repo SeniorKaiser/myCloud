@@ -22,6 +22,7 @@ class User(BaseModel):
             "folders": [folder.to_dict() for folder in self.folders],
         }
     
+    @classmethod
     def from_dict(cls, data: dict):
         return cls(**data)
 

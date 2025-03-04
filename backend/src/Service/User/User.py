@@ -32,27 +32,24 @@ class UserService:
         token = await getJWT(request=request, response=response)
         payload = await decode_token(token.access_token)
         user = await self.get_user(payload.get("id"))
-        return user.from_dict(user)
+        return user
 
     async def get_user(self, id: str) -> UserDTO:
         try:
             user = await redis_client.get(f"user:{id}")
-            print(type(user))
-            if user: return user
+            if user: return UserDTO.from_dict(data=user)
             else:
                 user = await self.user_repository.get(id)
                 await redis_client.set(key=f"user:{id}", value=user.to_dict())
-                print(type(user))
                 return user
         except Exception as e:
             print(f"Error in get_user: {e}")
             raise HTTPException(status_code=500, detail="Internal Server Error")
 
-    async def delete_user(self, id: str) -> UserDTO:
-        user = await self.user_repository.get(id)
+    async def delete_user(self, user: UserDTO) -> UserDTO:
         if not user: raise HTTPException(status_code=404) 
-        await self.user_repository.delete(id)
-        await user_storage_client.delete_user_disk(id)
+        await self.user_repository.delete(user.id)
+        await user_storage_client.delete_user_disk(user.id)
         return user
 
     async def disk(self, user: UserDTO, folder_id: Optional[str] = None) -> UserFilesFolders:
@@ -61,16 +58,13 @@ class UserService:
         files = [file for file in user.files if file.parent_folder == folder_id]
         return UserFilesFolders(id=user.id, files=files, folders=folders)
 
-    async def disk_size(self, user_id: str) -> int:
-        user = await self.user_repository.get(user_id)
+    async def disk_size(self, user: UserDTO) -> int:
         if not user: raise HTTPException(status_code=404)
         size = sum([file.size for file in user.files])
         return size
 
-    async def disk_search(self, user_id: str, param: str) -> UserFilesFolders:
-        user = await self.user_repository.get(user_id)
-        if not user:
-            raise HTTPException(status_code=404)
+    async def disk_search(self, user: UserDTO, param: str) -> UserFilesFolders:
+        if not user: raise HTTPException(status_code=404)
         all_items = []
         
         for folder in user.folders:
