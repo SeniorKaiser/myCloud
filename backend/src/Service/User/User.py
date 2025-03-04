@@ -50,6 +50,7 @@ class UserService:
         if not user: raise HTTPException(status_code=404) 
         await self.user_repository.delete(user.id)
         await user_storage_client.delete_user_disk(user.id)
+        await redis_client.delete(key=f'user:{user.id}')
         return user
 
     async def disk(self, user: UserDTO, folder_id: Optional[str] = None) -> UserFilesFolders:
