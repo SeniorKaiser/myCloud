@@ -25,6 +25,10 @@
 	color: var(--main-color);
 }
 
+.form_container-error {
+	color: red;
+}
+
 .form_button {
 	width: 100%;
 	background: linear-gradient(135deg, var(--second-color), var(--main-color));

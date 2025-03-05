@@ -8,6 +8,7 @@ import './RegForm.css'
 
 const RegForm: React.FC = () => {
 	const [formValue, setFormValue] = useState<FormDataI>(initialState)
+	const [error, setError] = useState<string | undefined>(undefined)
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const name = e.target.name as keyof FormDataI
@@ -16,16 +17,18 @@ const RegForm: React.FC = () => {
 	}
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		await RegRequest({
+		const token = await RegRequest({
 			username: formValue.username,
 			password: formValue.password,
 			email: formValue.email,
 		})
-		await loginRequest({
-			username: formValue.username,
-			password: formValue.password,
-		})
-		window.location.href = '/'
+		if (token) {
+			await loginRequest({
+				username: formValue.username,
+				password: formValue.password,
+			})
+			window.location.href = '/'
+		} else setError('Wrong username or password')
 	}
 	return (
 		<form className='form_container' onSubmit={onSubmit}>
@@ -34,6 +37,7 @@ const RegForm: React.FC = () => {
 				<div>
 					Have account? <a href='./login'>Login</a>
 				</div>
+				<div className='form_container-error'>{error}</div>
 			</p>
 			{config.map(item => {
 				const { validate, name, ...rest } = item

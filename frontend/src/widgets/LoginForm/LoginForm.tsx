@@ -6,6 +6,7 @@ import './LoginForm.css'
 
 const LoginForm: React.FC = () => {
 	const [formValue, setFormValue] = useState<FormDataI>(initialState)
+	const [error, setError] = useState<string | undefined>(undefined)
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const name = e.target.name as keyof FormDataI
@@ -14,11 +15,12 @@ const LoginForm: React.FC = () => {
 	}
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		await loginRequest({
+		const token = await loginRequest({
 			username: formValue.username,
 			password: formValue.password,
 		})
-		window.location.href = '/'
+		if (token) window.location.href = '/'
+		else setError('Wrong username or password')
 	}
 	return (
 		<form className='form_container' onSubmit={onSubmit}>
@@ -27,6 +29,7 @@ const LoginForm: React.FC = () => {
 				<div>
 					Dont have account? <a href='./reg'>Create your account</a>
 				</div>
+				<div className='form_container-error'>{error}</div>
 			</p>
 			{config.map(item => {
 				const { validate, name, ...rest } = item
