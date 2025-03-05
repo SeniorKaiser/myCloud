@@ -8,42 +8,34 @@ export interface Card {
 export const sliderCards: Card[] = [
 	{
 		id: 1,
-		title: 'Securely protect your data in the cloud!',
+		title: 'Надежно защитите свои данные в облаке!',
 		description:
-			'Your files are safe and secure! Our cloud storage uses advanced encryption and security technologies to keep your data as safe as possible.',
+			'Ваши файлы в полной безопасности! В нашем облачном хранилище используются передовые технологии шифрования и защиты, чтобы обеспечить максимальную сохранность ваших данных.',
 		img_path:
 			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/cloud.svg',
 	},
 	{
 		id: 2,
-		title: 'Modern design for convenient operation!',
+		title: 'Современный дизайн для удобного управления!',
 		description:
-			'Our cloud storage is not only fast and secure, but also intuitive, stylishly designed for your convenience.',
+			'Наше облачное хранилище не только быстрое и безопасное, но и интуитивно понятное, стильно оформленное для вашего удобства.',
 		img_path:
 			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/dedicated.svg',
 	},
 	{
 		id: 3,
-		title: 'Lightning fast speed of your cloud storage!',
+		title: 'Молниеносная скорость работы вашего облачного хранилища!',
 		description:
-			'Forget about long waits to download your files! Our cloud storage provides instant access to your data with high-speed servers and advanced transfer technologies.',
+			'Забудьте о долгом ожидании загрузки ваших файлов! Наше облачное хранилище обеспечивает мгновенный доступ к вашим данным благодаря высокоскоростным серверам и передовым технологиям передачи.',
 		img_path:
 			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/ddos.svg',
 	},
 	{
 		id: 4,
-		title: 'Round-the-clock support - we are always on call!',
+		title: 'Круглосуточная поддержка - мы всегда на связи!',
 		description:
-			'Have a question or need help? Our support team is available 24/7 to ensure you have a seamless cloud storage experience at all times.',
+			'У вас есть вопросы или вам нужна помощь? Наша служба поддержки работает круглосуточно, чтобы обеспечить бесперебойную работу облачного хранилища в любое время суток.',
 		img_path:
 			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/mlops.svg',
-	},
-	{
-		id: 5,
-		title: 'Flexible rates - pay only for what you need!',
-		description:
-			'We offer favourable tariff plans that are suitable for both personal and business use. Transparent terms and conditions, no hidden fees!',
-		img_path:
-			'https://cdn.selectel.ru/site_v3/images/components/content/pages/index/swiper-cards/administration.svg',
 	},
 ]

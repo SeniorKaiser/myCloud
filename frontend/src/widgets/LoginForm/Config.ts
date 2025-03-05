@@ -8,14 +8,14 @@ type Config = (InputProps & {
 export const config: Config = [
 	{
 		name: 'username',
-		placeholder: 'Username',
+		placeholder: 'Имя пользователя',
 		type: 'text',
 		required: true,
 		validate: (error: FormDataI) => (error.username ? error.username : ''),
 	},
 	{
 		name: 'password',
-		placeholder: 'Password',
+		placeholder: 'Пароль',
 		required: true,
 		type: 'password',
 		minLength: 3,

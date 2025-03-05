@@ -58,7 +58,7 @@ const Storage: React.FC = () => {
 			onDragOver={handleDragOver}
 			onDrop={handleDrop}
 		>
-			<SearchInput placeholder='Searching file...' />
+			<SearchInput placeholder='Найдётся всё' />
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {
@@ -112,7 +112,7 @@ const Storage: React.FC = () => {
 					<div className='drag-and-drop-modal__icon'>
 						<UploadIcon />
 					</div>
-					<div className='drag-and-drop-modal__text'>Upload</div>
+					<div className='drag-and-drop-modal__text'>Загрузить</div>
 				</div>
 			</Modal>
 		</section>

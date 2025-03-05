@@ -5,27 +5,28 @@ interface Question {
 
 export const questionList: Question[] = [
 	{
-		question: 'How much storage is available for free?',
+		question: 'Какой объем хранилища доступен бесплатно?',
 		answer:
-			'We provide 20 GB of free storage for all users. You can expand the volume by subscribing.',
+			'Мы предоставляем 20 ГБ бесплатного хранилища для всех пользователей.',
 	},
 	{
-		question: 'What types of files can be uploaded?',
+		question: 'Какие типы файлов могут быть загружены?',
 		answer:
-			'Our service supports downloading most popular file formats, including documents, images, videos, and archives.',
+			'Наш сервис поддерживает загрузку большинства популярных форматов файлов, включая документы, изображения, видео и архивы.',
 	},
 	{
-		question: 'How secure is the storage?',
+		question: 'Насколько надежно это хранилище?',
 		answer:
-			'All files are protected using end-to-end encryption, and access to the data is carried out only with your permission.',
+			'Все файлы защищены с помощью сквозного шифрования, и доступ к данным осуществляется только с вашего разрешения.',
 	},
 	{
-		question: 'Are there any restrictions on the size of uploaded files?',
-		answer: 'The maximum size of the uploaded file is 5GB for all',
+		question:
+			'Существуют ли какие-либо ограничения на размер загружаемых файлов?',
+		answer: 'Максимальный размер загружаемого файла составляет 5 ГБ для всех',
 	},
 	{
-		question: 'How can I access files from another device?',
+		question: 'Как я могу получить доступ к файлам с другого устройства?',
 		answer:
-			'You can log into your account via a web browser to access your files at any time and from any device.',
+			'Вы можете войти в свою учетную запись через веб-браузер, чтобы получить доступ к своим файлам в любое время и с любого устройства.',
 	},
 ]

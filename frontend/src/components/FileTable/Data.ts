@@ -9,22 +9,22 @@ import customPrompt from '@components/CustomPrompt/PromptHelper'
 
 export const FileOptionsContextMenu: Option[] = [
 	{
-		title: 'Download',
+		title: 'Скачать',
 		action: async (id?: string) => {
 			if (id) await downloadFile(id)
 		},
 		icon: Upload,
 	},
 	{
-		title: 'Rename',
+		title: 'Переименовать',
 		action: async (id?: string) => {
-			const folderName = await customPrompt('File Name')
+			const folderName = await customPrompt('Имя файла')
 			if (folderName && id) await renameFile(id, folderName)
 		},
 		icon: KeyBoard,
 	},
 	{
-		title: 'Delete',
+		title: 'Удалить',
 		action: async (id?: string) => {
 			if (id) await deleteFile(id)
 		},
@@ -34,15 +34,15 @@ export const FileOptionsContextMenu: Option[] = [
 
 export const FolderOptionsContextMenu: Option[] = [
 	{
-		title: 'Rename',
+		title: 'Переименовать',
 		action: async (id?: string) => {
-			const folderName = await customPrompt('Folder Name')
+			const folderName = await customPrompt('Имя папки')
 			if (folderName && id) await renameFolder(id, folderName)
 		},
 		icon: KeyBoard,
 	},
 	{
-		title: 'Delete',
+		title: 'Удалить',
 		action: async (id?: string) => {
 			if (id) await deleteFolder(id)
 		},
@@ -51,8 +51,8 @@ export const FolderOptionsContextMenu: Option[] = [
 ]
 
 export const Columns = [
-	{ title: 'Name' },
-	{ title: 'Extension' },
-	{ title: 'Size' },
-	{ title: 'Date' },
+	{ title: 'Имя' },
+	{ title: 'Расширение' },
+	{ title: 'Размер' },
+	{ title: 'Дата' },
 ]

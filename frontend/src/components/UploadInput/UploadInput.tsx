@@ -64,7 +64,7 @@ const Upload: React.FC<UploadProps> = ({
 						</div>
 					) : (
 						<>
-							<Plus /> <span>Upload</span>
+							<Plus /> <span>Загрузить</span>
 						</>
 					)}
 				</section>

@@ -7,19 +7,20 @@ const Welcome: React.FC = () => {
 		<>
 			<div className='welcome'>
 				<div className='welcome__title'>
-					<h1>Are you ready for the data storage revolution?</h1>
+					<h1>Готовы ли вы к революции в области хранения данных?</h1>
 					<p>
-						Free up space on your devices and keep your important files safe
-						with our cloud storage. Access your data anytime, synchronise across
-						all devices and securely protect it - everything you need for
-						convenience and peace of mind!
+						Освободите место на своих устройствах и сохраните важные файлы в
+						безопасности с помощью нашего облачного хранилища. Получите доступ к
+						своим данным в любое время, синхронизируйте их на всех устройствах и
+						надежно защитите - все, что вам нужно для удобства и душевного
+						спокойствия!
 					</p>
 					<div className='welcome__title--buttons'>
 						<span>
-							Don't have account? <a href='./reg'>Registration</a>
+							У вас нет учетной записи? <a href='./reg'>Регистрация</a>
 						</span>
 						<button onClick={() => (window.location.href = './login')}>
-							Login
+							Вход
 						</button>
 					</div>
 				</div>

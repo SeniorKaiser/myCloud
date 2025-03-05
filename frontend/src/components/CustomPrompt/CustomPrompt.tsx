@@ -36,10 +36,10 @@ const CustomPrompt: React.FC<CustomPromptProps> = ({ message, onClose }) => {
 				/>
 				<div className='modal-buttons'>
 					<button onClick={handleCancel} className='cancel-btn'>
-						Cancel
+						Отменить
 					</button>
 					<button onClick={handleConfirm} className='confirm-btn'>
-						Submit
+						Подтвердить
 					</button>
 				</div>
 			</div>

@@ -8,12 +8,12 @@ const Footer: React.FC = () => {
 		<footer>
 			<Logo />
 			<section className='footer-nav'>
-				<h1>Links</h1>
+				<h1>Ссылки</h1>
 				<Navigation />
 			</section>
 			<section className='footer-author'>
-				<h1>Creators</h1>
-				<p>Ilya Dmitriev</p>
+				<h1>Создатели</h1>
+				<p>Илья Дмитриев</p>
 			</section>
 		</footer>
 	)

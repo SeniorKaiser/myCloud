@@ -56,12 +56,12 @@ const Home: React.FC = () => {
 					ref={el => (sectionsRef.current[2] = el)}
 					className='reviews-container'
 				>
-					<h1>What others say</h1>
+					<h1>Что говорят другие</h1>
 					<ReviewsSlider />
 				</section>
 
 				<section ref={el => (sectionsRef.current[3] = el)}>
-					<h1>Popular questions</h1>
+					<h1>Популярные вопросы</h1>
 					<AnswersQuestions />
 				</section>
 			</main>

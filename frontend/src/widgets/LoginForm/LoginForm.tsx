@@ -25,9 +25,9 @@ const LoginForm: React.FC = () => {
 	return (
 		<form className='form_container' onSubmit={onSubmit}>
 			<p className='form_title'>
-				<label>Login</label>
+				<label>Вход</label>
 				<div>
-					Dont have account? <a href='./reg'>Create your account</a>
+					У вас нет аккаунта? <a href='./reg'>Регистрация</a>
 				</div>
 				<div className='form_container-error'>{error}</div>
 			</p>
@@ -43,7 +43,7 @@ const LoginForm: React.FC = () => {
 					/>
 				)
 			})}
-			<button className='form_button'>Login</button>
+			<button className='form_button'>Вход</button>
 		</form>
 	)
 }

@@ -7,17 +7,17 @@ import { Option } from '@components/ContextMenu/Data'
 
 export const ProfileOptionsContextMenu: Option[] = [
 	{
-		title: 'Disk',
+		title: 'Диск',
 		action: () => (window.location.href = '/disk'),
 		icon: HardDrive,
 	},
 	{
-		title: 'Settings',
+		title: 'Настройки',
 		action: () => (window.location.href = '/settings'),
 		icon: Sliders,
 	},
 	{
-		title: 'Change Account',
+		title: 'Изменить учетную запись',
 		action: () => (window.location.href = '/login'),
 		icon: ArrowRightFromBracket,
 	},

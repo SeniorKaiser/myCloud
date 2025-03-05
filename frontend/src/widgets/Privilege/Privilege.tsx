@@ -18,8 +18,8 @@ const PrivilegeInfo: React.FC = () => {
 						))}
 					</ul>
 					<p className='privilege-card-buy'>
-						<div>{data.price}$ / month</div>
-						<button onClick={data.action}>Start now</button>
+						<div>{data.price}₽ / месяц</div>
+						<button onClick={data.action}>Начать</button>
 					</p>
 				</div>
 			))}

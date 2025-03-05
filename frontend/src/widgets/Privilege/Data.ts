@@ -3,7 +3,6 @@ export interface PrivilegeCard {
 	subtitle: string
 	description: feature[]
 	price: number
-	color: string
 	action: () => void
 }
 
@@ -14,32 +13,15 @@ export interface feature {
 
 export const listPrivilegeCard: PrivilegeCard[] = [
 	{
-		title: 'Base',
-		subtitle: 'For all',
+		title: 'Базовая',
+		subtitle: 'доступна всем',
 		description: [
-			{ title: 'Storage', description: '20gb' },
-			{ title: '24/7 support', description: '' },
-			{ title: 'Protection Guarantee', description: '' },
-			{ title: 'All Basic Services', description: '' },
+			{ title: 'Объем хранилища', description: '20gb' },
+			{ title: 'Круглосуточная поддержка', description: '' },
+			{ title: 'Гарантия защиты', description: '' },
+			{ title: 'Все основные услуги', description: '' },
 		],
 		price: 0,
-		color: 'black',
-		action: () => alert('Base'),
-	},
-	{
-		title: 'Professional',
-		subtitle: 'Coming soon',
-		description: [
-			{ title: 'Bigest Storage', description: '1024gb' },
-			{ title: '24/7 Support', description: '' },
-			{ title: 'Priority support', description: '' },
-			{ title: 'Protection Guarantee', description: '' },
-			{ title: 'Cancel Anytime', description: '' },
-			{ title: 'All Basic Services', description: '' },
-			{ title: '', description: '' },
-		],
-		price: 6.99,
-		color: '#4362ee',
-		action: () => alert('Professional'),
+		action: () => (window.location.href = '/reg'),
 	},
 ]

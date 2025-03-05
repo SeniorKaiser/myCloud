@@ -33,9 +33,9 @@ const RegForm: React.FC = () => {
 	return (
 		<form className='form_container' onSubmit={onSubmit}>
 			<p className='form_title'>
-				<label>Registration</label>
+				<label>Регистрация</label>
 				<div>
-					Have account? <a href='./login'>Login</a>
+					У вас есть аккаунт?<a href='./login'> Вход</a>
 				</div>
 				<div className='form_container-error'>{error}</div>
 			</p>
@@ -51,7 +51,7 @@ const RegForm: React.FC = () => {
 					/>
 				)
 			})}
-			<button className='form_button'>Registration</button>
+			<button className='form_button'>Регистрация</button>
 		</form>
 	)
 }

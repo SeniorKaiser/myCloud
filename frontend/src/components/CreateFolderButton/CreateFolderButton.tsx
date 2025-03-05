@@ -20,7 +20,7 @@ const CreateFolderButton: React.FC<CreateFolderButtonProps> = ({
 			className='create-folder-button'
 			onClick={async () => {
 				setLoading(true)
-				const folderName = await customPrompt('Folder Name')
+				const folderName = await customPrompt('Имя папки')
 				if (folderName) {
 					try {
 						await createFolder(folderName, folder_id)
