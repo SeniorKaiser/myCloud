@@ -1,5 +1,5 @@
 const formatFileSize = (bits: number): string => {
-	const units = ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb']
+	const units = ['б', 'Кб', 'Мб', 'Гб', 'Тб', 'Пб']
 	let size = bits,
 		i = 0
 

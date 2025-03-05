@@ -101,7 +101,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 									<span>{item.name}</span>
 								</div>
 							</td>
-							<td>{'extension' in item ? item.extension : 'folder'}</td>
+							<td>{'extension' in item ? item.extension : 'папка'}</td>
 							<td>{'extension' in item ? formatFileSize(item.size) : '-'}</td>
 							<td>{formatDate(item.date)}</td>
 							<td onClick={event => handleContextMenuOptions(event, item)}>
