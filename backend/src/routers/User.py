@@ -53,7 +53,7 @@ async def disk_search(
     param: str,
     user: User = Depends(auth),
 ) -> UserFilesFolders:
-    return await user_service.disk_search(user_id=user.id, param=param)
+    return await user_service.disk_search(user=user, param=param)
 
 @router.delete("/delete/{user_id}")
 async def delete(

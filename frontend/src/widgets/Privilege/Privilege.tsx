@@ -13,7 +13,7 @@ const PrivilegeInfo: React.FC = () => {
 					<ul className='privilege-card__description'>
 						{data.description.map((features, idx) => (
 							<li key={idx}>
-								<Check /> {features.title} {features.description}
+								<Check /> {features.title}
 							</li>
 						))}
 					</ul>

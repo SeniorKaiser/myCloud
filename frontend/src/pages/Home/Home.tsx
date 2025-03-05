@@ -49,7 +49,7 @@ const Home: React.FC = () => {
 					ref={el => (sectionsRef.current[1] = el)}
 					className='privilege-container'
 				>
-					<h1>Privilege</h1>
+					<h1>Что доступно всем?</h1>
 					<PrivilegeInfo />
 				</section>
 				<section

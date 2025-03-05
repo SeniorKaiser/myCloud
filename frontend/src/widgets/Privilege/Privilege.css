@@ -5,9 +5,6 @@
 	gap: 1.6rem;
 	justify-content: center;
 	align-items: center;
-	scroll-snap-type: x mandatory;
-	scroll-behavior: smooth;
-	overflow-x: auto;
 }
 
 .privilege-card {
@@ -62,7 +59,7 @@
 	background-color: var(--background);
 	color: var(--text);
 	height: 35rem;
-	aspect-ratio: 2/3;
+	aspect-ratio: 1/1;
 }
 
 .privilege-card:first-child button {
@@ -70,26 +67,15 @@
 	color: var(--background);
 }
 
-.privilege-card:last-child {
-	background-color: var(--text);
-	color: var(--background);
-	aspect-ratio: 1/1;
-	height: 35rem;
-}
-
-.privilege-card:last-child button {
-	background-color: var(--background);
-	color: var(--text);
-}
-
 .privilege-card-buy {
 	display: inline-flex;
 	width: 100%;
-	aspect-ratio: 1/2;
 	align-items: center;
 	justify-content: space-between;
 	border-top: 1px solid var(--grey);
-	height: 4.5rem;
+	margin-top: auto;
+	padding: 1.3rem 0;
+	padding-top: 2rem;
 }
 
 @media (hover: hover) {

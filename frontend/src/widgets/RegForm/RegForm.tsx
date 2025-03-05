@@ -17,12 +17,12 @@ const RegForm: React.FC = () => {
 	}
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const token = await RegRequest({
+		const user = await RegRequest({
 			username: formValue.username,
 			password: formValue.password,
 			email: formValue.email,
 		})
-		if (token) {
+		if (user) {
 			await loginRequest({
 				username: formValue.username,
 				password: formValue.password,

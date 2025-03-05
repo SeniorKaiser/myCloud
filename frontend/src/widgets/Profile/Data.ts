@@ -1,8 +1,4 @@
-import {
-	HardDrive,
-	Sliders,
-	ArrowRightFromBracket,
-} from '@components/Icons/Icons.tsx'
+import { HardDrive, ArrowRightFromBracket } from '@components/Icons/Icons.tsx'
 import { Option } from '@components/ContextMenu/Data'
 
 export const ProfileOptionsContextMenu: Option[] = [
@@ -12,12 +8,7 @@ export const ProfileOptionsContextMenu: Option[] = [
 		icon: HardDrive,
 	},
 	{
-		title: 'Настройки',
-		action: () => (window.location.href = '/settings'),
-		icon: Sliders,
-	},
-	{
-		title: 'Изменить учетную запись',
+		title: 'Сменить аккаунт',
 		action: () => (window.location.href = '/login'),
 		icon: ArrowRightFromBracket,
 	},

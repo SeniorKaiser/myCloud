@@ -26,9 +26,8 @@ const RegRequest = async ({
 			withCredentials: true,
 		})
 
-		console.log('Response:', response.data)
 		toast.success(`Successful registration`, { id: loadingToast })
-		return response.data.access_token
+		return response.data
 	} catch (error) {
 		const axiosError = error as AxiosError
 		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
