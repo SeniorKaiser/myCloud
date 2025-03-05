@@ -85,7 +85,7 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 						<tr
 							key={item.id}
 							onContextMenu={event => handleContextMenu(event, item)}
-							onClick={async () => {
+							onDoubleClick={async () => {
 								if (!('extension' in item) && onSuccess) {
 									await onSuccess(item.id)
 								}
