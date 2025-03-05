@@ -13,13 +13,13 @@ export interface feature {
 
 export const listPrivilegeCard: PrivilegeCard[] = [
 	{
-		title: 'Базовая',
-		subtitle: 'доступна всем',
+		title: 'Стандарт',
+		subtitle: 'доступен всем',
 		description: [
-			{ title: 'Объем хранилища', description: '20gb' },
+			{ title: 'Объем хранилища', description: '20гб' },
 			{ title: 'Круглосуточная поддержка', description: '' },
 			{ title: 'Гарантия защиты', description: '' },
-			{ title: 'Все основные услуги', description: '' },
+			{ title: 'Загрузака и скачивание файлов', description: 'до 5гб' },
 		],
 		price: 0,
 		action: () => (window.location.href = '/reg'),
