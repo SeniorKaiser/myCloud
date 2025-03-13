@@ -7,7 +7,9 @@ const Welcome: React.FC = () => {
 		<>
 			<div className='welcome'>
 				<div className='welcome__title'>
-					<h1>Готовы ли вы к революции в области хранения данных?</h1>
+					<h1 aria-label='Next-gen cloud storage!'>
+						Best&nbsp;<span className='typewriter'></span>
+					</h1>
 					<p>
 						Освободите место на своих устройствах и сохраните важные файлы в
 						безопасности с помощью нашего облачного хранилища. Получите доступ к

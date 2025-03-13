@@ -17,6 +17,9 @@
 .welcome__title h1 {
 	font-size: clamp(2rem, 5vw, 4rem);
 	margin: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	animation: typing 2s steps(23) forwards;
 }
 
 .welcome__title p {
@@ -65,6 +68,55 @@
 	margin-top: 3rem;
 }
 
+.typewriter {
+	--caret: currentcolor;
+}
+
+.typewriter::before {
+	content: '';
+	animation: typing 13.5s infinite;
+}
+
+.typewriter::after {
+	content: '';
+	border-right: 1px solid var(--caret);
+	animation: blink 0.5s linear infinite;
+}
+
+.typewriter.thick::after {
+	border-right: 1ch solid var(--caret);
+}
+
+.typewriter.nocaret::after {
+	border-right: 0;
+}
+
+@media (prefers-reduced-motion) {
+	.typewriter::after {
+		animation: none;
+	}
+
+	@keyframes sequencePopup {
+		0%,
+		27% {
+			content: 'project';
+		}
+		30%,
+		57% {
+			content: 'storage';
+		}
+		60%,
+		87% {
+			content: 'choice';
+		}
+	}
+
+	.typewriter::before {
+		content: 'Best project';
+		animation: sequencePopup 12s linear infinite;
+	}
+}
+
 @media (width < 35rem) {
 	.demo-home-img {
 		display: none;
@@ -77,5 +129,139 @@
 @media (width < 19rem) {
 	.demo-home-mobile-img {
 		display: none;
+	}
+}
+
+@keyframes typing {
+	/* Project */
+	0%,
+	27% {
+		content: '';
+	}
+	1%,
+	26% {
+		content: 'p';
+	}
+	2%,
+	25% {
+		content: 'pr';
+	}
+	3%,
+	24% {
+		content: 'pro';
+	}
+	4%,
+	23% {
+		content: 'proj';
+	}
+	5%,
+	22% {
+		content: 'proje';
+	}
+	6%,
+	21% {
+		content: 'projec';
+	}
+	7%,
+	20% {
+		content: 'project';
+	}
+
+	/* Cloud storage */
+	30%,
+	57% {
+		content: '';
+	}
+	31%,
+	56% {
+		content: 'c';
+	}
+	32%,
+	55% {
+		content: 'cl';
+	}
+	33%,
+	54% {
+		content: 'clo';
+	}
+	34%,
+	53% {
+		content: 'clou';
+	}
+	35%,
+	52% {
+		content: 'cloud';
+	}
+	36%,
+	51% {
+		content: 'cloud ';
+	}
+	37%,
+	50% {
+		content: 'cloud s';
+	}
+	38%,
+	49% {
+		content: 'cloud st';
+	}
+	39%,
+	48% {
+		content: 'cloud sto';
+	}
+	40%,
+	47% {
+		content: 'cloud stor';
+	}
+	41%,
+	46% {
+		content: 'cloud stora';
+	}
+	42%,
+	45% {
+		content: 'cloud storag';
+	}
+	43%,
+	44% {
+		content: 'cloud storage';
+	}
+
+	/* Choice */
+	60%,
+	87% {
+		content: '';
+	}
+	61%,
+	86% {
+		content: 'c';
+	}
+	62%,
+	85% {
+		content: 'ch';
+	}
+	63%,
+	84% {
+		content: 'cho';
+	}
+	64%,
+	83% {
+		content: 'choi';
+	}
+	65%,
+	82% {
+		content: 'choic';
+	}
+	66%,
+	81% {
+		content: 'choice';
+	}
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
 	}
 }
