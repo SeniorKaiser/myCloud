@@ -19,7 +19,6 @@
 	margin: 0;
 	overflow: hidden;
 	white-space: nowrap;
-	animation: typing 2s steps(23) forwards;
 }
 
 .welcome__title p {
