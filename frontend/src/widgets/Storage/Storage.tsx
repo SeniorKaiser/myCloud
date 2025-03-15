@@ -43,6 +43,11 @@ const Storage: React.FC = () => {
 
 	useEffect(() => {
 		fetchData()
+		if (localStorage.getItem('storage-display') == 'true') {
+			setDisplay(true)
+		} else {
+			setDisplay(false)
+		}
 	}, [])
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -80,13 +85,19 @@ const Storage: React.FC = () => {
 				<div className='switcher-showing-button'>
 					<button
 						className='showing-button_table'
-						onClick={() => setDisplay(false)}
+						onClick={() => {
+							setDisplay(false)
+							localStorage.setItem('storage-display', 'false')
+						}}
 					>
 						<GripLines />
 					</button>
 					<button
 						className='showing-button_cards'
-						onClick={() => setDisplay(true)}
+						onClick={() => {
+							setDisplay(true)
+							localStorage.setItem('storage-display', 'true')
+						}}
 					>
 						<Grip />
 					</button>
