@@ -81,6 +81,7 @@
 	height: 100%;
 	border: 2px dashed var(--text);
 	border-radius: 0.8rem;
+	padding: 2rem;
 }
 
 .drag-and-drop-modal__icon {
@@ -98,6 +99,7 @@
 	border-radius: 20rem;
 	width: 7rem;
 	margin-left: auto;
+	color: var(--text);
 }
 
 .switcher-showing-button button {

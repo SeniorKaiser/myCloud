@@ -4,7 +4,7 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.4);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -15,7 +15,7 @@
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	background: var(--background);
+	background: var(--window);
 	display: flex;
 	flex-direction: column;
 	gap: 10px;

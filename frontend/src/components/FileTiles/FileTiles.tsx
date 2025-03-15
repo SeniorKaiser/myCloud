@@ -11,6 +11,7 @@ import copyToClipboard from '@services/functions/copyToClipboard'
 import Modal from '@components/Modal/Modal'
 import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
+import { EllipsisVertical } from '@components/Icons/Icons'
 
 export interface StorageProps {
 	files: File[]
@@ -78,16 +79,16 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 								await onSuccess(item.id)
 							}
 						}}
-						className='storage-tiles_tile'
-						onClick={() => handleModal(item)}
+						className='tile'
 					>
 						{'extension' in item ? (
 							<img src={`/FilesIcons/${item.extension}.png`} />
 						) : (
 							<img src={`/FilesIcons/folder.png`} />
 						)}
-						<div className='storage-tiles-info'>
-							<span>{item.name}</span>
+						<span>{item.name}</span>
+						<div onClick={() => handleModal(item)}>
+							<EllipsisVertical />
 						</div>
 					</div>
 				))}
@@ -113,15 +114,16 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 							) : (
 								<img src={`/FilesIcons/folder.png`} />
 							)}
-							<div className='tile-head_info'>
+							<div className='modal_tile-head_info'>
 								<span>Имя: {object.name}</span>
+								<span>ID: {object.id}</span>
 								{'extension' in object && (
 									<span>Размер: {formatFileSize(object.size)}</span>
 								)}
 								<span>Дата: {formatDate(object.date)}</span>
 							</div>
 						</div>
-						<ul className='tile_actions'>
+						<ul className='modal_tile_actions'>
 							{modal.options.map((option, index) => (
 								<li
 									key={index}

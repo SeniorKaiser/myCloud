@@ -1,7 +1,7 @@
 .modal {
 	height: 100vh;
 	width: 100vw;
-	background-color: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.4);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -26,7 +26,6 @@
 	max-height: 30rem;
 	max-width: 30rem;
 	width: 80%;
-	aspect-ratio: 3/4;
 	transform: scale(0.5);
 	transition: 0.4s all;
 }

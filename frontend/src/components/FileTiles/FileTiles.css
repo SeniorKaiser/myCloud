@@ -6,37 +6,41 @@
 	height: auto;
 }
 
-.storage-tiles_tile {
-	aspect-ratio: 6/7;
+.tile {
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
-	border-radius: 0.8rem;
 	cursor: pointer;
-	gap: 0.5rem;
+	gap: 1rem;
+	position: relative;
 }
 
-.storage-tiles_tile img {
+.tile img {
 	object-fit: contain;
 	width: 100%;
-	border-radius: 0.8rem;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.storage-tiles-info {
-	text-wrap: nowrap;
-	max-width: 100%;
-	display: flex;
-	margin-top: auto;
-	font-size: 1rem;
-}
-
-.storage-tiles-info span {
+.tile span {
 	width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	margin-right: auto;
 	text-align: center;
+	text-wrap: nowrap;
+}
+
+.tile div {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 0.3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .modal_tile {
@@ -48,11 +52,13 @@
 	display: flex;
 	gap: 1rem;
 	margin-bottom: 2rem;
-	span {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		text-wrap: nowrap;
-	}
+	align-items: center;
+}
+
+.modal_tile-head span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-wrap: nowrap;
 }
 
 .modal_tile img {
@@ -60,21 +66,20 @@
 	object-fit: contain;
 }
 
-.tile-head_info {
+.modal_tile-head_info {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
 }
 
-.tile_actions {
+.modal_tile_actions {
 	list-style: none;
 }
 
-.tile_actions li {
+.modal_tile_actions li {
 	padding: 0.3rem 0.6rem;
 	cursor: pointer;
 	transition: color 0.3s ease, fill 0.3s ease;
-	color: var(--grey);
 	text-wrap: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -84,19 +89,20 @@
 }
 
 @media (hover: hover) {
-	.tile_actions li:hover {
-		color: var(--text);
+	.tile div:hover {
+		background-color: var(--window);
 	}
 }
 
 @media (hover: none) {
-	.tile_actions li {
-		color: var(--text);
+	.tile div:active {
+		background-color: var(--window);
 	}
 }
 
 @media (width < 32rem) {
 	.modal_tile-head {
 		flex-direction: column;
+		align-items: unset;
 	}
 }

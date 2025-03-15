@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ContextMenu from '@components/ContextMenu/ContextMenu'
-import { ContextMenuState } from '@components/ContextMenu/Data'
+import { ContextMenuState, Option } from '@components/ContextMenu/Data'
 import {
 	FileOptionsContextMenu as FileOption,
 	FolderOptionsContextMenu as FolderOption,
@@ -12,11 +12,16 @@ import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
 import './FileTable.css'
 import copyToClipboard from '@services/functions/copyToClipboard'
+import Modal from '@components/Modal/Modal'
 
 export interface StorageProps {
 	files: File[]
 	folders: Folder[]
 	onSuccess?: (folder_id?: string) => Promise<void> | void
+}
+
+interface ModalProps {
+	options: Option[]
 }
 
 const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
@@ -26,6 +31,10 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 		options: [],
 	})
 	const [object, setObject] = useState<File | Folder>()
+	const [modalActive, setModalActive] = useState<boolean>(false)
+	const [modal, setModal] = useState<ModalProps>({
+		options: [],
+	})
 
 	const handleContextMenu = (
 		event: React.MouseEvent,
@@ -44,21 +53,11 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 		setObject(item)
 	}
 
-	const handleContextMenuOptions = (
-		event: React.MouseEvent,
-		item: File | Folder
-	): void => {
-		event.preventDefault()
-		const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
-		setContextMenu({
-			visible: true,
-			position: {
-				position: 'fixed',
-				top: `${Math.min(event.clientY, window.innerHeight)}px`,
-				right: `${Math.min(event.clientX, window.innerWidth - rect.left)}px`,
-			},
+	const handleModal = (item: File | Folder): void => {
+		setModal({
 			options: 'size' in item ? FileOption : FolderOption,
 		})
+		setModalActive(true)
 		setObject(item)
 	}
 
@@ -104,8 +103,10 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 							<td>{'extension' in item ? item.extension : 'папка'}</td>
 							<td>{'extension' in item ? formatFileSize(item.size) : '-'}</td>
 							<td>{formatDate(item.date)}</td>
-							<td onClick={event => handleContextMenuOptions(event, item)}>
-								<EllipsisVertical />
+							<td>
+								<div onClick={() => handleModal(item)}>
+									<EllipsisVertical />
+								</div>
 							</td>
 						</tr>
 					))}
@@ -122,6 +123,45 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 					<h2 onClick={() => copyToClipboard(object?.name)}>{object?.name}</h2>
 					<p onClick={() => copyToClipboard(object?.id)}>{object?.id}</p>
 				</ContextMenu>
+			)}
+			{object && (
+				<Modal active={modalActive} setActive={setModalActive}>
+					<div className='modal_tile'>
+						<div className='modal_tile-head'>
+							{'extension' in object ? (
+								<img src={`/FilesIcons/${object.extension}.png`} />
+							) : (
+								<img src={`/FilesIcons/folder.png`} />
+							)}
+							<div className='modal_tile-head_info'>
+								<span>Имя: {object.name}</span>
+								<span>ID: {object.id}</span>
+								{'extension' in object && (
+									<span>Размер: {formatFileSize(object.size)}</span>
+								)}
+								<span>Дата: {formatDate(object.date)}</span>
+							</div>
+						</div>
+						<ul className='modal_tile_actions'>
+							{modal.options.map((option, index) => (
+								<li
+									key={index}
+									onClick={async () => {
+										await option.action(object?.id)
+										if (onSuccess) {
+											await onSuccess(object?.parent_folder)
+										}
+									}}
+								>
+									<span>
+										<option.icon />
+									</span>
+									{option.title}
+								</li>
+							))}
+						</ul>
+					</div>
+				</Modal>
 			)}
 		</>
 	)

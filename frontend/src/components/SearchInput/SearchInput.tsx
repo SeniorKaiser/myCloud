@@ -67,7 +67,7 @@ const SearchInput: FC<SearchInputProps> = ({ placeholder }) => {
 				</button>
 			</div>
 			<div className={`search-data ${active ? 'active' : ''}`}>
-				<FileTable files={data.files} folders={data.folders} />
+				<FileTable files={data.files} folders={[]} />
 			</div>
 		</form>
 	)
