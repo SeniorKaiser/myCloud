@@ -25,6 +25,9 @@ import {
 	faCheck,
 	faStar,
 	faFileImport,
+	faTableList,
+	faGrip,
+	faGripLines,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
@@ -183,4 +186,16 @@ export const Star: React.FC = () => {
 
 export const FileImport: React.FC = () => {
 	return <FontAwesomeIcon icon={faFileImport} />
+}
+
+export const TableList: React.FC = () => {
+	return <FontAwesomeIcon icon={faTableList} />
+}
+
+export const Grip: React.FC = () => {
+	return <FontAwesomeIcon icon={faGrip} />
+}
+
+export const GripLines: React.FC = () => {
+	return <FontAwesomeIcon icon={faGripLines} />
 }

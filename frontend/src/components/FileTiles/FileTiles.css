@@ -1,0 +1,38 @@
+.storage-tiles {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+	gap: 2rem;
+	width: 100%;
+	height: auto;
+}
+
+.storage-tiles_tile {
+	aspect-ratio: 6/7;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	border-radius: 0.8rem;
+	cursor: pointer;
+	gap: 0.5rem;
+}
+
+.storage-tiles_tile img {
+	object-fit: cover;
+	width: 100%;
+	border-radius: 0.8rem;
+}
+
+.storage-tiles-info {
+	text-wrap: nowrap;
+	max-width: 100%;
+	display: flex;
+	margin-top: auto;
+}
+
+.storage-tiles-info span:first-child {
+	width: 70%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-right: auto;
+}

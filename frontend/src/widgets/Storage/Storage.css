@@ -42,7 +42,6 @@
 	display: inline-flex;
 	align-items: center;
 	font-size: 1.5rem;
-	margin-right: auto;
 	color: var(--text);
 	width: 10rem;
 }
@@ -73,10 +72,6 @@
 	padding: 0.3rem 0.6rem;
 }
 
-.storage-reload-button.active {
-	animation: rotateAnimation 1s ease infinite;
-}
-
 .drag-and-drop-modal {
 	display: flex;
 	flex-direction: column;
@@ -95,9 +90,40 @@
 	font-size: 3rem;
 }
 
+.switcher-showing-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1px;
+	border-radius: 20rem;
+	width: 7rem;
+	margin-left: auto;
+}
+
+.switcher-showing-button button {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.3rem;
+	border: none;
+	background-color: var(--window);
+	cursor: pointer;
+	padding: 0.5rem;
+}
+
+.switcher-showing-button button:first-child {
+	border-radius: 20rem 0 0 20rem;
+}
+
+.switcher-showing-button button:last-child {
+	border-radius: 0 20rem 20rem 0;
+}
+
 @media (hover: hover) {
-	.storage-reload-button:hover {
-		color: var(--text);
+	.switcher-showing-button button:hover {
+		opacity: 0.8;
 	}
 }
 

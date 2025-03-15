@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import FileTable from '@components/FileTable/FileTable.tsx'
+import FileTiles from '@components/FileTiles/FileTiles.tsx'
 import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
@@ -7,18 +8,24 @@ import Loader from '@components/Loading/Loading'
 import Upload from '@components/UploadInput/UploadInput.tsx'
 import uploadFile from '@services/requests/Upload'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
-import { ChevronLeft, Download as UploadIcon } from '@components/Icons/Icons'
+import {
+	ChevronLeft,
+	Download as UploadIcon,
+	GripLines,
+	Grip,
+} from '@components/Icons/Icons'
 import getFolder from '@services/requests/getFolder'
 import Modal from '@components/Modal/Modal'
+// import { tempfiles, tempfolders } from '@app/data'
 import { Folder } from '@app/data'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
-	// const [reloadActive, setReloadActive] = useState<boolean>(false)
 	const [modalActive, setModalActive] = useState<boolean>(false)
 	const [currentFolder, setCurrentFolder] = useState<Folder | undefined>(
 		undefined
 	)
+	const [display, setDisplay] = useState<Boolean>(false)
 
 	const fetchData = async (fid?: string) => {
 		let folderId = currentFolder?.id
@@ -65,28 +72,25 @@ const Storage: React.FC = () => {
 						await fetchData(currentFolder?.parent_folder)
 					}}
 					className='storage__prev'
+					style={currentFolder ? {} : { display: 'none' }}
 				>
 					{currentFolder && <ChevronLeft />}
 					<span>{currentFolder?.name}</span>
 				</button>
-				{/* <button
-					onClick={async () => {
-						try {
-							setReloadActive(true)
-							await new Promise(resolve => setTimeout(resolve, 500))
-							await fetchData(currentFolder?.id)
-						} finally {
-							setReloadActive(false)
-						}
-					}}
-					className={
-						reloadActive
-							? 'storage-reload-button active'
-							: 'storage-reload-button'
-					}
-				>
-					<Rotate />
-				</button> */}
+				<div className='switcher-showing-button'>
+					<button
+						className='showing-button_table'
+						onClick={() => setDisplay(false)}
+					>
+						<GripLines />
+					</button>
+					<button
+						className='showing-button_cards'
+						onClick={() => setDisplay(true)}
+					>
+						<Grip />
+					</button>
+				</div>
 				<CreateFolderButton
 					folder_id={currentFolder?.id}
 					onSuccess={async () => await fetchData(currentFolder?.id)}
@@ -97,11 +101,19 @@ const Storage: React.FC = () => {
 				/>
 			</div>
 			{data ? (
-				<FileTable
-					files={data.files}
-					folders={data.folders}
-					onSuccess={fetchData}
-				/>
+				display ? (
+					<FileTiles
+						files={data.files}
+						folders={data.folders}
+						onSuccess={fetchData}
+					/>
+				) : (
+					<FileTable
+						files={data.files}
+						folders={data.folders}
+						onSuccess={fetchData}
+					/>
+				)
 			) : (
 				<div className='storage-loader'>
 					<Loader />
