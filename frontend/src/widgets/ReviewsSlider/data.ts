@@ -30,4 +30,10 @@ export const reviewsList: Review[] = [
 		text: "Overall, I'm happy. Simple setup, intuitive operation, and synchronization is seamless. There was one malfunction, but tech support quickly helped me figure it out. I recommend it!",
 		contact: 'hinabey561@arinuse.com',
 	},
+	{
+		name: 'mountainphile',
+		stars: 5,
+		text: 'Сайт myCloud оказался золотой находкой среди бесплатного сервиса по хранению данных с удобным и простым интерфейсом без лишних ненужных штучек. Загрузка файлов на диск осуществляется без каких-либо проблем, как и сама регистрация на сайте. Я очень рад что нашёл такой удобный сервис как myCloud.',
+		contact: '',
+	},
 ]

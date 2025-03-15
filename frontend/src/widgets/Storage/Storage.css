@@ -97,9 +97,9 @@
 	justify-content: center;
 	gap: 1px;
 	border-radius: 20rem;
-	width: 7rem;
 	margin-left: auto;
 	color: var(--text);
+	min-width: 5rem;
 }
 
 .switcher-showing-button button {
