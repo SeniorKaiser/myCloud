@@ -29,6 +29,7 @@ const Storage: React.FC = () => {
 
 	const fetchData = async (fid?: string) => {
 		let folderId = currentFolder?.id
+		const response = await Disk(folderId)
 		if (fid) {
 			const curFolder = await getFolder(fid)
 			setCurrentFolder(curFolder)
@@ -37,7 +38,6 @@ const Storage: React.FC = () => {
 			folderId = undefined
 			setCurrentFolder(undefined)
 		}
-		const response = await Disk(folderId)
 		setData(response)
 	}
 
