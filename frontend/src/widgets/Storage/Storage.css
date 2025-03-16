@@ -98,7 +98,6 @@
 	gap: 1px;
 	border-radius: 20rem;
 	margin-left: auto;
-	color: var(--text);
 	min-width: 5rem;
 }
 
@@ -113,6 +112,7 @@
 	background-color: var(--window);
 	cursor: pointer;
 	padding: 0.5rem;
+	color: var(--text);
 }
 
 .switcher-showing-button button:first-child {

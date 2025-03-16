@@ -12,6 +12,7 @@ import Modal from '@components/Modal/Modal'
 import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
 import { EllipsisVertical } from '@components/Icons/Icons'
+import { getFileIcon } from '@components/Icons/IconsReact'
 
 export interface StorageProps {
 	files: File[]
@@ -81,11 +82,11 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 						}}
 						className='tile'
 					>
-						{'extension' in item ? (
-							<img src={`/FilesIcons/${item.extension}.png`} />
-						) : (
-							<img src={`/FilesIcons/folder.png`} />
-						)}
+						<div className='file-icon'>
+							{'extension' in item
+								? getFileIcon(item.extension)
+								: getFileIcon('folder')}
+						</div>
 						<span>{item.name}</span>
 						<div onClick={() => handleModal(item)}>
 							<EllipsisVertical />
@@ -109,11 +110,11 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 				<Modal active={modalActive} setActive={setModalActive}>
 					<div className='modal_tile'>
 						<div className='modal_tile-head'>
-							{'extension' in object ? (
-								<img src={`/FilesIcons/${object.extension}.png`} />
-							) : (
-								<img src={`/FilesIcons/folder.png`} />
-							)}
+							<div className='file-icon'>
+								{'extension' in object
+									? getFileIcon(object.extension)
+									: getFileIcon('folder')}
+							</div>
 							<div className='modal_tile-head_info'>
 								<span>Имя: {object.name}</span>
 								<span>ID: {object.id}</span>

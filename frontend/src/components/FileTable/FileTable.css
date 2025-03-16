@@ -22,10 +22,20 @@ th {
 	text-wrap: nowrap;
 }
 
-td:first-child span {
-	margin-top: auto;
-	margin-bottom: auto;
-	margin-left: 1rem;
+.storage-table .file-head {
+	display: inline-flex;
+	gap: 1rem;
+}
+
+.storage-table .file-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+	aspect-ratio: 1/1;
+}
+
+.storage-table .file-name {
 	width: 10rem;
 	overflow: hidden;
 	text-overflow: ellipsis;

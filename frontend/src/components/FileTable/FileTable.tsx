@@ -13,6 +13,7 @@ import formatFileSize from '@services/functions/formatSize'
 import './FileTable.css'
 import copyToClipboard from '@services/functions/copyToClipboard'
 import Modal from '@components/Modal/Modal'
+import { getFileIcon } from '@components/Icons/IconsReact'
 
 export interface StorageProps {
 	files: File[]
@@ -91,13 +92,13 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 							}}
 						>
 							<td>
-								<div style={{ display: 'inline-flex', width: '100%' }}>
-									<img
-										src={`/FilesIcons/${
-											'extension' in item ? item.extension : 'folder'
-										}.png`}
-									/>
-									<span>{item.name}</span>
+								<div className='file-head'>
+									<span className='file-icon'>
+										{'extension' in item
+											? getFileIcon(item.extension)
+											: getFileIcon('folder')}
+									</span>
+									<span className='file-name'>{item.name}</span>
 								</div>
 							</td>
 							<td>{'extension' in item ? item.extension : 'папка'}</td>
