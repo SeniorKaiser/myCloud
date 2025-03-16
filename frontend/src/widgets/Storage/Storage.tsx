@@ -28,17 +28,34 @@ const Storage: React.FC = () => {
 	const [display, setDisplay] = useState<Boolean>(false)
 
 	const fetchData = async (fid?: string) => {
+		console.time('Disk')
+
 		let folderId = currentFolder?.id
-		const response = await Disk(folderId)
+
+		// Параллельные запросы, если есть fid
 		if (fid) {
-			const curFolder = await getFolder(fid)
-			setCurrentFolder(curFolder)
-			folderId = curFolder.id
-		} else if (fid == null) {
+			const [curFolder, response] = await Promise.all([
+				getFolder(fid),
+				Disk(fid),
+			])
+			if (curFolder.id !== currentFolder?.id) {
+				setCurrentFolder(curFolder)
+			}
+			setData(response)
+			console.timeEnd()
+			return
+		}
+
+		// Если null, сбрасываем состояние
+		if (fid === null) {
 			folderId = undefined
 			setCurrentFolder(undefined)
 		}
+
+		// Получаем данные, если нужно
+		const response = await Disk(folderId)
 		setData(response)
+		console.timeEnd()
 	}
 
 	useEffect(() => {
