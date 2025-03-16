@@ -10,8 +10,8 @@
 	justify-content: center;
 	opacity: 0;
 	pointer-events: none;
-	transition: 0.5s;
-	z-index: 998;
+	transition: 0.3s;
+	z-index: 1001;
 }
 
 .modal.active {
@@ -22,7 +22,7 @@
 .modal__content {
 	padding: 1rem;
 	border-radius: 0.8rem;
-	background-color: var(--background);
+	background-color: var(--window);
 	border: 1px solid var(--window);
 	max-height: 30rem;
 	max-width: 30rem;

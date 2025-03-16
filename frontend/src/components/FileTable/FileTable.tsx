@@ -129,18 +129,29 @@ const FileTable: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 				<Modal active={modalActive} setActive={setModalActive}>
 					<div className='modal_tile'>
 						<div className='modal_tile-head'>
-							{'extension' in object ? (
-								<img src={`/FilesIcons/${object.extension}.png`} />
-							) : (
-								<img src={`/FilesIcons/folder.png`} />
-							)}
+							<div className='file-icon'>
+								{'extension' in object
+									? getFileIcon(object.extension)
+									: getFileIcon('folder')}
+							</div>
 							<div className='modal_tile-head_info'>
-								<span>Имя: {object.name}</span>
-								<span>ID: {object.id}</span>
+								<div>
+									<span>Имя:</span> {object.name}
+								</div>
+								<div>
+									<span>Дата:</span> {formatDate(object.date)}
+								</div>
+
 								{'extension' in object && (
-									<span>Размер: {formatFileSize(object.size)}</span>
+									<>
+										<div>
+											<span>Размер:</span> {formatFileSize(object.size)}
+										</div>
+										<div>
+											<span>Расширение:</span> {object.extension}
+										</div>
+									</>
 								)}
-								<span>Дата: {formatDate(object.date)}</span>
 							</div>
 						</div>
 						<ul className='modal_tile_actions'>

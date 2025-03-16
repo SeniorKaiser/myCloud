@@ -35,6 +35,11 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 	const [modal, setModal] = useState<ModalProps>({
 		options: [],
 	})
+	const [focusedId, setFocusedId] = useState<string | null>(null)
+
+	const handleFocus = (id: string) => {
+		setFocusedId(id)
+	}
 
 	const handleContextMenu = (
 		event: React.MouseEvent,
@@ -80,7 +85,8 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 								await onSuccess(item.id)
 							}
 						}}
-						className='tile'
+						className={`tile ${focusedId === item.id ? 'focus' : ''}`}
+						onClick={() => handleFocus(item.id)}
 					>
 						<div className='file-icon'>
 							{'extension' in item
@@ -88,7 +94,14 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 								: getFileIcon('folder')}
 						</div>
 						<span>{item.name}</span>
-						<div onClick={() => handleModal(item)}>
+						{'extension' in item && (
+							<div className='tile_hover-info'>
+								<span>{formatFileSize(item.size)}</span>
+								<span>{item.extension}</span>
+							</div>
+						)}
+
+						<div onClick={() => handleModal(item)} className='tile_options'>
 							<EllipsisVertical />
 						</div>
 					</div>
@@ -116,12 +129,23 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 									: getFileIcon('folder')}
 							</div>
 							<div className='modal_tile-head_info'>
-								<span>Имя: {object.name}</span>
-								<span>ID: {object.id}</span>
+								<div>
+									<span>Имя:</span> {object.name}
+								</div>
+								<div>
+									<span>Дата:</span> {formatDate(object.date)}
+								</div>
+
 								{'extension' in object && (
-									<span>Размер: {formatFileSize(object.size)}</span>
+									<>
+										<div>
+											<span>Размер:</span> {formatFileSize(object.size)}
+										</div>
+										<div>
+											<span>Расширение:</span> {object.extension}
+										</div>
+									</>
 								)}
-								<span>Дата: {formatDate(object.date)}</span>
 							</div>
 						</div>
 						<ul className='modal_tile_actions'>

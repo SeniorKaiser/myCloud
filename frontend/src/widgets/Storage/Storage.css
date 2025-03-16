@@ -123,6 +123,60 @@
 	border-radius: 0 20rem 20rem 0;
 }
 
+.modal_tile {
+	width: 100%;
+	height: 100%;
+}
+
+.modal_tile-head {
+	display: inline-flex;
+	width: 100%;
+	gap: 1rem;
+	margin-bottom: 1rem;
+	padding-bottom: 1rem;
+	align-items: center;
+	border-bottom: 1px solid var(--grey);
+}
+
+.modal_tile-head_info {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.modal_tile-head_info div {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-wrap: nowrap;
+}
+
+.modal_tile-head_info div span {
+	font-size: 1rem;
+}
+
+.modal_tile .file-icon {
+	font-size: 5rem;
+	width: 5rem;
+	height: 5rem;
+}
+
+.modal_tile_actions {
+	list-style: none;
+}
+
+.modal_tile_actions li {
+	padding: 0.3rem 0.6rem;
+	cursor: pointer;
+	transition: color 0.3s ease, fill 0.3s ease;
+	text-wrap: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.modal_tile_actions li span {
+	margin-right: 0.3rem;
+}
+
 @media (hover: hover) {
 	.switcher-showing-button button:hover {
 		opacity: 0.8;
@@ -149,5 +203,18 @@
 
 	.upload-button {
 		width: 3rem !important;
+	}
+}
+
+@media (width < 32rem) {
+	.modal_tile-head {
+		flex-direction: column;
+		align-items: unset;
+	}
+
+	.modal_tile .file-icon {
+		max-width: 5rem;
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
