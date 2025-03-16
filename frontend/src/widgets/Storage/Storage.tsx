@@ -17,7 +17,7 @@ import {
 import getFolder from '@services/requests/getFolder'
 import Modal from '@components/Modal/Modal'
 // import { tempfiles, tempfolders } from '@app/data'
-import { Folder, tempfiles, tempfolders } from '@app/data'
+import { Folder } from '@app/data'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
@@ -114,14 +114,14 @@ const Storage: React.FC = () => {
 			{data ? (
 				display ? (
 					<FileTiles
-						files={tempfiles}
+						files={data.files}
 						folders={data.folders}
 						onSuccess={fetchData}
 					/>
 				) : (
 					<FileTable
-						files={tempfiles}
-						folders={tempfolders}
+						files={data.files}
+						folders={data.folders}
 						onSuccess={fetchData}
 					/>
 				)
