@@ -11,7 +11,7 @@ import {
 	FaFilePowerpoint,
 	FaFileCsv,
 } from 'react-icons/fa'
-import { FaFileCode, FaJs } from 'react-icons/fa6'
+import { FaFileCode } from 'react-icons/fa6'
 
 export const getFileIcon = (
 	extension: string | undefined | null
