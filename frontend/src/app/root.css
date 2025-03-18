@@ -2,7 +2,7 @@
 
 :root {
 	--background: #ffffff;
-	--window: #ddd;
+	--window: #e0e0e0;
 	--text: #000000;
 	--main-color: #4362ee;
 	--second-color: #4bc8ef;
@@ -14,7 +14,7 @@
 
 :root.dark {
 	--background: #0f0f0f;
-	--window: #313131;
+	--window: #2e2e31;
 	--text: #ffffff;
 	--glass: #31313180;
 	--border: #464646;

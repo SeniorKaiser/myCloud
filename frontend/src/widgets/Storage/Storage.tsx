@@ -69,7 +69,9 @@ const Storage: React.FC = () => {
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
-		setModalActive(true)
+		if (e.dataTransfer.types.includes('Files')) {
+			setModalActive(true)
+		}
 	}
 
 	const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
@@ -87,7 +89,7 @@ const Storage: React.FC = () => {
 			onDragOver={handleDragOver}
 			onDrop={handleDrop}
 		>
-			<SearchInput placeholder='Найдётся всё' />
+			<SearchInput placeholder='Введите название' />
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {

@@ -171,6 +171,7 @@
 	text-wrap: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	color: var(--grey);
 }
 
 .modal_tile_actions li span {
@@ -180,6 +181,20 @@
 @media (hover: hover) {
 	.switcher-showing-button button:hover {
 		opacity: 0.8;
+	}
+
+	.modal_tile_actions li:hover {
+		color: var(--text);
+	}
+}
+
+@media (hover: none) {
+	.switcher-showing-button button:hover {
+		opacity: 0.8;
+	}
+
+	.modal_tile_actions li {
+		color: var(--text);
 	}
 }
 

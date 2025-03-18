@@ -51,7 +51,7 @@ export const tempfiles: File[] = [
 		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
 		date: '2025-02-10T15:08:23.957075',
 		size: 7223273813,
-		extension: 'js',
+		extension: 'pptx',
 		parent_folder: undefined,
 	},
 	{

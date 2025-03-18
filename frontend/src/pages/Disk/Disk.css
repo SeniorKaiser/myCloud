@@ -6,18 +6,6 @@
 	gap: 2rem;
 }
 
-@media (width < 81.25rem) {
-	.disk-main {
-		flex-direction: column;
-		justify-content: start;
-		align-items: center;
-		gap: 2rem;
-		max-width: 60rem;
-		margin-left: auto;
-		margin-right: auto;
-	}
-}
-
 @media (width < 60rem) {
 	.storage {
 		width: 100%;
