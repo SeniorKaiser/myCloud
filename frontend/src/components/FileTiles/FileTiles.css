@@ -29,6 +29,13 @@
 	aspect-ratio: 1/1;
 }
 
+.tile-file-preview {
+	object-fit: contain;
+	height: 7rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .tile span {
 	width: 100%;
 	overflow: hidden;

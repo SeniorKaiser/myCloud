@@ -7,6 +7,7 @@ from src.dto.User import User as UserDTO, UserFilesFolders
 from src.dto.File import File as FileDTO
 from src.dto.Folder import Folder as FolderDTO
 from src.Storage.UserClient import user_storage_client
+from src.Storage.FileClient import file_storage_client
 from src.utils.redis import redis_client
 from src.Service.User.Auth import *
 
@@ -55,6 +56,8 @@ class UserService:
 
     async def disk(self, user: UserDTO, folder_id: Optional[str] = None) -> UserFilesFolders:
         if not user: raise HTTPException(status_code=404)
+        for file in user.files:
+            file.storage_url = await file_storage_client.get_presigned_url(user.id, f'{file.id}_{file.name}')
         folders = [folder for folder in user.folders if folder.parent_folder == folder_id]
         files = [file for file in user.files if file.parent_folder == folder_id]
         return UserFilesFolders(id=user.id, files=files, folders=folders)
@@ -72,6 +75,8 @@ class UserService:
             similarity = calculate_similarity(folder, param)
             all_items.append((folder, similarity))
         for file in user.files:
+            file.storage_url = await file_storage_client.get_presigned_url(user.id, f'{file.id}_{file.name}')
+            print(file.storage_url)
             similarity = calculate_similarity(file, param)
             all_items.append((file, similarity))
 

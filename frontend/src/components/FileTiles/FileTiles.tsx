@@ -37,6 +37,25 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 	})
 	const [focusedId, setFocusedId] = useState<string | null>(null)
 
+	const imageExtensions: string[] = [
+		'jpg',
+		'jpeg',
+		'png',
+		'gif',
+		'bmp',
+		'webp',
+		'svg',
+		'tiff',
+		'ico',
+		'heic',
+		'avif',
+	]
+
+	const isImage = (extension: string | undefined): boolean => {
+		if (!extension) return false
+		return imageExtensions.includes(extension.toLowerCase())
+	}
+
 	const handleFocus = (id: string) => {
 		setFocusedId(id)
 	}
@@ -88,11 +107,20 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 						className={`tile ${focusedId === item.id ? 'focus' : ''}`}
 						onClick={() => handleFocus(item.id)}
 					>
-						<div className='file-icon'>
-							{'extension' in item
-								? getFileIcon(item.extension)
-								: getFileIcon('folder')}
-						</div>
+						{'extension' in item ? (
+							isImage(item.extension) ? (
+								<img
+									src={`${item.storage_url}`}
+									alt='file preview'
+									className='tile-file-preview'
+								/>
+							) : (
+								<div className='file-icon'>{getFileIcon(item.extension)}</div>
+							)
+						) : (
+							<div className='file-icon'>{getFileIcon('folder')}</div>
+						)}
+
 						<span>{item.name}</span>
 						{'extension' in item && (
 							<div className='tile_hover-info'>
@@ -123,11 +151,21 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 				<Modal active={modalActive} setActive={setModalActive}>
 					<div className='modal_tile'>
 						<div className='modal_tile-head'>
-							<div className='file-icon'>
-								{'extension' in object
-									? getFileIcon(object.extension)
-									: getFileIcon('folder')}
-							</div>
+							{'extension' in object ? (
+								isImage(object.extension) ? (
+									<img
+										src={`${object.storage_url}`}
+										alt='file preview'
+										className='tile-file-preview'
+									/>
+								) : (
+									<div className='file-icon'>
+										{getFileIcon(object.extension)}
+									</div>
+								)
+							) : (
+								<div className='file-icon'>{getFileIcon('folder')}</div>
+							)}
 							<div className='modal_tile-head_info'>
 								<div>
 									<span>Имя:</span> {object.name}

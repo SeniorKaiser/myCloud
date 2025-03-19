@@ -48,6 +48,19 @@ class FileStorageClient(StorageClient):
                 Key=source_key
             )
         return {"status": "ok"}
+    
+    async def get_presigned_url(self, user_id: str, name: str, expiration: int = 3600):
+        async for client in self.get_client():
+            url = await client.generate_presigned_url(
+                "get_object",
+                Params={
+                    "Bucket": self.bucket_name,
+                    "Key": f"uploads/{user_id}/files/{name}"
+                },
+                ExpiresIn=expiration,
+            )
+        
+        return url
 
 
 file_storage_client = FileStorageClient(

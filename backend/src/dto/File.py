@@ -12,6 +12,7 @@ class File(BaseModel):
     date: datetime
     parent_folder: Optional[str] = None
     user_id: str
+    storage_url: str = ''
 
     @classmethod
     async def from_upload_file(cls, file_content: bytes, file: UploadFile, user_id: str, parent_folder: str = None):
@@ -22,7 +23,8 @@ class File(BaseModel):
             extension=file.filename.split(".")[-1],
             date=datetime.utcnow(),
             parent_folder=parent_folder,
-            user_id=user_id
+            user_id=user_id,
+            storage_url=''
         )
     
     def to_dict(self):
@@ -34,4 +36,5 @@ class File(BaseModel):
             "extension": self.extension,
             "parent_folder": self.parent_folder,
             "user_id": self.user_id,
+            "storage_url": self.storage_url
         }
