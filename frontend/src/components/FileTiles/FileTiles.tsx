@@ -113,6 +113,7 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 									src={`${item.storage_url}`}
 									alt='file preview'
 									className='tile-file-preview'
+									srcSet='image.webp 1x, image-2x.webp 2x'
 								/>
 							) : (
 								<div className='file-icon'>{getFileIcon(item.extension)}</div>
@@ -155,8 +156,9 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 								isImage(object.extension) ? (
 									<img
 										src={`${object.storage_url}`}
-										alt='file preview'
 										className='tile-file-preview'
+										srcSet='image.webp 1x, image-2x.webp 2x'
+										alt='Preview'
 									/>
 								) : (
 									<div className='file-icon'>
