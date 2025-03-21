@@ -4,6 +4,7 @@ import { ContextMenuState, Option } from '@components/ContextMenu/Data'
 import {
 	FileOptionsContextMenu as FileOption,
 	FolderOptionsContextMenu as FolderOption,
+	imageExtensions,
 } from './Data'
 import { File, Folder } from '@app/data'
 import './FileTiles.css'
@@ -13,6 +14,7 @@ import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
 import { EllipsisVertical } from '@components/Icons/Icons'
 import { getFileIcon } from '@components/Icons/IconsReact'
+import getImage from '@services/requests/getFileImage'
 
 export interface StorageProps {
 	files: File[]
@@ -36,20 +38,6 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 		options: [],
 	})
 	const [focusedId, setFocusedId] = useState<string | null>(null)
-
-	const imageExtensions: string[] = [
-		'jpg',
-		'jpeg',
-		'png',
-		'gif',
-		'bmp',
-		'webp',
-		'svg',
-		'tiff',
-		'ico',
-		'heic',
-		'avif',
-	]
 
 	const isImage = (extension: string | undefined): boolean => {
 		if (!extension) return false
@@ -91,7 +79,7 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 			position: { position: 'fixed' },
 			options: [],
 		})
-
+	console.log(`${object}`)
 	return (
 		<>
 			<div className='storage-tiles'>
@@ -110,10 +98,16 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 						{'extension' in item ? (
 							isImage(item.extension) ? (
 								<img
-									src={`${item.storage_url}`}
+									src='' // Сначала отображаем иконку
 									alt='file preview'
 									className='tile-file-preview'
-									srcSet='image.webp 1x, image-2x.webp 2x'
+									loading='lazy'
+									onLoad={e => {
+										const img = e.currentTarget as HTMLImageElement
+										getImage(item.id).then(url => {
+											if (url) img.src = url
+										})
+									}}
 								/>
 							) : (
 								<div className='file-icon'>{getFileIcon(item.extension)}</div>
@@ -154,12 +148,7 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 						<div className='modal_tile-head'>
 							{'extension' in object ? (
 								isImage(object.extension) ? (
-									<img
-										src={`${object.storage_url}`}
-										className='tile-file-preview'
-										srcSet='image.webp 1x, image-2x.webp 2x'
-										alt='Preview'
-									/>
+									<img src={``} className='tile-file-preview' alt='Preview' />
 								) : (
 									<div className='file-icon'>
 										{getFileIcon(object.extension)}

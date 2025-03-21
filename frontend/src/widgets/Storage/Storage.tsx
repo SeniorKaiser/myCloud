@@ -29,10 +29,7 @@ const Storage: React.FC = () => {
 
 	const fetchData = async (fid?: string) => {
 		console.time('Disk')
-
 		let folderId = currentFolder?.id
-
-		// Параллельные запросы, если есть fid
 		if (fid) {
 			const [curFolder, response] = await Promise.all([
 				getFolder(fid),
@@ -45,14 +42,10 @@ const Storage: React.FC = () => {
 			console.timeEnd()
 			return
 		}
-
-		// Если null, сбрасываем состояние
 		if (fid === null) {
 			folderId = undefined
 			setCurrentFolder(undefined)
 		}
-
-		// Получаем данные, если нужно
 		const response = await Disk(folderId)
 		setData(response)
 		console.timeEnd()

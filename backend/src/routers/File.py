@@ -8,13 +8,6 @@ from src.routers.User import auth
 
 router = APIRouter(tags=["Files"], prefix='/files')
 
-# @router.get("/get/{file_id}")
-# async def get_file(
-#     file_service: Annotated[FileService, Depends(file_service)],
-#     file_id: str,
-# ):
-#     return await file_service.get_file(file_id)
-
 @router.post("/upload")
 async def upload_file(
     file_service: Annotated[FileService, Depends(file_service)],
@@ -48,3 +41,12 @@ async def rename_file(
     user: UserDTO = Depends(auth),
 ) -> FileDTO:
     return await file_service.rename_file(file_id, new_name, user_id=user.id)
+
+
+@router.get("/get-image/{file_id}")
+async def get_image(
+    file_service: Annotated[FileService, Depends(file_service)],
+    file_id: str,
+    user: UserDTO = Depends(auth),
+):
+    return await file_service.get_image(file_id, user.id)

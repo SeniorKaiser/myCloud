@@ -171,7 +171,8 @@
 	text-wrap: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	color: var(--grey);
+	border-radius: 0.8rem;
+	transition: 0.2s ease;
 }
 
 .modal_tile_actions li span {
@@ -184,17 +185,13 @@
 	}
 
 	.modal_tile_actions li:hover {
-		color: var(--text);
+		background-color: var(--border);
 	}
 }
 
 @media (hover: none) {
 	.switcher-showing-button button:hover {
 		opacity: 0.8;
-	}
-
-	.modal_tile_actions li {
-		color: var(--text);
 	}
 }
 

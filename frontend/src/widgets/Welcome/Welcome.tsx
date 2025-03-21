@@ -12,10 +12,7 @@ const Welcome: React.FC = () => {
 					</h1>
 					<p>
 						Освободите место на своих устройствах и сохраните важные файлы в
-						безопасности с помощью нашего облачного хранилища. Получите доступ к
-						своим данным в любое время, синхронизируйте их на всех устройствах и
-						надежно защитите - все, что вам нужно для удобства и душевного
-						спокойствия!
+						безопасности с помощью нашего облачного хранилища.
 					</p>
 					<div className='welcome__title--buttons'>
 						<span>
@@ -27,8 +24,16 @@ const Welcome: React.FC = () => {
 					</div>
 				</div>
 			</div>
-			<img src='/demo-home.png' className='demo-home-img' />
-			<img src='/demo-home-mobile.png' className='demo-home-mobile-img' />
+			<picture>
+				<source srcSet='/demo-home-mobile.webp' media='(max-width: 35rem)' />
+				<source srcSet='/demo-home.webp' media='(min-width: 35rem)' />
+				<img
+					src='/demo-home.webp'
+					className='demo-home-img'
+					loading='lazy'
+					alt='Demo Home'
+				/>
+			</picture>
 		</>
 	)
 }

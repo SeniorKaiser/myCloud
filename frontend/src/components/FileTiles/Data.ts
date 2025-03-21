@@ -49,3 +49,17 @@ export const FolderOptionsContextMenu: Option[] = [
 		icon: TrashCan,
 	},
 ]
+
+export const imageExtensions: string[] = [
+	'jpg',
+	'jpeg',
+	'png',
+	'gif',
+	'bmp',
+	'webp',
+	'svg',
+	'tiff',
+	'ico',
+	'heic',
+	'avif',
+]

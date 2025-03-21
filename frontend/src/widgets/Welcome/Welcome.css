@@ -59,11 +59,6 @@
 
 .demo-home-img {
 	width: 100%;
-}
-
-.demo-home-mobile-img {
-	width: 100%;
-	display: none;
 	margin-top: 3rem;
 }
 
@@ -116,23 +111,7 @@
 	}
 }
 
-@media (width < 35rem) {
-	.demo-home-img {
-		display: none;
-	}
-	.demo-home-mobile-img {
-		display: block;
-	}
-}
-
-@media (width < 19rem) {
-	.demo-home-mobile-img {
-		display: none;
-	}
-}
-
 @keyframes typing {
-	/* Project */
 	0%,
 	27% {
 		content: '';

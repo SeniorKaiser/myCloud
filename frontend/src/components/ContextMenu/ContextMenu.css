@@ -18,7 +18,12 @@
 	padding: 0.3rem 0.6rem;
 	cursor: pointer;
 	transition: color 0.3s ease, fill 0.3s ease;
-	color: var(--grey);
+	border-radius: 0.8rem;
+	transition: 0.2s ease;
+}
+
+.context-menu li:first-child {
+	margin-top: 0.3rem;
 }
 
 .context-menu li span {
@@ -42,12 +47,6 @@
 
 @media (hover: hover) {
 	.context-menu li:hover {
-		color: var(--text);
-	}
-}
-
-@media (hover: none) {
-	.context-menu li {
-		color: var(--text);
+		background-color: var(--border);
 	}
 }

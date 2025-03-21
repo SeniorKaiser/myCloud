@@ -9,7 +9,6 @@ export interface File {
 	size: number
 	date: string
 	parent_folder: string | undefined
-	storage_url: string
 }
 
 export interface Folder {
@@ -38,7 +37,6 @@ export const tempfiles: File[] = [
 		size: 7223273813,
 		extension: 'jpg',
 		parent_folder: undefined,
-		storage_url: '',
 	},
 ]
 
