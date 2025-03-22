@@ -17,7 +17,7 @@ import {
 import getFolder from '@services/requests/getFolder'
 import Modal from '@components/Modal/Modal'
 import Switcher from '@components/Switcher/Switcher'
-import { Folder, File, isFile, isFolder } from '@app/data'
+import { Folder, File } from '@app/data'
 import { ContextMenuState } from '@components/ContextMenu/Data'
 import ContextMenu from '@components/ContextMenu/ContextMenu'
 import copyToClipboard from '@services/functions/copyToClipboard'
