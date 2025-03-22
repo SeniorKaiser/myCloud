@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import FileTable from '@components/FileTable/FileTable.tsx'
 import FileTiles from '@components/FileTiles/FileTiles.tsx'
-import SearchInput from '@components/SearchInput/SearchInput'
+// import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
 import Loader from '@components/Loading/Loading'
@@ -141,7 +141,7 @@ const Storage: React.FC = () => {
 			onDragOver={handleDragOver}
 			onDrop={handleDrop}
 		>
-			<SearchInput placeholder='Введите название' />
+			{/* <SearchInput placeholder='Введите название' /> */}
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {

@@ -1,5 +1,5 @@
 import { HardDrive, ArrowRightFromBracket } from '@components/Icons/Icons.tsx'
-import { Option } from '@components/ContextMenu/Data'
+import { Option } from '@components/ListOptions/Data'
 
 export const ProfileOptionsContextMenu: Option[] = [
 	{

@@ -1,5 +1,5 @@
 import { Upload, KeyBoard, TrashCan } from '@components/Icons/Icons.tsx'
-import { Option } from '@components/ContextMenu/Data'
+import { Option } from '@components/ListOptions/Data'
 import downloadFile from '@services/requests/Download'
 import deleteFile from '@services/requests/Delete'
 import renameFolder from '@services/requests/RenameFolder'
