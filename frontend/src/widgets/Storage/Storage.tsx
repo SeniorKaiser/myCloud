@@ -69,6 +69,7 @@ const Storage: React.FC = () => {
 
 	const fetchData = async (item: File | Folder) => {
 		setObject(item)
+		console.log(item)
 		if (item.parent_folder != undefined) {
 			const [curFolder, response] = await Promise.all([
 				getFolder(item?.parent_folder),
@@ -84,6 +85,7 @@ const Storage: React.FC = () => {
 			setData(response)
 			setCurrentFolder(curFolder)
 		}
+		console.log(currentFolder, data)
 	}
 
 	useEffect(() => {
