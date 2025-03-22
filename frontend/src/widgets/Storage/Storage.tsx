@@ -67,25 +67,24 @@ const Storage: React.FC = () => {
 	// 	setData(response)
 	// }
 
-	const toFolder = async (folder?: Folder, folder_id?: string) => {
-		if (folder) {
+	const toFolder = async (folder?: Folder | string | undefined) => {
+		if (typeof folder !== 'string' && folder !== undefined) {
 			const [curFolder, response] = await Promise.all([folder, Disk(folder.id)])
 			setCurrentFolder(curFolder)
 			setData(response)
-			console.log(response, curFolder, data)
-		} else if (folder_id) {
+		} else if (typeof folder === 'string') {
 			const [curFolder, response] = await Promise.all([
-				getFolder(folder_id),
-				Disk(folder_id),
+				getFolder(folder),
+				Disk(folder),
 			])
 			setCurrentFolder(curFolder)
 			setData(response)
-			console.log(response, curFolder, data)
+		} else {
+			setData(await Disk(currentFolder.id))
 		}
 	}
 
 	const refreshData = async (item?: any) => {
-		setData(await Disk(currentFolder.id))
 		console.log(item)
 	}
 
@@ -148,7 +147,7 @@ const Storage: React.FC = () => {
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {
-						await refreshData()
+						await toFolder(currentFolder.parent_folder)
 					}}
 					className='storage__prev'
 					style={currentFolder ? {} : { display: 'none' }}
