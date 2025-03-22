@@ -10,7 +10,7 @@ import { getFileIcon } from '@components/Icons/IconsReact'
 export interface StorageProps {
 	files: File[]
 	folders: Folder[]
-	onSuccess: (item: any) => void
+	toFolder: (item: Folder) => void
 	setObject: (object: File | Folder) => void
 	onOpenContextMenu: (event: React.MouseEvent, item: File | Folder) => void
 	onModal: (item: File | Folder) => void
@@ -19,7 +19,7 @@ export interface StorageProps {
 const FileTable: FC<StorageProps> = ({
 	files,
 	folders,
-	onSuccess,
+	toFolder,
 	setObject,
 	onOpenContextMenu,
 	onModal,
@@ -44,8 +44,7 @@ const FileTable: FC<StorageProps> = ({
 								onOpenContextMenu(event, item)
 							}}
 							onDoubleClick={async () => {
-								setObject(item)
-								await onSuccess(item)
+								if (!('extension' in item)) await toFolder(item)
 							}}
 						>
 							<td>

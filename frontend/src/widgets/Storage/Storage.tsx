@@ -77,28 +77,13 @@ const Storage: React.FC = () => {
 		console.log(response, curFolder, data)
 	}
 
-	const fetchData = async (item: Folder | File) => {
-		if ('extension' in item) {
-			setObject(item)
-			setData(await Disk())
-		} else {
-			if (item.parent_folder) {
-				const [curFolder, response] = await Promise.all([
-					getFolder(item.parent_folder),
-					Disk(item.parent_folder),
-				])
-				setData(response)
-				setCurrentFolder(curFolder)
-			} else {
-				setData(await Disk())
-				setCurrentFolder(tempfolder)
-			}
-		}
-		console.log(object, currentFolder, data)
+	const refreshData = async (item?: any) => {
+		setData(await Disk(currentFolder.id))
+		console.log(item)
 	}
 
 	useEffect(() => {
-		fetchData(currentFolder)
+		refreshData()
 	}, [])
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -114,7 +99,7 @@ const Storage: React.FC = () => {
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
 		await Promise.all(files.map(file => uploadFile(file, currentFolder?.id)))
-		await fetchData(currentFolder)
+		await refreshData()
 	}
 
 	const handleOpenContextMenu = (
@@ -156,7 +141,7 @@ const Storage: React.FC = () => {
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {
-						await fetchData(currentFolder)
+						await refreshData()
 					}}
 					className='storage__prev'
 					style={currentFolder ? {} : { display: 'none' }}
@@ -171,11 +156,11 @@ const Storage: React.FC = () => {
 				/>
 				<CreateFolderButton
 					folder_id={currentFolder?.id}
-					onSuccess={async () => await fetchData(currentFolder)}
+					onSuccess={async () => await refreshData()}
 				/>
 				<Upload
 					folder_id={currentFolder?.id}
-					onSuccess={async () => await fetchData(currentFolder)}
+					onSuccess={async () => await refreshData()}
 				/>
 			</div>
 			{data ? (
@@ -192,7 +177,7 @@ const Storage: React.FC = () => {
 					<FileTable
 						files={data.files}
 						folders={data.folders}
-						onSuccess={fetchData}
+						toFolder={toFolder}
 						setObject={setObject}
 						onOpenContextMenu={handleOpenContextMenu}
 						onModal={handleOpenFileModal}
@@ -219,7 +204,7 @@ const Storage: React.FC = () => {
 					position={contextMenu.position}
 					onClose={handleCloseContextMenu}
 					options={contextMenu.options}
-					onSuccess={fetchData}
+					onSuccess={refreshData}
 					object={object}
 				>
 					<h2 onClick={() => copyToClipboard(object?.name)}>{object?.name}</h2>
@@ -259,7 +244,7 @@ const Storage: React.FC = () => {
 							<ListOptions
 								options={contextMenu.options}
 								object={object}
-								onSuccess={fetchData}
+								onSuccess={refreshData}
 							/>
 						)}
 					</ul>
