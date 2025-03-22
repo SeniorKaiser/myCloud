@@ -67,6 +67,16 @@ const Storage: React.FC = () => {
 	// 	setData(response)
 	// }
 
+	const toFolder = async (item: Folder) => {
+		const [curFolder, response] = await Promise.all([
+			getFolder(item.id),
+			Disk(item.parent_folder),
+		])
+		setCurrentFolder(curFolder)
+		setData(response)
+		console.log(object, currentFolder, data)
+	}
+
 	const fetchData = async (item: Folder | File) => {
 		if ('extension' in item) {
 			setObject(item)
@@ -173,7 +183,7 @@ const Storage: React.FC = () => {
 					<FileTiles
 						files={data.files}
 						folders={data.folders}
-						onSuccess={fetchData}
+						toFolder={toFolder}
 						setObject={setObject}
 						onOpenContextMenu={handleOpenContextMenu}
 						onModal={handleOpenFileModal}

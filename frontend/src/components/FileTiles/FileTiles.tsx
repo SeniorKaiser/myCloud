@@ -10,7 +10,7 @@ import getImage from '@services/requests/getFileImage'
 interface StorageProps {
 	files: File[]
 	folders: Folder[]
-	onSuccess: (item: Folder) => Promise<void> | void
+	toFolder: (item: Folder) => Promise<void> | void
 	setObject: (object: File | Folder) => void
 	onOpenContextMenu: (event: React.MouseEvent, item: File | Folder) => void
 	onModal: (item: File | Folder) => void
@@ -19,7 +19,7 @@ interface StorageProps {
 const FileTiles: React.FC<StorageProps> = ({
 	files,
 	folders,
-	onSuccess,
+	toFolder,
 	setObject,
 	onOpenContextMenu,
 	onModal,
@@ -41,7 +41,7 @@ const FileTiles: React.FC<StorageProps> = ({
 							onOpenContextMenu(event, item)
 						}}
 						onDoubleClick={async () => {
-							if (!('extension' in item)) await onSuccess(item)
+							if (!('extension' in item)) await toFolder(item)
 						}}
 						className={`tile ${focusedId === item.id ? 'focus' : ''}`}
 						onClick={() => {
