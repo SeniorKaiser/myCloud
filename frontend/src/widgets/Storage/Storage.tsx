@@ -69,23 +69,22 @@ const Storage: React.FC = () => {
 
 	const fetchData = async (item: File | Folder) => {
 		setObject(item)
-		console.log(item)
-		if (item.parent_folder != undefined) {
-			const [curFolder, response] = await Promise.all([
-				getFolder(item?.parent_folder),
+
+		console.log('Выбранный объект:', item)
+
+		let curFolder, response
+		if (item.parent_folder) {
+			;[curFolder, response] = await Promise.all([
+				getFolder(item.parent_folder),
 				Disk(item.parent_folder),
 			])
-			setData(response)
-			setCurrentFolder(curFolder)
 		} else {
-			const [curFolder, response] = await Promise.all([
-				tempfolder,
-				Disk(undefined),
-			])
-			setData(response)
-			setCurrentFolder(curFolder)
+			;[curFolder, response] = await Promise.all([tempfolder, Disk()])
 		}
-		console.log(currentFolder, data)
+
+		setData(response)
+		setCurrentFolder(curFolder)
+		console.log(data, currentFolder)
 	}
 
 	useEffect(() => {
