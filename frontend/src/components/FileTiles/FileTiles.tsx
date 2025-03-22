@@ -41,8 +41,7 @@ const FileTiles: React.FC<StorageProps> = ({
 							onOpenContextMenu(event, item)
 						}}
 						onDoubleClick={async () => {
-							setObject(item)
-							await onSuccess(item)
+							if (!('extension' in item)) await onSuccess(item)
 						}}
 						className={`tile ${focusedId === item.id ? 'focus' : ''}`}
 						onClick={() => {

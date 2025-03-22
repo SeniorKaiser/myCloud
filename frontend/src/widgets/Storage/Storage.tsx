@@ -79,7 +79,7 @@ const Storage: React.FC = () => {
 		} else {
 			const [curFolder, response] = await Promise.all([
 				tempfolder,
-				Disk(item.parent_folder),
+				Disk(undefined),
 			])
 			setData(response)
 			setCurrentFolder(curFolder)
