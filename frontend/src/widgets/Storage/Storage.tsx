@@ -84,6 +84,7 @@ const Storage: React.FC = () => {
 				setCurrentFolder(tempfolder)
 			}
 		}
+		console.log(object, currentFolder, data)
 	}
 
 	useEffect(() => {
