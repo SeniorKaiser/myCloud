@@ -1,104 +1,59 @@
 import React, { useState } from 'react'
-import ContextMenu from '@components/ContextMenu/ContextMenu'
-import { ContextMenuState, Option } from '@components/ContextMenu/Data'
-import {
-	FileOptionsContextMenu as FileOption,
-	FolderOptionsContextMenu as FolderOption,
-	imageExtensions,
-} from './Data'
+import { isImage } from './Data'
 import { File, Folder } from '@app/data'
 import './FileTiles.css'
-import copyToClipboard from '@services/functions/copyToClipboard'
-import Modal from '@components/Modal/Modal'
-import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
 import { EllipsisVertical } from '@components/Icons/Icons'
 import { getFileIcon } from '@components/Icons/IconsReact'
 import getImage from '@services/requests/getFileImage'
 
-export interface StorageProps {
+interface StorageProps {
 	files: File[]
 	folders: Folder[]
-	onSuccess?: (folder_id?: string) => Promise<void> | void
+	onSuccess: (item: File | Folder) => Promise<void> | void
+	setObject: (object: File | Folder) => void
+	onOpenContextMenu: (event: React.MouseEvent, item: File | Folder) => void
+	onModal: (item: File | Folder) => void
 }
 
-interface ModalProps {
-	options: Option[]
-}
-
-const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
-	const [contextMenu, setContextMenu] = useState<ContextMenuState>({
-		visible: false,
-		position: { position: 'static' },
-		options: [],
-	})
-	const [object, setObject] = useState<File | Folder>()
-	const [modalActive, setModalActive] = useState<boolean>(false)
-	const [modal, setModal] = useState<ModalProps>({
-		options: [],
-	})
+const FileTiles: React.FC<StorageProps> = ({
+	files,
+	folders,
+	onSuccess,
+	setObject,
+	onOpenContextMenu,
+	onModal,
+}) => {
 	const [focusedId, setFocusedId] = useState<string | null>(null)
-
-	const isImage = (extension: string | undefined): boolean => {
-		if (!extension) return false
-		return imageExtensions.includes(extension.toLowerCase())
-	}
 
 	const handleFocus = (id: string) => {
 		setFocusedId(id)
 	}
 
-	const handleContextMenu = (
-		event: React.MouseEvent,
-		item: File | Folder
-	): void => {
-		event.preventDefault()
-		setContextMenu({
-			visible: true,
-			position: {
-				position: 'fixed',
-				top: `${event.clientY}px`,
-				left: `${event.clientX}px`,
-			},
-			options: 'size' in item ? FileOption : FolderOption,
-		})
-		setObject(item)
-	}
-
-	const handleModal = (item: File | Folder): void => {
-		setModal({
-			options: 'size' in item ? FileOption : FolderOption,
-		})
-		setModalActive(true)
-		setObject(item)
-	}
-
-	const handleCloseMenu = (): void =>
-		setContextMenu({
-			visible: false,
-			position: { position: 'fixed' },
-			options: [],
-		})
-	console.log(`${object}`)
 	return (
 		<>
 			<div className='storage-tiles'>
 				{[...folders, ...files].map(item => (
 					<div
 						key={item.id}
-						onContextMenu={event => handleContextMenu(event, item)}
+						onContextMenu={event => {
+							setObject(item)
+							onOpenContextMenu(event, item)
+						}}
 						onDoubleClick={async () => {
-							if (!('extension' in item) && onSuccess) {
-								await onSuccess(item.id)
-							}
+							setObject(item)
+							await onSuccess(item)
 						}}
 						className={`tile ${focusedId === item.id ? 'focus' : ''}`}
-						onClick={() => handleFocus(item.id)}
+						onClick={() => {
+							setObject(item)
+							handleFocus(item.id)
+						}}
 					>
 						{'extension' in item ? (
 							isImage(item.extension) ? (
 								<img
-									src='' // Сначала отображаем иконку
+									src={''}
 									alt='file preview'
 									className='tile-file-preview'
 									loading='lazy'
@@ -124,80 +79,12 @@ const FileTiles: React.FC<StorageProps> = ({ files, folders, onSuccess }) => {
 							</div>
 						)}
 
-						<div onClick={() => handleModal(item)} className='tile_options'>
+						<div onClick={() => onModal(item)} className='tile_options'>
 							<EllipsisVertical />
 						</div>
 					</div>
 				))}
 			</div>
-			{contextMenu.visible && object && (
-				<ContextMenu
-					position={contextMenu.position}
-					onClose={handleCloseMenu}
-					options={contextMenu.options}
-					onSuccess={onSuccess}
-					object={object}
-				>
-					<h2 onClick={() => copyToClipboard(object?.name)}>{object?.name}</h2>
-					<p onClick={() => copyToClipboard(object?.id)}>{object?.id}</p>
-				</ContextMenu>
-			)}
-			{object && (
-				<Modal active={modalActive} setActive={setModalActive}>
-					<div className='modal_tile'>
-						<div className='modal_tile-head'>
-							{'extension' in object ? (
-								isImage(object.extension) ? (
-									<img src={``} className='tile-file-preview' alt='Preview' />
-								) : (
-									<div className='file-icon'>
-										{getFileIcon(object.extension)}
-									</div>
-								)
-							) : (
-								<div className='file-icon'>{getFileIcon('folder')}</div>
-							)}
-							<div className='modal_tile-head_info'>
-								<div>
-									<span>Имя:</span> {object.name}
-								</div>
-								<div>
-									<span>Дата:</span> {formatDate(object.date)}
-								</div>
-
-								{'extension' in object && (
-									<>
-										<div>
-											<span>Размер:</span> {formatFileSize(object.size)}
-										</div>
-										<div>
-											<span>Расширение:</span> {object.extension}
-										</div>
-									</>
-								)}
-							</div>
-						</div>
-						<ul className='modal_tile_actions'>
-							{modal.options.map((option, index) => (
-								<li
-									key={index}
-									onClick={async () => {
-										await option.action(object?.id)
-										if (onSuccess) {
-											await onSuccess(object?.parent_folder)
-										}
-									}}
-								>
-									<span>
-										<option.icon />
-									</span>
-									{option.title}
-								</li>
-							))}
-						</ul>
-					</div>
-				</Modal>
-			)}
 		</>
 	)
 }

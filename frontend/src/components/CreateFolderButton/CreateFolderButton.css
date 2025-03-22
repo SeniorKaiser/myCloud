@@ -1,8 +1,13 @@
 .create-folder-button {
 	cursor: pointer;
 	font-size: 1.7rem;
-	transition: 0.3s ease;
 	border: none;
-	color: var(--main-color);
+	color: var(--text);
 	background-color: transparent;
+}
+
+@media (hover: hover) {
+	.create-folder-button:hover {
+		opacity: 0.8;
+	}
 }

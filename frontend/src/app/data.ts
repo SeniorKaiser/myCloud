@@ -29,24 +29,20 @@ export interface User {
 	folder: Folder[]
 }
 
-export const tempfiles: File[] = [
-	{
-		id: 'bad3827c-d6c4-4c0a-b156-622d3ba03c50',
-		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
-		date: '2025-02-10T15:08:23.957075',
-		size: 7223273813,
-		extension: 'jpg',
-		parent_folder: undefined,
-	},
-]
+export const tempfile: File = {
+	id: '',
+	name: '',
+	date: '',
+	size: 0,
+	extension: '',
+	parent_folder: undefined,
+}
 
-export const tempfolders: Folder[] = [
-	{
-		id: 'bad3827c-d6c4-4c0a-b156-622d3ba03c5',
-		name: 'sjdskjddhsjhjshshjhdjsahdsjahjsdhjsakjldhjashdjkasjdhsajsdsdsdsdsfkdsfjkl',
-		date: '2025-02-10T15:08:23.957075',
-		parent_folder: undefined,
-		user_id: '46372809434',
-		files: [],
-	},
-]
+export const tempfolder: Folder = {
+	id: '',
+	name: '',
+	date: '',
+	parent_folder: undefined,
+	user_id: '',
+	files: [],
+}

@@ -1,33 +1,13 @@
 .context-menu {
 	z-index: 997;
 	list-style-type: none;
-	background: var(--window);
+	background: white;
 	padding: 0.3rem;
 	border-radius: 0.3rem;
 	box-shadow: 0px 0.3rem 0.6rem 0.125rem rgba(34, 60, 80, 0.2);
 	animation: slide-in 0.3s ease forwards;
 	font-size: 1rem;
 	max-width: 15rem;
-}
-
-.context-menu ul {
-	list-style: none;
-}
-
-.context-menu li {
-	padding: 0.3rem 0.6rem;
-	cursor: pointer;
-	transition: color 0.3s ease, fill 0.3s ease;
-	border-radius: 0.8rem;
-	transition: 0.2s ease;
-}
-
-.context-menu li:first-child {
-	margin-top: 0.3rem;
-}
-
-.context-menu li span {
-	margin-right: 0.3rem;
 }
 
 @keyframes slide-in {
@@ -42,11 +22,5 @@
 	100% {
 		opacity: 1;
 		transform: scale(1) translateY(0);
-	}
-}
-
-@media (hover: hover) {
-	.context-menu li:hover {
-		background-color: var(--border);
 	}
 }

@@ -1,7 +1,9 @@
+import { toast } from 'react-hot-toast'
+
 const copyToClipboard = (text: string) => {
 	navigator.clipboard
 		.writeText(text)
-		.then(() => alert('Текст скопирован!'))
+		.then(() => toast.success('Текст скопирован!'))
 		.catch(err => console.error('Ошибка копирования:', err))
 }
 

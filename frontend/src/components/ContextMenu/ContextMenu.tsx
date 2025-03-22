@@ -1,15 +1,17 @@
 import { ReactNode, useEffect, useRef, FC } from 'react'
-import { Position, Option } from './Data'
-import { File, Folder } from '@app/data'
+import { Position } from './Data'
+import { File, Folder, User } from '@app/data'
 import './ContextMenu.css'
+import ListOptions from '@components/ListOptions/ListOptions'
+import { Option } from '@components/ListOptions/Data'
 
 interface ContextMenuProps {
 	position: Position
 	onClose: () => void
 	options: Option[]
 	children?: ReactNode
-	onSuccess?: (folder_id?: string) => Promise<void> | void
-	object?: File | Folder | undefined
+	onSuccess: (item: any) => void
+	object: File | Folder | User
 }
 
 const ContextMenu: FC<ContextMenuProps> = ({
@@ -53,24 +55,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
 				}}
 			>
 				{children}
-				<ul>
-					{options.map((option, index) => (
-						<li
-							key={index}
-							onClick={async () => {
-								await option.action(object?.id)
-								if (onSuccess) {
-									await onSuccess(object?.parent_folder)
-								}
-							}}
-						>
-							<span>
-								<option.icon />
-							</span>
-							{option.title}
-						</li>
-					))}
-				</ul>
+				<ListOptions options={options} object={object} onSuccess={onSuccess} />
 			</div>
 		</>
 	)

@@ -64,6 +64,8 @@ const Profile: FC = () => {
 					options={ProfileOptionsContextMenu}
 					position={menuPosition}
 					onClose={handleCloseMenu}
+					onSuccess={() => undefined}
+					object={user}
 				>
 					<h2 onClick={() => copyToClipboard(user?.id)}>{user?.name}</h2>
 					<p onClick={() => copyToClipboard(user?.id)}>{user?.id}</p>

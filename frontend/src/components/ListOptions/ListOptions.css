@@ -1,0 +1,25 @@
+.list-options {
+	list-style: none;
+	margin-top: 0.3rem;
+	margin-bottom: 0.3rem;
+}
+
+.list-options .option {
+	padding: 0.3rem 0.6rem;
+	cursor: pointer;
+	transition: color 0.3s ease, fill 0.3s ease;
+	border-radius: 0.8rem;
+	transition: 0.2s ease;
+	color: black;
+}
+
+.list-options .option span {
+	margin-right: 0.3rem;
+}
+
+@media (hover: hover) {
+	.context-menu .option:hover {
+		background-color: black;
+		color: white;
+	}
+}

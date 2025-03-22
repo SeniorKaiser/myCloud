@@ -1,0 +1,34 @@
+.switcher {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1px;
+}
+
+.switcher button {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.3rem;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	color: var(--text);
+	background-color: transparent;
+}
+
+.switcher button:first-child {
+	border-radius: 20rem 0 0 20rem;
+}
+
+.switcher button:last-child {
+	border-radius: 0 20rem 20rem 0;
+}
+
+@media (hover: hover) {
+	.switcher button:hover {
+		opacity: 0.8;
+	}
+}

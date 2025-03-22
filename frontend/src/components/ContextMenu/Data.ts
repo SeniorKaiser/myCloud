@@ -1,8 +1,4 @@
-export interface Option {
-	title: string
-	action: (id?: string) => void
-	icon: React.FC
-}
+import { Option } from '@components/ListOptions/Data'
 
 export interface Position {
 	position: 'absolute' | 'relative' | 'fixed' | 'sticky' | 'static'

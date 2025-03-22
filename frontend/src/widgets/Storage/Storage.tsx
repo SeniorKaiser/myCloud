@@ -11,69 +11,128 @@ import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButto
 import {
 	ChevronLeft,
 	Download as UploadIcon,
-	GripLines,
 	Grip,
+	GripLines,
 } from '@components/Icons/Icons'
 import getFolder from '@services/requests/getFolder'
 import Modal from '@components/Modal/Modal'
-// import { tempfiles, tempfolders } from '@app/data'
-import { Folder } from '@app/data'
+import Switcher from '@components/Switcher/Switcher'
+import { Folder, File } from '@app/data'
+import { ContextMenuState } from '@components/ContextMenu/Data'
+import ContextMenu from '@components/ContextMenu/ContextMenu'
+import copyToClipboard from '@services/functions/copyToClipboard'
+import {
+	FileOptionsContextMenu as FileOption,
+	FolderOptionsContextMenu as FolderOption,
+} from './Data'
+import ListOptions from '@components/ListOptions/ListOptions'
+import { tempfile, tempfolder } from '@app/data'
+// import { getFileIcon } from '@components/Icons/IconsReact'
+// import formatDate from '@services/functions/formatDate'
+// import formatFileSize from '@services/functions/formatSize'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
-	const [modalActive, setModalActive] = useState<boolean>(false)
-	const [currentFolder, setCurrentFolder] = useState<Folder | undefined>(
-		undefined
-	)
-	const [display, setDisplay] = useState<Boolean>(false)
+	const [modalDragAndDropActive, setModalDragAndDropActive] =
+		useState<boolean>(false)
+	const [modalFileActive, setModalFileActive] = useState<boolean>(false)
+	const [displayStyle, setDisplayStyle] = useState<Boolean>(false)
+	const [object, setObject] = useState<File | Folder>(tempfile)
+	const [currentFolder, setCurrentFolder] = useState<Folder>(tempfolder)
+	const [contextMenu, setContextMenu] = useState<ContextMenuState>({
+		visible: false,
+		position: { position: 'static' },
+		options: [],
+	})
 
-	const fetchData = async (fid?: string) => {
-		console.time('Disk')
-		let folderId = currentFolder?.id
-		if (fid) {
+	// const fetchData = async (item: File | Folder) => {
+	// 	let folderId = currentFolder?.id
+	// 	if (fid) {
+	// 		const [curFolder, response] = await Promise.all([
+	// 			getFolder(item?.parent_folder),
+	// 			Disk(fid),
+	// 		])
+	// 		if (curFolder.id !== currentFolder?.id) {
+	// 			setCurrentFolder(curFolder)
+	// 		}
+	// 		setData(response)
+	// 		console.timeEnd()
+	// 		return
+	// 	}
+	// 	if (fid === null) {
+	// 		folderId = undefined
+	// 		setCurrentFolder(undefined)
+	// 	}
+	// 	const response = await Disk(folderId)
+	// 	setData(response)
+	// }
+
+	const fetchData = async (item: File | Folder) => {
+		setObject(item)
+		if (item.parent_folder != undefined) {
 			const [curFolder, response] = await Promise.all([
-				getFolder(fid),
-				Disk(fid),
+				getFolder(item?.parent_folder),
+				Disk(item.parent_folder),
 			])
-			if (curFolder.id !== currentFolder?.id) {
-				setCurrentFolder(curFolder)
-			}
 			setData(response)
-			console.timeEnd()
-			return
+			setCurrentFolder(curFolder)
+		} else {
+			const [curFolder, response] = await Promise.all([
+				tempfolder,
+				Disk(item.parent_folder),
+			])
+			setData(response)
+			setCurrentFolder(curFolder)
 		}
-		if (fid === null) {
-			folderId = undefined
-			setCurrentFolder(undefined)
-		}
-		const response = await Disk(folderId)
-		setData(response)
-		console.timeEnd()
 	}
 
 	useEffect(() => {
-		fetchData()
-		if (localStorage.getItem('storage-display') == 'true') {
-			setDisplay(true)
-		} else {
-			setDisplay(false)
-		}
+		fetchData(object)
 	}, [])
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
 		if (e.dataTransfer.types.includes('Files')) {
-			setModalActive(true)
+			setModalDragAndDropActive(true)
 		}
 	}
 
 	const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
-		setModalActive(false)
+		setModalDragAndDropActive(false)
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
 		await Promise.all(files.map(file => uploadFile(file, currentFolder?.id)))
-		await fetchData()
+		await fetchData(object)
+	}
+
+	const handleOpenContextMenu = (
+		event: React.MouseEvent,
+		item: File | Folder
+	): void => {
+		event.preventDefault()
+		setObject(item)
+		setContextMenu({
+			visible: true,
+			position: {
+				position: 'fixed',
+				top: `${event.clientY}px`,
+				left: `${event.clientX}px`,
+			},
+			options: item ? ('size' in item ? FileOption : FolderOption) : [],
+		})
+	}
+
+	const handleCloseContextMenu = (): void =>
+		setContextMenu({
+			visible: false,
+			position: { position: 'fixed' },
+			options: [],
+		})
+
+	const handleOpenFileModal = (item: File | Folder): void => {
+		setObject(item)
+		setModalFileActive(true)
 	}
 
 	return (
@@ -86,55 +145,46 @@ const Storage: React.FC = () => {
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {
-						await fetchData(currentFolder?.parent_folder)
+						await fetchData(currentFolder)
 					}}
 					className='storage__prev'
 					style={currentFolder ? {} : { display: 'none' }}
 				>
-					{currentFolder && <ChevronLeft />}
+					{currentFolder != tempfolder && <ChevronLeft />}
 					<span>{currentFolder?.name}</span>
 				</button>
-				<div className='switcher-showing-button'>
-					<button
-						className='showing-button_table'
-						onClick={() => {
-							setDisplay(false)
-							localStorage.setItem('storage-display', 'false')
-						}}
-					>
-						<GripLines />
-					</button>
-					<button
-						className='showing-button_cards'
-						onClick={() => {
-							setDisplay(true)
-							localStorage.setItem('storage-display', 'true')
-						}}
-					>
-						<Grip />
-					</button>
-				</div>
+				<Switcher
+					setActive={setDisplayStyle}
+					childrenLeft={<Grip />}
+					childrenRight={<GripLines />}
+				/>
 				<CreateFolderButton
 					folder_id={currentFolder?.id}
-					onSuccess={async () => await fetchData(currentFolder?.id)}
+					onSuccess={async () => await fetchData(currentFolder)}
 				/>
 				<Upload
 					folder_id={currentFolder?.id}
-					onSuccess={async () => await fetchData(currentFolder?.id)}
+					onSuccess={async () => await fetchData(currentFolder)}
 				/>
 			</div>
 			{data ? (
-				display ? (
+				displayStyle ? (
 					<FileTiles
 						files={data.files}
 						folders={data.folders}
 						onSuccess={fetchData}
+						setObject={setObject}
+						onOpenContextMenu={handleOpenContextMenu}
+						onModal={handleOpenFileModal}
 					/>
 				) : (
 					<FileTable
 						files={data.files}
 						folders={data.folders}
 						onSuccess={fetchData}
+						setObject={setObject}
+						onOpenContextMenu={handleOpenContextMenu}
+						onModal={handleOpenFileModal}
 					/>
 				)
 			) : (
@@ -142,12 +192,66 @@ const Storage: React.FC = () => {
 					<Loader />
 				</div>
 			)}
-			<Modal active={modalActive} setActive={setModalActive}>
+			<Modal
+				active={modalDragAndDropActive}
+				setActive={setModalDragAndDropActive}
+			>
 				<div className='drag-and-drop-modal'>
 					<div className='drag-and-drop-modal__icon'>
 						<UploadIcon />
 					</div>
 					<div className='drag-and-drop-modal__text'>Загрузить</div>
+				</div>
+			</Modal>
+			{contextMenu.visible && object && (
+				<ContextMenu
+					position={contextMenu.position}
+					onClose={handleCloseContextMenu}
+					options={contextMenu.options}
+					onSuccess={fetchData}
+					object={object}
+				>
+					<h2 onClick={() => copyToClipboard(object?.name)}>{object?.name}</h2>
+					<p onClick={() => copyToClipboard(object?.id)}>{object?.id}</p>
+				</ContextMenu>
+			)}
+			<Modal active={modalFileActive} setActive={setModalFileActive}>
+				<div className='modal_tile'>
+					{/* <div className='modal_tile-head'>
+						<div className='file-icon'>
+							{'extension' in object
+								? getFileIcon(object.extension)
+								: getFileIcon('folder')}
+						</div>
+						<div className='modal_tile-head_info'>
+							<div>
+								<span>Имя:</span> {object.name}
+							</div>
+							<div>
+								<span>Дата:</span> {formatDate(object.date)}
+							</div>
+
+							{'extension' in object && (
+								<>
+									<div>
+										<span>Размер:</span> {formatFileSize(object.size)}
+									</div>
+									<div>
+										<span>Расширение:</span> {object.extension}
+									</div>
+								</>
+							)}
+						</div>
+					</div> */}
+					<ul className='modal_tile_actions'>
+						{object && (
+							<ListOptions
+								options={contextMenu.options}
+								object={object}
+								onSuccess={fetchData}
+							/>
+						)}
+					</ul>
 				</div>
 			</Modal>
 		</section>

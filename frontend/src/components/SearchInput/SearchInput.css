@@ -3,7 +3,7 @@
 	font-size: 1.3rem;
 	border: none;
 	border-radius: 0.5rem;
-	background-color: var(--window);
+	background-color: white;
 }
 
 .search.active {
@@ -65,7 +65,7 @@
 
 @media (hover: hover) {
 	.search button[type='submit']:hover {
-		color: var(--main-color);
+		color: var(--text);
 	}
 
 	.search button[type='reset']:hover {
@@ -75,7 +75,7 @@
 
 @media (hover: none) {
 	.search button[type='submit']:active {
-		color: var(--main-color);
+		color: var(--text);
 	}
 
 	.search button[type='reset']:active {

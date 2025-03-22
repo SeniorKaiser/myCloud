@@ -22,15 +22,8 @@
 	margin-bottom: 1.5rem;
 }
 
-.storage-reload-button {
-	height: 2rem;
-	aspect-ratio: 1/1;
-	background-color: transparent;
-	border: none;
-	font-size: 1.7rem;
-	cursor: pointer;
-	color: var(--grey);
-	transition: 0.3s ease;
+.storage-functions .switcher {
+	margin-left: auto;
 }
 
 .storage__prev {
@@ -91,38 +84,6 @@
 	font-size: 3rem;
 }
 
-.switcher-showing-button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 1px;
-	border-radius: 20rem;
-	margin-left: auto;
-	min-width: 5rem;
-}
-
-.switcher-showing-button button {
-	width: 50%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.3rem;
-	border: none;
-	background-color: var(--window);
-	cursor: pointer;
-	padding: 0.5rem;
-	color: var(--text);
-}
-
-.switcher-showing-button button:first-child {
-	border-radius: 20rem 0 0 20rem;
-}
-
-.switcher-showing-button button:last-child {
-	border-radius: 0 20rem 20rem 0;
-}
-
 .modal_tile {
 	width: 100%;
 	height: 100%;
@@ -180,27 +141,8 @@
 }
 
 @media (hover: hover) {
-	.switcher-showing-button button:hover {
-		opacity: 0.8;
-	}
-
 	.modal_tile_actions li:hover {
 		background-color: var(--border);
-	}
-}
-
-@media (hover: none) {
-	.switcher-showing-button button:hover {
-		opacity: 0.8;
-	}
-}
-
-@keyframes rotateAnimation {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
 	}
 }
 
