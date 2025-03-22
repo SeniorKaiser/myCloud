@@ -10,7 +10,7 @@ import getImage from '@services/requests/getFileImage'
 interface StorageProps {
 	files: File[]
 	folders: Folder[]
-	onSuccess: (item: File | Folder) => Promise<void> | void
+	onSuccess: (item: Folder) => Promise<void> | void
 	setObject: (object: File | Folder) => void
 	onOpenContextMenu: (event: React.MouseEvent, item: File | Folder) => void
 	onModal: (item: File | Folder) => void

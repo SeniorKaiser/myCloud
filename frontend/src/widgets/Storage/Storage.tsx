@@ -67,7 +67,7 @@ const Storage: React.FC = () => {
 	// 	setData(response)
 	// }
 
-	const fetchData = async (item: File | Folder) => {
+	const fetchData = async (item: Folder) => {
 		setObject(item)
 
 		console.log('Выбранный объект:', item)
@@ -79,7 +79,7 @@ const Storage: React.FC = () => {
 				Disk(item.parent_folder),
 			])
 		} else {
-			;[curFolder, response] = await Promise.all([tempfolder, Disk()])
+			;[curFolder, response] = await Promise.all([item, Disk()])
 		}
 
 		setData(response)
@@ -88,7 +88,7 @@ const Storage: React.FC = () => {
 	}
 
 	useEffect(() => {
-		fetchData(object)
+		fetchData(currentFolder)
 	}, [])
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -104,7 +104,7 @@ const Storage: React.FC = () => {
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
 		await Promise.all(files.map(file => uploadFile(file, currentFolder?.id)))
-		await fetchData(object)
+		await fetchData(currentFolder)
 	}
 
 	const handleOpenContextMenu = (
