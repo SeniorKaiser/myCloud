@@ -67,14 +67,21 @@ const Storage: React.FC = () => {
 	// 	setData(response)
 	// }
 
-	const toFolder = async (item: Folder) => {
-		const [curFolder, response] = await Promise.all([
-			getFolder(item.id),
-			Disk(item.id),
-		])
-		setCurrentFolder(curFolder)
-		setData(response)
-		console.log(response, curFolder, data)
+	const toFolder = async (folder?: Folder, folder_id?: string) => {
+		if (folder) {
+			const [curFolder, response] = await Promise.all([folder, Disk(folder.id)])
+			setCurrentFolder(curFolder)
+			setData(response)
+			console.log(response, curFolder, data)
+		} else if (folder_id) {
+			const [curFolder, response] = await Promise.all([
+				getFolder(folder_id),
+				Disk(folder_id),
+			])
+			setCurrentFolder(curFolder)
+			setData(response)
+			console.log(response, curFolder, data)
+		}
 	}
 
 	const refreshData = async (item?: any) => {
@@ -155,11 +162,13 @@ const Storage: React.FC = () => {
 					childrenRight={<GripLines />}
 				/>
 				<CreateFolderButton
-					folder_id={currentFolder?.id}
+					folder_id={
+						currentFolder === tempfolder ? undefined : currentFolder.id
+					}
 					onSuccess={async () => await refreshData()}
 				/>
 				<Upload
-					folder_id={currentFolder?.id}
+					folder_id={currentFolder.id}
 					onSuccess={async () => await refreshData()}
 				/>
 			</div>
