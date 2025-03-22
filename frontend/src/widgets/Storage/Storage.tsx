@@ -68,10 +68,10 @@ const Storage: React.FC = () => {
 	// }
 
 	const fetchData = async (item: Folder | File) => {
-		if (isFile(item)) {
+		if ('extension' in item) {
 			setObject(item)
 			setData(await Disk())
-		} else if (isFolder(item)) {
+		} else {
 			if (item.parent_folder) {
 				const [curFolder, response] = await Promise.all([
 					getFolder(item.parent_folder),
