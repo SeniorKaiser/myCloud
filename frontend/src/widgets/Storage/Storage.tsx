@@ -70,11 +70,11 @@ const Storage: React.FC = () => {
 	const toFolder = async (item: Folder) => {
 		const [curFolder, response] = await Promise.all([
 			getFolder(item.id),
-			Disk(item.parent_folder),
+			Disk(item.id),
 		])
 		setCurrentFolder(curFolder)
 		setData(response)
-		console.log(object, currentFolder, data)
+		console.log(response, curFolder, data)
 	}
 
 	const fetchData = async (item: Folder | File) => {
