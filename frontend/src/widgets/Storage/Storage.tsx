@@ -17,7 +17,7 @@ import {
 import getFolder from '@services/requests/getFolder'
 import Modal from '@components/Modal/Modal'
 import Switcher from '@components/Switcher/Switcher'
-import { Folder, File } from '@app/data'
+import { Folder, File, isFile, isFolder } from '@app/data'
 import { ContextMenuState } from '@components/ContextMenu/Data'
 import ContextMenu from '@components/ContextMenu/ContextMenu'
 import copyToClipboard from '@services/functions/copyToClipboard'
@@ -67,24 +67,23 @@ const Storage: React.FC = () => {
 	// 	setData(response)
 	// }
 
-	const fetchData = async (item: Folder) => {
-		setObject(item)
-
-		console.log('Выбранный объект:', item)
-
-		let curFolder, response
-		if (item.parent_folder) {
-			;[curFolder, response] = await Promise.all([
-				getFolder(item.parent_folder),
-				Disk(item.parent_folder),
-			])
-		} else {
-			;[curFolder, response] = await Promise.all([item, Disk()])
+	const fetchData = async (item: Folder | File) => {
+		if (isFile(item)) {
+			setObject(item)
+			setData(await Disk())
+		} else if (isFolder(item)) {
+			if (item.parent_folder) {
+				const [curFolder, response] = await Promise.all([
+					getFolder(item.parent_folder),
+					Disk(item.parent_folder),
+				])
+				setData(response)
+				setCurrentFolder(curFolder)
+			} else {
+				setData(await Disk())
+				setCurrentFolder(tempfolder)
+			}
 		}
-
-		setData(response)
-		setCurrentFolder(curFolder)
-		console.log(data, currentFolder)
 	}
 
 	useEffect(() => {

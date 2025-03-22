@@ -46,3 +46,24 @@ export const tempfolder: Folder = {
 	user_id: '',
 	files: [],
 }
+
+export function isFile(obj: any): obj is File {
+	return (
+		'id' in obj &&
+		'name' in obj &&
+		'files' in obj &&
+		'extension' in obj &&
+		'date' in obj &&
+		'parent_folder' in obj
+	)
+}
+
+export function isFolder(obj: any): obj is Folder {
+	return (
+		'id' in obj &&
+		'name' in obj &&
+		'user_id' in obj &&
+		'date' in obj &&
+		'parent_folder' in obj
+	)
+}
