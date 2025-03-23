@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { domenApi } from '@app/data'
 
-const diskSearch = async (param: string) => {
+const SearchFiles = async (param: string) => {
 	try {
 		const response = await axios.get(
 			`${domenApi}/api/user/disk-search/${encodeURIComponent(param)}`
@@ -13,4 +13,4 @@ const diskSearch = async (param: string) => {
 	}
 }
 
-export default diskSearch
+export default SearchFiles

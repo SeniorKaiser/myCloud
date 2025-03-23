@@ -3,6 +3,8 @@
 	border-radius: 0.8rem;
 	padding: 1rem;
 	font-size: 1.2rem;
+	background-color: white;
+	color: black;
 }
 
 .object-icon {
@@ -11,6 +13,7 @@
 	height: 3rem;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 2rem;
 }
 
 .object-card_info {

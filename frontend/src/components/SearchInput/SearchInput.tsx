@@ -1,76 +1,50 @@
-// import { useState, useRef, useEffect, FC } from 'react'
-// import { MagnifyingGlass, XMark } from '@components/Icons/Icons'
-// // import diskSearch from '@services/requests/SearchFiles'
-// import './SearchInput.css'
-// // import { DiskDTO } from '@services/requests/Disk'
-// // import FileTable from '@components/FileTable/FileTable'
-// // import { tempfiles, tempfolders } from '@app/data'
+import { useState, useRef, FC } from 'react'
+import { MagnifyingGlass, XMark } from '@components/Icons/Icons'
+import './SearchInput.css'
 
-// interface SearchInputProps {
-// 	placeholder: string
-// }
+interface SearchInputProps {
+	placeholder: string
+	setData: (response: any) => void
+	searchFunction: (string: string) => any
+}
 
-// const SearchInput: FC<SearchInputProps> = ({ placeholder }) => {
-// 	const [param, setParam] = useState<string>('')
-// 	// const [data, setData] = useState<DiskDTO>({ id: '', files: [], folders: [] })
-// 	const [active, setActive] = useState<boolean>(false)
-// 	const searchRef = useRef<HTMLFormElement>(null)
+const SearchInput: FC<SearchInputProps> = ({
+	placeholder,
+	setData,
+	searchFunction,
+}) => {
+	const [param, setParam] = useState<string>('')
+	const searchRef = useRef<HTMLFormElement>(null)
 
-// 	const handleSearch = async (e: React.FormEvent) => {
-// 		e.preventDefault()
-// 		setActive(true)
-// 		if (param.trim()) {
-// 			// const result = await diskSearch(param)
-// 			// setData(result)
-// 		}
-// 	}
+	const handleSearch = async (e: React.FormEvent) => {
+		e.preventDefault()
+		if (param.trim()) {
+			setData(await searchFunction(param))
+		}
+	}
 
-// 	const handleClear = async () => {
-// 		setParam('')
-// 		setActive(false)
-// 	}
+	const handleClear = async () => {
+		setParam('')
+	}
 
-// 	const handleClickOutside = (event: MouseEvent) => {
-// 		if (
-// 			searchRef.current &&
-// 			!searchRef.current.contains(event.target as Node)
-// 		) {
-// 			setActive(false)
-// 		}
-// 	}
+	return (
+		<form className={`search`} onSubmit={handleSearch} ref={searchRef}>
+			<div className='search-input'>
+				<button type='submit'>
+					<MagnifyingGlass />
+				</button>
+				<input
+					type='text'
+					placeholder={placeholder}
+					value={param}
+					onChange={e => setParam(e.target.value)}
+				/>
+				<button type='reset' onClick={handleClear}>
+					<XMark />
+				</button>
+			</div>
+		</form>
+	)
+}
 
-// 	useEffect(() => {
-// 		document.addEventListener('mousedown', handleClickOutside)
-// 		return () => {
-// 			document.removeEventListener('mousedown', handleClickOutside)
-// 		}
-// 	}, [])
-
-// 	return (
-// 		<form
-// 			className={`search ${active ? 'active' : ''}`}
-// 			onSubmit={handleSearch}
-// 			ref={searchRef}
-// 		>
-// 			<div className='search-input'>
-// 				<button type='submit'>
-// 					<MagnifyingGlass />
-// 				</button>
-// 				<input
-// 					type='text'
-// 					placeholder={placeholder}
-// 					value={param}
-// 					onChange={e => setParam(e.target.value)}
-// 				/>
-// 				<button type='reset' onClick={handleClear}>
-// 					<XMark />
-// 				</button>
-// 			</div>
-// 			<div className={`search-data ${active ? 'active' : ''}`}>
-// 				{/* <FileTable files={data.files} folders={[]} onSuccess={() => {}} setObject={() => {}}/> */}
-// 			</div>
-// 		</form>
-// 	)
-// }
-
-// export default SearchInput
+export default SearchInput

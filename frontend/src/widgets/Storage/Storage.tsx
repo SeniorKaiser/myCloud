@@ -27,6 +27,8 @@ import {
 } from './Data'
 import { tempfile, tempfolder } from '@app/data'
 import ObjectCard from '@components/ObjectCard/ObjectCard'
+import SearchFiles from '@services/requests/SearchFiles'
+import SearchInput from '@components/SearchInput/SearchInput'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
@@ -119,7 +121,11 @@ const Storage: React.FC = () => {
 			onDragOver={handleDragOver}
 			onDrop={handleDrop}
 		>
-			{/* <SearchInput placeholder='Введите название' /> */}
+			<SearchInput
+				placeholder='Введите название'
+				setData={setData}
+				searchFunction={SearchFiles}
+			/>
 			<div className='storage-functions'>
 				<button
 					onClick={async () => {
@@ -149,7 +155,7 @@ const Storage: React.FC = () => {
 			{data ? (
 				displayStyle ? (
 					<FileTiles
-						files={data.files}
+						files={[tempfile]}
 						folders={data.folders}
 						toFolder={toFolder}
 						setObject={setObject}
@@ -182,6 +188,9 @@ const Storage: React.FC = () => {
 					<div className='drag-and-drop-modal__text'>Загрузить</div>
 				</div>
 			</Modal>
+			<Modal active={modalFileActive} setActive={setModalFileActive}>
+				{object && <ObjectCard object={object} />}
+			</Modal>
 			{contextMenu.visible && object && (
 				<ContextMenu
 					position={contextMenu.position}
@@ -194,10 +203,7 @@ const Storage: React.FC = () => {
 					<p onClick={() => copyToClipboard(object?.id)}>{object?.id}</p>
 				</ContextMenu>
 			)}
-			<Modal active={modalFileActive} setActive={setModalFileActive}>
-				{object && <ObjectCard object={object} />}
-			</Modal>
-			{object !== tempfile && (
+			{object && (
 				<div className='object-card-container'>
 					<ObjectCard object={object} />
 				</div>

@@ -4,6 +4,7 @@
 	align-items: center;
 	min-width: 60rem;
 	font-size: 1.3rem;
+	position: relative;
 }
 
 .storage-loader {
@@ -86,9 +87,9 @@
 .object-card-container {
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: -25rem;
 	width: 20rem;
-	height: 80vh;
+	padding-top: 10vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -105,5 +106,11 @@
 
 	.upload-button {
 		width: 3rem !important;
+	}
+}
+
+@media (width < 110rem) {
+	.object-card-container {
+		display: none;
 	}
 }
