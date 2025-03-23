@@ -82,9 +82,8 @@ const Storage: React.FC = () => {
 		}
 	}
 
-	const refreshData = async (folder_id: string | undefined = undefined) => {
-		setData(await Disk(folder_id))
-		console.log(folder_id)
+	const refreshData = async () => {
+		setData(await Disk(currentFolder.id))
 	}
 
 	useEffect(() => {
@@ -104,7 +103,7 @@ const Storage: React.FC = () => {
 		const files = Array.from(e.dataTransfer.files)
 		if (files.length === 0) return
 		await Promise.all(files.map(file => uploadFile(file, currentFolder?.id)))
-		await refreshData(currentFolder.id)
+		await refreshData()
 	}
 
 	const handleOpenContextMenu = (
