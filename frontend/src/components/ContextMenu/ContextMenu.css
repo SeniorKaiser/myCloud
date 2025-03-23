@@ -10,6 +10,17 @@
 	max-width: 15rem;
 }
 
+.context-menu .list-options .option {
+	color: black;
+}
+
+@media (hover: hover) {
+	.context-menu .list-options .option:hover {
+		background-color: black;
+		color: white;
+	}
+}
+
 @keyframes slide-in {
 	0% {
 		opacity: 0;

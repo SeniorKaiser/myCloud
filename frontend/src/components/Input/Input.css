@@ -10,7 +10,6 @@
 	border-radius: 0.3rem;
 	border: none;
 	font-size: 1.2rem;
-	cursor: text;
 
 	&:not([value='']):not(:focus) ~ .input_placeholder,
 	&:-webkit-autofill ~ .input_placeholder {

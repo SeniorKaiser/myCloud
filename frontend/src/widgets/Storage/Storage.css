@@ -89,10 +89,11 @@
 	top: 0;
 	left: -25rem;
 	width: 20rem;
-	padding-top: 10vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 0.8rem;
+	background-color: var(--window);
 }
 
 @media (width < 27rem) {

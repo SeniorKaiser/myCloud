@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Columns } from './Data'
 import { File, Folder } from '@app/data'
 import { EllipsisVertical } from '@components/Icons/Icons'
@@ -24,6 +24,12 @@ const FileTable: FC<StorageProps> = ({
 	onOpenContextMenu,
 	onModal,
 }) => {
+	const [focusedId, setFocusedId] = useState<string | null>(null)
+
+	const handleFocus = (id: string) => {
+		setFocusedId(id)
+	}
+
 	return (
 		<>
 			<table className='storage-table'>
@@ -39,12 +45,16 @@ const FileTable: FC<StorageProps> = ({
 					{[...folders, ...files].map(item => (
 						<tr
 							key={item.id}
+							className={`row ${focusedId === item.id ? 'focus' : ''}`}
 							onContextMenu={event => {
-								setObject(item)
 								onOpenContextMenu(event, item)
 							}}
 							onDoubleClick={async () => {
 								if (!('extension' in item)) await toFolder(item.id)
+							}}
+							onClick={() => {
+								setObject(item)
+								handleFocus(item.id)
 							}}
 						>
 							<td>

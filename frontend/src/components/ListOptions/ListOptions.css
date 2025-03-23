@@ -9,7 +9,7 @@
 	cursor: pointer;
 	border-radius: 0.8rem;
 	transition: 0.2s ease;
-	color: black;
+	color: var(--text);
 }
 
 .list-options .option span {
@@ -18,7 +18,7 @@
 
 @media (hover: hover) {
 	.list-options .option:hover {
-		background-color: black;
-		color: white;
+		background-color: var(--text);
+		color: var(--background);
 	}
 }

@@ -15,22 +15,11 @@
 .modal-content {
 	padding: 20px;
 	border-radius: 8px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	background: var(--window);
-	border: 1px solid var(--window);
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	min-width: 20rem;
-}
-
-.input-field {
-	padding: 0.3rem;
-	border: none;
-	border-radius: 0.5rem;
-	background: var(--window);
-	outline: none;
-	height: 2.5rem;
 }
 
 .modal-buttons {
