@@ -27,9 +27,6 @@ import {
 } from './Data'
 import ListOptions from '@components/ListOptions/ListOptions'
 import { tempfile, tempfolder } from '@app/data'
-// import { getFileIcon } from '@components/Icons/IconsReact'
-// import formatDate from '@services/functions/formatDate'
-// import formatFileSize from '@services/functions/formatSize'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
@@ -67,20 +64,21 @@ const Storage: React.FC = () => {
 	// 	setData(response)
 	// }
 
-	const toFolder = async (folder?: Folder | string | undefined) => {
-		if (typeof folder !== 'string' && folder !== undefined) {
-			const [curFolder, response] = await Promise.all([folder, Disk(folder.id)])
-			setCurrentFolder(curFolder)
-			setData(response)
-		} else if (typeof folder === 'string') {
+	const toFolder = async (folder_id: string | undefined) => {
+		if (folder_id) {
 			const [curFolder, response] = await Promise.all([
-				getFolder(folder),
-				Disk(folder),
+				getFolder(folder_id),
+				Disk(folder_id),
 			])
 			setCurrentFolder(curFolder)
 			setData(response)
 		} else {
-			setData(await Disk(currentFolder.id))
+			const [curFolder, response] = await Promise.all([
+				tempfolder,
+				Disk(folder_id),
+			])
+			setCurrentFolder(curFolder)
+			setData(response)
 		}
 	}
 
