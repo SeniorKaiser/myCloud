@@ -13,14 +13,17 @@
 }
 
 .form_title label {
-	font-size: 2rem;
+	font-size: 2.5rem;
 }
 
-.form_title div {
+.form_link {
 	font-size: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }
 
-.form_title a {
+.form_link a {
 	text-decoration: none;
 	color: var(--main-color);
 }
@@ -30,26 +33,24 @@
 }
 
 .form_button {
-	width: 100%;
-	background: linear-gradient(135deg, var(--second-color), var(--main-color));
+	height: 2rem;
+	background-color: var(--text);
 	border-radius: 0.3rem;
 	border: none;
-	height: 2rem;
 	font-size: 1.3rem;
 	transition: 0.5s;
-	margin-top: 2rem;
-	color: white;
+	color: var(--background);
 	cursor: pointer;
 }
 
 @media (hover: hover) {
 	.form_button:hover {
-		scale: 1.05;
+		scale: 1.01;
 	}
 }
 @media (hover: none) {
 	.form_button:active {
-		scale: 1.05;
+		scale: 1.01;
 	}
 }
 

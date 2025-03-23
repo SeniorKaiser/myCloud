@@ -34,7 +34,7 @@ const RegForm: React.FC = () => {
 		<form className='form_container' onSubmit={onSubmit}>
 			<p className='form_title'>
 				<label>Регистрация</label>
-				<div>
+				<div className='form_link'>
 					У вас есть аккаунт?<a href='./login'> Вход</a>
 				</div>
 				<div className='form_container-error'>{error}</div>

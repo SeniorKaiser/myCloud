@@ -25,8 +25,8 @@ const LoginForm: React.FC = () => {
 	return (
 		<form className='form_container' onSubmit={onSubmit}>
 			<p className='form_title'>
-				<label>Вход</label>
-				<div>
+				<label>Войдите в аккаунт</label>
+				<div className='form_link'>
 					У вас нет аккаунта? <a href='./reg'>Регистрация</a>
 				</div>
 				<div className='form_container-error'>{error}</div>
