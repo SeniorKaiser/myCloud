@@ -25,8 +25,8 @@ import {
 	FileOptionsContextMenu as FileOption,
 	FolderOptionsContextMenu as FolderOption,
 } from './Data'
-import ListOptions from '@components/ListOptions/ListOptions'
 import { tempfile, tempfolder } from '@app/data'
+import ObjectCard from '@components/ObjectCard/ObjectCard'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
@@ -41,28 +41,6 @@ const Storage: React.FC = () => {
 		position: { position: 'static' },
 		options: [],
 	})
-
-	// const fetchData = async (item: File | Folder) => {
-	// 	let folderId = currentFolder?.id
-	// 	if (fid) {
-	// 		const [curFolder, response] = await Promise.all([
-	// 			getFolder(item?.parent_folder),
-	// 			Disk(fid),
-	// 		])
-	// 		if (curFolder.id !== currentFolder?.id) {
-	// 			setCurrentFolder(curFolder)
-	// 		}
-	// 		setData(response)
-	// 		console.timeEnd()
-	// 		return
-	// 	}
-	// 	if (fid === null) {
-	// 		folderId = undefined
-	// 		setCurrentFolder(undefined)
-	// 	}
-	// 	const response = await Disk(folderId)
-	// 	setData(response)
-	// }
 
 	const toFolder = async (folder_id: string | undefined) => {
 		if (folder_id) {
@@ -148,7 +126,6 @@ const Storage: React.FC = () => {
 						await toFolder(currentFolder.parent_folder)
 					}}
 					className='storage__prev'
-					style={currentFolder ? {} : { display: 'none' }}
 				>
 					{currentFolder != tempfolder && <ChevronLeft />}
 					<span>{currentFolder?.name}</span>
@@ -218,44 +195,13 @@ const Storage: React.FC = () => {
 				</ContextMenu>
 			)}
 			<Modal active={modalFileActive} setActive={setModalFileActive}>
-				<div className='modal_tile'>
-					{/* <div className='modal_tile-head'>
-						<div className='file-icon'>
-							{'extension' in object
-								? getFileIcon(object.extension)
-								: getFileIcon('folder')}
-						</div>
-						<div className='modal_tile-head_info'>
-							<div>
-								<span>Имя:</span> {object.name}
-							</div>
-							<div>
-								<span>Дата:</span> {formatDate(object.date)}
-							</div>
-
-							{'extension' in object && (
-								<>
-									<div>
-										<span>Размер:</span> {formatFileSize(object.size)}
-									</div>
-									<div>
-										<span>Расширение:</span> {object.extension}
-									</div>
-								</>
-							)}
-						</div>
-					</div> */}
-					<ul className='modal_tile_actions'>
-						{object && (
-							<ListOptions
-								options={contextMenu.options}
-								object={object}
-								onSuccess={refreshData}
-							/>
-						)}
-					</ul>
-				</div>
+				{object && <ObjectCard object={object} />}
 			</Modal>
+			{object !== tempfile && (
+				<div className='object-card-container'>
+					<ObjectCard object={object} />
+				</div>
+			)}
 		</section>
 	)
 }

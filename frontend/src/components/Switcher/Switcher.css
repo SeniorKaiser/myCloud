@@ -3,6 +3,8 @@
 	align-items: center;
 	justify-content: center;
 	gap: 1px;
+	background-color: var(--window);
+	border-radius: 0.8rem;
 }
 
 .switcher button {
