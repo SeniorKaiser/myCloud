@@ -23,6 +23,8 @@ export const getFileIcon = (
 		png: <FaFileImage color='#4CAF50' />,
 		gif: <FaFileImage color='#4CAF50' />,
 		svg: <FaFileImage color='#4CAF50' />,
+		webp: <FaFileImage color='#4CAF50' />,
+		avif: <FaFileImage color='#4CAF50' />,
 
 		// Document files
 		pdf: <FaFilePdf color='#E53935' />,

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { Columns } from './Data'
-import { File, Folder } from '@app/data'
+import { File, Folder, isFile, isFolder } from '@app/data'
 import { EllipsisVertical } from '@components/Icons/Icons'
 import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
@@ -50,25 +50,26 @@ const FileTable: FC<StorageProps> = ({
 								onOpenContextMenu(event, item)
 							}}
 							onDoubleClick={async () => {
-								if (!('extension' in item)) await toFolder(item.id)
+								if (isFolder(item)) await toFolder(item.id)
 							}}
 							onClick={() => {
 								setObject(item)
 								handleFocus(item.id)
 							}}
+							style={isFolder(item) ? { cursor: 'pointer' } : undefined}
 						>
 							<td>
 								<div className='file-head'>
 									<span className='file-icon'>
-										{'extension' in item
+										{isFile(item)
 											? getFileIcon(item.extension)
 											: getFileIcon('folder')}
 									</span>
 									<span className='file-name'>{item.name}</span>
 								</div>
 							</td>
-							<td>{'extension' in item ? item.extension : 'папка'}</td>
-							<td>{'extension' in item ? formatFileSize(item.size) : '-'}</td>
+							<td>{isFile(item) ? item.extension : 'папка'}</td>
+							<td>{isFile(item) ? formatFileSize(item.size) : '-'}</td>
 							<td>{formatDate(item.date)}</td>
 							<td>
 								<div onClick={() => onModal(item)}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { isImage } from './Data'
-import { File, Folder } from '@app/data'
+import { File, Folder, isFile, isFolder } from '@app/data'
 import './FileTiles.css'
 import formatFileSize from '@services/functions/formatSize'
 import { EllipsisVertical } from '@components/Icons/Icons'
@@ -41,7 +41,7 @@ const FileTiles: React.FC<StorageProps> = ({
 							onOpenContextMenu(event, item)
 						}}
 						onDoubleClick={async () => {
-							if (!('extension' in item)) await toFolder(item.id)
+							if (isFolder(item)) await toFolder(item.id)
 						}}
 						className={`tile ${focusedId === item.id ? 'focus' : ''}`}
 						onClick={() => {
@@ -49,7 +49,7 @@ const FileTiles: React.FC<StorageProps> = ({
 							handleFocus(item.id)
 						}}
 					>
-						{'extension' in item ? (
+						{isFile(item) ? (
 							isImage(item.extension) ? (
 								<img
 									src={''}
@@ -71,7 +71,7 @@ const FileTiles: React.FC<StorageProps> = ({
 						)}
 
 						<span>{item.name}</span>
-						{'extension' in item && (
+						{isFile(item) && (
 							<div className='tile_hover-info'>
 								<span>{formatFileSize(item.size)}</span>
 								<span>{item.extension}</span>

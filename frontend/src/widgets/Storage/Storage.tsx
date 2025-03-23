@@ -155,7 +155,7 @@ const Storage: React.FC = () => {
 			{data ? (
 				displayStyle ? (
 					<FileTiles
-						files={data.files}
+						files={[tempfile]}
 						folders={data.folders}
 						toFolder={toFolder}
 						setObject={setObject}
@@ -164,7 +164,7 @@ const Storage: React.FC = () => {
 					/>
 				) : (
 					<FileTable
-						files={data.files}
+						files={[tempfile]}
 						folders={data.folders}
 						toFolder={toFolder}
 						setObject={setObject}
@@ -203,7 +203,7 @@ const Storage: React.FC = () => {
 					<p onClick={() => copyToClipboard(object?.id)}>{object?.id}</p>
 				</ContextMenu>
 			)}
-			{object != tempfile && object != tempfolder && (
+			{object && (
 				<div className='object-card-container'>
 					<ObjectCard object={object} />
 				</div>
