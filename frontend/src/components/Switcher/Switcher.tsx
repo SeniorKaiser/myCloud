@@ -1,21 +1,27 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useEffect } from 'react'
 import './Switcher.css'
 
 interface SwitcherProps {
-	setActive: (active: boolean) => void
+	firstAction: () => void
+	secondAction: () => void
 	childrenRight: ReactNode
 	childrenLeft: ReactNode
+	startAction: () => void
 }
 
 const Switcher: FC<SwitcherProps> = ({
-	setActive,
+	firstAction,
+	secondAction,
 	childrenRight,
 	childrenLeft,
+	startAction,
 }) => {
+	useEffect(startAction, [])
+
 	return (
 		<div className='switcher'>
-			<button onClick={() => setActive(false)}>{childrenRight}</button>
-			<button onClick={() => setActive(true)}>{childrenLeft}</button>
+			<button onClick={firstAction}>{childrenRight}</button>
+			<button onClick={secondAction}>{childrenLeft}</button>
 		</div>
 	)
 }

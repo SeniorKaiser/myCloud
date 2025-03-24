@@ -114,6 +114,22 @@ const Storage: React.FC = () => {
 		setModalFileActive(true)
 	}
 
+	const handleDisplayTable = () => {
+		localStorage.setItem('storage-display', 'table')
+		setDisplayStyle(false)
+	}
+
+	const handleDisplayTiles = () => {
+		localStorage.setItem('storage-display', 'tiles')
+		setDisplayStyle(true)
+	}
+
+	const handleStartSwitcher = () => {
+		const displayLC = localStorage.getItem('storage-display')
+		displayLC === 'table' && setDisplayStyle(false)
+		displayLC === 'tiles' && setDisplayStyle(true)
+	}
+
 	return (
 		<section
 			className='storage'
@@ -136,9 +152,11 @@ const Storage: React.FC = () => {
 					<span>{currentFolder?.name}</span>
 				</button>
 				<Switcher
-					setActive={setDisplayStyle}
+					firstAction={handleDisplayTable}
+					secondAction={handleDisplayTiles}
 					childrenLeft={<Grip />}
 					childrenRight={<GripLines />}
+					startAction={handleStartSwitcher}
 				/>
 				<CreateFolderButton
 					folder_id={
