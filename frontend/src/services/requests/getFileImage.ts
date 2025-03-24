@@ -14,7 +14,6 @@ async function getImage(id: string) {
 		return imageUrl
 	} catch (error) {
 		console.error('Error fetching image:', error)
-		return null
 	}
 }
 
