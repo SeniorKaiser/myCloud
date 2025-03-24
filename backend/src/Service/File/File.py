@@ -16,7 +16,6 @@ class FileService:
     async def get_file(self, file_id: str) -> FileDTO:
         try:
             file = await redis_client.get(f"file:{file_id}")
-            print(file, type(file))
             if file: return FileDTO.from_dict(data=file)
             else:
                 file = await self.file_repository.get(file_id)
@@ -69,12 +68,15 @@ class FileService:
     async def get_image(self, id: str, user_id: str) -> Response:
         file = await self.get_file(id)
         file_content = await storage_client.download_file(file, user_id)
+
         mime_type, _ = mimetypes.guess_type(file.name)
+
         if mime_type and mime_type.startswith("image/"):
-            webp_bytes = await convert_to_webp(file_content)
+            webp_bytes = await convert_to_webp(file_content, quality=80)  # Сжатие
             return Response(
                 content=webp_bytes,
                 media_type="image/webp",
                 headers={"Cache-Control": "public, max-age=86400"}
             )
+
         return Response(content=file_content, media_type=mime_type)
