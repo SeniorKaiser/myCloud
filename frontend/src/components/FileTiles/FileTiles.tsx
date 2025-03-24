@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { isImage } from './Data'
 import { File, Folder, isFile, isFolder } from '@app/data'
 import './FileTiles.css'
@@ -25,6 +25,23 @@ const FileTiles: React.FC<StorageProps> = ({
 	onModal,
 }) => {
 	const [focusedId, setFocusedId] = useState<string | null>(null)
+	const [images, setImages] = useState<Map<string, string>>(new Map())
+
+	useEffect(() => {
+		const fetchImages = async () => {
+			const newImages = new Map(images)
+			await Promise.all(
+				[...folders, ...files].map(async item => {
+					if (!newImages.has(item.id)) {
+						const url = await getImage(item.id)
+						if (url) newImages.set(item.id, url)
+					}
+				})
+			)
+			setImages(newImages)
+		}
+		fetchImages()
+	}, [...folders, ...files])
 
 	const handleFocus = (id: string) => {
 		setFocusedId(id)
@@ -52,16 +69,11 @@ const FileTiles: React.FC<StorageProps> = ({
 						{isFile(item) ? (
 							isImage(item.extension) ? (
 								<img
-									src={''}
+									key={item.id}
+									src={images.get(item.id) || ''}
 									alt='file preview'
 									className='tile-file-preview'
 									loading='lazy'
-									onLoad={e => {
-										const img = e.currentTarget as HTMLImageElement
-										getImage(item.id).then(url => {
-											if (url) img.src = url
-										})
-									}}
 								/>
 							) : (
 								<div className='file-icon'>{getFileIcon(item.extension)}</div>

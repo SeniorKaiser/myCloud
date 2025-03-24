@@ -202,7 +202,7 @@ const Storage: React.FC = () => {
 					<p onClick={() => copyToClipboard(object?.id)}>{object?.id}</p>
 				</ContextMenu>
 			)}
-			{object !== tempfile && object != tempfolder && (
+			{object !== tempfile && object !== tempfolder && (
 				<div className='object-card-container'>
 					<ObjectCard object={object} onSuccess={refreshData} />
 				</div>
