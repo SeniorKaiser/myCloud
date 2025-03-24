@@ -36,3 +36,15 @@ class File(BaseModel):
             "parent_folder": self.parent_folder,
             "user_id": self.user_id,
         }
+    
+    @classmethod
+    def from_dict(cls, data: dict):
+        return cls(
+            id=data.get("id", str(uuid.uuid4())),
+            name=data["name"],
+            size=data["size"],
+            date=datetime.fromisoformat(data["date"]),
+            extension=data["extension"],
+            parent_folder=data.get("parent_folder"),
+            user_id=data["user_id"],
+        )
