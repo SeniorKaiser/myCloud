@@ -16,6 +16,7 @@ class FileService:
     async def get_file(self, file_id: str) -> FileDTO:
         try:
             file = await redis_client.get(f"file:{file_id}")
+            print(file, type(file))
             if file: return FileDTO.from_dict(data=file)
             else:
                 file = await self.file_repository.get(file_id)
