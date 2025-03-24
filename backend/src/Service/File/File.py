@@ -68,7 +68,6 @@ class FileService:
     async def get_image(self, id: str, user_id: str) -> Response:
         file = await self.get_file(id)
         file_content = await storage_client.download_file(file, user_id)
-        print(f'uploads/{user_id}/files/{file.id}_{file.name}')
         mime_type, _ = mimetypes.guess_type(file.name)
         if mime_type and mime_type.startswith("image/"):
             webp_bytes = await convert_to_webp(file_content)

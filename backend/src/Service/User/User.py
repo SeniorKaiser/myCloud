@@ -31,11 +31,8 @@ class UserService:
 
     async def auth(self, request: Request, response: Response) -> UserDTO:
         token = await getJWT(request=request, response=response)
-        print(token, '---')
         payload = await decode_token(token.access_token)
-        print(payload)
         user = await self.get_user(payload.get("id"))
-        print(user)
         return user
 
     async def get_user(self, id: str) -> UserDTO:
