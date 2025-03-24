@@ -19,6 +19,8 @@ export const getFileIcon = (
 	const icons = {
 		// Image files
 		jpg: <FaFileImage color='#4CAF50' />,
+		JPG: <FaFileImage color='#4CAF50' />,
+		JPEG: <FaFileImage color='#4CAF50' />,
 		jpeg: <FaFileImage color='#4CAF50' />,
 		png: <FaFileImage color='#4CAF50' />,
 		gif: <FaFileImage color='#4CAF50' />,
