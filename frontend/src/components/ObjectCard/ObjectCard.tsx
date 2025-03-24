@@ -12,6 +12,7 @@ import {
 
 interface ObjectCardProps {
 	object: File | Folder
+	onSuccess: () => void
 }
 
 const ObjectCard: FC<ObjectCardProps> = ({ object }) => {

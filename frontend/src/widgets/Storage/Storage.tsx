@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import FileTable from '@components/FileTable/FileTable.tsx'
 import FileTiles from '@components/FileTiles/FileTiles.tsx'
-// import SearchInput from '@components/SearchInput/SearchInput'
 import './Storage.css'
 import Disk, { DiskDTO } from '@services/requests/Disk'
 import Loader from '@components/Loading/Loading'
@@ -189,7 +188,7 @@ const Storage: React.FC = () => {
 				</div>
 			</Modal>
 			<Modal active={modalFileActive} setActive={setModalFileActive}>
-				{object && <ObjectCard object={object} />}
+				{object && <ObjectCard object={object} onSuccess={refreshData} />}
 			</Modal>
 			{contextMenu.visible && object && (
 				<ContextMenu
@@ -203,9 +202,9 @@ const Storage: React.FC = () => {
 					<p onClick={() => copyToClipboard(object?.id)}>{object?.id}</p>
 				</ContextMenu>
 			)}
-			{object && (
+			{object !== tempfile && object != tempfolder && (
 				<div className='object-card-container'>
-					<ObjectCard object={object} />
+					<ObjectCard object={object} onSuccess={refreshData} />
 				</div>
 			)}
 		</section>
