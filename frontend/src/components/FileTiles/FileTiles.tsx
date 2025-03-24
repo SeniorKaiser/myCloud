@@ -31,7 +31,7 @@ const FileTiles: React.FC<StorageProps> = ({
 		const fetchImages = async () => {
 			const newImageMap = new Map(imageMap)
 			await Promise.all(
-				[...folders, ...files].map(async item => {
+				files.map(async item => {
 					if (!newImageMap.has(item.id)) {
 						const url = await getImage(item.id)
 						if (url) newImageMap.set(item.id, url)
@@ -67,7 +67,7 @@ const FileTiles: React.FC<StorageProps> = ({
 						}}
 					>
 						{isFile(item) ? (
-							isImage(item.extension) ? (
+							isImage(item.extension) && imageMap.get(item.id) ? (
 								<img
 									key={item.id}
 									src={imageMap.get(item.id) || ''}
