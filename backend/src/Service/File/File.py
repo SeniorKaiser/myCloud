@@ -72,7 +72,7 @@ class FileService:
         mime_type, _ = mimetypes.guess_type(file.name)
 
         if mime_type and mime_type.startswith("image/"):
-            webp_bytes = await convert_to_webp(file_content, quality=80)  # Сжатие
+            webp_bytes = await convert_to_webp(file_content, quality=40)  # Сжатие
             return Response(
                 content=webp_bytes,
                 media_type="image/webp",

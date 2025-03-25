@@ -8,6 +8,5 @@ async def convert_to_webp(image_bytes: bytes, quality: int = 80) -> bytes:
     if image.mode in ("RGBA", "P"):
         image = image.convert("RGB")
     
-    # Сохраняем в WebP с сжатием (quality=80 уменьшает размер)
-    image.save(output, format="WEBP", quality=quality, optimize=True)
+    image.save(output, format="WEBP", quality=quality, optimize=True, lossless=False,)
     return output.getvalue()
