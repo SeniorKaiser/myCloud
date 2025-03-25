@@ -10,7 +10,6 @@ export const imageExtensions: string[] = [
 	'gif',
 	'bmp',
 	'webp',
-	'svg',
 	'tiff',
 	'ico',
 	'heic',

@@ -29,7 +29,9 @@ const FileTiles: React.FC<StorageProps> = ({
 
 	useEffect(() => {
 		const fetchImages = async () => {
-			const missingFiles = files.filter(file => !imageMap.has(file.id))
+			const missingFiles = files.filter(
+				file => !imageMap.has(file.id) && isImage(file.extension)
+			)
 			if (missingFiles.length === 0) return
 			const imageEntries = await Promise.all(
 				missingFiles.map(async item => {
