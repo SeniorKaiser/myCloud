@@ -30,6 +30,7 @@
 
 .form_container-error {
 	color: red;
+	font-size: 1rem;
 }
 
 .form_button {

@@ -18,7 +18,7 @@ export const config: Config = [
 		placeholder: 'Пароль',
 		required: true,
 		type: 'password',
-		minLength: 3,
+		minLength: 6,
 		validate: (error: FormDataI) => (error.password ? error.password : ''),
 	},
 ]

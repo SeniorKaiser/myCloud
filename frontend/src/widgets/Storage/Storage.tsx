@@ -28,6 +28,7 @@ import { tempfile, tempfolder } from '@app/data'
 import ObjectCard from '@components/ObjectCard/ObjectCard'
 import SearchFiles from '@services/requests/SearchFiles'
 import SearchInput from '@components/SearchInput/SearchInput'
+import ToolTip from '@components/ToolTip/ToolTip'
 
 const Storage: React.FC = () => {
 	const [data, setData] = useState<DiskDTO | null>(null)
@@ -151,19 +152,23 @@ const Storage: React.FC = () => {
 					{currentFolder != tempfolder && <ChevronLeft />}
 					<span>{currentFolder?.name}</span>
 				</button>
-				<Switcher
-					firstAction={handleDisplayTable}
-					secondAction={handleDisplayTiles}
-					childrenLeft={<Grip />}
-					childrenRight={<GripLines />}
-					startAction={handleStartSwitcher}
-				/>
-				<CreateFolderButton
-					folder_id={
-						currentFolder === tempfolder ? undefined : currentFolder.id
-					}
-					onSuccess={async () => await refreshData()}
-				/>
+				<ToolTip text='Выбери стиль отображения'>
+					<Switcher
+						firstAction={handleDisplayTable}
+						secondAction={handleDisplayTiles}
+						childrenLeft={<Grip />}
+						childrenRight={<GripLines />}
+						startAction={handleStartSwitcher}
+					/>
+				</ToolTip>
+				<ToolTip text='Создание папки'>
+					<CreateFolderButton
+						folder_id={
+							currentFolder === tempfolder ? undefined : currentFolder.id
+						}
+						onSuccess={async () => await refreshData()}
+					/>
+				</ToolTip>
 				<Upload
 					folder_id={currentFolder.id}
 					onSuccess={async () => await refreshData()}

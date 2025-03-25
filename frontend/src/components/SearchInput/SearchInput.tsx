@@ -1,6 +1,7 @@
 import { useState, useRef, FC } from 'react'
 import { MagnifyingGlass, XMark } from '@components/Icons/Icons'
 import './SearchInput.css'
+import ToolTip from '@components/ToolTip/ToolTip'
 
 interface SearchInputProps {
 	placeholder: string
@@ -30,9 +31,11 @@ const SearchInput: FC<SearchInputProps> = ({
 	return (
 		<form className={`search`} onSubmit={handleSearch} ref={searchRef}>
 			<div className='search-input'>
-				<button type='submit'>
-					<MagnifyingGlass />
-				</button>
+				<ToolTip text='Поиск'>
+					<button type='submit'>
+						<MagnifyingGlass />
+					</button>
+				</ToolTip>
 				<input
 					type='text'
 					placeholder={placeholder}

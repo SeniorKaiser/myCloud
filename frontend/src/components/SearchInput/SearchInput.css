@@ -44,6 +44,8 @@
 	font-size: 1em;
 	color: var(--grey);
 	transition: 0.3s;
+	height: 2rem;
+	width: 2rem;
 }
 
 @media (hover: hover) {

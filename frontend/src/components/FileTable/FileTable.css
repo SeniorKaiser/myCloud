@@ -1,9 +1,6 @@
 .storage-table {
 	width: 100%;
-	border-collapse: collapse;
-	overflow: hidden;
 	caret-color: transparent;
-	position: relative;
 	border-spacing: 0 0.5rem;
 	border-collapse: separate;
 }
@@ -44,7 +41,7 @@ th {
 	text-overflow: ellipsis;
 }
 
-td:nth-child(5) div {
+td .item-info {
 	cursor: pointer;
 	width: 2rem;
 	height: 2rem;
@@ -53,6 +50,8 @@ td:nth-child(5) div {
 	align-items: center;
 	justify-content: center;
 	transition: 0.2s ease;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .storage-table img {
@@ -99,7 +98,7 @@ td:nth-child(5) div {
 }
 
 @media (hover: hover) {
-	td:nth-child(5) div:hover {
+	td:nth-child(5) .item-info:hover {
 		background-color: var(--text);
 		color: var(--background);
 	}

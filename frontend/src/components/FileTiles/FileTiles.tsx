@@ -89,7 +89,6 @@ const FileTiles: React.FC<StorageProps> = ({
 								<span>{item.extension}</span>
 							</div>
 						)}
-
 						<div onClick={() => onModal(item)} className='tile_options'>
 							<EllipsisVertical />
 						</div>

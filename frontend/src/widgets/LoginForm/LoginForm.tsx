@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
 			password: formValue.password,
 		})
 		if (token) window.location.href = '/'
-		else setError('Wrong username or password')
+		else setError('Неверное имя или пароль')
 	}
 	return (
 		<form className='form_container' onSubmit={onSubmit}>

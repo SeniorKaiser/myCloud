@@ -23,10 +23,6 @@
 	margin-bottom: 1.5rem;
 }
 
-.storage-functions .switcher {
-	margin-left: auto;
-}
-
 .storage__prev {
 	height: 100%;
 	border: none;
@@ -37,6 +33,7 @@
 	font-size: 1.5rem;
 	color: var(--text);
 	width: 10rem;
+	margin-left: auto;
 }
 
 .storage__prev span {
@@ -96,10 +93,6 @@
 }
 
 @media (width < 27rem) {
-	.storage-reload-button {
-		display: none;
-	}
-
 	.upload section span {
 		display: none;
 	}

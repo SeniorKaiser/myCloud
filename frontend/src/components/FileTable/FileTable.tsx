@@ -6,6 +6,7 @@ import formatDate from '@services/functions/formatDate'
 import formatFileSize from '@services/functions/formatSize'
 import './FileTable.css'
 import { getFileIcon } from '@components/Icons/IconsReact'
+import ToolTip from '@components/ToolTip/ToolTip'
 
 export interface StorageProps {
 	files: File[]
@@ -72,9 +73,11 @@ const FileTable: FC<StorageProps> = ({
 							<td>{isFile(item) ? formatFileSize(item.size) : '-'}</td>
 							<td>{formatDate(item.date)}</td>
 							<td>
-								<div onClick={() => onModal(item)}>
-									<EllipsisVertical />
-								</div>
+								<ToolTip text='Посмотреть информацию'>
+									<div onClick={() => onModal(item)} className='item-info'>
+										<EllipsisVertical />
+									</div>
+								</ToolTip>
 							</td>
 						</tr>
 					))}

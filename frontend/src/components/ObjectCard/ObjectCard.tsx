@@ -15,7 +15,7 @@ interface ObjectCardProps {
 	onSuccess: () => void
 }
 
-const ObjectCard: FC<ObjectCardProps> = ({ object }) => {
+const ObjectCard: FC<ObjectCardProps> = ({ object, onSuccess }) => {
 	return (
 		<div className='object-card'>
 			<div className='object-icon'>
@@ -44,7 +44,7 @@ const ObjectCard: FC<ObjectCardProps> = ({ object }) => {
 			</div>
 			<ListOptions
 				options={'size' in object ? FileOption : FolderOption}
-				onSuccess={() => {}}
+				onSuccess={onSuccess}
 				object={object}
 			/>
 		</div>
