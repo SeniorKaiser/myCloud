@@ -29,19 +29,24 @@ const FileTiles: React.FC<StorageProps> = ({
 
 	useEffect(() => {
 		const fetchImages = async () => {
-			const newImageMap = new Map(imageMap)
-			await Promise.all(
-				files.map(async item => {
-					if (!newImageMap.has(item.id)) {
-						const url = await getImage(item.id)
-						if (url) newImageMap.set(item.id, url)
-					}
+			const missingFiles = files.filter(file => !imageMap.has(file.id))
+			if (missingFiles.length === 0) return
+			const imageEntries = await Promise.all(
+				missingFiles.map(async item => {
+					const url = await getImage(item.id)
+					return url ? [item.id, url] : null
 				})
 			)
-			setImageMap(newImageMap)
+			setImageMap(prev => {
+				const newMap = new Map(prev)
+				imageEntries.forEach(entry => {
+					if (entry) newMap.set(entry[0], entry[1])
+				})
+				return newMap
+			})
 		}
 		fetchImages()
-	}, [folders, files])
+	}, [files])
 
 	const handleFocus = (id: string) => {
 		setFocusedId(id)
