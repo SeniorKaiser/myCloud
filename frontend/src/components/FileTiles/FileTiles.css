@@ -30,9 +30,9 @@
 }
 
 .tile-file-preview {
-	object-fit: contain;
-	max-width: 100%;
-	height: 7rem;
+	object-fit: cover;
+	width: 100%;
+	max-height: 7rem;
 	width: auto;
 	display: block;
 	margin-left: auto;
@@ -76,12 +76,20 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	visibility: hidden;
+	opacity: 0;
 }
 
 @media (hover: hover) {
 	.tile:hover,
 	.tile.focus {
 		background-color: var(--window);
+	}
+
+	.tile:hover .tile_options,
+	.tile.focus .tile_options {
+		visibility: visible;
+		opacity: 1;
 	}
 
 	.tile:hover .tile_hover-info,
@@ -94,6 +102,11 @@
 @media (hover: none) {
 	.tile.focus {
 		background-color: var(--window);
+	}
+
+	.tile.focus .tile_options {
+		visibility: visible;
+		opacity: 1;
 	}
 
 	.tile.focus .tile_hover-info {

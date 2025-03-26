@@ -77,7 +77,7 @@ const FileTiles: React.FC<StorageProps> = ({
 							isImage(item.extension) && imageMap.get(item.id) ? (
 								<img
 									key={item.id}
-									src={imageMap.get(item.id) || ''}
+									src={imageMap.get(item.id) || 'demo-home.webp'}
 									alt='file preview'
 									className='tile-file-preview'
 									loading='lazy'

@@ -13,7 +13,7 @@ export interface feature {
 
 export const listPrivilegeCard: PrivilegeCard[] = [
 	{
-		title: 'Стандарт',
+		title: 'Base',
 		subtitle: 'доступен всем',
 		description: [
 			{ title: 'Объем хранилища', description: '20гб' },

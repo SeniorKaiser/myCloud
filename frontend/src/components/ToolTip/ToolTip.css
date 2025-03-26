@@ -8,7 +8,7 @@
 
 .tooltip {
 	position: absolute;
-	bottom: 120%;
+	bottom: 130%;
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: var(--text);
@@ -19,8 +19,7 @@
 	font-size: 0.9rem;
 	visibility: hidden;
 	opacity: 0;
-	transition: opacity 0.2s, visibility 0.2s;
-	display: none;
+	transition: opacity 0.2s ease, visibility 0.2s ease;
 	text-align: center;
 }
 
@@ -28,17 +27,15 @@
 	.tooltip-children:hover .tooltip {
 		visibility: visible;
 		opacity: 1;
-		display: block;
+		transition-delay: 0.5s;
 	}
 }
 
-/* .tooltip::after {
+.tooltip::after {
 	content: '\25BC';
-	width: 0.2rem;
-	height: 0.2rem;
 	position: absolute;
 	top: 70%;
-	left: 45%;
+	left: 50%;
 	transform: translateX(-50%);
 	color: var(--text);
-} */
+}
