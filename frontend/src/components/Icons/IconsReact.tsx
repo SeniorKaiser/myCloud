@@ -61,7 +61,7 @@ export const getFileIcon = (
 		flac: <FaFileAudio color='#D84315' />,
 
 		// Folder
-		folder: <FaFolder color='#FB8C00' />,
+		folder: <FaFolder color='#4362ee' />,
 
 		// Code files
 		js: <FaFileCode color='#f0d91d' />,
