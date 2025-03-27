@@ -32,15 +32,16 @@
 	align-items: center;
 	font-size: 1.5rem;
 	color: var(--text);
-	width: 10rem;
+	flex-grow: 1;
+	min-width: 0;
 	margin-right: auto;
 }
 
 .storage__prev span {
 	margin-left: 0.5rem;
 	overflow: hidden;
-	text-overflow: ellipsis;
 	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .storage .context-menu h2 {
