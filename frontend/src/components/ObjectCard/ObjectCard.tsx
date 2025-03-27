@@ -21,11 +21,13 @@ const ObjectCard: FC<ObjectCardProps> = ({ object, onSuccess }) => {
 
 	useEffect(() => {
 		const fetchImage = async () => {
-			if (!isFile(object) || !isImage(object.extension) || image) return
+			if (!isFile(object) || !isImage(object.extension)) {
+				setImage(undefined)
+				return
+			}
 			const url = await getImage(object.id)
 			setImage(url)
 		}
-
 		fetchImage()
 	}, [object])
 

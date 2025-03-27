@@ -10,6 +10,7 @@
 	width: 100%;
 	object-fit: cover;
 	border-radius: 0.8rem;
+	max-height: 20rem;
 }
 
 .object-icon {
