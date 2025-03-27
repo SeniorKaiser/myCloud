@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { isImage } from './Data'
-import { File, Folder, isFile, isFolder } from '@app/data'
+import { File, Folder, isFile, isFolder, isImage } from '@app/data'
 import './FileTiles.css'
 import formatFileSize from '@services/functions/formatSize'
 import { EllipsisVertical } from '@components/Icons/Icons'
@@ -77,7 +76,7 @@ const FileTiles: React.FC<StorageProps> = ({
 							isImage(item.extension) && imageMap.get(item.id) ? (
 								<img
 									key={item.id}
-									src={imageMap.get(item.id) || 'demo-home.webp'}
+									src={imageMap.get(item.id) || ''}
 									alt='file preview'
 									className='tile-file-preview'
 									loading='lazy'

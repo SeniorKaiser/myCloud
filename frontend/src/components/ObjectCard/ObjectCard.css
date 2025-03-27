@@ -6,6 +6,12 @@
 	background-color: transparent;
 }
 
+.object-preview {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 0.8rem;
+}
+
 .object-icon {
 	font-size: 3rem;
 	width: 3rem;

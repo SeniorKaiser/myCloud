@@ -54,3 +54,21 @@ export function isFile(obj: any): obj is File {
 export function isFolder(obj: any): obj is Folder {
 	return !('extension' in obj)
 }
+
+export const isImage = (extension: string | undefined): boolean => {
+	if (!extension) return false
+	return imageExtensions.includes(extension.toLowerCase())
+}
+
+export const imageExtensions: string[] = [
+	'jpg',
+	'jpeg',
+	'png',
+	'gif',
+	'bmp',
+	'webp',
+	'tiff',
+	'ico',
+	'heic',
+	'avif',
+]

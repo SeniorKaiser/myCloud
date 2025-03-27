@@ -177,7 +177,7 @@ const Storage: React.FC = () => {
 			{data ? (
 				displayStyle ? (
 					<FileTiles
-						files={data.files}
+						files={[tempfile]}
 						folders={data.folders}
 						toFolder={toFolder}
 						setObject={setObject}
