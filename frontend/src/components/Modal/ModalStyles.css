@@ -25,7 +25,6 @@
 	border-radius: 0.8rem;
 	background-color: var(--window);
 	border: 1px solid var(--window);
-	max-height: 30rem;
 	max-width: 30rem;
 	width: 80%;
 	transform: scale(0.5);

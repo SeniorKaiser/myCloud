@@ -60,7 +60,7 @@ const FileTiles: React.FC<StorageProps> = ({
 					<div
 						key={item.id}
 						onContextMenu={event => {
-							setObject(item)
+							handleFocus(item.id)
 							onOpenContextMenu(event, item)
 						}}
 						onDoubleClick={async () => {
