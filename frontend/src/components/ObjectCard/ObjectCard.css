@@ -21,6 +21,12 @@
 	margin-bottom: 2rem;
 }
 
+.object-card_info div {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 100%;
+}
+
 .object-card_info span {
 	font-size: 1rem;
 	color: var(--grey);
