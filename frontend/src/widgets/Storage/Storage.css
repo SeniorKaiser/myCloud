@@ -33,7 +33,7 @@
 	font-size: 1.5rem;
 	color: var(--text);
 	width: 10rem;
-	margin-left: auto;
+	margin-right: auto;
 }
 
 .storage__prev span {
