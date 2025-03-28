@@ -7,16 +7,16 @@ const createFolder = async (
 	name: string,
 	folder_id?: string | undefined
 ): Promise<Folder> => {
-	const loadingToast = toast.loading('Creating folder...')
+	const loadingToast = toast.loading('Создание папки...')
 	try {
 		const response = await axios.post(`${domenApi}/api/folder/create`, {
 			name: name,
 			parent_folder: folder_id,
 		})
-		toast.success(`Folder created`, { id: loadingToast })
+		toast.success(`Папка создана`, { id: loadingToast })
 		return response.data
 	} catch (error) {
-		toast.error('Error! Folder not created', { id: loadingToast })
+		toast.error('Ошибка! Папка не создана', { id: loadingToast })
 		throw error
 	}
 }

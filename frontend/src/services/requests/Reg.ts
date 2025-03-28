@@ -13,7 +13,7 @@ const RegRequest = async ({
 	email,
 	password,
 }: RegProps): Promise<string | undefined> => {
-	const loadingToast = toast.loading('Registration...')
+	const loadingToast = toast.loading('Регистарция...')
 	try {
 		const formData = {
 			name: username,
@@ -26,12 +26,12 @@ const RegRequest = async ({
 			withCredentials: true,
 		})
 
-		toast.success(`Successful registration`, { id: loadingToast })
+		toast.success(`Успешная регистарция`, { id: loadingToast })
 		return response.data
 	} catch (error) {
 		const axiosError = error as AxiosError
 		console.error('Ошибка:', axiosError.response?.data || axiosError.message)
-		toast.error('Registration error', { id: loadingToast })
+		toast.error('Ошибка регистрации', { id: loadingToast })
 		return undefined
 	}
 }

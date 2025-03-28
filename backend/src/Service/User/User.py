@@ -28,6 +28,10 @@ class UserService:
         token = await generate_tokens(user.id)
         await set_tokens_in_cookie(response=response, token=token)
         return token
+    
+    async def logout(self, response):
+        await remove_tokens_from_cookie(response=response)
+        return response
 
     async def auth(self, request: Request, response: Response) -> UserDTO:
         token = await getJWT(request=request, response=response)

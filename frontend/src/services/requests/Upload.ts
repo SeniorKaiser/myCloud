@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast'
 import { File as FileDTO } from '@app/data'
 
 const uploadFile = async (file: File, folderId?: string): Promise<FileDTO> => {
-	const loadingToast = toast.loading('Uploading file...')
+	const loadingToast = toast.loading('Загрузка файла...')
 
 	const formData = new FormData()
 	formData.append('file', file)
@@ -18,11 +18,11 @@ const uploadFile = async (file: File, folderId?: string): Promise<FileDTO> => {
 				params: folderId ? { parent_folder: folderId } : {},
 			}
 		)
-		console.log('File uploaded', response.data)
+		console.log('Файл загружен', response.data)
 		toast.success('File uploaded', { id: loadingToast })
 		return response.data
 	} catch (error) {
-		console.error('Ошибка загрузки файла:', error)
+		console.error('Ошибка! Файл не загружен', error)
 		toast.error('File upload error', { id: loadingToast })
 		throw error
 	}

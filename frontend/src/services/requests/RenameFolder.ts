@@ -3,7 +3,7 @@ import axios from 'axios'
 import { toast } from 'react-hot-toast'
 
 const renameFolder = async (folderId: string, newName: string) => {
-	const loadingToast = toast.loading('Renaming folder...')
+	const loadingToast = toast.loading('Переименование папки...')
 	try {
 		const response = await axios.put(
 			`${domenApi}/api/folder/rename/${folderId}`,
@@ -12,11 +12,11 @@ const renameFolder = async (folderId: string, newName: string) => {
 				params: { name: newName },
 			}
 		)
-		toast.success(`Folder renamed`, { id: loadingToast })
+		toast.success(`Папка переименована`, { id: loadingToast })
 		return response.data
 	} catch (error) {
 		console.error('Error renaming folder:', error)
-		toast.error('Error! Folder not renamed', { id: loadingToast })
+		toast.error('Ошибка! Папка не переименована', { id: loadingToast })
 		throw error
 	}
 }
