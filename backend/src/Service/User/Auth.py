@@ -58,6 +58,7 @@ async def set_tokens_in_cookie(response: Response, token: Token) -> JSONResponse
 async def remove_tokens_from_cookie(response: Response) -> JSONResponse:
     response.delete_cookie(key=settings.COOKIES_KEY_ACCESS)
     response.delete_cookie(key=settings.COOKIES_KEY_REFRESH)
+    return JSONResponse(content={"message": "Logged out successfully"}, status_code=200)
     
 async def checkJWT(accessToken: str | None, refreshToken: str | None) -> Token:
     if accessToken is not None:
