@@ -21,7 +21,6 @@ def main():
 origins = [
     "http://localhost:5173",
     "http://79.141.77.164",
-    "http://172.18.0.4",
     "http://localhost:3000"
 ]
 

@@ -7,7 +7,6 @@ from src.dto.User import User as UserDTO, UserFilesFolders
 from src.dto.File import File as FileDTO
 from src.dto.Folder import Folder as FolderDTO
 from src.Storage.UserClient import user_storage_client
-from src.Storage.FileClient import file_storage_client
 from src.utils.redis import redis_client
 from src.Service.User.Auth import *
 
@@ -29,7 +28,7 @@ class UserService:
         await set_tokens_in_cookie(response=response, token=token)
         return token
     
-    async def logout(self, response):
+    async def logout(self, response: Response):
         return await remove_tokens_from_cookie(response=response)
 
     async def auth(self, request: Request, response: Response) -> UserDTO:
