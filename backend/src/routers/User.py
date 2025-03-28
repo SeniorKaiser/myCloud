@@ -24,11 +24,11 @@ async def login(
 ) -> Token:
     return await user_service.login(response, form_data)
 
-@router.delete("/logout", response_model=Token)
+@router.delete("/logout")
 async def logout(
     response: Response,
     user_service: Annotated[UserService, Depends(user_service)],
-) -> Token:
+):
     return await user_service.logout(response)
 
 @router.get("/auth")
