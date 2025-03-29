@@ -25,10 +25,10 @@ export const reviewsList: Review[] = [
 		contact: 'nociwi4987@arinuse.com',
 	},
 	{
-		name: 'Kilian Dash',
+		name: 'Нигерийский деятель культуры',
 		stars: 3,
-		text: "Overall, I'm happy. Simple setup, intuitive operation, and synchronization is seamless. There was one malfunction, but tech support quickly helped me figure it out. I recommend it!",
-		contact: 'hinabey561@arinuse.com',
+		text: 'Очень удобное приложение с качественным интерфейсом. Благодаря нему я смог сохранить все самые важные файлы, для которых не хватало места. Рекомендую всем, у кого не хватает памяти на диске.',
+		contact: '',
 	},
 	{
 		name: 'mountainphile',
