@@ -16,3 +16,13 @@
 		display: none;
 	}
 }
+
+@media (width < 30rem) {
+	.login-main {
+		width: 100vw;
+	}
+
+	.login-main__container {
+		width: 100%;
+	}
+}

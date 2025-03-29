@@ -16,3 +16,13 @@
 		display: none;
 	}
 }
+
+@media (width < 30rem) {
+	.reg-main {
+		width: 100vw;
+	}
+
+	.reg-main__container {
+		width: 100%;
+	}
+}
