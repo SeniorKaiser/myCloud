@@ -33,6 +33,7 @@ const Profile: FC = () => {
 		event.preventDefault()
 		setMenuPosition({ position: 'fixed', right: '0.3rem', top: '4rem' })
 		setContextMenuVisible(true)
+		console.log('click')
 	}
 
 	const handleCloseMenu = (): void => {
@@ -47,16 +48,17 @@ const Profile: FC = () => {
 	}
 
 	return (
-		<section className='profile' onClick={user ? handleContextMenu : undefined}>
+		<section className='profile' onClick={handleContextMenu}>
 			{user ? (
 				<div className='profile-avatar'>
 					<UserIcon />
 				</div>
 			) : (
 				<div className='profile-avatar'>
-					<a href='./login'>
+					<UserSecret />
+					{/* <a href='./login'>
 						<UserSecret />
-					</a>
+					</a> */}
 				</div>
 			)}
 			{contextMenuVisible && user && (
