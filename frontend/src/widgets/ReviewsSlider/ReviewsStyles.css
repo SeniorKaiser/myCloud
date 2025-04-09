@@ -1,3 +1,33 @@
+.reviews-container {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
+
+.reviews-description {
+	max-width: 50%;
+	min-width: 30%;
+}
+
+.reviews-description h1 {
+	display: flex;
+	flex-direction: column;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+.social-links a img {
+	width: 3rem;
+	aspect-ratio: 1/1;
+}
+
+.reviews {
+	width: 30rem;
+}
+
 .reviews-control {
 	margin-bottom: 1rem;
 }
@@ -18,6 +48,8 @@
 
 .reviews-wrapper {
 	overflow: hidden;
+	border: 1px solid var(--text);
+	border-radius: 0.8rem;
 }
 
 .reviews-slider {
@@ -38,7 +70,7 @@
 	height: 100%;
 	width: 100%;
 	scroll-snap-align: start;
-	flex: 0 0 50%;
+	flex: 0 0 100%;
 	padding: 2rem;
 	border-radius: 0.8rem;
 }
@@ -58,4 +90,13 @@
 .slider-block p:last-child {
 	margin-top: 2rem;
 	cursor: pointer;
+}
+
+@media (width < 56rem) {
+	.reviews-container {
+		flex-direction: column-reverse;
+	}
+	.reviews-description {
+		justify-self: stretch;
+	}
 }
