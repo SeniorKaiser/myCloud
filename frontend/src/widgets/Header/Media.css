@@ -2,16 +2,17 @@
 	header nav {
 		position: fixed;
 		top: 0;
-		right: 0;
-		height: 100%;
-		width: 100%;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
 		flex-direction: column;
 		background-color: var(--background);
-		transform: translateX(-100%);
+		transform: translateX(-100vw);
 		transition: transform 0.2s ease-in-out;
 		z-index: 999;
 		font-size: 2rem;
 		gap: 2rem;
+		margin: 0;
 
 		a {
 			height: auto;

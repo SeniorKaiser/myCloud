@@ -6,60 +6,79 @@
 	caret-color: transparent;
 }
 
-.welcome img {
-	min-width: 50%;
-	height: 100%;
+.home-main .welcome-container {
+	height: calc(100vh - 4rem);
+	width: 99vw;
+	padding: 1rem;
+	position: relative;
+}
+
+.welcome-container__picture picture {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.welcome-container__picture img {
 	margin-left: auto;
 	object-fit: cover;
-	transform: scaleX(-1);
+	max-width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	display: none;
 }
 
-.welcome__title h1 {
-	font-size: clamp(2rem, 5vw, 4rem);
-	margin: 0;
-	overflow: hidden;
-	white-space: nowrap;
+.welcome-container__content {
+	display: inline-block;
+	max-width: 50rem;
+	position: absolute;
+	bottom: 2rem;
+	left: 2rem;
 }
 
-.welcome__title p {
-	font-size: 1.3rem;
-	margin: 0;
+.welcome-container__content h1 {
+	font-size: 3rem;
+	font-weight: 650;
 	margin-bottom: 1rem;
-	color: var(--grey);
 }
 
-.welcome__title--buttons {
+.welcome-container__content-stars {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	gap: 0.3rem;
+	color: #ffc72c;
+	margin-top: 2rem;
 }
 
-.welcome__title--buttons a {
-	text-decoration: none;
-	color: var(--main-color);
+.welcome-container__content-stars h3 {
+	color: var(--text);
 }
 
-.welcome__title--buttons button {
+.welcome-container__content p {
+	color: var(--grey);
+	width: 80%;
+}
+
+.welcome-container__content button {
 	border: none;
-	border-radius: 1rem;
-	background: linear-gradient(135deg, var(--second-color), var(--main-color));
-	color: white;
-	width: 12rem;
-	height: 2.5rem;
-	font-size: 1.3rem;
-	transition: 0.5s;
+	background-color: var(--text);
+	color: var(--background);
+	padding: 0.5rem;
+	border-radius: 0.8rem;
+	margin-top: 2rem;
+	transition: 0.5s ease;
+	font-size: 1.1rem;
 	cursor: pointer;
+
+	&:hover {
+		scale: 1.01;
+	}
 }
 
-.welcome__title {
-	width: 100%;
-	border-radius: 0 3rem 3rem 0;
-	padding: 1rem;
-}
-
-.demo-home-img {
-	width: 100%;
-	margin-top: 3rem;
+.welcome-container__logo {
+	position: absolute;
+	bottom: 2rem;
+	right: 2rem;
 }
 
 .typewriter {
@@ -83,6 +102,20 @@
 
 .typewriter.nocaret::after {
 	border-right: 0;
+}
+
+@media (width < 26rem) {
+	.welcome-container .logo {
+		display: none;
+	}
+
+	.welcome-container__content {
+		position: static;
+	}
+
+	.welcome-container__content button {
+		width: 100%;
+	}
 }
 
 @media (prefers-reduced-motion) {

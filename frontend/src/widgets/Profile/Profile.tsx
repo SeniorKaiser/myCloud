@@ -55,10 +55,9 @@ const Profile: FC = () => {
 				</div>
 			) : (
 				<div className='profile-avatar'>
-					<UserSecret />
-					{/* <a href='./login'>
+					<a href='./login'>
 						<UserSecret />
-					</a> */}
+					</a>
 				</div>
 			)}
 			{contextMenuVisible && user && (

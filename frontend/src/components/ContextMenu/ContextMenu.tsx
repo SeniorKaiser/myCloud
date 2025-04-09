@@ -54,8 +54,14 @@ const ContextMenu: FC<ContextMenuProps> = ({
 					bottom: position.bottom,
 				}}
 			>
-				{children}
-				<ListOptions options={options} object={object} onSuccess={onSuccess} />
+				<div className='context-manu__children'>{children}</div>
+				<div className='context-manu__options'>
+					<ListOptions
+						options={options}
+						object={object}
+						onSuccess={onSuccess}
+					/>
+				</div>
 			</div>
 		</>
 	)
