@@ -1,9 +1,27 @@
+import { Question } from '@widgets/AnswersQuestions/data'
+
 interface Review {
 	name: string
 	stars: number
 	text: string
 	contact: string
 }
+
+export const ReviewsQuestions: Question[] = [
+	{
+		question: 'Это настоящие пользователи?',
+		answer: 'На сайте представлены отзывы только настоящих пользователей',
+	},
+	{
+		question: 'Как оставить отзыв?',
+		answer:
+			'Написать в официальные соц.сети проекта и после проверки оно появится на сайте',
+	},
+	{
+		question: 'Это полный список отзывов?',
+		answer: 'Написать в официальные соц.сети проекта',
+	},
+]
 
 export const reviewsList: Review[] = [
 	{

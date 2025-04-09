@@ -33,7 +33,6 @@ const Profile: FC = () => {
 		event.preventDefault()
 		setMenuPosition({ position: 'fixed', right: '0.3rem', top: '4rem' })
 		setContextMenuVisible(true)
-		console.log('click')
 	}
 
 	const handleCloseMenu = (): void => {

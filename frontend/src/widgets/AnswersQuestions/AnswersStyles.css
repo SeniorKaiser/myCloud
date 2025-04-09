@@ -1,7 +1,6 @@
 .answers-questions {
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
 }
 
 .answers-questions-block {
@@ -9,20 +8,33 @@
 	flex-direction: column;
 	justify-content: end;
 	cursor: pointer;
-	border-radius: 0.8rem;
-	padding: 0.3rem;
+	padding: 1rem;
 }
 
 .answers-questions-block-head {
+	font-size: 0.8rem;
 	display: inline-flex;
 	gap: 0.8rem;
 }
 
 .answers-questions-block p {
-	font-size: 1.3rem;
-	margin-left: 2rem;
 	color: var(--grey);
-	animation: p-animation ease 0.3s;
+}
+
+.answers-questions-block p.close {
+	visibility: hidden;
+	transform: translateY(-20px);
+	opacity: 0;
+	max-height: 0;
+	transition: 0.2s ease;
+}
+
+.answers-questions-block p.open {
+	opacity: 1;
+	transform: translateY(0);
+	visibility: visible;
+	transition: 0.2s ease;
+	max-height: auto;
 }
 
 .answers-questions-block h2:first-child {
@@ -37,22 +49,15 @@
 	transform-origin: center;
 }
 
+.answers-questions-block:not(:last-child) {
+	border-bottom: 1px solid var(--border);
+}
+
 @keyframes rotate {
 	from {
 		transform: rotate(0deg);
 	}
 	to {
 		transform: rotate(90deg);
-	}
-}
-
-@keyframes p-animation {
-	0% {
-		opacity: 0;
-		transform: translateY(-20px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
 	}
 }

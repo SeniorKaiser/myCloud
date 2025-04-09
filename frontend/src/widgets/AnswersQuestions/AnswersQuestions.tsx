@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
-import { questionList } from './data'
+import { Question, questionList } from './data'
 import { Plus, XMark } from '@components/Icons/Icons'
 import './AnswersStyles.css'
 
-const AnswersQuestions: React.FC = () => {
+export interface AnswersQuestionsProps {
+	questions: Question[]
+}
+
+const AnswersQuestions: React.FC<AnswersQuestionsProps> = ({
+	questions = questionList,
+}) => {
 	const [openIndex, setOpenIndex] = useState<number | null>(null)
 
 	const toggleAnswer = (index: number) => {
@@ -12,7 +18,7 @@ const AnswersQuestions: React.FC = () => {
 
 	return (
 		<div className='answers-questions'>
-			{questionList.map((el, index) => (
+			{questions.map((el, index) => (
 				<div
 					className='answers-questions-block'
 					key={index}
@@ -25,7 +31,8 @@ const AnswersQuestions: React.FC = () => {
 						{''}
 						<h2>{el.question}</h2>
 					</div>
-					{openIndex === index && <p>{el.answer}</p>}
+					<p className={openIndex === index ? 'open' : 'close'}>{el.answer}</p>
+					{/* {openIndex === index && } */}
 				</div>
 			))}
 		</div>

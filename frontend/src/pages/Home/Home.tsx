@@ -5,7 +5,6 @@ import ReviewsSlider from '@widgets/ReviewsSlider/ReviewsSlider'
 import { useEffect, useRef } from 'react'
 import { Toaster } from 'react-hot-toast'
 import './Home.css'
-import AnswersQuestions from '@widgets/AnswersQuestions/AnswersQuestions'
 import Welcome from '@widgets/Welcome/Welcome'
 
 const Home: React.FC = () => {
@@ -63,11 +62,10 @@ const Home: React.FC = () => {
 					<h1>Что говорят другие?</h1>
 					<ReviewsSlider />
 				</section>
-
-				<section ref={el => (sectionsRef.current[3] = el)}>
+				{/* <section ref={el => (sectionsRef.current[3] = el)}>
 					<h1>Популярные вопросы</h1>
 					<AnswersQuestions />
-				</section>
+				</section> */}
 			</main>
 			<Footer />
 			<Toaster position='bottom-right' />

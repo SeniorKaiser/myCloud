@@ -36,7 +36,6 @@
 html,
 body {
 	height: 100%;
-	/* animation: appearance 0.5s ease-out; */
 	color: var(--text);
 	transition: background-color 0.3s;
 	background-color: var(--background);
