@@ -1,39 +1,30 @@
 .welcome {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	width: 100%;
 	caret-color: transparent;
-}
-
-.home-main .welcome-container {
-	height: calc(100vh - 4rem);
-	width: 99vw;
+	flex-direction: column;
+	min-width: 99vw;
+	min-height: calc(100vh - 4rem);
 	padding: 1rem;
-	position: relative;
 }
 
-.welcome-container__picture picture {
+.scena-container {
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.welcome-container__picture img {
-	margin-left: auto;
-	object-fit: cover;
-	max-width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	display: none;
+.welcome-container {
+	position: relative;
+	width: 100%;
 }
 
 .welcome-container__content {
 	display: inline-block;
 	max-width: 50rem;
-	position: absolute;
 	bottom: 2rem;
-	left: 2rem;
+	left: 0rem;
 }
 
 .welcome-container__content h1 {
@@ -78,34 +69,11 @@
 .welcome-container__logo {
 	position: absolute;
 	bottom: 2rem;
-	right: 2rem;
-}
-
-.typewriter {
-	--caret: currentcolor;
-}
-
-.typewriter::before {
-	content: '';
-	animation: typing 13.5s infinite;
-}
-
-.typewriter::after {
-	content: '';
-	border-right: 1px solid var(--caret);
-	animation: blink 0.5s linear infinite;
-}
-
-.typewriter.thick::after {
-	border-right: 1ch solid var(--caret);
-}
-
-.typewriter.nocaret::after {
-	border-right: 0;
+	right: 0;
 }
 
 @media (width < 26rem) {
-	.welcome-container .logo {
+	.welcome-container__logo {
 		display: none;
 	}
 
@@ -115,164 +83,5 @@
 
 	.welcome-container__content button {
 		width: 100%;
-	}
-}
-
-@media (prefers-reduced-motion) {
-	.typewriter::after {
-		animation: none;
-	}
-
-	@keyframes sequencePopup {
-		0%,
-		27% {
-			content: 'project';
-		}
-		30%,
-		57% {
-			content: 'storage';
-		}
-		60%,
-		87% {
-			content: 'choice';
-		}
-	}
-
-	.typewriter::before {
-		content: 'Best project';
-		animation: sequencePopup 12s linear infinite;
-	}
-}
-
-@keyframes typing {
-	0%,
-	27% {
-		content: '';
-	}
-	1%,
-	26% {
-		content: 'p';
-	}
-	2%,
-	25% {
-		content: 'pr';
-	}
-	3%,
-	24% {
-		content: 'pro';
-	}
-	4%,
-	23% {
-		content: 'proj';
-	}
-	5%,
-	22% {
-		content: 'proje';
-	}
-	6%,
-	21% {
-		content: 'projec';
-	}
-	7%,
-	20% {
-		content: 'project';
-	}
-
-	/* Cloud storage */
-	30%,
-	57% {
-		content: '';
-	}
-	31%,
-	56% {
-		content: 'c';
-	}
-	32%,
-	55% {
-		content: 'cl';
-	}
-	33%,
-	54% {
-		content: 'clo';
-	}
-	34%,
-	53% {
-		content: 'clou';
-	}
-	35%,
-	52% {
-		content: 'cloud';
-	}
-	36%,
-	51% {
-		content: 'cloud ';
-	}
-	37%,
-	50% {
-		content: 'cloud s';
-	}
-	38%,
-	49% {
-		content: 'cloud st';
-	}
-	39%,
-	48% {
-		content: 'cloud sto';
-	}
-	40%,
-	47% {
-		content: 'cloud stor';
-	}
-	41%,
-	46% {
-		content: 'cloud stora';
-	}
-	42%,
-	45% {
-		content: 'cloud storag';
-	}
-	43%,
-	44% {
-		content: 'cloud storage';
-	}
-
-	/* Choice */
-	60%,
-	87% {
-		content: '';
-	}
-	61%,
-	86% {
-		content: 'c';
-	}
-	62%,
-	85% {
-		content: 'ch';
-	}
-	63%,
-	84% {
-		content: 'cho';
-	}
-	64%,
-	83% {
-		content: 'choi';
-	}
-	65%,
-	82% {
-		content: 'choic';
-	}
-	66%,
-	81% {
-		content: 'choice';
-	}
-}
-
-@keyframes blink {
-	0%,
-	100% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0;
 	}
 }

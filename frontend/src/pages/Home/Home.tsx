@@ -40,13 +40,9 @@ const Home: React.FC = () => {
 			<main className='home-main'>
 				<section
 					ref={el => (sectionsRef.current[0] = el)}
-					className='welcome-container'
+					className='welcome-container-home'
 				>
 					<Welcome />
-					{/* <section className='wrapper'>
-						<div className='hero'></div>
-						<div className='content'></div>
-					</section> */}
 				</section>
 				<section
 					ref={el => (sectionsRef.current[1] = el)}
@@ -62,10 +58,6 @@ const Home: React.FC = () => {
 					<h1>Что говорят другие?</h1>
 					<ReviewsSlider />
 				</section>
-				{/* <section ref={el => (sectionsRef.current[3] = el)}>
-					<h1>Популярные вопросы</h1>
-					<AnswersQuestions />
-				</section> */}
 			</main>
 			<Footer />
 			<Toaster position='bottom-right' />
