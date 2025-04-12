@@ -77,10 +77,11 @@
 }
 
 .drag-and-drop-modal__icon {
-	font-size: 10rem;
+	font-size: 7rem;
 }
 .drag-and-drop-modal__text {
-	font-size: 3rem;
+	font-size: 1.5rem;
+	font-weight: 700;
 }
 
 .object-card-container {

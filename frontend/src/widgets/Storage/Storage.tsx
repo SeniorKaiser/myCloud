@@ -8,8 +8,8 @@ import Upload from '@components/UploadInput/UploadInput.tsx'
 import uploadFile from '@services/requests/Upload'
 import CreateFolderButton from '@components/CreateFolderButton/CreateFolderButton'
 import {
+	ArrowUpFromBracket,
 	ChevronLeft,
-	Download as UploadIcon,
 	Grip,
 	GripLines,
 } from '@components/Icons/Icons'
@@ -205,7 +205,7 @@ const Storage: React.FC = () => {
 			>
 				<div className='drag-and-drop-modal'>
 					<div className='drag-and-drop-modal__icon'>
-						<UploadIcon />
+						<ArrowUpFromBracket />
 					</div>
 					<div className='drag-and-drop-modal__text'>Загрузить</div>
 				</div>

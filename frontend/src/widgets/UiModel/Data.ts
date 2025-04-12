@@ -17,7 +17,7 @@ export const itemsUi: DemoFile[] = [
 	},
 	{
 		id: '7',
-		name: 'Todo',
+		name: 'Folder',
 		extension: 'folder',
 	},
 	{
@@ -27,8 +27,8 @@ export const itemsUi: DemoFile[] = [
 	},
 	{
 		id: '2',
-		name: 'Image',
-		extension: 'png',
+		name: 'Table',
+		extension: 'xls',
 	},
 	{
 		id: '3',
@@ -37,7 +37,7 @@ export const itemsUi: DemoFile[] = [
 	},
 	{
 		id: '4',
-		name: 'Family',
+		name: 'Image',
 		extension: 'jpg',
 	},
 ]

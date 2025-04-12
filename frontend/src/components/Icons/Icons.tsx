@@ -28,6 +28,8 @@ import {
 	faTableList,
 	faGrip,
 	faGripLines,
+	faArrowUpFromBracket,
+	faArrowPointer,
 } from '@fortawesome/free-solid-svg-icons'
 import {
 	faHardDrive,
@@ -198,4 +200,12 @@ export const Grip: React.FC = () => {
 
 export const GripLines: React.FC = () => {
 	return <FontAwesomeIcon icon={faGripLines} />
+}
+
+export const ArrowUpFromBracket: React.FC = () => {
+	return <FontAwesomeIcon icon={faArrowUpFromBracket} />
+}
+
+export const ArrowPointer: React.FC = () => {
+	return <FontAwesomeIcon icon={faArrowPointer} />
 }

@@ -2,35 +2,27 @@ import { FC } from 'react'
 import './UiModel.css'
 import Logo from '@components/Logo/Logo'
 import { getFileIcon } from '@components/Icons/IconsReact'
-import {
-	FolderPlus,
-	MagnifyingGlass,
-	Plus,
-	XMark,
-} from '@components/Icons/Icons'
+import { ArrowPointer, FolderPlus, Plus } from '@components/Icons/Icons'
 import { itemsUi } from './Data.ts'
+import {
+	BurgerMenuModel,
+	ContentModel,
+	SearchModel,
+} from './UIModelComponents.tsx'
 
 const UiModel: FC = () => {
 	const randomItems = [...itemsUi].sort(() => Math.random() - 0.5).slice(0, 3)
 	return (
 		<div className='scena'>
 			<div className='uimodel-container'>
-				<div className='uimodel-screen'>
+				<div className='uimodel-screen-mobile'>
 					<div className='screen-head'>
-						<div className='screen-head-burger'>
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
+						<BurgerMenuModel />
 						<Logo />
 					</div>
 					<div className='screen-content'>
 						<div className='func-content'>
-							<div className='func-content__search'>
-								<MagnifyingGlass />
-								<div>Найти</div>
-								<XMark />
-							</div>
+							<SearchModel />
 							<div className='func-content_st-func'>
 								<div className='func-content__create-folder'>
 									<FolderPlus />
@@ -41,24 +33,21 @@ const UiModel: FC = () => {
 								</div>
 							</div>
 						</div>
-						<div className='content'>
-							{itemsUi.map((item, index) => (
-								<div key={index} className='model-file'>
-									<div>{getFileIcon(item.extension)}</div>
-									<span>{item.name}</span>
-								</div>
-							))}
-						</div>
+						<ContentModel />
 					</div>
-					<div className='screen-footer'></div>
 				</div>
 			</div>
 			{randomItems.map((item, index) => (
 				<div key={item.id} className={`air-file air-file-${index}`}>
 					<div>{getFileIcon(item.extension)}</div>
-					<span>{item.name}</span>
 				</div>
 			))}
+			<div className='air-file-draggable'>
+				<span>
+					<ArrowPointer />
+				</span>
+				<div>{getFileIcon('doc')}</div>
+			</div>
 		</div>
 	)
 }
