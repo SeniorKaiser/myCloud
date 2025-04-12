@@ -42,12 +42,10 @@ const UiModel: FC = () => {
 					<div>{getFileIcon(item.extension)}</div>
 				</div>
 			))}
-			<div className='air-file-draggable'>
-				<span>
-					<ArrowPointer />
-				</span>
-				<div>{getFileIcon('doc')}</div>
-			</div>
+			<span className='air-file-draggable-cursor'>
+				<ArrowPointer />
+			</span>
+			<div className='air-file-draggable-icon'>{getFileIcon('doc')}</div>
 		</div>
 	)
 }
