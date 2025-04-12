@@ -32,7 +32,7 @@ export const listPrivilegeCard: PrivilegeCard[] = [
 			{ title: 'Объем хранилища', description: '20гб' },
 			{ title: 'Круглосуточная поддержка', description: '' },
 			{ title: 'Гарантия защиты', description: '' },
-			{ title: 'Загрузака и скачивание файлов', description: 'до 5гб' },
+			{ title: 'Загрузка и скачивание файлов', description: 'до 5гб' },
 		],
 		price: 0,
 		action: () => (window.location.href = '/reg'),

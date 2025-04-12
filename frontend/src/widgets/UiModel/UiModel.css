@@ -142,6 +142,7 @@
 	bottom: 0;
 	right: 0;
 	animation: move-file 5s ease-in-out infinite;
+	z-index: 2;
 }
 
 .air-file-draggable-cursor {
@@ -152,7 +153,26 @@
 	bottom: 0;
 	right: 0;
 	animation: move-cursor 5s ease-in-out infinite;
-	z-index: 2;
+	z-index: 3;
+}
+
+.air-file-draggable-drop-zone {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 7rem;
+	height: 7rem;
+	bottom: 40%;
+	right: 30%;
+	background-color: var(--window);
+	border-radius: 0.8rem;
+	opacity: 0;
+	visibility: hidden;
+	animation: show-drop-zone 5s ease-in-out infinite;
+	font-size: 3rem;
+	transform: scale(0.95);
+	pointer-events: none;
 }
 
 .air-file-0 {
@@ -204,11 +224,11 @@
 	0% {
 		bottom: -3rem;
 		right: -3rem;
-		opacity: 0;
+		opacity: 0.3;
 		transform: scale(1);
 	}
 	10% {
-		opacity: 1;
+		opacity: 0.5;
 	}
 	40% {
 		bottom: 40%;
@@ -226,7 +246,31 @@
 		bottom: -3rem;
 		right: -3rem;
 		opacity: 0;
+		transform: scale(0);
+	}
+}
+
+@keyframes show-drop-zone {
+	0%,
+	48% {
+		opacity: 0;
+		visibility: hidden;
+		transform: scale(0.95);
+	}
+	50% {
+		opacity: 1;
+		visibility: visible;
 		transform: scale(1);
+	}
+	60% {
+		opacity: 1;
+		visibility: visible;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		visibility: hidden;
+		transform: scale(0);
 	}
 }
 

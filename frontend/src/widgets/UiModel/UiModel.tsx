@@ -2,7 +2,12 @@ import { FC } from 'react'
 import './UiModel.css'
 import Logo from '@components/Logo/Logo'
 import { getFileIcon } from '@components/Icons/IconsReact'
-import { ArrowPointer, FolderPlus, Plus } from '@components/Icons/Icons'
+import {
+	ArrowPointer,
+	ArrowUpFromBracket,
+	FolderPlus,
+	Plus,
+} from '@components/Icons/Icons'
 import { itemsUi } from './Data.ts'
 import {
 	BurgerMenuModel,
@@ -46,6 +51,9 @@ const UiModel: FC = () => {
 				<ArrowPointer />
 			</span>
 			<div className='air-file-draggable-icon'>{getFileIcon('doc')}</div>
+			<div className='air-file-draggable-drop-zone'>
+				<ArrowUpFromBracket />
+			</div>
 		</div>
 	)
 }
