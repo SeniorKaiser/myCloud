@@ -172,7 +172,6 @@
 	animation: show-drop-zone 5s ease-in-out infinite;
 	font-size: 3rem;
 	transform: scale(0.95);
-	pointer-events: none;
 }
 
 .air-file-0 {
