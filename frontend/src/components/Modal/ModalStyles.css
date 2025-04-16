@@ -29,6 +29,8 @@
 	width: 80%;
 	transform: scale(0.5);
 	transition: 0.4s all;
+	max-height: 70%;
+	overflow-y: scroll;
 }
 
 .modal__content.active {
